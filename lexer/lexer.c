@@ -2,9 +2,9 @@
 
 static bool	ft_isspace(char ch)
 {
-	/* Returns true if it is a space character */
-	/* Implemented later */
-	return (true);
+	if ((ch >= '\a' && ch <= '\r') || ch == ' ')
+		return (true);
+	return (false);
 }
 
 static bool	lookahead(char ch, unsigned char *flags)

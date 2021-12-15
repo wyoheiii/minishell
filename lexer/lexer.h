@@ -1,6 +1,7 @@
 #ifndef LEXER_H
 # define LEXER_H
 
+# include <stdbool.h>
 # include "libft.h"
 
 # define EOF_FLAG       1
