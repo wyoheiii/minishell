@@ -7,6 +7,18 @@ static bool	ft_isspace(char ch)
 	return (false);
 }
 
+static bool	check_flag(const unsigned char flags, const size_t bit)
+{
+	if (flags & bit)
+		return (true);
+	return (false);
+}
+
+static void	set_flag(unsigned char *flags, const size_t bit)
+{
+	(*flags) |= bit;
+}
+
 static bool	lookahead(char ch, unsigned char *flags)
 {
 	/* Returns true if the character constitutes a token */
