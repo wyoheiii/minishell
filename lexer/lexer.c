@@ -146,7 +146,6 @@ t_list	*lexer(const char *line)
 		token = get_token(&(line[index]), &index, ft_strlen(line));
 		if (token == NULL)
 			break ;
-		printf("[%s]\n", token);
 		current = ft_lstnew(token);
 		if (current == NULL)
 		{
@@ -166,9 +165,14 @@ int main()
 	char 	*str = "mkdir test| echo \"create test\">>log.txt";
 
 	token_list = lexer(str);
+	tmp = token_list->next;
+	free(token_list);
+	token_list = tmp;
 	while (token_list != NULL)
 	{
+		printf("[%s]\n", (char *)token_list->content);
 		tmp = token_list->next;
+		free(token_list->content);
 		free(token_list);
 		token_list = tmp;
 	}
