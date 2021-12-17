@@ -6,14 +6,14 @@
 typedef struct s_parsed
 {
 	char			**command;
-	t_parsed		*next;
+	struct s_parsed	*next;
 }	t_parsed;
 
 t_parsed	*create_parsed(char **command)
 {
 	t_parsed	*parsed;
 
-	parsed = (t_parsed *)malloc(sizeof(parsed));
+	parsed = (t_parsed *)malloc(sizeof(t_parsed));
 	if (parsed == NULL)
 		return (NULL);
 	parsed->command = command;
@@ -45,7 +45,7 @@ size_t	get_delimiter_count(t_list *token_list)
 	return (count);
 }
 
-char	**create_command(t_list *token_list, size_t size)
+char	**create_command(t_list **token_list, size_t size)
 {
 	char		**command;
 	t_list		*tmp;
@@ -53,10 +53,10 @@ char	**create_command(t_list *token_list, size_t size)
 
 	while (index < size)
 	{
-		command[index] = token_list->content;
-		tmp = token_list->next;
-		free(token_list);
-		token_list = tmp;
+		command[index] = (*token_list)->content;
+		tmp = (*token_list)->next;
+		free(*token_list);
+		(*token_list) = tmp;
 		index += 1;
 	}
 	command[size] = NULL;
@@ -74,25 +74,28 @@ t_parsed	*parser(t_list *token_list)
 	tmp = token_list->next;
 	free (token_list);
 	token_list = tmp;
-	parsed = create_parsed("");
+	parsed = (t_parsed *)malloc(sizeof(t_parsed));
 	tmp2 = parsed;
 	while (token_list != NULL)
 	{
 		size = get_delimiter_count(token_list);
-		command = (char **)malloc(sizeof(size) + 1);
+		command = (char **)malloc(sizeof(char *) * (size + 1));
 		if (command == NULL)
 		{
 			//error
 		}
-		command = create_command(token_list, size);
-		if (is_delimiter(token_list->content))
+		command = create_command(&token_list, size);
+		tmp2->next = create_parsed(command);
+		if (token_list != NULL && is_delimiter(token_list->content))
 		{
 			tmp = token_list->next;
 			free(token_list);
 			token_list = tmp;
 		}
-		tmp2->next = create_parsed(command);
 		tmp2 = tmp2->next;
 	}
+	tmp2 = parsed->next;
+	free(parsed);
+	parsed = tmp2;
 	return (parsed);
 }
