@@ -7,5 +7,5 @@
 #include <string.h>
 #include <stdbool.h>
 void command_main(char **av,char **envp);
-
+bool my_echo(char **command);
 #endif 

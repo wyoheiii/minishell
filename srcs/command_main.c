@@ -1,32 +1,9 @@
 #include "../inc/minishell_c.h"
 
-size_t  command_size(char **command)
-{
-    size_t i;
-    i= 0;
-    while(command[i] != NULL)
-        i++;
-    return(i);
-}
-bool test_echo(char **command)
-{
-    size_t i;
-    size_t  size;
-    i = 0;
-    if(check_option(command));
-    size = command_size(command);
-    while( i < size)
-    {
-        ft_putendl_fd(command[],1);//[1]
-    }
-
-    return(true);
-}
-
 bool    builtin_select(char **command)
 {
-    if(!ft_strncmp(command[1], "echo",5))
-        return(test_echo(command));
+    if(!ft_strncmp(command[1], "echo",5))//command[0];
+        return(my_echo(command));
     if(!ft_strncmp(command[1], "cd",3))
         return(true);
     if(!ft_strncmp(command[1], "pwd",4))

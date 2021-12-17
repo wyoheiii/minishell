@@ -1,5 +1,5 @@
 NAME = minishell_command
-SRCS = main.c command_main.c
+SRCS = main.c command_main.c my_echo.c
 SRCSD = ./srcs/
 ADDSRCS = $(addprefix $(SRCSD),$(SRCS))
 OBJS = $(ADDSRCS:.c=.o)
