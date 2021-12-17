@@ -51,6 +51,12 @@ char	**create_command(t_list **token_list, size_t size)
 	t_list		*tmp;
 	size_t		index;
 
+	command = (char **)malloc(sizeof(char *) * (size + 1));
+	if (command == NULL)
+	{
+		//error
+	}
+	index = 0;
 	while (index < size)
 	{
 		command[index] = (*token_list)->content;
@@ -75,6 +81,10 @@ t_parsed	*parser(t_list *token_list)
 	free (token_list);
 	token_list = tmp;
 	parsed = (t_parsed *)malloc(sizeof(t_parsed));
+	if (parsed == NULL)
+	{
+		// error
+	}
 	tmp2 = parsed;
 	while (token_list != NULL)
 	{
