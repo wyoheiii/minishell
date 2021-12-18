@@ -39,24 +39,24 @@ static t_parsed	*get_parsed(t_list **token_list)
 {
 	size_t		size;
 	char		**command;
-	t_parsed	*tmp;
+	t_parsed	*parsed;
 
 	size = get_delimiter_count((*token_list));
 	command = create_command(token_list, size);
 	if (command == NULL)
 		return (NULL);
-	tmp->next = create_parsed(command);
-	if (tmp->next == NULL)
+	parsed = create_parsed(command);
+	if (parsed == NULL)
 	{
 		free(command);
 		return (NULL);
 	}
 	if ((*token_list) != NULL && is_delimiter((*token_list)->content))
 	{
-		tmp->next->state = get_state((*token_list)->content);
+		parsed->state = get_state((*token_list)->content);
 		lstdel_front(token_list);
 	}
-	return (true);
+	return (parsed);
 }
 
 void	free_parsed(t_parsed **parsed)
@@ -85,7 +85,7 @@ t_parsed	*parser(t_list **token_list)
 		if (tmp->next == NULL)
 		{
 			ft_lstclear(token_list, free);
-			free_parsed(&parsed);
+			free_parsed(&(parsed.next));
 			return (NULL);
 		}
 		tmp = tmp->next;

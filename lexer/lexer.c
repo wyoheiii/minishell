@@ -25,25 +25,16 @@ t_list	*lexer(const char *line)
 	return (token_list);
 }
 
-/*
+#include "parser.h"
 int main()
 {
-	t_list	*token_list;
-	t_list	*tmp;
+	t_list		*token_list;
+	t_parsed	*parsed;
 	char 	*str = "mkdir test| echo \"create test\">>log.txt | test\" aaa \' bbb \' hogehoge \" end";
 
 	token_list = lexer(str);
-	tmp = token_list->next;
-	free(token_list);
-	token_list = tmp;
-	while (token_list != NULL)
-	{
-		printf("[%s]\n", (char *)token_list->content);
-		tmp = token_list->next;
-		free(token_list->content);
-		free(token_list);
-		token_list = tmp;
-	}
+	if (token_list == NULL)
+		return (EXIT_FAILURE);
+	parsed = parser(&token_list);
 	return (0);
 }
-*/
