@@ -23,5 +23,6 @@ typedef struct s_parsed
 }	t_parsed;
 
 t_parsed	*parser(t_list **token_list);
+void		free_parsed(t_parsed **parsed);
 
 #endif

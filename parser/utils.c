@@ -8,8 +8,3 @@ void	lstdel_front(t_list **lst)
 	free((*lst));
 	(*lst) = tmp;
 }
-
-void	clear_parsed(t_parsed **parsed)
-{
-
-}
