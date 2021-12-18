@@ -33,16 +33,17 @@ int	get_state(char *str)
 		state = PIPE;
 	else if (str[0] == '<')
 	{
-		if (fr_strlen(str) == 2 && str[1] == '<')
+		if (ft_strlen(str) == 2 && str[1] == '<')
 			state = HERE_DOCUMENT;
 		else
 			state = REDIRECT_INPUT;
 	}
 	else if (str[0] == '>')
 	{
-		if (fr_strlen(str) == 2 && str[1] == '>')
+		if (ft_strlen(str) == 2 && str[1] == '>')
 			state = REDIRECT_APPEND;
 		else
 			state = REDIRECT_OUTPUT;
 	}
+	return (state);
 }
