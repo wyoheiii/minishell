@@ -2,25 +2,26 @@
 
 bool    builtin_select(char **command)
 {
-    if(!ft_strncmp(command[1], "echo",5))//command[0];
+    if(!ft_strncmp(command[0], "echo",5))//command[0];
         return(my_echo(command));
-    if(!ft_strncmp(command[1], "cd",3))
+    if(!ft_strncmp(command[0], "cd",3))
         return(true);
-    if(!ft_strncmp(command[1], "pwd",4))
+    if(!ft_strncmp(command[0], "pwd",4))
+        return(my_pwd());
+    if(!ft_strncmp(command[0], "export",7))
         return(true);
-    if(!ft_strncmp(command[1], "export",7))
+    if(!ft_strncmp(command[0], "unset",6))
         return(true);
-    if(!ft_strncmp(command[1], "unset",6))
+    if(!ft_strncmp(command[0], "env",4))
         return(true);
-    if(!ft_strncmp(command[1], "env",4))
-        return(true);
-    if(!ft_strncmp(command[1], "exit",5))
-        return(true);
+    if(!ft_strncmp(command[0], "exit",5))
+        return(my_exit(command)); //構造体でretの値渡したほうがいいかもしれん
     return (false);
 }
-void command_main(char **av,char **envp)
+void command_main(char **av,char **envp)//intでいいかも
 {
     //int pid ;
+    //printf("args:%s\n",av[0]);
     char *command ;//=  "cat";
     const char *add_path = "/bin/";
     //char *tmp;
@@ -34,13 +35,13 @@ void command_main(char **av,char **envp)
     // if (!tmp)
     //オリジナルのbuiltinが絶対パスできたらどうするか？
     if(builtin_select(av))
-        return;
-    if(ft_strncmp(av[1], add_path, 4) != 0)//av[0]
-        command = ft_strjoin(add_path, av[1]);//av[0]
+        return ;
+    if(ft_strncmp(av[0], add_path, 4) != 0)//av[0]
+        command = ft_strjoin(add_path, av[0]);//av[0]
     //if(command == NULL)
     //     return NULL;
     else
-         command = av[1]; //av[0]
+         command = av[0]; //av[0]
     printf("linne::::%s\n",command);
     //printf("envp::%s\n",envp[1]);
     av++; //ここも修正

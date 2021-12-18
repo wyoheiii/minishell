@@ -8,4 +8,6 @@
 #include <stdbool.h>
 void command_main(char **av,char **envp);
 bool my_echo(char **command);
+int my_pwd(void);
+int my_exit(char **command);
 #endif 
