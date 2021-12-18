@@ -45,4 +45,5 @@ int	get_state(char *str)
 		else
 			state = REDIRECT_OUTPUT;
 	}
+	return (state);
 }

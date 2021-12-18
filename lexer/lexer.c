@@ -25,18 +25,36 @@ t_list	*lexer(const char *line)
 	return (token_list.next);
 }
 
+/* test code */
 /*
 #include "parser.h"
-int main()
+#include "debug.h"
+int main(int argc, char **argv)
 {
 	t_list		*token_list;
 	t_parsed	*parsed;
 	char 	*str = "mkdir test| echo \"create test\">>log.txt | test\" aaa \' bbb \' hogehoge \" end";
 
-	token_list = lexer(str);
+	if (argc == 2)
+		token_list = lexer(argv[1]);
+	else if (argc == 1)
+		token_list = lexer(str);
+	else
+	{
+		printf("argv ga takusan aru\n");
+		return (0);
+	}
 	if (token_list == NULL)
+	{
+		printf("token_list NULL\n");
 		return (EXIT_FAILURE);
+	}
+	print_token_list(token_list);
 	parsed = parser(&token_list);
+	if (parsed == NULL)
+		printf("token_list NULL\n");
+	else
+		print_parsed(parsed);
 	free_parsed(&parsed);
 	return (0);
 }

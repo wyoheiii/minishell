@@ -43,7 +43,7 @@ static t_parsed	*get_parsed(t_list **token_list)
 
 	size = get_delimiter_count((*token_list));
 	command = create_command(token_list, size);
-	if (command == NULL)
+	if (command == NULL || command[0] == NULL)
 		return (NULL);
 	parsed = create_parsed(command);
 	if (parsed == NULL)
