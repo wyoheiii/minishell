@@ -40,7 +40,6 @@ void	print_parsed(t_parsed *parsed)
 	t_parsed	*tmp;
 	size_t		count;
 	size_t		index;
-	char		*state;
 
 	tmp = parsed;
 	count = 1;
