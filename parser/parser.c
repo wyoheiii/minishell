@@ -62,10 +62,15 @@ static t_parsed	*get_parsed(t_list **token_list)
 void	free_parsed(t_parsed **parsed)
 {
 	t_parsed	*tmp;
+	size_t		index;
 
 	while ((*parsed) != NULL)
 	{
 		tmp = (*parsed)->next;
+		index = 0;
+		while ((*parsed)->command[index] != NULL)
+			free((*parsed)->command[index++]);
+		free((*parsed)->command);
 		free(*parsed);
 		(*parsed) = tmp;
 	}
@@ -76,7 +81,6 @@ t_parsed	*parser(t_list **token_list)
 	t_parsed	parsed;
 	t_parsed	*tmp;
 
-	lstdel_front(token_list);
 	parsed.next = NULL;
 	tmp = &parsed;
 	while ((*token_list) != NULL)
@@ -90,6 +94,5 @@ t_parsed	*parser(t_list **token_list)
 		}
 		tmp = tmp->next;
 	}
-	ft_lstclear(token_list, free);
 	return (parsed.next);
 }

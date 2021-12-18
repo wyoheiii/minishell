@@ -2,13 +2,13 @@
 
 t_list	*lexer(const char *line)
 {
-	t_list	*token_list;
+	t_list	token_list;
 	t_list	*current;
 	size_t	index;
 	char	*token;
 
 	index = 0;
-	token_list = ft_lstnew("");
+	token_list.next = NULL;
 	while (line[index] != '\0' && line[index] != EOF)
 	{
 		token = get_token(&(line[index]), &index, ft_strlen(line));
@@ -17,14 +17,15 @@ t_list	*lexer(const char *line)
 		current = ft_lstnew(token);
 		if (current == NULL)
 		{
-			ft_lstclear(&token_list, free);
+			ft_lstclear(&(token_list.next), free);
 			return (NULL);
 		}
-		ft_lstadd_back(&token_list, current);
+		ft_lstadd_back(&(token_list.next), current);
 	}
-	return (token_list);
+	return (token_list.next);
 }
 
+/*
 #include "parser.h"
 int main()
 {
@@ -36,5 +37,7 @@ int main()
 	if (token_list == NULL)
 		return (EXIT_FAILURE);
 	parsed = parser(&token_list);
+	free_parsed(&parsed);
 	return (0);
 }
+*/
