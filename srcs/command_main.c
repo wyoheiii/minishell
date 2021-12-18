@@ -34,8 +34,8 @@ void command_main(char **av,char **envp)//intでいいかも
     //tmp = av[1]; //strdup?
     // if (!tmp)
     //オリジナルのbuiltinが絶対パスできたらどうするか？
-    if(builtin_select(av))
-        return ;
+    if(builtin_select(av))// return de ビルドインの戻り値を返す
+        return ; //return de ビルドインの戻り値を返す
     if(ft_strncmp(av[0], add_path, 4) != 0)//av[0]
         command = ft_strjoin(add_path, av[0]);//av[0]
     //if(command == NULL)
@@ -45,9 +45,12 @@ void command_main(char **av,char **envp)//intでいいかも
     printf("linne::::%s\n",command);
     //printf("envp::%s\n",envp[1]);
     av++; //ここも修正
+    //ここでファイルあるか確認してaccses使う
+    //commandなんちゃら追加
     execve(command, av, envp);
     if(errno)
     {
+        //commandなんちゃら追加
         ft_putstr_fd("bash: ",2);
         ft_putstr_fd(command, 2);
         ft_putstr_fd(": ", 2);
