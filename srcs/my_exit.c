@@ -49,7 +49,7 @@ bool exit_atoi(char *str, long long *num)
     flag = 1;
     if(str[0] == '+' || str[0] == '-')
     {
-        if(str[0] != '-')
+        if(str[0] == '-')
             flag = -1;
         i++;
     }
@@ -70,7 +70,7 @@ int my_exit(char **command)
     //printf("commmand [1]%d\n",(unsigned char)ft_atoi(command[1]));
     if (check_num(command[1]) && exit_atoi(command[1] , &num))
     {
-        printf("ret  :%ld\n",num);
+        printf("ret  :%lld\n",num);
         ret = (unsigned char)num;
         return (ret);
     }
