@@ -31,10 +31,11 @@ static bool exit_atoi2(char *str,int flag, size_t i, long long *num)
     {
         if(i > 19)
             return (false);
-        if(flag == 1 && (*num > max || (*num == max && (str[i] - '0' > one)))
-            return(false);
-        if(flag == -1 &&(*num > max || (*num == max && ((str[i] - '0') > one + 1))))
-            return(false);
+
+        if(flag == 1 && (*num > max || (*num == max && (str[i] - '0' > one))))
+            return (false);
+        if(flag == -1 && (*num > max || (*num == max && ((str[i] - '0') > one + 1))))
+            return (false);
         *num = *num * 10 + str[i] - '0';
         i++;
     }
@@ -50,7 +51,7 @@ bool exit_atoi(char *str, long long *num)
     flag = 1;
     if(str[0] == '+' || str[0] == '-')
     {
-        if(str[0] != '-')
+        if(str[0] == '-')
             flag = -1;
         i++;
     }
@@ -71,7 +72,7 @@ int my_exit(char **command)
     //printf("commmand [1]%d\n",(unsigned char)ft_atoi(command[1]));
     if (check_num(command[1]) && exit_atoi(command[1] , &num))
     {
-        printf("ret  :%ld\n",num);
+        printf("ret  :%lld\n",num);
         ret = (unsigned char)num;
         return (ret);
     }
