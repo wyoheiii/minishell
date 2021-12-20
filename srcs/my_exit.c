@@ -21,7 +21,7 @@ bool    check_num(char *command)
     }
     return (true);
 }
-static bool exit_atoi2(char *str,int flag, size_t i, size_t *num)
+static bool exit_atoi2(char *str,int flag, size_t i, long long *num)
 {
     long long max;
     long long one;
@@ -29,34 +29,29 @@ static bool exit_atoi2(char *str,int flag, size_t i, size_t *num)
     one = (LLONG_MAX) % 10;
     while(str[i] != '\0')
     {
-        if(*num > max || (*num == max && ()))
-            return(false);
+        if(i > 19)
+            return (false);
+        if(flag == 1 && (*num > max || (*num == max && (str[i] - '0' > one))))
+            return (false);
+        if(flag == -1 && (*num > max || (*num == max && ((str[i] - '0') > one + 1))))
+            return (false);
+        *num = *num * 10 + str[i] - '0';
+        i++;
     }
+    printf("ret  :%lld\n", *num);
+    *num =  flag * ((long long)*num);
+    return (true);
 }
-bool exit_atoi(char *str, size_t *num)
+bool exit_atoi(char *str, long long *num)
 {
     int flag;
     size_t i;
-    //long long ten;
-    //long long one;
     i = 0;
     flag = 1;
     if(str[0] == '+' || str[0] == '-')
     {
-        if(str[0] != '-')
+        if(str[0] == '-')
             flag = -1;
-        i++;
-    }
-    while(str[i] != '\0')
-    {
-        if(i > 19)
-            return (false);
-        if((flag == 1 && *num > (size_t)LLONG_MAX) 
-        || (flag == -1 && *num  > ((size_t)LLONG_MAX) + 1))
-            return (false);
-        printf("ret  :%ld\n", *num);
-        printf("size_t long  :%ld\n", (size_t)LLONG_MAX) + 1);
-        *num = *num * 10 + str[i] - '0';
         i++;
     }
     return (exit_atoi2(str, flag , i, num));
@@ -66,7 +61,7 @@ int my_exit(char **command)
 {
     int ret;
     int size;
-    size_t num;
+    long long num;
     printf("exit\n");
     size = command_size(command);
     ret = 0;
@@ -76,7 +71,7 @@ int my_exit(char **command)
     //printf("commmand [1]%d\n",(unsigned char)ft_atoi(command[1]));
     if (check_num(command[1]) && exit_atoi(command[1] , &num))
     {
-        printf("ret  :%ld\n",num);
+        printf("ret  :%lld\n",num);
         ret = (unsigned char)num;
         return (ret);
     }
