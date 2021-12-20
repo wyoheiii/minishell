@@ -37,6 +37,7 @@ void	test_command(char *command)
 	printf("------------------------\n");
 }
 
+// bashで実行して
 int	main(int ac, char **av, char **envp)
 {
 	g_env = envp;
