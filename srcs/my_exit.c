@@ -31,14 +31,13 @@ static bool exit_atoi2(char *str,int flag, size_t i, long long *num)
     {
         if(i > 19)
             return (false);
-        if(flag == 1 && (*num > max || (*num == max && (str[i] - '0' > one)))
+        if(flag == 1 && (*num > max || (*num == max && (str[i] - '0' > one))))
             return(false);
         if(flag == -1 &&(*num > max || (*num == max && ((str[i] - '0') > one + 1))))
             return(false);
         *num = *num * 10 + str[i] - '0';
         i++;
     }
-    printf("ret  :%ld\n", *num);
     *num =  flag * ((long long)*num);
     return (true);
 }
