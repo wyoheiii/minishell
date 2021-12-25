@@ -26,6 +26,20 @@ static bool	search_variable(char *str, size_t *index)
 	return (true);
 }
 
+size_t	get_name_size(const char *line, const size_t start)
+{
+	size_t	size;
+
+	size = 0;
+	if (line[(start)] == '?')
+		size += 1;
+	else
+		while (ft_isalnum(line[(start + size)])
+			|| line[(start + size)] == '_')
+			size += 1;
+	return (size);
+}
+
 char	*get_variable_name(char *line, size_t *start)
 {
 	char	*variable_name;
@@ -34,10 +48,8 @@ char	*get_variable_name(char *line, size_t *start)
 	size_t	index;
 
 	length = ft_strlen(line);
-	size = 0;
 	(*start) += 1;
-	while (ft_isalnum(line[((*start) + size)]))
-		size += 1;
+	size = get_name_size(line, *start);
 	variable_name = (char *)malloc(sizeof(char) * (size + 1));
 	if (variable_name == NULL)
 		return (NULL);
@@ -74,7 +86,7 @@ bool	expansion(t_parsed *parsed)
 				if (variable_name == NULL)
 					return (false);
 			}
-			//printf("%ld %s\n", count, variable_name);
+			printf("%ld %s\n", count, variable_name);
 			count += 1;
 		}
 		current = current->next;
