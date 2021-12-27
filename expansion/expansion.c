@@ -72,6 +72,9 @@ bool	expansion(t_parsed *parsed)
 	size_t		count;
 	size_t		index;
 
+	char		*str;
+	size_t		start;
+
 	count = 0;
 	current = parsed;
 	while (current != NULL)
@@ -79,14 +82,67 @@ bool	expansion(t_parsed *parsed)
 		while (parsed->command[count] != NULL)
 		{
 			index = 0;
+			start = 0;
+			str = ft_calloc(1, sizeof(char));
+			if (str == NULL)
+			{
+				// error
+			}
 			while (search_variable(parsed->command[count], &index))
 			{
+				if (start != index)
+				{
+					tmp = ft_substr(parsed->command[count], start, (index - start));
+					if (tmp == NULL)
+					{
+						//error
+					}
+					str	= ft_strjoin(str, tmp);
+					free(tmp);
+				}
 				variable_name = get_variable_name(parsed->command[count],
 						&index);
 				if (variable_name == NULL)
 					return (false);
+				if (variable_name[0] == '?')
+				{
+					str	= ft_strjoin(str, "0");
+					if (str == NULL)
+					{
+						//error
+					}
+				}
+				else
+				{
+					tmp = getenv(variable_name);
+					if (tmp != NULL)
+					{
+						str	= ft_strjoin(str, tmp);
+						if (str == NULL)
+						{
+							//error
+						}
+					}
+				}
+				free(variable_name);
+				start = index;
 			}
-			printf("%ld %s\n", count, variable_name);
+			if (start != index)
+			{
+				tmp = ft_substr(parsed->command[count], start, (index - start));
+				if (tmp == NULL)
+				{
+					// error
+				}
+				str	= ft_strjoin(str, tmp);
+				if (str == NULL)
+				{
+					//error
+				}
+				free(tmp);
+			}
+			free(parsed->command[count]);
+			parsed->command[count] = str;
 			count += 1;
 		}
 		current = current->next;
