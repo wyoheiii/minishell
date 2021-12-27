@@ -4,16 +4,22 @@
 static bool	search_variable(char *str, size_t *index)
 {
 	size_t	length;
+	bool	is_double_quote;
 	bool	is_quote;
 
 	length = ft_strlen(str);
+	is_double_quote = false;
 	is_quote = false;
 	while ((*index) < length)
 	{
-		if (is_quote && str[(*index)] == '\'')
+		if ((is_quote && str[(*index)] == '\'') && is_double_quote == false)
 			is_quote = false;
-		else if (str[(*index)] == '\'')
+		else if (str[(*index)] == '\'' && is_double_quote == false)
 			is_quote = true;
+		else if ((is_double_quote && str[(*index)] == '\"') && is_quote == false)
+			is_double_quote = false;
+		else if (str[(*index)] == '\"' && is_quote == false)
+			is_double_quote = true;
 		else if (is_quote == false)
 		{
 			if (str[(*index)] == '$')
