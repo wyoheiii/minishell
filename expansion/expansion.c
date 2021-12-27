@@ -14,7 +14,7 @@ static bool	search_variable(char *str, size_t *index)
 			is_quote = false;
 		else if (str[(*index)] == '\'')
 			is_quote = true;
-		else
+		else if (is_quote == false)
 		{
 			if (str[(*index)] == '$')
 				break ;
