@@ -53,6 +53,10 @@ bool exit_atoi(char *str, long long *num)
             flag = -1;
         i++;
     }
+    while(str[i] == '0' && str[i] != '\0')
+    {
+        i++;
+    }
     return (exit_atoi2(str, flag , i, num));
     
 }
@@ -61,20 +65,20 @@ int my_exit(char **command)
     int ret;
     int size;
     long long num;
-    printf("exit\n");
+    //printf("exit\n");
     size = command_size(command);
     ret = 0;
     num = 0;
     if(size == 1)
         return (ret);
-    //printf("commmand [1]%d\n",(unsigned char)ft_atoi(command[1]));
+
     if (check_num(command[1]) && exit_atoi(command[1] , &num))
     {
-        printf("ret  :%lld\n",num);
+        //printf("ret  :%lld\n",num);
         ret = (unsigned char)num;
         return (ret);
     }
-    printf("ret  :%d",ret);
+    //printf("ret  :%d",ret);
     if (size == 2 && check_num(command[1]))
         return(ret);
     if (size > 2 && check_num(command[1]))//ここはbashぬけない
@@ -90,5 +94,4 @@ int my_exit(char **command)
         return(ret);
     }
     return (ret);// exitのみなら返り値は0;
-}//19桁以上の場合はnumeric なんちゃら
-//18桁未満の場合はexitできる
+}
