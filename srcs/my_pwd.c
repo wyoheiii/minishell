@@ -4,12 +4,14 @@ int my_pwd(void)
     char *dir;
 
     dir = getcwd((char *)NULL, 0);
+    //printf("pwd :%s\n",dir);
     if(!dir)
         perror("getcwd");
     else
     {
-        printf("%s",dir);
+        printf("%s", dir);
         free(dir);
     }
-    return(dir == NULL ? EXIT_FAILURE : EXIT_SUCCESS);
+    return(1);
+    //return(dir == NULL ? EXIT_FAILURE : EXIT_SUCCESS);
 }

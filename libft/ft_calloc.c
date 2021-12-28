@@ -30,4 +30,3 @@ void	*ft_calloc(size_t	count, size_t	size)
 	ft_bzero(zero, total);
 	return (zero);
 }
-

@@ -1,31 +1,49 @@
 #include "../inc/minishell_c.h"
+//malloc失敗した時どうfreeするか
+int    return_builtin(char **command, t_envlist **envlst)
+{
+    int ret;
+    ret = 0;
+    if(!ft_strncmp(command[0], "echo",5))
+        ret = my_echo(command);
+    else if(!ft_strncmp(command[0], "cd",3))
+        ret = my_cd(command);
+    else if(!ft_strncmp(command[0], "pwd",4))
+        ret = my_pwd();
+    else if(!ft_strncmp(command[0], "export",7))
+        ret = my_export(command, envlst);
+    else if(!ft_strncmp(command[0], "unset",6))
+        ret = my_unset(command, envlst);
+    else if(!ft_strncmp(command[0], "env",4))
+        ret = my_env(*envlst);
+    else if(!ft_strncmp(command[0], "exit",5))
+        ret = my_exit(command); //構造体でretの値渡したほうがいいかもしれん
+    return (ret);
+}
 
 bool    builtin_select(char **command)
 {
-    if(!ft_strncmp(command[0], "echo",5))//command[0];
-        return(my_echo(command));
-    if(!ft_strncmp(command[0], "cd",3))
+    if(!ft_strncmp(command[0], "echo",5))
         return(true);
-    if(!ft_strncmp(command[0], "pwd",4))
-        return(my_pwd());
-    if(!ft_strncmp(command[0], "export",7))
+    else if(!ft_strncmp(command[0], "cd",3))
         return(true);
-    if(!ft_strncmp(command[0], "unset",6))
+    else if(!ft_strncmp(command[0], "pwd",4))
         return(true);
-    if(!ft_strncmp(command[0], "env",4))
+    else if(!ft_strncmp(command[0], "export",7))
         return(true);
-    if(!ft_strncmp(command[0], "exit",5))
-        return(my_exit(command)); //構造体でretの値渡したほうがいいかもしれん
+    else if(!ft_strncmp(command[0], "unset",6))
+        return(true);
+    else if(!ft_strncmp(command[0], "env",4))
+        return(true);
+    else if(!ft_strncmp(command[0], "exit",5))
+        return(true);
     return (false);
 }
-void command_main(char **av,char **envp)//intでいいかも
+int command_main(char **av,char **envp, t_envlist **envlst)
 {
     //int pid ;
-    //printf("args:%s\n",av[0]);
-    char *command ;//=  "cat";
+    char *command;
     const char *add_path = "/bin/";
-    //char *tmp;
-
     //pid = fork();
     //if(pid < 0)
     //{
@@ -33,18 +51,16 @@ void command_main(char **av,char **envp)//intでいいかも
     //}
     //tmp = av[1]; //strdup?
     // if (!tmp)
-    //オリジナルのbuiltinが絶対パスできたらどうするか？
-    if(builtin_select(av))// return de ビルドインの戻り値を返す
-        return ; //return de ビルドインの戻り値を返す
-    if(ft_strncmp(av[0], add_path, 4) != 0)//av[0]
-        command = ft_strjoin(add_path, av[0]);//av[0]
-    //if(command == NULL)
-    //     return NULL;
+    //どこかで_=を追加する
+    if(builtin_select(av))
+        return (return_builtin(av, envlst));
+    command = NULL;
+    if(ft_strncmp(av[0], add_path, 4) != 0)
+        command = ft_strjoin(add_path, av[0]);
     else
-         command = av[0]; //av[0]
-    printf("linne::::%s\n",command);
-    //printf("envp::%s\n",envp[1]);
-    av++; //ここも修正
+        command = ft_strdup(av[0]);
+    if(command == NULL)
+        return (MALLOC_ERROR);
     //ここでファイルあるか確認してaccses使う
     //commandなんちゃら追加
     execve(command, av, envp);
@@ -57,4 +73,5 @@ void command_main(char **av,char **envp)//intでいいかも
         ft_putendl_fd(strerror(errno),2);
         exit(errno);
     }
+    return 1;
 }

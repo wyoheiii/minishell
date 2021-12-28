@@ -1,0 +1,53 @@
+#include "../inc/minishell_c.h"
+void	env_delone(t_envlist *lst)
+{
+	if (!lst)
+		return ;
+    if(lst->value)
+	{
+        free(lst->value);
+	}
+	if(lst->key)
+	{
+		free(lst->key);
+	}
+    if(lst)
+	    free(lst);    
+}
+
+void all_env_clear(t_envlist **lst)
+{
+    t_envlist *tmp;
+
+    if(!lst)
+        return ;
+    while(*lst)
+    {
+        tmp = (*lst)->next;
+        env_delone(*lst);
+        *lst = tmp;
+    }
+    *lst = NULL;
+}
+
+void	lstadd_back(t_envlist **lst, t_envlist *new)
+{
+	t_envlist	*tmp;
+
+	if (!lst)
+		return ;
+	if (*lst)
+	{
+		tmp = env_lstlast(*lst);
+		tmp->next = new;
+	}
+	else
+		*lst = new;
+}
+void lst_add_front(t_envlist **lst, t_envlist *new)
+{
+	if (!new || !lst)
+		return ;
+	new -> next = *lst;
+	*lst = new;
+}
