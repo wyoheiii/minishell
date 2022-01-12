@@ -1,4 +1,4 @@
-#include "../inc/minishell_c.h"
+#include "minishell_c.h"
 int my_pwd(void)
 {
     char *dir;
@@ -9,7 +9,7 @@ int my_pwd(void)
         perror("getcwd");
     else
     {
-        printf("%s", dir);
+        printf("%s\n", dir);
         free(dir);
     }
     return(1);

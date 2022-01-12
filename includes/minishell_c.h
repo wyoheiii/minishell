@@ -2,7 +2,7 @@
 #define MINISHELL_C_H
 #include <stdio.h>
 #include <unistd.h>
-#include "../libft/libft.h"
+#include "libft.h"
 #include <errno.h>
 #include <string.h>
 #include <stdbool.h>
@@ -21,7 +21,7 @@ int my_pwd(void);
 int my_exit(char **command);
 int my_cd(char **command);
 void print_err(char *command, char *error);
-bool    env_init(char **env, t_envlist **envlst);
+void    env_init(char **env, t_envlist **envlst);
 t_envlist   *env_new(char *envp);
 t_envlist	*env_lstlast(t_envlist	*lst);
 void lst_add_front(t_envlist **lst, t_envlist *new);
@@ -35,5 +35,6 @@ char *env_get_value(char *env);
 char *env_get_key(char *env);
 int my_unset(char **args,t_envlist **envlst);
 bool char_check(char *arg);
+void	*god_malloc(size_t size);
 //int my_env()
 #endif 

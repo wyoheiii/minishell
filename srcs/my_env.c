@@ -1,4 +1,4 @@
-#include "../inc/minishell_c.h"
+#include "minishell_c.h"
 // bash-3.2$ export _=AA
 // bash-3.2$ echo $?
 // 0

@@ -1,4 +1,4 @@
-#include "../inc/minishell_c.h"
+#include "minishell_c.h"
 void	env_delone(t_envlist *lst)
 {
 	if (!lst)

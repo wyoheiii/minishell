@@ -1,4 +1,4 @@
-#include "../inc/minishell_c.h"
+#include "minishell_c.h"
 //失敗が1成功が0
 //bash: cd: lv03: No such file or directory
 //同じディレクトリならこれ

@@ -1,4 +1,4 @@
-#include "../inc/minishell_c.h"
+#include "minishell_c.h"
 int command_size(char **arg)
 {
     int i;
