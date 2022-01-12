@@ -1,5 +1,5 @@
-#include "../inc/minishell_c.h"
-//malloc失敗した時どうfreeするか
+#include "minishell_c.h"
+
 int    return_builtin(char **command, t_envlist **envlst)
 {
     int ret;
@@ -39,6 +39,7 @@ bool    builtin_select(char **command)
         return(true);
     return (false);
 }
+
 int command_main(char **av,char **envp, t_envlist **envlst)
 {
     //int pid ;
@@ -71,7 +72,7 @@ int command_main(char **av,char **envp, t_envlist **envlst)
         ft_putstr_fd(command, 2);
         ft_putstr_fd(": ", 2);
         ft_putendl_fd(strerror(errno),2);
-        exit(errno);
+        //exit(errno);
     }
     return 1;
 }

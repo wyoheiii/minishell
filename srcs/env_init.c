@@ -1,9 +1,9 @@
-#include "../inc/minishell_c.h"
+#include "minishell_c.h"
 //=の一個前までを入れる
-//envpだとやばい場合がある setenvが呼ばれた場合に正しい動作をしない可能性があるのでexternを使ったほうがいいかも
-bool    env_init(char **env, t_envlist **envlst)
+void    env_init(char **env, t_envlist **envlst)
 {
     size_t i;
+    //extern char **env;
     t_envlist   *new;
     if(env)
         *envlst = env_new(env[0]);
@@ -21,5 +21,5 @@ bool    env_init(char **env, t_envlist **envlst)
     }
     new = env_new("OLDPWD");
     lstadd_back(envlst, new);
-    return (true);
+    return ;
 }

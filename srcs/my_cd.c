@@ -1,4 +1,4 @@
-#include "../inc/minishell_c.h"
+#include "minishell_c.h"
 //失敗が1成功が0
 //bash: cd: lv03: No such file or directory
 //同じディレクトリならこれ
@@ -6,10 +6,12 @@
 //bash: cd: HOME not set HOMEがなかったらこれ
 //未テスト
 // OLD PWD更新
+// rm でカレントディレクトリ消した後にｃｄ．とか
+
 int my_cd(char **command)
 {
-
     char *error;
+
     if(command[1] == NULL)
     {
         if(chdir(getenv("HOME")) != 0)

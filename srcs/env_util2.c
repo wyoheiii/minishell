@@ -1,4 +1,4 @@
-#include "../inc/minishell_c.h"
+#include "minishell_c.h"
 //=より前
 char *env_get_key(char *env)
 {
@@ -12,8 +12,7 @@ char *env_get_key(char *env)
         key = ft_substr(env, 0, i);
         if(!key)
         {
-            printf("malloc sippai");
-            //return(NULL);
+            perror("malloc");
             exit(1);
         }
         return (key);
@@ -35,9 +34,7 @@ char *env_get_value(char *env)
             value = ft_strdup(++tmp);
         if(!value)
         {
-            printf("NULL ga-do sippai\n");
-            //1
-            //return(NULL);
+            perror("malloc");
             exit(1);
         }
         return(value);
@@ -58,7 +55,7 @@ t_envlist   *env_new(char *envp)
 {
     t_envlist *new;
 
-    new = malloc(sizeof(t_envlist));
+    new = (t_envlist *)god_malloc(sizeof(t_envlist));
     if (!new)
         return (NULL);
     new->key = env_get_key(envp);

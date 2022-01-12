@@ -1,4 +1,4 @@
-#include "../inc/minishell_c.h"
+#include "minishell_c.h"
 //bash-3.2$ unset AAA=
 //bash: unset: `AAA=': not a valid identifier
 //記号があったらエラー、英字の連続なら問題ないキーの左側と一致したら削除
@@ -122,9 +122,9 @@ void join_value(char *arg, t_envlist **lst)
             tmp = ft_strjoin((*lst)->value, value);
             if(!tmp)
             {
-                printf("malloc sippai\n");
+                perror("malloc");
                 exit(1);
-            }
+            }                        
             free((*lst)->value);
             (*lst)->value = tmp;
             *lst = top;
@@ -153,7 +153,7 @@ void dup_value(char *arg, t_envlist **lst)
             tmp = ft_strdup(value);
             if(!tmp)
             {
-                printf("malloc sippai\n");
+                perror("malloc");
                 exit(1);
             }
             free((*lst)->value);

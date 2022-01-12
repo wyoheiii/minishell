@@ -1,4 +1,4 @@
-#include "../inc/minishell_c.h"
+#include "minishell_c.h"
 //bash-3.2$ unset AAA=
 //bash: unset: `AAA=': not a valid identifier
 void lst_unset(char *arg, t_envlist **lst)

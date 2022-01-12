@@ -1,4 +1,4 @@
-#include "../inc/minishell_c.h"
+#include "minishell_c.h"
 bool    check_n(char *arg)
 {
     size_t i;
