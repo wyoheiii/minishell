@@ -1,6 +1,7 @@
 #include "sig.h"
 //ctrl d de exit syuuryou 
 //ctrl c de new line
+//ctr
 void signal_ctrl_c(int sig)
 {
     (void)sig;
