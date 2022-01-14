@@ -1,82 +1,80 @@
 #include "expand_param.h"
 
-static bool	expand_variable(char **line, char *variable_name)
+static void	expand_variable(char **line, char *variable_name)
 {
-	char	*tmp;
-	char	*tmp2;
+	char	*value;
+	char	*joined;
 
-	tmp = getenv(variable_name);
-	if (tmp != NULL)
+	value = getenv(variable_name);
+	if (value != NULL)
 	{
-		tmp2 = ft_strjoin(*line, tmp);
-		if (tmp2 == NULL)
+		joined = ft_strjoin(*line, value);
+		if (joined == NULL)
 		{
-			//error
+			ft_putendl_fd("malloc failure", 2);
+			exit(EXIT_FAILURE);
 		}
 		free(*line);
-		*line = tmp2;
+		*line = joined;
 	}
-	return (true);
 }
 
-static bool	expand_exit_status(char *str, char **line)
+static void	expand_exit_status(char *str, char **line)
 {
 	char	*tmp;
 
 	tmp = ft_strjoin(*line, "0");
 	if (str == NULL)
 	{
-		//error
+		ft_putendl_fd("malloc failure", 2);
+		exit(EXIT_FAILURE);
 	}
 	free(*line);
 	*line = tmp;
-	return (true);
 }
 
-static bool	string_before_param(char *str, char **line,
+static void	string_before_param(char *str, char **line,
 		size_t *index, size_t *start)
 {
-	char	*tmp;
-	char	*tmp2;
+	char	*before_param;
+	char	*joined;
 
 	if (*index != *start)
 	{
-		tmp = ft_substr(str, *start, (*index - *start));
-		if (tmp == NULL)
+		before_param = ft_substr(str, *start, (*index - *start));
+		if (before_param == NULL)
 		{
-			//error
-			return (false);
+			ft_putendl_fd("malloc failure", 2);
+			exit(EXIT_FAILURE);
 		}
-		tmp2 = ft_strjoin(*line, tmp);
+		joined = ft_strjoin(*line, before_param);
+		free(before_param);
+		if (joined == NULL)
+		{
+			ft_putendl_fd("malloc failure", 2);
+			exit(EXIT_FAILURE);
+		}
 		free(*line);
-		free(tmp);
-		*line = tmp2;
+		*line = joined;
 	}
-	return (true);
 }
 
 char	*param_func(char *str, char *line, size_t *index, size_t *start)
 {
 	char	*variable_name;
-	bool	is_ok;
 
-	is_ok = true;
-	if (!string_before_param(str, &line, index, start))
+	if (str[*index + 1] == '\0')
 	{
-		// substr error
+		(*index) += 1;
+		return (line);
 	}
+	string_before_param(str, &line, index, start);
 	variable_name = get_variable_name(str, index);
-	if (variable_name == NULL)
-		return (false);
 	if (variable_name[0] == '?')
-		is_ok = expand_exit_status(str, &line);
+		expand_exit_status(str, &line);
 	else
-		is_ok = expand_variable(&line, variable_name);
-	if (is_ok == false)
-	{
-		// strjoin error
-	}
-	(*start) = (*index);
+		expand_variable(&line, variable_name);
 	free(variable_name);
+	(*start) = (*index);
 	return (line);
 }

@@ -7,6 +7,8 @@ static size_t	get_name_size(const char *line, const size_t start)
 	size = 0;
 	if (line[(start)] == '?')
 		size += 1;
+	else if (ft_isdigit(line[(start)]))
+		size += 1;
 	else
 		while (ft_isalnum(line[(start + size)])
 			|| line[(start + size)] == '_')
@@ -24,7 +26,10 @@ char	*get_variable_name(char *line, size_t *start)
 	size = get_name_size(line, *start);
 	variable_name = (char *)malloc(sizeof(char) * (size + 1));
 	if (variable_name == NULL)
-		return (NULL);
+	{
+		ft_putendl_fd("malloc failure", 2);
+		exit(EXIT_FAILURE);
+	}
 	index = 0;
 	while (index < size)
 	{

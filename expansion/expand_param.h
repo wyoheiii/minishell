@@ -5,6 +5,7 @@
 # include <stdbool.h>
 
 # include "variable_name.h"
+# include "utils.h"
 # include "libft.h"
 
 char	*param_func(char *str, char *line, size_t *index, size_t *start);

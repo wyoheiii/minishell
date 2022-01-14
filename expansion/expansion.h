@@ -2,11 +2,7 @@
 # define EXPANSION_H
 
 # include "parser.h"
-# include "expand_param.h"
-
-# define NONE	0
-# define SINGLE 1
-# define DOUBLE 2
+# include "expand_line.h"
 
 bool	expansion(t_parsed *parsed);
 
