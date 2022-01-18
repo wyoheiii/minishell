@@ -51,33 +51,6 @@ int my_echo(char **arg)
         if(!option_flag)
             write(1,"\n",2);
     }
-    return (1);
+    g_status = 0;
+    return (0);
 }
-// bool my_echo(char **arg)
-// {
-//     int option_flag;
-//     size_t i;
-//     i = 1; //[1]
-//     option_flag = false;
-//     //printf("arg[2] %s\n",arg[2]);
-//     if (arg[1] == NULL)
-//     {
-//         write(1,"\n",2);
-//         return 1;
-//     }
-//     if(check_option(arg[1]))//arg[1]
-//     {
-//         option_flag = true;
-//         i++;
-//     }
-//     while(arg[i] != NULL)
-//     {
-//         ft_putstr_fd(arg[i], 1);//[1] 
-//         if (arg[i + 1] != NULL )//$やるか?
-//             write(1," ",1);
-//         i++;
-//     }
-//     if(!option_flag)
-//         write(1,"\n",2);
-//     return(true);
-// }

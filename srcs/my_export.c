@@ -189,6 +189,14 @@ bool set_key_value(char *arg, t_envlist **lst)
     }
     return(false);
 }
+void export_error(char *error)
+{
+    //printf("minishell: export: `%s': not a valid identifier\n",arg[i]);
+    ft_putstr_fd("minishell: unset: `",2);
+    ft_putstr_fd(error,2);
+    ft_putstr_fd("': not a valid identifier\n",2);
+    g_status = 1;
+}
 
 int my_export(char **arg, t_envlist **lst)
 {
@@ -215,13 +223,13 @@ int my_export(char **arg, t_envlist **lst)
                 error_flag = 1;
             }
             if(error_flag)
-                printf("minishell: export: `%s': not a valid identifier\n",arg[i]);
+                export_error(arg[i]);
             error_flag = 0;
             i++;
         }
     }
-    if(ret_flag)
-        return(1);
+    if(!ret_flag)
+        g_status = 0;
     return(0);
     // while(*lst)
     // {

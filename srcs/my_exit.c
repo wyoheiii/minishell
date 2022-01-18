@@ -60,6 +60,23 @@ bool exit_atoi(char *str, long long *num)
     return (exit_atoi2(str, flag , i, num));
     
 }
+int exit_error(char *error)
+{
+    if(error == NULL)
+    {
+        g_status = 1;
+        ft_putstr_fd("minishell: exit: too many arguments\n",2);
+        return (0);
+    }
+    else
+    {
+        g_status = 255;
+        ft_putstr_fd("minishell: exit: ",2);
+        ft_putstr_fd(error,2);
+        ft_putstr_fd("numeric argument required\n",2);
+        return(EXIT);
+    }
+}
 int my_exit(char **command)
 {
     int ret;
@@ -70,28 +87,23 @@ int my_exit(char **command)
     ret = 0;
     num = 0;
     if(size == 1)
-        return (ret);
-
+    {
+        g_status = 0;
+        return (EXIT);
+    }
     if (check_num(command[1]) && exit_atoi(command[1] , &num))
     {
         //printf("ret  :%lld\n",num);
-        ret = (unsigned char)num;
-        return (ret);
+        g_status = (unsigned char)num;
+        return (EXIT);
     }
     //printf("ret  :%d",ret);
     if (size == 2 && check_num(command[1]))
-        return(ret);
+        return(EXIT);
     if (size > 2 && check_num(command[1]))//ここはbashぬけない
-    {
-        ret = 1;//std error のほうがいいのか？
-        printf("minishell: exit: too many arguments\n");
-        return (ret);
-    }
+        return (exit_error(NULL));
     else if(size > 1)
-    {
-        ret = 255;
-        printf("minishell: exit: %s:numeric argument required\n",command[1]);
-        return(ret);
-    }
-    return (ret);// exitのみなら返り値は0;
+        return(exit_error(command[1]));
+    g_status = 0;
+    return (EXIT);
 }

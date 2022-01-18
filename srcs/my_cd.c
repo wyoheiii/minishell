@@ -7,29 +7,48 @@
 //未テスト
 // OLD PWD更新
 // rm でカレントディレクトリ消した後にｃｄ．とか
-
-int my_cd(char **command)
+int cd_error(char *error)
 {
-    char *error;
-
-    if(command[1] == NULL)
+    if(error == NULL)
     {
-        if(chdir(getenv("HOME")) != 0)
-        {
-            //ft_strjoin("minishell: cd: ",);
-            perror("bash : cd");
-        }
-        //printf("modoriti %d\n", i);
+        ft_putstr_fd("minishell: cd: HOME not set\n",2);
+        g_status = 1;
+        return (0);
     }
     else
     {
-        error = ft_strjoin("minishell: cd: ", command[1]);
-        if(!error)
-            return(2);
-        if(chdir(command[1]) != 0)
-            perror(error);
-        free(error);
-        //printf("modoriti %d\n", i);
+        g_status = 1;
+        ft_putstr_fd("minishell: cd: ", 2);
+        ft_putstr_fd(error, 2);
+        //ft_putstr_fd(, 2);
+        //ft_putstr_fd(, 2);
+        return (0);
     }
-    return(1);
+
+}
+int my_cd(char **command, t_envlist *lst)
+{
+    char *path;
+    char *error;
+    if(command[1] == NULL)
+    {
+        path = search_env_key_("HOME", lst);
+        if(path == NULL)
+            return (cd_error(NULL));
+        if(chdir(path) != 0)
+            perror("chdir");
+    }
+    else
+    {
+        if(chdir(command[1]) != 0)
+        {
+            error = ft_strjoin("minishell: cd: ",command[1]);
+            if(error == NULL)
+                exit(1);
+            g_status = 1;
+            perror(error);
+        }
+    }
+    g_status = 0;
+    return(0);
 }

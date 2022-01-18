@@ -7,21 +7,19 @@
 // _
 int my_env(t_envlist *envlst)
 {
-    //=がないやつ
-    // char *tmp;
-    // char *dir;
-    // dir = getcwd((char *)NULL, 0);
-    // if(dir == NULL);
     while(envlst != NULL)
     {
-        if(envlst->key[0] == '_' && envlst->key[1] != '\0')
+        if(envlst->key[0] == '_' && envlst->key[1] == '\0')
         {
             //_=やらなくていいかも
-            printf("wakaran\n");
+            //printf("wakaran\n");
+            continue;
+            //_=/usr/bin/env
         }
         else if(envlst->value[0] != '\0')
                 printf("%s=%s\n", envlst->key, envlst->value);
         envlst = envlst->next;
     }
-    return(1);
+    g_status = 0;
+    return(0);
 }

@@ -12,6 +12,7 @@ int my_pwd(void)
         printf("%s\n", dir);
         free(dir);
     }
-    return(1);
+    g_status = 0;
+    return(0);
     //return(dir == NULL ? EXIT_FAILURE : EXIT_SUCCESS);
 }
