@@ -1,6 +1,5 @@
 #ifndef MINISHELL_H
-# define MINIHELL_H
-
+# define MINISHELL_H
 #include "sig.h"
 #include "delimiter.h"
 #include "flag.h"

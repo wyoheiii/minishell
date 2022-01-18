@@ -30,6 +30,14 @@ void lst_unset(char *arg, t_envlist **lst)
         *lst = top;
     }
 }
+void unset_error(char *error)
+{
+    //printf("minishell: unset: `%s': not a valid identifier\n", args[i]);
+    ft_putstr_fd("minishell: unset: `",2);
+    ft_putstr_fd(error,2);
+    ft_putstr_fd("': not a valid identifier\n",2);
+    g_status = 1;
+}
 int my_unset(char **args, t_envlist **lst)
 {
     size_t i;
@@ -50,18 +58,12 @@ int my_unset(char **args, t_envlist **lst)
             else
                 lst_unset(args[i], lst);
             if (error_flag)
-                printf("minishell: unset: `%s': not a valid identifier\n", args[i]);
+                unset_error(args[i]);
             error_flag = 0;
             i++;
         }
-        // while(*lst)
-        // {
-        //     printf("%s=%s\n", (*lst)->key,(*lst)->value);
-        //     *lst = (*lst)->next;
-        // }
-        //return
-        if(ret_flag)
-            return(1);
+        if(!ret_flag)
+            g_status = 0;
     }
     return (0);
 }

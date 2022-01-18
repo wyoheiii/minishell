@@ -51,3 +51,14 @@ void lst_add_front(t_envlist **lst, t_envlist *new)
 	new -> next = *lst;
 	*lst = new;
 }
+size_t env_lst_size(t_envlist *lst)
+{
+    size_t i;
+    i = 0;
+    while(lst != NULL)
+    {
+        lst = lst->next;
+        i++;
+    }
+    return (i);
+}
