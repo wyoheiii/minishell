@@ -1,7 +1,8 @@
 NAME = minishell
 SRCS = main.c command_main.c my_echo.c my_pwd.c my_exit.c my_cd.c my_env.c \
 		env_init.c env_util.c env_util2.c my_export.c my_unset.c \
-		god_malloc.c delimiter.c flag.c lexer.c parser.c utils.c token.c sig.c command_util.c
+		god_malloc.c delimiter.c flag.c lexer.c parser.c utils.c token.c sig.c command_util.c \
+		multi_command.c error_function.c
 SRCSD = ./srcs/
 ADDSRCS = $(addprefix $(SRCSD),$(SRCS))
 OBJS = $(ADDSRCS:.c=.o)
@@ -33,7 +34,7 @@ $(NAME):	$(OBJS) $(LIBFT)
 			$(CC) $(CFLAGS)  -I$(INC) -I$(LIBINC) $(OBJS) $(LIBFT) -o $(NAME) $(RL1) $(RL2) $(RL_ELSE)
 #-fsanitize=address
 $(LIBFT):	$(LIBFTD)/*.c
-			$(MAKE) -C $(LIBFTD) bonus
+			$(MAKE) -C $(LIBFTD)
 
 clean:
 			$(RM) $(OBJS)

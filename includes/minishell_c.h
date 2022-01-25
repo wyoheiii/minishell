@@ -42,5 +42,6 @@ void	*god_malloc(size_t size);
 size_t env_lst_size(t_envlist *lst);
 char *search_env_key_(const char *search, t_envlist *lst);
 void split_free(char **split);
+//int multi_command(t_parsed *parsed, t_envlist **lst, char **env_array);
 //int my_env()
 #endif 

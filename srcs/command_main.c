@@ -146,6 +146,7 @@ char *get_path(t_envlist *lst, char *command)
 
 void exec_error(char *command)
 {
+    //bash: ls: No such file or directory path消すとこうなるらしい
     if(strchr(command, '/') == NULL)
     {
         ft_putstr_fd("minishell: ", 2);
@@ -208,16 +209,127 @@ void free_array(char **array)
     }
     free(array);
 }
+int count_pipe(t_parsed *parsed)
+{
+    int ret;
+    ret = 0;
+
+    while(parsed != NULL)
+    {
+        if(parsed->state == PIPE)
+            ret++;
+        parsed = parsed->next;
+    }
+    return (ret);
+}
+
+int multi_command(t_parsed *parsed, t_envlist **lst)
+{
+    char *path;
+    char **lst_array;
+    int pipe_count;
+    int (*pipe_fd)[2];
+    int i;
+    pid_t *pid;
+    pipe_count = count_pipe(parsed);
+    pipe_fd = malloc(sizeof(int *) * (pipe_count + 1));
+    if(pipe_fd == NULL)
+        exit(1);
+    pid = malloc(sizeof(int) * (pipe_count + 1));
+    if(pid == NULL)
+        exit(1);
+    if(pipe_count == 0)
+    {
+        //return(single_command);
+    }
+    i = 0;
+    //printf("%d\n",pipe_count);
+    while(parsed != NULL)
+    {
+        //printf("%s\n", parsed->command[0]);
+        lst_array = lst_in_array(*lst);
+        path = get_path(*lst,parsed->command[0]);
+        if(i != pipe_count && parsed->state == PIPE){
+            if(pipe(pipe_fd[i]) == -1) {
+                perror("pipe");
+                exit(1);
+            }
+        }
+        pid[i] = fork();
+        //printf("pid    :%d\n",pid[i]);
+        if(pid[i] == 0)
+        {
+            if(i == 0)
+            {
+                dup2(pipe_fd[i][1], 1);
+                close(pipe_fd[i][0]);
+                close(pipe_fd[i][1]);
+            }
+            else if (i == pipe_count)
+            {
+                dup2(pipe_fd[i - 1][0], 0);
+                close(pipe_fd[i - 1][0]);
+                close(pipe_fd[i - 1][1]);
+            }
+            else
+            {
+                dup2(pipe_fd[i - 1][0], 0);
+                dup2(pipe_fd[i][1], 1);
+                close(pipe_fd[i - 1][0]);
+                close(pipe_fd[i - 1][1]);
+                close(pipe_fd[i][0]);
+                close(pipe_fd[i][1]);
+            }
+            if(builtin_select(parsed->command))
+            {
+                //if()
+                return_builtin(parsed->command,lst);
+                exit(g_status);
+            }
+            if(execve(path, parsed->command, lst_array)== -1)
+                exec_error(path);
+        }
+        else if (i > 0)
+        {
+            close(pipe_fd[i - 1][0]);
+            close(pipe_fd[i - 1][1]);
+        }
+        free(path);
+        free_array(lst_array);
+        i++;
+        parsed = parsed->next;
+    }
+    int status;
+
+
+    i = 0;
+    while(i < pipe_count + 1 )
+    {
+        if(waitpid(pid[i],&status, 0) < 0)
+        {
+            ft_putstr_fd(strerror(errno), 2);
+            ft_putstr_fd("\n", 2);
+            exit(errno);
+        }
+        //i--;
+        i++;
+    }
+    if(WIFEXITED(status))
+        g_status = WEXITSTATUS(status);
+    free(pipe_fd);
+    free(pid);
+    return(0);
+}
+
 int command_part(t_parsed *parsed,t_envlist **lst)
 {
     int ret;
     char **env_array;
-    ret = 0;
     env_array = lst_in_array(*lst);
     if(parsed->state == NONE)
         ret = single_command(parsed->command, lst, env_array);
-    //else
-        //ret = multi_command();
+    else
+        ret = multi_command(parsed, lst);
     free_array(env_array);
     return (ret);
 }
