@@ -17,13 +17,14 @@ void minishell(char **envp)
             break ;
         if (ft_strlen(line) == 0)
             continue ;
+
         add_history(line);
         token_list = lexer(line);
         //print_token_list(token_list);
         parsed = parser(&token_list);
         //print_parsed(parsed);
         if (command_part(parsed, &lst) == EXIT) // 1でexit
-            break ;
+             break ;
 		free(line);
 	}
     free(line);

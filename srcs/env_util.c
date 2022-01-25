@@ -44,6 +44,7 @@ void	lstadd_back(t_envlist **lst, t_envlist *new)
 	else
 		*lst = new;
 }
+
 void lst_add_front(t_envlist **lst, t_envlist *new)
 {
 	if (!new || !lst)
@@ -51,6 +52,7 @@ void lst_add_front(t_envlist **lst, t_envlist *new)
 	new -> next = *lst;
 	*lst = new;
 }
+
 size_t env_lst_size(t_envlist *lst)
 {
     size_t i;
