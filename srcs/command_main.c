@@ -3,6 +3,7 @@
 int    return_builtin(char **command, t_envlist **envlst)
 {
     int ret;
+
     ret = 0;
     if(!ft_strncmp(command[0], "echo", 5))
         ret = my_echo(command);
@@ -166,37 +167,7 @@ void exec_error(char *command)
     }
 }
 
-int single_command(char **command, t_envlist **lst, char **env_array)
-{
-    pid_t pid;
-    char *path;
-    int status;
 
-    if(builtin_select(command))
-        return (return_builtin(command, lst));
-    else {
-        pid = fork();
-        if (pid == -1)
-            exit(1);
-        else if (pid == 0)
-        {
-            path = get_path(*lst, command[0]);
-            if(execve(path, command, env_array) == -1)
-                exec_error(path);
-            free(path);
-        }
-        //ctrl c tokano signal moireru
-        if (waitpid(pid, &status, 0) < 0)
-        {
-            ft_putstr_fd(strerror(errno), 2);
-            ft_putstr_fd("\n", 2);
-            exit(errno);
-        }
-        if(WIFEXITED(status))
-            g_status = WEXITSTATUS(status);
-        return (0);
-    }
-}
 
 void free_array(char **array)
 {
@@ -209,6 +180,7 @@ void free_array(char **array)
     }
     free(array);
 }
+
 int count_pipe(t_parsed *parsed)
 {
     int ret;
@@ -222,114 +194,128 @@ int count_pipe(t_parsed *parsed)
     }
     return (ret);
 }
-
-int multi_command(t_parsed *parsed, t_envlist **lst)
+bool redirect_check(t_parsed *parsed)
 {
+    if(parsed->state == REDIRECT_APPEND)
+        return(true);
+    if(parsed->state == REDIRECT_OUTPUT)
+        return(true);
+    if(parsed->state == REDIRECT_INPUT)
+        return(true);
+    return(false);
+}
+int single_command(t_parsed *parsed, t_envlist **lst)
+{
+    pid_t pid;
     char *path;
-    char **lst_array;
-    int pipe_count;
-    int (*pipe_fd)[2];
-    int i;
-    pid_t *pid;
-    pipe_count = count_pipe(parsed);
-    pipe_fd = malloc(sizeof(int *) * (pipe_count + 1));
-    if(pipe_fd == NULL)
-        exit(1);
-    pid = malloc(sizeof(int) * (pipe_count + 1));
-    if(pid == NULL)
-        exit(1);
-    if(pipe_count == 0)
-    {
-        //return(single_command);
-    }
-    i = 0;
-    //printf("%d\n",pipe_count);
-    while(parsed != NULL)
-    {
-        //printf("%s\n", parsed->command[0]);
-        lst_array = lst_in_array(*lst);
-        path = get_path(*lst,parsed->command[0]);
-        if(i != pipe_count && parsed->state == PIPE){
-            if(pipe(pipe_fd[i]) == -1) {
-                perror("pipe");
-                exit(1);
-            }
-        }
-        pid[i] = fork();
-        //printf("pid    :%d\n",pid[i]);
-        if(pid[i] == 0)
-        {
-            if(i == 0)
-            {
-                dup2(pipe_fd[i][1], 1);
-                close(pipe_fd[i][0]);
-                close(pipe_fd[i][1]);
-            }
-            else if (i == pipe_count)
-            {
-                dup2(pipe_fd[i - 1][0], 0);
-                close(pipe_fd[i - 1][0]);
-                close(pipe_fd[i - 1][1]);
-            }
-            else
-            {
-                dup2(pipe_fd[i - 1][0], 0);
-                dup2(pipe_fd[i][1], 1);
-                close(pipe_fd[i - 1][0]);
-                close(pipe_fd[i - 1][1]);
-                close(pipe_fd[i][0]);
-                close(pipe_fd[i][1]);
-            }
-            if(builtin_select(parsed->command))
-            {
-                //if()
-                return_builtin(parsed->command,lst);
-                exit(g_status);
-            }
-            if(execve(path, parsed->command, lst_array)== -1)
-                exec_error(path);
-        }
-        else if (i > 0)
-        {
-            close(pipe_fd[i - 1][0]);
-            close(pipe_fd[i - 1][1]);
-        }
-        free(path);
-        free_array(lst_array);
-        i++;
-        parsed = parsed->next;
-    }
     int status;
+    char **env_array;
 
-
-    i = 0;
-    while(i < pipe_count + 1 )
+    env_array = lst_in_array( *lst);
+//    if(redirect_check(parsed))
+//        select_redirect(parsed);
+    if(builtin_select(parsed->command))
+        return (return_builtin(parsed->command, lst));
+    pid = my_fork();
+    if (pid == 0)
     {
-        if(waitpid(pid[i],&status, 0) < 0)
-        {
-            ft_putstr_fd(strerror(errno), 2);
-            ft_putstr_fd("\n", 2);
-            exit(errno);
-        }
-        //i--;
-        i++;
+        if(redirect_check(parsed))
+            select_redirect(parsed);
+        path = get_path(*lst, parsed->command[0]);
+        if(execve(path, parsed->command, env_array) == -1)
+            exec_error(path);
+        free(path);
     }
-    if(WIFEXITED(status))
-        g_status = WEXITSTATUS(status);
-    free(pipe_fd);
-    free(pid);
-    return(0);
+    //ctrl c tokano signal moireru
+    waitpid_get_status(pid,&status,0);
+    free_array(env_array);
+    return (0);
 }
 
-int command_part(t_parsed *parsed,t_envlist **lst)
+void select_command(t_parsed *parsed, t_envlist **lst)
 {
-    int ret;
-    char **env_array;
-    env_array = lst_in_array(*lst);
-    if(parsed->state == NONE)
-        ret = single_command(parsed->command, lst, env_array);
+    char **lst_array;
+    char *path;
+    lst_array = lst_in_array(*lst);
+    path = get_path(*lst,parsed->command[0]);
+    if(builtin_select(parsed->command))
+    {
+        return_builtin(parsed->command,lst);
+        exit(g_status);
+    }
+    if(execve(path, parsed->command, lst_array)== -1)
+        exec_error(path);
+}
+
+void multi_pipe(int (*pipe_fd)[2], int i,int pipe_count)
+{
+    if (i == 0)
+    {
+        my_dup2(pipe_fd[i][1], 1);
+        my_close(pipe_fd[i][0]);
+        my_close(pipe_fd[i][1]);
+    }
+    else if (i == pipe_count)
+    {
+        my_dup2(pipe_fd[i - 1][0], 0);
+        my_close(pipe_fd[i - 1][0]);
+        my_close(pipe_fd[i - 1][1]);
+    }
     else
-        ret = multi_command(parsed, lst);
-    free_array(env_array);
-    return (ret);
+    {
+        my_dup2(pipe_fd[i - 1][0], 0);
+        my_dup2(pipe_fd[i][1], 1);
+        my_close(pipe_fd[i - 1][0]);
+        my_close(pipe_fd[i - 1][1]);
+        my_close(pipe_fd[i][0]);
+        my_close(pipe_fd[i][1]);
+    }
+}
+void pipe_init(t_pipe *p, int pipe_count)
+{
+    p->i = 0;
+    p->pipe_fd = my_malloc(sizeof(int *) * (pipe_count + 1));
+    p->pid = my_malloc(sizeof(int) * (pipe_count + 1));
+}
+void mult_command(t_pipe p,t_parsed *parsed,t_envlist  **lst,int pipe_count)
+{
+    DEBUG_PRINT("a\n")
+    while(parsed != NULL)
+    {
+        if(p.i != pipe_count && parsed->state == PIPE)
+            my_pipe(p.pipe_fd[p.i]);
+        p.pid[p.i] = my_fork();
+        if(p.pid[p.i] == 0)
+        {
+            if(redirect_check(parsed))
+                select_redirect(parsed);
+
+            multi_pipe(p.pipe_fd,p.i,pipe_count);
+            select_command(parsed,lst);
+        }
+        else if (p.i > 0)
+        {
+            my_close(p.pipe_fd[p.i - 1][0]);
+            my_close(p.pipe_fd[p.i - 1][1]);
+        }
+        p.i++;
+        parsed = parsed->next;
+    }
+}
+int command_part(t_parsed *parsed, t_envlist **lst)
+{
+    t_pipe p;
+    int pipe_count;
+
+    pipe_count = count_pipe(parsed);
+    if(pipe_count == 0)
+        return (single_command(parsed, lst));
+    pipe_init(&p, pipe_count);
+    mult_command(p,parsed,lst,pipe_count);
+    p.i = -1;
+    while(++p.i < pipe_count + 1)
+        waitpid_get_status(p.pid[p.i],&p.status, 0);
+    free(p.pipe_fd);
+    free(p.pid);
+    return(0);
 }

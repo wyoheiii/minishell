@@ -55,7 +55,7 @@ t_envlist   *env_new(char *envp)
 {
     t_envlist *new;
 
-    new = (t_envlist *)god_malloc(sizeof(t_envlist));
+    new = (t_envlist *)my_malloc(sizeof(t_envlist));
     if (!new)
         return (NULL);
     new->key = env_get_key(envp);
