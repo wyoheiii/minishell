@@ -60,7 +60,7 @@ bool exit_atoi(char *str, long long *num)
     return (exit_atoi2(str, flag , i, num));
     
 }
-int exit_error(char *error)
+int exit_error_c(char *error)
 {
     if(error == NULL)
     {
@@ -101,9 +101,9 @@ int my_exit(char **command)
     if (size == 2 && check_num(command[1]))
         return(EXIT);
     if (size > 2 && check_num(command[1]))//ここはbashぬけない
-        return (exit_error(NULL));
+        return (exit_error_c(NULL));
     else if(size > 1)
-        return(exit_error(command[1]));
+        return(exit_error_c(command[1]));
     g_status = 0;
     return (EXIT);
 }

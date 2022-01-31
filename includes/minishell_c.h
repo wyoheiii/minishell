@@ -9,15 +9,31 @@
 #include <errno.h>
 #include <string.h>
 #include <stdbool.h>
-#define MALLOC_ERROR -2
+//#define DEBUG 1
+
+#if DEBUG == 1
+#define DEBUG_PRINT(fmt, ...) \
+ 		do { \
+ 			printf("[debug] %s:%d:\t" fmt, __FILE__, __LINE__, ##__VA_ARGS__); \
+ 		} while (0);
+#else
+#define DEBUG_PRINT(fmt, ...) do {} while(0);
+#endif
 #define EXIT 1
-//#define exp
+
 typedef struct s_envlist
 {
     char *key;
     char *value;
     struct s_envlist *next;
 }   t_envlist;
+typedef struct s_pipe
+{
+    int i;
+    int (*pipe_fd)[2];
+    pid_t *pid;
+    int status;
+}   t_pipe;
 int command_part(t_parsed *parsed,t_envlist **lst);
 int my_echo(char **command);
 int my_pwd(void);
@@ -44,4 +60,12 @@ char *search_env_key_(const char *search, t_envlist *lst);
 void split_free(char **split);
 //int multi_command(t_parsed *parsed, t_envlist **lst, char **env_array);
 //int my_env()
+
+void my_pipe(int *pipefd);
+void waitpid_get_status(pid_t pid, int *status,int option);
+void exit_error(char *error);
+void my_dup2(int old_fd, int newfd);
+void my_close(int fd);
+void	*my_malloc(size_t size);
+pid_t my_fork(void);
 #endif 

@@ -43,7 +43,7 @@ int my_echo(char **arg)
         i = check_option(arg, &option_flag);
         while(arg[i] != NULL) 
         {
-            ft_putstr_fd(arg[i], 1); 
+            ft_putstr_fd(arg[i], 1);
             if (arg[i + 1] != NULL )
                 write(1," ",1);
             i++;

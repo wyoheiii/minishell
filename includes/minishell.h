@@ -8,6 +8,7 @@
 #include "parser.h"
 #include "token.h"
 #include "utils.h"
+#include "my_redirect.h"
 #include <readline/readline.h>
 #include <readline/history.h>
 //#include 

@@ -27,6 +27,7 @@ void minishell(char **envp)
              break ;
 		free(line);
 	}
+    all_env_clear(&lst);
     free(line);
 }
 
