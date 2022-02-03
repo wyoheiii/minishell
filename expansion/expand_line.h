@@ -6,8 +6,10 @@
 
 # include "variable_name.h"
 # include "expand_param.h"
+# include "word_splitting.h"
 # include "utils.h"
 # include "libft.h"
+# include "libft_utils.h"
 
 # define NONE	0
 # define SINGLE 1

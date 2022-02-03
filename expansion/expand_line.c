@@ -37,26 +37,17 @@ static void	join_remaining_string(char **line, char *str,
 	size_t index, size_t start)
 {
 	char	*remaining;
-	char	*joined;
 
 	if (start != index)
 	{
-		remaining = ft_substr(str, start, index - start);
-		if (remaining == NULL)
-		{
-			ft_putendl_fd("malloc failure", 2);
-			exit(EXIT_FAILURE);
-		}
-		joined = ft_strjoin(*line, remaining);
-		free(remaining);
-		if (joined == NULL)
-		{
-			ft_putendl_fd("malloc failure", 2);
-			exit(EXIT_FAILURE);
-		}
-		free(*line);
-		*line = joined;
+		remaining = my_substr(str, start, index - start);
+		*line = my_strjoin(line, &remaining);
 	}
+}
+
+void	split_to_command(char **command, size_t *count, t_list *list)
+{
+
 }
 
 static char	*expand_line(char **command, size_t *count,
@@ -64,23 +55,36 @@ static char	*expand_line(char **command, size_t *count,
 {
 	int		flag;
 	char	*line;
+	char	*param;
 
 	flag = NONE;
-	line = (char *)ft_calloc(1, sizeof(char));
-	if (line == NULL)
-	{
-		ft_putendl_fd("malloc failure\n", 2);
-		exit(EXIT_FAILURE);
-	}
+	line = (char *)my_calloc(1, sizeof(char));
 	while (command[*count][*index] != '\0')
 	{
 		if (check_func(command[*count], *index, &flag))
 			*index += 1;
 		if (flag != SINGLE && command[*count][*index] == '$')
 		{
-			line = param_func(command[*count], line, index, start);
-			if (flag == DOUBLE)
-				word_split(line, &command, count);
+			if (command[*count][*index] == '$' && command[*count][*index + 1] == '\0')
+			{
+				(*index) += 1;
+				break ;
+			}
+			string_before_param(command[*count], &line, index, start);
+			param = param_func(command[*count], line, index, start);
+			if (param != NULL)
+			{
+				if (flag == DOUBLE)
+				{
+					t_list	*splited;
+					splited = word_splitting(param);
+
+				}
+				else
+				{
+					line = my_strjoin(&line, &param);
+				}
+			}
 		}
 	}
 	join_remaining_string(&line, command[*count], *index, *start);
@@ -99,12 +103,7 @@ char	*get_expanded_line(char **command, size_t *count)
 	if (command[*count][0] != '$' && line[0] == '\0')
 	{
 		free(line);
-		line = ft_strdup(command[*count]);
-		if (line == NULL)
-		{
-			ft_putendl_fd("malloc failure\n", 2);
-			exit(EXIT_FAILURE);
-		}
+		line = my_strdup(command[*count]);
 	}
 	return (line);
 }

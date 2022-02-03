@@ -4,6 +4,7 @@
 # include <stdlib.h>
 
 # include "libft.h"
+# include "libft_utils.h"
 
 char	*get_variable_name(char *line, size_t *start);
 
