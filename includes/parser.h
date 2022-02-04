@@ -15,10 +15,18 @@
 # define REDIRECT_APPEND	4
 # define HERE_DOCUMENT	    5
 
+typedef struct s_redirect
+{
+	char			*filename;
+	int				state;
+	struct s_redirect	*next;
+}	t_redirect;
+
 typedef struct s_parsed
 {
 	char			**command;
 	int				state;
+	t_redirect		*redirect;
 	struct s_parsed	*next;
 }	t_parsed;
 
