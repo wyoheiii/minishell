@@ -35,6 +35,28 @@ static void	print_state(int state)
 		printf("(ERROR!!!!!!!!!!!!!!!)");
 }
 
+void	print_redirect(t_redirect *redirect)
+{
+	t_redirect	*tmp;
+	size_t		count;
+
+	tmp = redirect;
+	count = 1;
+	printf("\n**red**\n");
+	while (tmp != NULL)
+	{
+//		print_state(tmp->state);
+		if (tmp != NULL)
+		{
+			printf(" %ld", count++);
+			print_state(tmp->state);
+			printf("[%s]\n", (char *)(tmp->filename));
+		}
+		tmp = tmp->next;
+	}
+	printf("*******\n");
+}
+
 void	print_parsed(t_parsed *parsed)
 {
 	t_parsed	*tmp;
@@ -51,8 +73,9 @@ void	print_parsed(t_parsed *parsed)
 		index = 0;
 		while (tmp->command[index] != NULL)
 			printf("[%s]", (char *)(tmp->command[index++]));
-		printf("\n");
+		print_redirect(tmp->redirect);
 		tmp = tmp->next;
 	}
 	printf("*******************\n");
 }
+
