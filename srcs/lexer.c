@@ -26,7 +26,7 @@ t_list	*lexer(const char *line)
 }
 
 /* test code */
-
+/*
 #include "parser.h"
 #include "debug.h"
 int main(int argc, char **argv)
@@ -61,3 +61,4 @@ int main(int argc, char **argv)
 	free_parsed(&parsed);
 	return (0);
 }
+*/
