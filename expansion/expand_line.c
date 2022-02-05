@@ -45,11 +45,6 @@ static void	join_remaining_string(char **line, char *str,
 	}
 }
 
-void	split_to_command(char **command, size_t *count, t_list *list)
-{
-
-}
-
 static char	*expand_line(char **command, size_t *count,
 	size_t *index, size_t *start)
 {
