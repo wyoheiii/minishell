@@ -1,8 +1,28 @@
 #include "delimiter.h"
 
+int	is_pipe(char *str)
+{
+	if (str == NULL)
+		return (NONE);
+	if (str[0] == '|')
+		return (PIPE);
+	return (NONE);
+}
+
+int	is_redirect(char *str)
+{
+	if (str == NULL)
+		return (NONE);
+	if (str[0] == '<')
+		return (REDIRECT_INPUT);
+	else if (str[0] == '>')
+		return (REDIRECT_OUTPUT);
+	return (NONE);
+}
+
 bool	is_delimiter(char *str)
 {
-	if (str[0] == '|' || str[0] == '<' || str[0] == '>')
+	if (is_pipe(str) || is_redirect(str))
 		return (true);
 	return (false);
 }
@@ -16,8 +36,16 @@ size_t	get_delimiter_count(t_list *token_list)
 	tmp = token_list;
 	while (tmp != NULL)
 	{
-		if (is_delimiter(tmp->content))
+		if (is_pipe(tmp->content))
 			break ;
+		else if (is_redirect(tmp->content))
+		{
+			if (tmp->next != NULL && tmp->content != NULL)
+			{
+				tmp = tmp->next->next;
+				continue ;
+			}
+		}
 		count += 1;
 		tmp = tmp->next;
 	}
@@ -29,6 +57,8 @@ int	get_state(char *str)
 	int	state;
 
 	state = NONE;
+	if (str == NULL)
+		return (state);
 	if (str[0] == '|')
 		state = PIPE;
 	else if (str[0] == '<')
