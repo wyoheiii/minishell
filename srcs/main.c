@@ -22,6 +22,7 @@ void minishell(char **envp)
         //print_token_list(token_list);
         parsed = parser(&token_list);
         //print_parsed(parsed);
+        expansion(parsed);
         if (command_part(parsed, &lst) == EXIT) // 1でexit
              break ;
         free_parsed(&parsed);
