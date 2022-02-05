@@ -4,6 +4,7 @@
 #include "parser.h"
 #include "lexer.h"
 #include "debug.h"
+#include "expansion.h"
 #include"../inc/minishell_c.h"
 
 #define BUF_SIZE 255
@@ -31,6 +32,7 @@ void	test_command(char *command)
 		printf("parser return NULL\n");
 	printf("minishell>\x1b[1m\x1b[31m");
 	fflush(stdout);
+	expansion(parsed);
 	command_main(parsed->command, g_env);
 	printf("\x1b[39m\x1b[0m");
 	fflush(stdout);
