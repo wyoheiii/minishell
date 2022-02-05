@@ -41,19 +41,20 @@ void redirect_output(t_parsed *parsed)
 //    if(pid == 0) {
     if (parsed->next != NULL) {
         if (parsed->command[0] != NULL) {
-            //my_close(1);
+            //my_close(1)
             parsed = parsed->next;
             fd = open(parsed->command[0], O_WRONLY | O_TRUNC | O_CREAT, 0666);
-            if (fd == -1) {
+            if (fd == -1)
+            {
                 ft_putstr_fd("minishell: ", 2);
                 ft_putstr_fd(parsed->command[0], 2);
                 ft_putstr_fd(" :", 2);
                 ft_putendl_fd(strerror(errno), 2);
                 exit(1);
             }
-            //fd1 = dup(1);
+            //fd1 = dup(1)
             my_dup2(fd, 1);
-            //close(fd);
+            my_close(fd);
             //my_dup2(fd1, 1);
         } else
             redirect_error();

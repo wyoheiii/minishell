@@ -2,8 +2,10 @@ NAME = minishell
 SRCS = main.c command_main.c my_echo.c my_pwd.c my_exit.c my_cd.c my_env.c \
 		env_init.c env_util.c env_util2.c my_export.c my_unset.c \
 		delimiter.c flag.c lexer.c parser.c utils.c token.c sig.c command_util.c \
-		multi_command.c error_function.c error_function2.c my_redirect.c
+		multi_command.c error_function.c error_function2.c my_redirect.c \
+
 SRCSD = ./srcs/
+
 ADDSRCS = $(addprefix $(SRCSD),$(SRCS))
 OBJS = $(ADDSRCS:.c=.o)
 CC	 = gcc
@@ -13,6 +15,7 @@ LIBFTD = ./libft
 LIBFT  = $(LIBFTD)/libft.a
 INC	= ./includes
 LIBINC = ./libft
+#CFLAGS += -Idebug ./debug/debug.c
 RL1 =
 RL2 =
 RL_ELSE =
@@ -31,7 +34,7 @@ endif
 all:	 $(NAME)
 
 $(NAME):	$(OBJS) $(LIBFT)
-			$(CC) $(CFLAGS)  -I$(INC) -I$(LIBINC) $(OBJS) $(LIBFT) -o $(NAME) $(RL1) $(RL2) $(RL_ELSE)
+			$(CC) $(CFLAGS)  -I$(INC) -I$(LIBINC) $(OBJS)  $(LIBFT) -o $(NAME) $(RL1) $(RL2) $(RL_ELSE)
 #-fsanitize=address
 $(LIBFT):	$(LIBFTD)
 			$(MAKE) -C $(LIBFTD)

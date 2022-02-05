@@ -11,6 +11,7 @@
 #include "my_redirect.h"
 #include <readline/readline.h>
 #include <readline/history.h>
+#include "../debug/debug.h"
 //#include 
 int g_status;
 #endif // !

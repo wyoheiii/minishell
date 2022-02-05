@@ -273,48 +273,65 @@ void multi_pipe(int (*pipe_fd)[2], int i,int pipe_count)
 }
 void pipe_init(t_pipe *p, int pipe_count)
 {
-    p->i = 0;
+    //p->i = 0;
     p->pipe_fd = my_malloc(sizeof(int *) * (pipe_count + 1));
     p->pid = my_malloc(sizeof(int) * (pipe_count + 1));
 }
-void mult_command(t_pipe p,t_parsed *parsed,t_envlist  **lst,int pipe_count)
+void mult_command(t_pipe pipe,t_parsed *parsed,t_envlist  **lst,int pipe_count)
 {
     DEBUG_PRINT("a\n")
+    int i = 0;
     while(parsed != NULL)
     {
-        if(p.i != pipe_count && parsed->state == PIPE)
-            my_pipe(p.pipe_fd[p.i]);
-        p.pid[p.i] = my_fork();
-        if(p.pid[p.i] == 0)
+        //printf("%d\n",pipe.i);
+        //if(i != pipe_count && parsed->state == PIPE)
+        if(parsed->state == PIPE)
+            my_pipe(pipe.pipe_fd[i]);
+        pipe.pid[i] = my_fork();
+        if(pipe.pid[i] == 0)
         {
+            //printf("parse   :%s\n",parsed->command[0]);
+            //./miniprintf("state   : %d\n",parsed->state);
+            //if(parsed->state == PIPE)
+            multi_pipe(pipe.pipe_fd,i, pipe_count);
             if(redirect_check(parsed))
                 select_redirect(parsed);
-
-            multi_pipe(p.pipe_fd,p.i,pipe_count);
-            select_command(parsed,lst);
+            select_command(parsed, lst);
+            //while(parsed->state != PIPE) {
+            //    parsed = parsed->next;
+            //    printf("parsed no naka %s\n", parsed->command[0]);
+            //
         }
-        else if (p.i > 0)
+        else
         {
-            my_close(p.pipe_fd[p.i - 1][0]);
-            my_close(p.pipe_fd[p.i - 1][1]);
+            if(i > 0) {
+                my_close(pipe.pipe_fd[i - 1][0]);
+                my_close(pipe.pipe_fd[i - 1][1]);
+            }
         }
-        p.i++;
+        i++;
+        //if(parsed->state == PIPE)
+
+        //while(parsed->state != PIPE) {
         parsed = parsed->next;
+            //printf("parsed no naka %s\n", parsed->command[0]);
+        //}
     }
 }
 int command_part(t_parsed *parsed, t_envlist **lst)
 {
     t_pipe p;
     int pipe_count;
+    int i;
 
     pipe_count = count_pipe(parsed);
     if(pipe_count == 0)
         return (single_command(parsed, lst));
     pipe_init(&p, pipe_count);
     mult_command(p,parsed,lst,pipe_count);
-    p.i = -1;
-    while(++p.i < pipe_count + 1)
-        waitpid_get_status(p.pid[p.i],&p.status, 0);
+    i = -1;
+    while(++i < pipe_count + 1)
+        waitpid_get_status(p.pid[i],&p.status, 0);
     free(p.pipe_fd);
     free(p.pid);
     return(0);

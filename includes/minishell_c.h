@@ -29,7 +29,7 @@ typedef struct s_envlist
 }   t_envlist;
 typedef struct s_pipe
 {
-    int i;
+    //int i;
     int (*pipe_fd)[2];
     pid_t *pid;
     int status;
