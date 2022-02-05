@@ -74,6 +74,8 @@ static char	*expand_line(char **command, size_t *count,
 			param = param_func(command[*count], line, index, start);
 			if (param != NULL)
 			{
+				line = my_strjoin(&line, &param);
+				/*
 				if (flag == DOUBLE)
 				{
 					t_list	*splited;
@@ -84,6 +86,7 @@ static char	*expand_line(char **command, size_t *count,
 				{
 					line = my_strjoin(&line, &param);
 				}
+				*/
 			}
 		}
 	}
