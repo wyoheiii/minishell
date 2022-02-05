@@ -1,5 +1,5 @@
 #include "parser.h"
-#include <stdio.h>
+
 static char	**create_command(t_list **token_list, size_t size)
 {
 	char		**command;
@@ -20,6 +20,8 @@ static char	**create_command(t_list **token_list, size_t size)
 		}
 		else
 			tmp = tmp->next;
+		if (tmp == NULL)
+			break ;
 		tmp = tmp->next;
 	}
 	command[size] = NULL;
@@ -65,78 +67,6 @@ void	free_parsed(t_parsed **parsed)
 	}
 }
 
-t_redirect	*new_redirect(char	*filename, char *meta)
-{
-	t_redirect	*redirect;
-
-	redirect = (t_redirect *)malloc(sizeof(t_redirect));
-	if (redirect == NULL)
-		return (NULL);
-	redirect->filename = filename;
-	redirect->state = get_state(meta);
-	redirect->next = NULL;
-	return (redirect);
-}
-
-void	redirect_add_back(t_redirect **head, t_redirect *new)
-{
-	t_redirect	*tmp;
-
-	if (*head == NULL)
-	{
-		*head = new;
-		return ;
-	}
-	tmp = *head;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = new;
-}
-
-t_redirect	*create_redirect(t_list **token_list)
-{
-	t_redirect	*redirect;
-	t_redirect	*new;
-	t_list		*tmp;
-
-	redirect = NULL;
-	while ((*token_list) != NULL && is_pipe((*token_list)->content) == NONE)
-	{
-		if (is_redirect((*token_list)->content))
-		{
-			tmp = (*token_list)->next;
-			new = new_redirect(tmp->content, (*token_list)->content);
-			if (new == NULL)
-				return (NULL);
-			redirect_add_back(&redirect, new);
-			free((*token_list)->content);
-			//free(((*token_list)->next->content));
-			free(*token_list);
-			*token_list = tmp;
-		}
-		tmp = (*token_list)->next;
-		free(*token_list);
-		*token_list = tmp;
-	}
-	new = new_redirect(NULL, NULL);
-	redirect_add_back(&redirect, new);	
-	return (redirect);
-}
-
-/*
-t_parsedはpipeでわける
-echo aaa > file1 bbb > file2
-のようにリダイレクト指定の後に引数がある可能性がある
-
-commandはtokenlistからpipeが見つかるまで調べていく
-commandのサイズは >  < が見つかると-2していく
-
-|, NULL ->終了
->, < 	->次に来る文字列はファイル名でありコマンド、引数ではない
-文字列	->コマンド
-
-*/
-
 static t_parsed	*get_parsed(t_list **token_list)
 {
 	size_t		size;
@@ -149,6 +79,12 @@ static t_parsed	*get_parsed(t_list **token_list)
 	if (command == NULL || command[0] == NULL)
 		return (NULL);
 	redirect = create_redirect(token_list);
+	if (redirect == NULL)
+	{
+		free(command[0]);
+		free(command);
+		return (NULL);
+	}
 	parsed = create_parsed(command, redirect);
 	if (parsed == NULL)
 	{
