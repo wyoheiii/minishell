@@ -10,6 +10,7 @@ char *search_env_key_(const char *search, t_envlist *lst)
     }
     return(NULL);
 }
+
 void split_free(char **split)
 {
     size_t i;

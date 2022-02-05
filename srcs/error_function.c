@@ -2,6 +2,7 @@
 // pipe  waitpid
 void exit_error(char *error)
 {
+    perror(error);
     ft_putstr_fd(error,2);
     ft_putendl_fd(" error",2);
     exit(1);
