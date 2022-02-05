@@ -1,4 +1,4 @@
-#include "../inc/minishell_c.h"
+#include "minishell_c.h"
 int command_size(char **arg)
 {
     int i;
@@ -53,42 +53,57 @@ bool exit_atoi(char *str, long long *num)
             flag = -1;
         i++;
     }
+    while(str[i] == '0' && str[i] != '\0')
+    {
+        i++;
+    }
     return (exit_atoi2(str, flag , i, num));
     
+}
+int exit_error_c(char *error)
+{
+    if(error == NULL)
+    {
+        g_status = 1;
+        ft_putstr_fd("minishell: exit: too many arguments\n",2);
+        return (0);
+    }
+    else
+    {
+        g_status = 255;
+        ft_putstr_fd("minishell: exit: ",2);
+        ft_putstr_fd(error,2);
+        ft_putstr_fd("numeric argument required\n",2);
+        return(EXIT);
+    }
 }
 int my_exit(char **command)
 {
     int ret;
     int size;
     long long num;
-    printf("exit\n");
+    //printf("exit\n");
     size = command_size(command);
     ret = 0;
     num = 0;
     if(size == 1)
-        return (ret);
-    //printf("commmand [1]%d\n",(unsigned char)ft_atoi(command[1]));
+    {
+        g_status = 0;
+        return (EXIT);
+    }
     if (check_num(command[1]) && exit_atoi(command[1] , &num))
     {
-        printf("ret  :%lld\n",num);
-        ret = (unsigned char)num;
-        return (ret);
+        //printf("ret  :%lld\n",num);
+        g_status = (unsigned char)num;
+        return (EXIT);
     }
-    printf("ret  :%d",ret);
+    //printf("ret  :%d",ret);
     if (size == 2 && check_num(command[1]))
-        return(ret);
+        return(EXIT);
     if (size > 2 && check_num(command[1]))//ここはbashぬけない
-    {
-        ret = 1;//std error のほうがいいのか？
-        printf("minishell: exit: too many arguments\n");
-        return (ret);
-    }
+        return (exit_error_c(NULL));
     else if(size > 1)
-    {
-        ret = 255;
-        printf("minishell: exit: %s:numeric argument required\n",command[1]);
-        return(ret);
-    }
-    return (ret);// exitのみなら返り値は0;
-}//19桁以上の場合はnumeric なんちゃら
-//18桁未満の場合はexitできる
+        return(exit_error_c(command[1]));
+    g_status = 0;
+    return (EXIT);
+}

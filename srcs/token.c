@@ -19,38 +19,45 @@ static bool	lookahead_first_char(const char ch, unsigned char *flags)
 	else if (ch == '$')
 		set_flag(flags, VARIABLE_FLAG);
 	else if (ch == '<' || ch == '>')
+	{
 		set_flag(flags, REDIRECT_FLAG);
-	else if (ch == '|')
-		set_flag(flags, PIPE_FLAG);
-	else if (ch == EOF || ch == '\0')
-		set_flag(flags, EOF_FLAG);
-	else
 		return (false);
+	}
+	else if (ch == '|')
+	{
+		set_flag(flags, PIPE_FLAG);
+		return (false);
+	}
+	else if (ch == EOF || ch == '\0')
+	{
+		set_flag(flags, EOF_FLAG);
+		return (false);
+	}
 	return (true);
 }
 
 static bool	lookahead(char ch, unsigned char *flags)
 {
 	if (check_flag((*flags), FIRST_FLAG))
-		lookahead_first_char(ch, flags);
+		return (lookahead_first_char(ch, flags));
 	else if (check_flag((*flags), QUOTE_FLAG))
 	{
 		if (ch == '\'')
-			return (false);
+			unset_flag(flags, QUOTE_FLAG);
 	}
 	else if (check_flag((*flags), DOUBLE_QUOTE_FLAG))
 	{
 		if (ch == '\"')
-			return (false);
+			unset_flag(flags, DOUBLE_QUOTE_FLAG);
 	}
-	else if (check_flag((*flags), REDIRECT_FLAG))
-		return (false);
-	else if (check_flag((*flags), PIPE_FLAG))
-		return (false);
 	else
 	{
 		if (ft_isspace(ch) || is_special_char(ch))
 			return (false);
+		else if (ch == '\'')
+			set_flag(flags, QUOTE_FLAG);
+		else if (ch == '\"')
+			set_flag(flags, DOUBLE_QUOTE_FLAG);
 	}
 	if (check_flag((*flags), EOF_FLAG))
 		return (false);
@@ -68,11 +75,18 @@ static bool	check_last(const char *line, unsigned char *flags,
 	}	
 	if (check_flag((*flags), REDIRECT_FLAG))
 	{
+		(*index) += 1;
+		(*length) += 1;
 		if (line[(*length)] == line[((*length) - 1)])
 		{
 			(*index) += 1;
 			(*length) += 1;
 		}
+	}
+	if (check_flag((*flags), PIPE_FLAG))
+	{
+		(*index) += 1;
+		(*length) += 1;
 	}
 	if (check_flag((*flags), EOF_FLAG))
 		return (true);

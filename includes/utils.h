@@ -4,7 +4,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 
-# include "libft.h"
+# include "../libft/libft.h"
 
 bool	ft_isspace(char ch);
 void	lstdel_front(t_list **lst);
