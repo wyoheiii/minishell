@@ -26,6 +26,7 @@ int cd_error(char *error)
     }
 
 }
+// cd -- zissou
 int my_cd(char **command, t_envlist *lst)
 {
     char *path;
@@ -47,6 +48,7 @@ int my_cd(char **command, t_envlist *lst)
                 exit(1);
             g_status = 1;
             perror(error);
+            return (0);
         }
     }
     g_status = 0;

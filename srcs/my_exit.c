@@ -73,18 +73,16 @@ int exit_error_c(char *error)
         g_status = 255;
         ft_putstr_fd("minishell: exit: ",2);
         ft_putstr_fd(error,2);
-        ft_putstr_fd("numeric argument required\n",2);
+        ft_putstr_fd(": numeric argument required\n",2);
         return(EXIT);
     }
 }
 int my_exit(char **command)
 {
-    int ret;
     int size;
     long long num;
     //printf("exit\n");
     size = command_size(command);
-    ret = 0;
     num = 0;
     if(size == 1)
     {

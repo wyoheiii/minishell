@@ -1,0 +1,4 @@
+#echoTEST
+echo	tab
+echo "	tab	"
+echo		tab
