@@ -18,11 +18,11 @@ diff :1,3d0
 [0]minishell> mkdir dir 
 [0]minishell>  cd dir 
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 # minishell: stderr
 # bash: stderr
 mkdir: dir: File exists
@@ -45,11 +45,11 @@ diff :1,4d0
 [1]minishell>  cd dir
 [0]minishell>  cd .
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 # minishell: stderr
 mkdir: dir: File exists
 # bash: stderr
@@ -73,11 +73,11 @@ diff :1,4d0
 [1]minishell>  cd dir
 [0]minishell>  cd ./
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 # minishell: stderr
 mkdir: dir: File exists
 # bash: stderr
@@ -101,11 +101,11 @@ diff :1,4d0
 [1]minishell>  cd dir
 [0]minishell>  cd ..
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 # minishell: stderr
 mkdir: dir: File exists
 # bash: stderr
@@ -129,11 +129,11 @@ diff :1,4d0
 [1]minishell>  cd dir
 [0]minishell>  cd ../
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 # minishell: stderr
 mkdir: dir: File exists
 # bash: stderr
@@ -174,11 +174,11 @@ diff :1,2d0
 # minishell: stdout
 [0]minishell> cd NO_SUCH_FILE
 [1]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 # minishell: stderr
 minishell: cd: NO_SUCH_FILE: No such file or directory
 # bash: stderr
@@ -198,11 +198,11 @@ diff :1,2d0
 # minishell: stdout
 [0]minishell> cd hello world
 [1]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 # minishell: stderr
 minishell: cd: hello: No such file or directory
 # bash: stderr
@@ -252,11 +252,11 @@ diff :1,4d0
 [1]minishell>  cd dir
 [0]minishell>  cd ../nosuchdir/../dir
 [1]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 # minishell: stderr
 mkdir: dir: File exists
 minishell: cd: ../nosuchdir/../dir: No such file or directory
@@ -280,11 +280,11 @@ diff :1,3d0
 [0]minishell> mkdir hello
 [0]minishell>  cd hello world
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/hello
+/Users/wyohei/minishell/tester/hello
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/hello
+/Users/wyohei/minishell/tester/hello
 # minishell: stderr
 # bash: stderr
 mkdir: hello: File exists
@@ -364,20 +364,20 @@ diff :1,6c1
 < [0]minishell> mkdir dir
 < [1]minishell>  cd DIR
 < [0]minishell>  pwd
-< /Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+< /Users/wyohei/minishell/tester/dir
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/DIR
+> /Users/wyohei/minishell/tester/DIR
 # minishell: stdout
 [0]minishell> mkdir dir
 [1]minishell>  cd DIR
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/DIR
+/Users/wyohei/minishell/tester/DIR
 # minishell: stderr
 mkdir: dir: File exists
 # bash: stderr
@@ -399,11 +399,11 @@ diff :1,3d0
 [0]minishell> mkdir DIR
 [1]minishell>  cd dir
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 # minishell: stderr
 mkdir: DIR: File exists
 # bash: stderr
@@ -428,12 +428,12 @@ diff :1,4d0
 [1]minishell>  chmod 000 dir
 [0]minishell>  cd dir
 [1]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell> chmod 777 dir
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 # minishell: stderr
 mkdir: dir: File exists
 minishell: cd: dir: Permission denied
@@ -451,21 +451,21 @@ diff :1,7c1
 < [1]minishell>  ln -s dir link
 < [0]minishell>  cd link
 < [0]minishell>  pwd
-< /Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+< /Users/wyohei/minishell/tester/dir
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/link
+> /Users/wyohei/minishell/tester/link
 # minishell: stdout
 [0]minishell> mkdir dir
 [1]minishell>  ln -s dir link
 [0]minishell>  cd link
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/link
+/Users/wyohei/minishell/tester/link
 # minishell: stderr
 mkdir: dir: File exists
 # bash: stderr
@@ -482,22 +482,22 @@ diff :1,8c1
 < [1]minishell>  rmdir dir
 < [1]minishell>  cd link
 < [0]minishell>  pwd
-< /Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+< /Users/wyohei/minishell/tester/dir
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/link
+> /Users/wyohei/minishell/tester/link
 # minishell: stdout
 [0]minishell> mkdir dir
 [1]minishell>  ln -s dir link
 [1]minishell>  rmdir dir
 [1]minishell>  cd link
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/link
+/Users/wyohei/minishell/tester/link
 # minishell: stderr
 mkdir: dir: File exists
 ln: link/dir: File exists
@@ -539,27 +539,27 @@ diff :1,5d0
 [0]minishell>  rmdir ../dir
 [1]minishell>  cd ./
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell> cd .
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell>  cd ./././././
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell>  cd .////////./
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell>  cd ../
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
+/Users/wyohei/minishell/tester
 # minishell: stderr
 mkdir: dir: File exists
 rmdir: ../dir: Directory not empty
@@ -585,9 +585,9 @@ diff :1,11c1,3
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./../
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./.././///./
+> /Users/wyohei/minishell/tester/a/b/c/./
+> /Users/wyohei/minishell/tester/a/b/c/./../
+> /Users/wyohei/minishell/tester/a/b/c/./.././///./
 # minishell: stdout
 [0]minishell> mkdir -p a/b/c
 [0]minishell>  cd a/b/c
@@ -601,9 +601,9 @@ diff :1,11c1,3
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./../
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./.././///./
+/Users/wyohei/minishell/tester/a/b/c/./
+/Users/wyohei/minishell/tester/a/b/c/./../
+/Users/wyohei/minishell/tester/a/b/c/./.././///./
 # minishell: stderr
 getcwd: No such file or directory
 getcwd: No such file or directory
@@ -631,9 +631,9 @@ diff :1,11c1,3
 < [0]minishell>  cd ../
 < [0]minishell>  pwd
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./.././.
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./.././././
+> /Users/wyohei/minishell/tester/a/b/c/./
+> /Users/wyohei/minishell/tester/a/b/c/./.././.
+> /Users/wyohei/minishell/tester/a/b/c/./.././././
 13,14d4
 < [0]minishell> exit
 < exit
@@ -649,14 +649,14 @@ diff :1,11c1,3
 [0]minishell>  pwd
 [0]minishell>  cd ../
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a
+/Users/wyohei/minishell/tester/a
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./.././.
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./.././././
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a
+/Users/wyohei/minishell/tester/a/b/c/./
+/Users/wyohei/minishell/tester/a/b/c/./.././.
+/Users/wyohei/minishell/tester/a/b/c/./.././././
+/Users/wyohei/minishell/tester/a
 # minishell: stderr
 getcwd: No such file or directory
 getcwd: No such file or directory
@@ -674,19 +674,19 @@ cd: error retrieving current directory: getcwd: cannot access parent directories
 diff :1,5c1
 < [0]minishell> cd 
 < [0]minishell>  pwd
-< /private/tmp/watanabeyouhei/Homebrew/Temp
+< /private/tmp/wyohei/Homebrew/Temp
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei
+> /Users/wyohei
 # minishell: stdout
 [0]minishell> cd 
 [0]minishell>  pwd
-/private/tmp/watanabeyouhei/Homebrew/Temp
+/private/tmp/wyohei/Homebrew/Temp
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei
+/Users/wyohei
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -699,20 +699,20 @@ diff :1,6c1
 < [0]minishell> export HOME=
 < [0]minishell>  cd 
 < [0]minishell>  pwd
-< /private/tmp/watanabeyouhei/Homebrew/Temp
+< /private/tmp/wyohei/Homebrew/Temp
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester
+> /Users/wyohei/minishell/tester
 # minishell: stdout
 [0]minishell> export HOME=
 [0]minishell>  cd 
 [0]minishell>  pwd
-/private/tmp/watanabeyouhei/Homebrew/Temp
+/private/tmp/wyohei/Homebrew/Temp
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -725,20 +725,20 @@ diff :1,6c1
 < [0]minishell> unset HOME
 < [0]minishell>  cd 
 < [0]minishell>  pwd
-< /private/tmp/watanabeyouhei/Homebrew/Temp
+< /private/tmp/wyohei/Homebrew/Temp
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester
+> /Users/wyohei/minishell/tester
 # minishell: stdout
 [0]minishell> unset HOME
 [0]minishell>  cd 
 [0]minishell>  pwd
-/private/tmp/watanabeyouhei/Homebrew/Temp
+/private/tmp/wyohei/Homebrew/Temp
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 # minishell: stderr
 # bash: stderr
 bash: line 2: cd: HOME not set
@@ -752,20 +752,20 @@ diff :1,6c1
 < [0]minishell> export HOME="./"
 < [1]minishell>  cd 
 < [0]minishell>  pwd
-< /private/tmp/watanabeyouhei/Homebrew/Temp
+< /private/tmp/wyohei/Homebrew/Temp
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester
+> /Users/wyohei/minishell/tester
 # minishell: stdout
 [0]minishell> export HOME="./"
 [1]minishell>  cd 
 [0]minishell>  pwd
-/private/tmp/watanabeyouhei/Homebrew/Temp
+/private/tmp/wyohei/Homebrew/Temp
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 # minishell: stderr
 minishell: unset: `./': not a valid identifier
 # bash: stderr
@@ -779,20 +779,20 @@ diff :1,6c1
 < [0]minishell> export HOME="../../"
 < [1]minishell>  cd 
 < [0]minishell>  pwd
-< /private/tmp/watanabeyouhei/Homebrew/Temp
+< /private/tmp/wyohei/Homebrew/Temp
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo
+> /Users/wyohei
 # minishell: stdout
 [0]minishell> export HOME="../../"
 [1]minishell>  cd 
 [0]minishell>  pwd
-/private/tmp/watanabeyouhei/Homebrew/Temp
+/private/tmp/wyohei/Homebrew/Temp
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo
+/Users/wyohei
 # minishell: stderr
 minishell: unset: `../../': not a valid identifier
 # bash: stderr
@@ -806,20 +806,20 @@ diff :1,6c1
 < [0]minishell> export HOME=""
 < [1]minishell>  cd 
 < [0]minishell>  pwd
-< /private/tmp/watanabeyouhei/Homebrew/Temp
+< /private/tmp/wyohei/Homebrew/Temp
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester
+> /Users/wyohei/minishell/tester
 # minishell: stdout
 [0]minishell> export HOME=""
 [1]minishell>  cd 
 [0]minishell>  pwd
-/private/tmp/watanabeyouhei/Homebrew/Temp
+/private/tmp/wyohei/Homebrew/Temp
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 # minishell: stderr
 minishell: unset: `': not a valid identifier
 # bash: stderr
@@ -833,7 +833,7 @@ diff :1,6c1
 < [0]minishell> export HOME="/BIN"
 < [1]minishell>  cd 
 < [0]minishell>  pwd
-< /private/tmp/watanabeyouhei/Homebrew/Temp
+< /private/tmp/wyohei/Homebrew/Temp
 < [0]minishell> exit
 < exit
 ---
@@ -842,7 +842,7 @@ diff :1,6c1
 [0]minishell> export HOME="/BIN"
 [1]minishell>  cd 
 [0]minishell>  pwd
-/private/tmp/watanabeyouhei/Homebrew/Temp
+/private/tmp/wyohei/Homebrew/Temp
 [0]minishell> exit
 exit
 # bash: stdout
@@ -861,21 +861,21 @@ diff :1,7c1
 < [0]minishell>  mkdir -p a/b
 < [0]minishell>  cd 
 < [0]minishell>  pwd
-< /private/tmp/watanabeyouhei/Homebrew/Temp
+< /private/tmp/wyohei/Homebrew/Temp
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a
+> /Users/wyohei/minishell/tester/a
 # minishell: stdout
 [0]minishell> export HOME=a
 [0]minishell>  mkdir -p a/b
 [0]minishell>  cd 
 [0]minishell>  pwd
-/private/tmp/watanabeyouhei/Homebrew/Temp
+/private/tmp/wyohei/Homebrew/Temp
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a
+/Users/wyohei/minishell/tester/a
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -888,20 +888,20 @@ diff :1,6c1
 < [0]minishell> export HOME=NO_SUCH_FILE
 < [0]minishell>  cd 
 < [0]minishell>  pwd
-< /private/tmp/watanabeyouhei/Homebrew/Temp
+< /private/tmp/wyohei/Homebrew/Temp
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester
+> /Users/wyohei/minishell/tester
 # minishell: stdout
 [0]minishell> export HOME=NO_SUCH_FILE
 [0]minishell>  cd 
 [0]minishell>  pwd
-/private/tmp/watanabeyouhei/Homebrew/Temp
+/private/tmp/wyohei/Homebrew/Temp
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 # minishell: stderr
 # bash: stderr
 bash: line 2: cd: NO_SUCH_FILE: No such file or directory
@@ -915,7 +915,7 @@ diff :1,6c1,2
 < [0]minishell> export CDPATH="/"
 < [1]minishell>  cd bin
 < [1]minishell>  pwd
-< /Users/watanabeyouhei/program/42tokyo/minishell/tester
+< /Users/wyohei/minishell/tester
 < [0]minishell> exit
 < exit
 ---
@@ -925,7 +925,7 @@ diff :1,6c1,2
 [0]minishell> export CDPATH="/"
 [1]minishell>  cd bin
 [1]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell> exit
 exit
 # bash: stdout
@@ -945,20 +945,20 @@ diff :1,6c1
 < [0]minishell> export CDPATH="/"
 < [1]minishell>  cd 
 < [0]minishell>  pwd
-< /private/tmp/watanabeyouhei/Homebrew/Temp
+< /private/tmp/wyohei/Homebrew/Temp
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei
+> /Users/wyohei
 # minishell: stdout
 [0]minishell> export CDPATH="/"
 [1]minishell>  cd 
 [0]minishell>  pwd
-/private/tmp/watanabeyouhei/Homebrew/Temp
+/private/tmp/wyohei/Homebrew/Temp
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei
+/Users/wyohei
 # minishell: stderr
 minishell: unset: `/': not a valid identifier
 # bash: stderr
@@ -973,21 +973,21 @@ diff :1,7c1
 < [1]minishell>  export HOME=
 < [0]minishell>  cd 
 < [0]minishell>  pwd
-< /private/tmp/watanabeyouhei/Homebrew/Temp
+< /private/tmp/wyohei/Homebrew/Temp
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester
+> /Users/wyohei/minishell/tester
 # minishell: stdout
 [0]minishell> export CDPATH="/"
 [1]minishell>  export HOME=
 [0]minishell>  cd 
 [0]minishell>  pwd
-/private/tmp/watanabeyouhei/Homebrew/Temp
+/private/tmp/wyohei/Homebrew/Temp
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 # minishell: stderr
 minishell: unset: `/': not a valid identifier
 # bash: stderr
@@ -1002,21 +1002,21 @@ diff :1,7c1
 < [1]minishell>  unset HOME
 < [0]minishell>  cd 
 < [0]minishell>  pwd
-< /private/tmp/watanabeyouhei/Homebrew/Temp
+< /private/tmp/wyohei/Homebrew/Temp
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester
+> /Users/wyohei/minishell/tester
 # minishell: stdout
 [0]minishell> export CDPATH="/"
 [1]minishell>  unset HOME
 [0]minishell>  cd 
 [0]minishell>  pwd
-/private/tmp/watanabeyouhei/Homebrew/Temp
+/private/tmp/wyohei/Homebrew/Temp
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 # minishell: stderr
 minishell: unset: `/': not a valid identifier
 # bash: stderr
@@ -1040,11 +1040,11 @@ diff :1,4d0
 [1]minishell>  mkdir -p a/b
 [0]minishell>  cd b
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+/Users/wyohei/minishell/tester/b
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+/Users/wyohei/minishell/tester/b
 # minishell: stderr
 minishell: unset: `': not a valid identifier
 # bash: stderr
@@ -1063,18 +1063,18 @@ diff :1,4d0
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+> /Users/wyohei/minishell/tester/dir
 # minishell: stdout
 [0]minishell> export CDPATH="./"
 [1]minishell>  mkdir dir
 [1]minishell>  cd dir
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 # minishell: stderr
 minishell: unset: `./': not a valid identifier
 mkdir: dir: File exists
@@ -1097,31 +1097,31 @@ diff :1,4d0
 9,13c3,4
 < [0]minishell>  cd b
 < [1]minishell>  pwd
-< /Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+< /Users/wyohei/minishell/tester/b
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
+> /Users/wyohei/minishell/tester/a/b
+> /Users/wyohei/minishell/tester/a/b
 # minishell: stdout
 [0]minishell> export CDPATH="../a"
 [1]minishell>  mkdir -p a/b/c
 [0]minishell>  cd b
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+/Users/wyohei/minishell/tester/b
 [0]minishell>  cd a
 [1]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+/Users/wyohei/minishell/tester/b
 [0]minishell>  cd b
 [1]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+/Users/wyohei/minishell/tester/b
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
+/Users/wyohei/minishell/tester/b
+/Users/wyohei/minishell/tester/b
+/Users/wyohei/minishell/tester/a/b
+/Users/wyohei/minishell/tester/a/b
 # minishell: stderr
 minishell: unset: `../a': not a valid identifier
 minishell: cd: a: No such file or directory
@@ -1139,23 +1139,23 @@ diff :1,7c1,2
 < [0]minishell>  mkdir -p a/b/c
 < [0]minishell>  cd b
 < [0]minishell>  pwd
-< /Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+< /Users/wyohei/minishell/tester/b
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
+> /Users/wyohei/minishell/tester/a/b
+> /Users/wyohei/minishell/tester/a/b
 # minishell: stdout
 [0]minishell> export CDPATH=a
 [0]minishell>  mkdir -p a/b/c
 [0]minishell>  cd b
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+/Users/wyohei/minishell/tester/b
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
+/Users/wyohei/minishell/tester/a/b
+/Users/wyohei/minishell/tester/a/b
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -1169,23 +1169,23 @@ diff :1,7c1,2
 < [0]minishell>  mkdir -p a/b/c
 < [0]minishell>  cd b
 < [0]minishell>  pwd
-< /Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+< /Users/wyohei/minishell/tester/b
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/A/b
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/A/b
+> /Users/wyohei/minishell/tester/A/b
+> /Users/wyohei/minishell/tester/A/b
 # minishell: stdout
 [0]minishell> export CDPATH=A
 [0]minishell>  mkdir -p a/b/c
 [0]minishell>  cd b
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+/Users/wyohei/minishell/tester/b
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/A/b
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/A/b
+/Users/wyohei/minishell/tester/A/b
+/Users/wyohei/minishell/tester/A/b
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -1207,11 +1207,11 @@ diff :1,4d0
 [0]minishell>  mkdir -p a/b/c
 [0]minishell>  cd ./b
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+/Users/wyohei/minishell/tester/b
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+/Users/wyohei/minishell/tester/b
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -1235,11 +1235,11 @@ diff :1,5d0
 [0]minishell>  cd a
 [0]minishell>  cd ../b
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+/Users/wyohei/minishell/tester/b
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+/Users/wyohei/minishell/tester/b
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -1261,11 +1261,11 @@ diff :1,4d0
 [0]minishell>  mkdir -p a/b/c
 [0]minishell>  cd .
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -1289,11 +1289,11 @@ diff :1,5d0
 [0]minishell>  cd a
 [0]minishell>  cd ..
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -1308,24 +1308,24 @@ diff :1,8c1,2
 < [0]minishell>  mkdir b
 < [1]minishell>  cd b
 < [0]minishell>  pwd
-< /Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+< /Users/wyohei/minishell/tester/b
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
+> /Users/wyohei/minishell/tester/a/b
+> /Users/wyohei/minishell/tester/a/b
 # minishell: stdout
 [0]minishell> export CDPATH=a
 [0]minishell>  mkdir -p a/b/c
 [0]minishell>  mkdir b
 [1]minishell>  cd b
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+/Users/wyohei/minishell/tester/b
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
+/Users/wyohei/minishell/tester/a/b
+/Users/wyohei/minishell/tester/a/b
 # minishell: stderr
 mkdir: b: File exists
 # bash: stderr
@@ -1341,23 +1341,23 @@ diff :1,7c1,2
 < [0]minishell>  mkdir -p a/b/c
 < [0]minishell>  cd c
 < [1]minishell>  pwd
-< /Users/watanabeyouhei/program/42tokyo/minishell/tester
+< /Users/wyohei/minishell/tester
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c
+> /Users/wyohei/minishell/tester/a/b/c
+> /Users/wyohei/minishell/tester/a/b/c
 # minishell: stdout
 [0]minishell> export CDPATH=a/b
 [0]minishell>  mkdir -p a/b/c
 [0]minishell>  cd c
 [1]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c
+/Users/wyohei/minishell/tester/a/b/c
+/Users/wyohei/minishell/tester/a/b/c
 # minishell: stderr
 minishell: cd: c: No such file or directory
 # bash: stderr
@@ -1373,24 +1373,24 @@ diff :1,8c1,2
 < [0]minishell>  mkdir -p a:b/test
 < [0]minishell>  cd test
 < [1]minishell>  pwd
-< /Users/watanabeyouhei/program/42tokyo/minishell/tester
+< /Users/wyohei/minishell/tester
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/test
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/test
+> /Users/wyohei/minishell/tester/a/test
+> /Users/wyohei/minishell/tester/a/test
 # minishell: stdout
 [0]minishell> export CDPATH=a:b:a:b
 [0]minishell>  mkdir -p a/test  b/test
 [0]minishell>  mkdir -p a:b/test
 [0]minishell>  cd test
 [1]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/test
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/test
+/Users/wyohei/minishell/tester/a/test
+/Users/wyohei/minishell/tester/a/test
 # minishell: stderr
 minishell: cd: test: No such file or directory
 # bash: stderr
@@ -1406,24 +1406,24 @@ diff :1,8c1,2
 < [0]minishell>  mkdir -p a:b/test
 < [0]minishell>  cd test
 < [1]minishell>  pwd
-< /Users/watanabeyouhei/program/42tokyo/minishell/tester
+< /Users/wyohei/minishell/tester
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/b/test
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/b/test
+> /Users/wyohei/minishell/tester/b/test
+> /Users/wyohei/minishell/tester/b/test
 # minishell: stdout
 [0]minishell> export CDPATH=b:a:a:b
 [0]minishell>  mkdir -p a/test  b/test
 [0]minishell>  mkdir -p a:b/test
 [0]minishell>  cd test
 [1]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/b/test
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/b/test
+/Users/wyohei/minishell/tester/b/test
+/Users/wyohei/minishell/tester/b/test
 # minishell: stderr
 minishell: cd: test: No such file or directory
 # bash: stderr
@@ -1439,24 +1439,24 @@ diff :1,8c1,2
 < [0]minishell>  mkdir -p a:b/test
 < [0]minishell>  cd test
 < [1]minishell>  pwd
-< /Users/watanabeyouhei/program/42tokyo/minishell/tester
+< /Users/wyohei/minishell/tester
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/test
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/test
+> /Users/wyohei/minishell/tester/a/test
+> /Users/wyohei/minishell/tester/a/test
 # minishell: stdout
 [0]minishell> export CDPATH=a:b:a:b
 [0]minishell>  mkdir -p a/hello  b/hello
 [0]minishell>  mkdir -p a:b/test
 [0]minishell>  cd test
 [1]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/test
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/test
+/Users/wyohei/minishell/tester/a/test
+/Users/wyohei/minishell/tester/a/test
 # minishell: stderr
 minishell: cd: test: No such file or directory
 # bash: stderr
@@ -1473,14 +1473,14 @@ diff :1,11c1,2
 < [0]minishell>  chmod 000 a/test 
 < [0]minishell> cd test
 < [1]minishell>  pwd
-< /Users/watanabeyouhei/program/42tokyo/minishell/tester
+< /Users/wyohei/minishell/tester
 < [0]minishell>  cd ../../
 < [0]minishell>  chmod 777 a/test
 < [1]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/b/test
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/b/test
+> /Users/wyohei/minishell/tester/b/test
+> /Users/wyohei/minishell/tester/b/test
 # minishell: stdout
 [0]minishell> export CDPATH=a:b:a:b
 [0]minishell>  mkdir -p a/test  b/test
@@ -1488,14 +1488,14 @@ diff :1,11c1,2
 [0]minishell>  chmod 000 a/test 
 [0]minishell> cd test
 [1]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell>  cd ../../
 [0]minishell>  chmod 777 a/test
 [1]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/b/test
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/b/test
+/Users/wyohei/minishell/tester/b/test
+/Users/wyohei/minishell/tester/b/test
 # minishell: stderr
 minishell: cd: test: No such file or directory
 chmod: a/test: No such file or directory
@@ -1619,11 +1619,11 @@ diff :1,4d0
 [0]minishell>  mkdir a
 [1]minishell>  cd a
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a
+/Users/wyohei/minishell/tester/a
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a
+/Users/wyohei/minishell/tester/a
 # minishell: stderr
 mkdir: a: File exists
 # bash: stderr
@@ -1639,23 +1639,23 @@ diff :1,7c1,2
 < [0]minishell>  mkdir -p a/a
 < [0]minishell>  cd a
 < [0]minishell>  pwd
-< /Users/watanabeyouhei/program/42tokyo/minishell/tester/a
+< /Users/wyohei/minishell/tester/a
 < [0]minishell> exit
 < exit
 ---
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/a
-> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/a
+> /Users/wyohei/minishell/tester/a/a
+> /Users/wyohei/minishell/tester/a/a
 # minishell: stdout
 [0]minishell> export CDPATH="a"
 [0]minishell>  mkdir -p a/a
 [0]minishell>  cd a
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a
+/Users/wyohei/minishell/tester/a
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/a
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/a
+/Users/wyohei/minishell/tester/a/a
+/Users/wyohei/minishell/tester/a/a
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -1666,20 +1666,20 @@ exit
 -------------------------
 diff :1,3d0
 < [0]minishell> mkdir -p a/b/c/d/e/f/g/h/i/
-< [0]minishell>  cd a/b/c/d/../../c/d/e/f/g/h/i/../../../g/h/i/../.././././../g/h/i/../../../../../../../c/d/../d/../d/e/../../d/e/.././././e/f/.//////../f/g/h/i/////../../../
+< [0]minishell>  cd a/b/c/d/../../c/d/e/f/g/h/i/../../../g/h/i/../.././././../g/h/i/.../../../../../../../c/d/../d/../d/e/../../d/e/.././././e/f/.//////../f/g/h/i//////../../../
 < [0]minishell>  pwd
 5,6d1
 < [0]minishell> exit
 < exit
 # minishell: stdout
 [0]minishell> mkdir -p a/b/c/d/e/f/g/h/i/
-[0]minishell>  cd a/b/c/d/../../c/d/e/f/g/h/i/../../../g/h/i/../.././././../g/h/i/../../../../../../../c/d/../d/../d/e/../../d/e/.././././e/f/.//////../f/g/h/i/////../../../
+[0]minishell>  cd a/b/c/d/../../c/d/e/f/g/h/i/../../../g/h/i/../.././././../g/h/i/.../../../../../../../c/d/../d/../d/e/../../d/e/.././././e/f/.//////../f/g/h/i//////../../../
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/d/e/f
+/Users/wyohei/minishell/tester/a/b/c/d/e/f
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/d/e/f
+/Users/wyohei/minishell/tester/a/b/c/d/e/f
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -2127,7 +2127,7 @@ bash: line 3: pwd,: command not found
 -------------------------
 [KO ] case: echo\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo
 
@@ -2143,7 +2143,7 @@ exit
 -------------------------
 [KO ] case: echo a\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo a
 a
@@ -2159,7 +2159,7 @@ a
 -------------------------
 [KO ] case: echo hello world\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo hello world
 hello world
@@ -2192,7 +2192,7 @@ exit
 -------------------------
 [KO ] case: echo -nk hello\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo -nk hello
 -nk hello
@@ -2208,7 +2208,7 @@ exit
 -------------------------
 [KO ] case: echo -nnnnnnnnnnk hello\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo -nnnnnnnnnnk hello
 -nnnnnnnnnnk hello
@@ -2224,7 +2224,7 @@ exit
 -------------------------
 [KO ] case: echo -nknknknk hello\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo -nknknknk hello
 -nknknknk hello
@@ -2240,7 +2240,7 @@ exit
 -------------------------
 [KO ] case: echo hello -n\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo hello -n
 hello -n
@@ -2256,7 +2256,7 @@ hello -n
 -------------------------
 [KO ] case: echo hello -nnnnnnn\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo hello -nnnnnnn
 hello -nnnnnnn
@@ -2272,7 +2272,7 @@ hello -nnnnnnn
 -------------------------
 [KO ] case: echo hello -nknknknknk\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo hello -nknknknknk
 hello -nknknknknk
@@ -2288,7 +2288,7 @@ hello -nknknknknk
 -------------------------
 [KO ] case: echo hello -nnnnnnnnn -nnnnnnnnn\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo hello -nnnnnnnnn -nnnnnnnnn
 hello -nnnnnnnnn -nnnnnnnnn
@@ -2304,14 +2304,14 @@ hello -nnnnnnnnn -nnnnnnnnn
 -------------------------
 [KO ] case: echo $PATH\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo $PATH
-/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+/Users/wyohei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/munki
  [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+/Users/wyohei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/munki
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -2320,14 +2320,14 @@ exit
 -------------------------
 [KO ] case: echo "$PATH"\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo "$PATH"
-/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+/Users/wyohei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/munki
  [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+/Users/wyohei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/munki
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -2336,7 +2336,7 @@ exit
 -------------------------
 [KO ] case: echo '$PATH'\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo '$PATH'
 $PATH
@@ -2352,7 +2352,7 @@ $PATH
 -------------------------
 [KO ] case: echo a "" b "" c\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo a "" b "" c
 a  b  c
@@ -2368,7 +2368,7 @@ a  b  c
 -------------------------
 [KO ] case: echo a "$NO_SUCH_ENV" b $NO_SUCH_ENV c, unset NO_SUCH_ENV\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo a "$NO_SUCH_ENV" b $NO_SUCH_ENV c, unset NO_SUCH_ENV
 a  b  c, unset NO_SUCH_ENV
@@ -2384,7 +2384,7 @@ a  b c, unset NO_SUCH_ENV
 -------------------------
 [KO ] case: echo $\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo $
 $
@@ -2407,67 +2407,53 @@ $
 -------------------------
 diff :1d0
 < [0]minishell> env | grep -v -E '^_=' | sort
-10d8
-< OLDPWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
-15c13
+7d5
+< OLDPWD=/Users/wyohei/minishell/tester
+11c9
 < SHLVL=2
 ---
 > SHLVL=3
-26,27d23
+19,20d16
 < [0]minishell> exit
 < exit
 # minishell: stdout
 [0]minishell> env | grep -v -E '^_=' | sort
-COMMAND_MODE=unix2003
-HOME=/Users/watanabeyouhei
-HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
-HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
-LC_CTYPE=ja_JP.UTF-8
-LOGIN_SHELL=1
-LOGNAME=watanabeyouhei
-LaunchInstanceID=808C01C6-3985-46E6-9FF7-0A59D587A096
-OLDPWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
-PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-PWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
-SECURITYSESSIONID=186b1
+HOME=/Users/wyohei
+HOMEBREW_CACHE=/tmp/wyohei/Homebrew/Caches
+HOMEBREW_TEMP=/tmp/wyohei/Homebrew/Temp
+LOGNAME=wyohei
+MAIL=/var/mail/wyohei
+OLDPWD=/Users/wyohei/minishell/tester
+PATH=/Users/wyohei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/munki
+PWD=/Users/wyohei/minishell/tester
 SHELL=/bin/zsh
 SHLVL=2
-SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners
+SSH_CLIENT=10.51.0.29 38184 22
+SSH_CONNECTION=10.51.0.29 38184 10.11.30.8 22
+SSH_TTY=/dev/ttys000
 TERM=xterm-256color
-TERMINAL_EMULATOR=JetBrains-JediTerm
-TERM_SESSION_ID=d0469a8e-0dbf-4a33-99ae-0a29b1a0334f
-TMPDIR=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/
-USER=watanabeyouhei
-XPC_FLAGS=0x0
-XPC_SERVICE_NAME=0
-__CFBundleIdentifier=com.jetbrains.CLion
-__CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
+TMOUT=86400
+TMPDIR=/var/folders/zz/zyxvpxvq6csfxvn_n0000sk00006ch/T/
+USER=wyohei
 [0]minishell> exit
 exit
 # bash: stdout
-COMMAND_MODE=unix2003
-HOME=/Users/watanabeyouhei
-HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
-HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
-LC_CTYPE=ja_JP.UTF-8
-LOGIN_SHELL=1
-LOGNAME=watanabeyouhei
-LaunchInstanceID=808C01C6-3985-46E6-9FF7-0A59D587A096
-PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-PWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
-SECURITYSESSIONID=186b1
+HOME=/Users/wyohei
+HOMEBREW_CACHE=/tmp/wyohei/Homebrew/Caches
+HOMEBREW_TEMP=/tmp/wyohei/Homebrew/Temp
+LOGNAME=wyohei
+MAIL=/var/mail/wyohei
+PATH=/Users/wyohei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/munki
+PWD=/Users/wyohei/minishell/tester
 SHELL=/bin/zsh
 SHLVL=3
-SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners
+SSH_CLIENT=10.51.0.29 38184 22
+SSH_CONNECTION=10.51.0.29 38184 10.11.30.8 22
+SSH_TTY=/dev/ttys000
 TERM=xterm-256color
-TERMINAL_EMULATOR=JetBrains-JediTerm
-TERM_SESSION_ID=d0469a8e-0dbf-4a33-99ae-0a29b1a0334f
-TMPDIR=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/
-USER=watanabeyouhei
-XPC_FLAGS=0x0
-XPC_SERVICE_NAME=0
-__CFBundleIdentifier=com.jetbrains.CLion
-__CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
+TMOUT=86400
+TMPDIR=/var/folders/zz/zyxvpxvq6csfxvn_n0000sk00006ch/T/
+USER=wyohei
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -2479,70 +2465,56 @@ __CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
 diff :1,2d0
 < [0]minishell> export A=hello
 < [0]minishell>  env | grep -v -E '^_=' | sort
-12d9
-< OLDPWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
-17c14
+9d6
+< OLDPWD=/Users/wyohei/minishell/tester
+13c10
 < SHLVL=2
 ---
 > SHLVL=3
-28,29d24
+21,22d17
 < [0]minishell> exit
 < exit
 # minishell: stdout
 [0]minishell> export A=hello
 [0]minishell>  env | grep -v -E '^_=' | sort
 A=hello
-COMMAND_MODE=unix2003
-HOME=/Users/watanabeyouhei
-HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
-HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
-LC_CTYPE=ja_JP.UTF-8
-LOGIN_SHELL=1
-LOGNAME=watanabeyouhei
-LaunchInstanceID=808C01C6-3985-46E6-9FF7-0A59D587A096
-OLDPWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
-PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-PWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
-SECURITYSESSIONID=186b1
+HOME=/Users/wyohei
+HOMEBREW_CACHE=/tmp/wyohei/Homebrew/Caches
+HOMEBREW_TEMP=/tmp/wyohei/Homebrew/Temp
+LOGNAME=wyohei
+MAIL=/var/mail/wyohei
+OLDPWD=/Users/wyohei/minishell/tester
+PATH=/Users/wyohei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/munki
+PWD=/Users/wyohei/minishell/tester
 SHELL=/bin/zsh
 SHLVL=2
-SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners
+SSH_CLIENT=10.51.0.29 38184 22
+SSH_CONNECTION=10.51.0.29 38184 10.11.30.8 22
+SSH_TTY=/dev/ttys000
 TERM=xterm-256color
-TERMINAL_EMULATOR=JetBrains-JediTerm
-TERM_SESSION_ID=d0469a8e-0dbf-4a33-99ae-0a29b1a0334f
-TMPDIR=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/
-USER=watanabeyouhei
-XPC_FLAGS=0x0
-XPC_SERVICE_NAME=0
-__CFBundleIdentifier=com.jetbrains.CLion
-__CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
+TMOUT=86400
+TMPDIR=/var/folders/zz/zyxvpxvq6csfxvn_n0000sk00006ch/T/
+USER=wyohei
 [0]minishell> exit
 exit
 # bash: stdout
 A=hello
-COMMAND_MODE=unix2003
-HOME=/Users/watanabeyouhei
-HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
-HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
-LC_CTYPE=ja_JP.UTF-8
-LOGIN_SHELL=1
-LOGNAME=watanabeyouhei
-LaunchInstanceID=808C01C6-3985-46E6-9FF7-0A59D587A096
-PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-PWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
-SECURITYSESSIONID=186b1
+HOME=/Users/wyohei
+HOMEBREW_CACHE=/tmp/wyohei/Homebrew/Caches
+HOMEBREW_TEMP=/tmp/wyohei/Homebrew/Temp
+LOGNAME=wyohei
+MAIL=/var/mail/wyohei
+PATH=/Users/wyohei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/munki
+PWD=/Users/wyohei/minishell/tester
 SHELL=/bin/zsh
 SHLVL=3
-SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners
+SSH_CLIENT=10.51.0.29 38184 22
+SSH_CONNECTION=10.51.0.29 38184 10.11.30.8 22
+SSH_TTY=/dev/ttys000
 TERM=xterm-256color
-TERMINAL_EMULATOR=JetBrains-JediTerm
-TERM_SESSION_ID=d0469a8e-0dbf-4a33-99ae-0a29b1a0334f
-TMPDIR=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/
-USER=watanabeyouhei
-XPC_FLAGS=0x0
-XPC_SERVICE_NAME=0
-__CFBundleIdentifier=com.jetbrains.CLion
-__CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
+TMOUT=86400
+TMPDIR=/var/folders/zz/zyxvpxvq6csfxvn_n0000sk00006ch/T/
+USER=wyohei
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -2554,71 +2526,57 @@ __CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
 diff :1,2d0
 < [0]minishell> cd ../
 < [0]minishell>  env | grep -v -E '^_=' | sort
-13c11
-< PWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
+10c8
+< PWD=/Users/wyohei/minishell/tester
 ---
-> PWD=/Users/watanabeyouhei/program/42tokyo/minishell
-16c14
+> PWD=/Users/wyohei/minishell
+12c10
 < SHLVL=2
 ---
 > SHLVL=3
-27,28d24
+20,21d17
 < [0]minishell> exit
 < exit
 # minishell: stdout
 [0]minishell> cd ../
 [0]minishell>  env | grep -v -E '^_=' | sort
-COMMAND_MODE=unix2003
-HOME=/Users/watanabeyouhei
-HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
-HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
-LC_CTYPE=ja_JP.UTF-8
-LOGIN_SHELL=1
-LOGNAME=watanabeyouhei
-LaunchInstanceID=808C01C6-3985-46E6-9FF7-0A59D587A096
-OLDPWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
-PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-PWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
-SECURITYSESSIONID=186b1
+HOME=/Users/wyohei
+HOMEBREW_CACHE=/tmp/wyohei/Homebrew/Caches
+HOMEBREW_TEMP=/tmp/wyohei/Homebrew/Temp
+LOGNAME=wyohei
+MAIL=/var/mail/wyohei
+OLDPWD=/Users/wyohei/minishell/tester
+PATH=/Users/wyohei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/munki
+PWD=/Users/wyohei/minishell/tester
 SHELL=/bin/zsh
 SHLVL=2
-SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners
+SSH_CLIENT=10.51.0.29 38184 22
+SSH_CONNECTION=10.51.0.29 38184 10.11.30.8 22
+SSH_TTY=/dev/ttys000
 TERM=xterm-256color
-TERMINAL_EMULATOR=JetBrains-JediTerm
-TERM_SESSION_ID=d0469a8e-0dbf-4a33-99ae-0a29b1a0334f
-TMPDIR=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/
-USER=watanabeyouhei
-XPC_FLAGS=0x0
-XPC_SERVICE_NAME=0
-__CFBundleIdentifier=com.jetbrains.CLion
-__CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
+TMOUT=86400
+TMPDIR=/var/folders/zz/zyxvpxvq6csfxvn_n0000sk00006ch/T/
+USER=wyohei
 [0]minishell> exit
 exit
 # bash: stdout
-COMMAND_MODE=unix2003
-HOME=/Users/watanabeyouhei
-HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
-HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
-LC_CTYPE=ja_JP.UTF-8
-LOGIN_SHELL=1
-LOGNAME=watanabeyouhei
-LaunchInstanceID=808C01C6-3985-46E6-9FF7-0A59D587A096
-OLDPWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
-PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-PWD=/Users/watanabeyouhei/program/42tokyo/minishell
-SECURITYSESSIONID=186b1
+HOME=/Users/wyohei
+HOMEBREW_CACHE=/tmp/wyohei/Homebrew/Caches
+HOMEBREW_TEMP=/tmp/wyohei/Homebrew/Temp
+LOGNAME=wyohei
+MAIL=/var/mail/wyohei
+OLDPWD=/Users/wyohei/minishell/tester
+PATH=/Users/wyohei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/munki
+PWD=/Users/wyohei/minishell
 SHELL=/bin/zsh
 SHLVL=3
-SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners
+SSH_CLIENT=10.51.0.29 38184 22
+SSH_CONNECTION=10.51.0.29 38184 10.11.30.8 22
+SSH_TTY=/dev/ttys000
 TERM=xterm-256color
-TERMINAL_EMULATOR=JetBrains-JediTerm
-TERM_SESSION_ID=d0469a8e-0dbf-4a33-99ae-0a29b1a0334f
-TMPDIR=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/
-USER=watanabeyouhei
-XPC_FLAGS=0x0
-XPC_SERVICE_NAME=0
-__CFBundleIdentifier=com.jetbrains.CLion
-__CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
+TMOUT=86400
+TMPDIR=/var/folders/zz/zyxvpxvq6csfxvn_n0000sk00006ch/T/
+USER=wyohei
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -2800,7 +2758,7 @@ diff :1,2d0
 exit
 # bash: stdout
 # minishell: stderr
-minishell: exit:         42           numeric argument required
+minishell: exit:         42           : numeric argument required
 # bash: stderr
 # minishell: exit status = 0
 # bash     : exit status = 42
@@ -2816,7 +2774,7 @@ diff :1,2d0
 exit
 # bash: stdout
 # minishell: stderr
-minishell: exit: ++42numeric argument required
+minishell: exit: ++42: numeric argument required
 # bash: stderr
 bash: line 1: exit: ++42: numeric argument required
 # minishell: exit status = 0
@@ -2849,7 +2807,7 @@ diff :1,2d0
 exit
 # bash: stdout
 # minishell: stderr
-minishell: exit: anumeric argument required
+minishell: exit: a: numeric argument required
 # bash: stderr
 bash: line 1: exit: a: numeric argument required
 # minishell: exit status = 0
@@ -2866,7 +2824,7 @@ diff :1,2d0
 exit
 # bash: stdout
 # minishell: stderr
-minishell: exit: 1anumeric argument required
+minishell: exit: 1a: numeric argument required
 # bash: stderr
 bash: line 1: exit: 1a: numeric argument required
 # minishell: exit status = 0
@@ -2915,7 +2873,7 @@ diff :1,2d0
 exit
 # bash: stdout
 # minishell: stderr
-minishell: exit:           numeric argument required
+minishell: exit:           : numeric argument required
 # bash: stderr
 bash: line 1: exit:           : numeric argument required
 # minishell: exit status = 0
@@ -3007,7 +2965,7 @@ bash: line 1: exit: too many arguments
 -------------------------
 [KO ] case: exit 0 0 | echo hello\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> exit 0 0 | echo hello
 hello
@@ -3029,7 +2987,7 @@ bash: line 1: exit: too many arguments
 -------------------------
 [KO ] case: export HELLO=hello\n echo $HELLO\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export HELLO=hello
 [0]minishell>  echo $HELLO
@@ -3046,7 +3004,7 @@ hello
 -------------------------
 [KO ] case: export HELLO=hello\n echo $hello\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export HELLO=hello
 [0]minishell>  echo $hello
@@ -3063,7 +3021,7 @@ exit
 -------------------------
 [KO ] case: echo $\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo $
 $
@@ -3079,7 +3037,7 @@ $
 -------------------------
 [KO ] case: echo "$"\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo "$"
 
@@ -3095,7 +3053,7 @@ $
 -------------------------
 [KO ] case: echo '$'\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo  '$'
 $
@@ -3111,7 +3069,7 @@ $
 -------------------------
 [KO ] case: export HELLO=hello\n echo '\\'$HELLO\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export HELLO=hello
 [0]minishell>  echo '\'$HELLO
@@ -3128,7 +3086,7 @@ exit
 -------------------------
 [KO ] case: export HELLO=hello\n echo "$HELLO"\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export HELLO=hello
 [0]minishell>  echo "$HELLO"
@@ -3184,7 +3142,7 @@ exit
 hello
 # minishell: stderr
 minishell: unset: `echo hello': not a valid identifier
-minishell: /Users/watanabeyouhei/.brew/bin/: Permission denied
+minishell: /Users/wyohei/.brew/bin/: Permission denied
 # bash: stderr
 # minishell: exit status = 0
 # bash     : exit status = 0
@@ -3208,7 +3166,7 @@ exit
 hello
 # minishell: stderr
 minishell: unset: `echo hello': not a valid identifier
-minishell: /Users/watanabeyouhei/.brew/bin/: Permission denied
+minishell: /Users/wyohei/.brew/bin/: Permission denied
 # bash: stderr
 # minishell: exit status = 0
 # bash     : exit status = 0
@@ -3231,7 +3189,7 @@ exit
 minishell: unset: `\\echo': not a valid identifier
 minishell: unset: `hello\': not a valid identifier
 minishell: unset: `': not a valid identifier
-minishell: /Users/watanabeyouhei/.brew/bin/: Permission denied
+minishell: /Users/wyohei/.brew/bin/: Permission denied
 # bash: stderr
 bash: line 2: $"echo: command not found
 # minishell: exit status = 0
@@ -3256,7 +3214,7 @@ exit
 # minishell: stderr
 minishell: unset: `echo hello': not a valid identifier
 minishell: unset: `\': not a valid identifier
-minishell: /Users/watanabeyouhei/.brew/bin/: Permission denied
+minishell: /Users/wyohei/.brew/bin/: Permission denied
 # bash: stderr
 bash: line 3: $TEST: command not found
 # minishell: exit status = 0
@@ -3265,10 +3223,10 @@ bash: line 3: $TEST: command not found
 -------------------------
 [KO ] case: export abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890=hello\n echo $abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
-[0]minishell> export abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890=hello
-[0]minishell>  echo $abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890
+[0]minishell> export abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ12345678900=hello
+[0]minishell>  echo $abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ12345678900
 
  [0]minishell> exit
 exit
@@ -3300,8 +3258,8 @@ exit
 hello
 # minishell: stderr
 minishell: unset: `export TEST=echo': not a valid identifier
-minishell: /Users/watanabeyouhei/.brew/bin/: Permission denied
-minishell: /Users/watanabeyouhei/.brew/bin/: Permission denied
+minishell: /Users/wyohei/.brew/bin/: Permission denied
+minishell: /Users/wyohei/.brew/bin/: Permission denied
 # bash: stderr
 # minishell: exit status = 0
 # bash     : exit status = 0
@@ -3316,70 +3274,55 @@ minishell: /Users/watanabeyouhei/.brew/bin/: Permission denied
 -------------------------
 diff :1d0
 < [0]minishell> export | grep -v -E '_=' | cut -d " " -f 3 | sort
-11d9
-< OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
-16c14
+8d6
+< OLDPWD="/Users/wyohei/minishell/tester"
+12c10
 < SHLVL="2"
 ---
 > SHLVL="3"
-25,26c23,24
+20,21d17
 < [0]minishell> exit
 < exit
----
-> __CFBundleIdentifier="com.jetbrains.CLion"
-> __CF_USER_TEXT_ENCODING="0x1F5:0x1:0xE"
 # minishell: stdout
 [0]minishell> export | grep -v -E '_=' | cut -d " " -f 3 | sort
-COMMAND_MODE="unix2003"
-HOME="/Users/watanabeyouhei"
-HOMEBREW_CACHE="/tmp/watanabeyouhei/Homebrew/Caches"
-HOMEBREW_TEMP="/tmp/watanabeyouhei/Homebrew/Temp"
-LC_CTYPE="ja_JP.UTF-8"
-LOGIN_SHELL="1"
-LOGNAME="watanabeyouhei"
-LaunchInstanceID="808C01C6-3985-46E6-9FF7-0A59D587A096"
+HOME="/Users/wyohei"
+HOMEBREW_CACHE="/tmp/wyohei/Homebrew/Caches"
+HOMEBREW_TEMP="/tmp/wyohei/Homebrew/Temp"
+LOGNAME="wyohei"
+MAIL="/var/mail/wyohei"
 OLDPWD
-OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
-PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-PWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
-SECURITYSESSIONID="186b1"
+OLDPWD="/Users/wyohei/minishell/tester"
+PATH="/Users/wyohei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/munki"
+PWD="/Users/wyohei/minishell/tester"
 SHELL="/bin/zsh"
 SHLVL="2"
-SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners"
+SSH_CLIENT="10.51.0.29
+SSH_CONNECTION="10.51.0.29
+SSH_TTY="/dev/ttys000"
 TERM="xterm-256color"
-TERMINAL_EMULATOR="JetBrains-JediTerm"
-TERM_SESSION_ID="d0469a8e-0dbf-4a33-99ae-0a29b1a0334f"
-TMPDIR="/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/"
-USER="watanabeyouhei"
-XPC_FLAGS="0x0"
-XPC_SERVICE_NAME="0"
+TMOUT="86400"
+TMPDIR="/var/folders/zz/zyxvpxvq6csfxvn_n0000sk00006ch/T/"
+USER="wyohei"
 [0]minishell> exit
 exit
 # bash: stdout
-COMMAND_MODE="unix2003"
-HOME="/Users/watanabeyouhei"
-HOMEBREW_CACHE="/tmp/watanabeyouhei/Homebrew/Caches"
-HOMEBREW_TEMP="/tmp/watanabeyouhei/Homebrew/Temp"
-LC_CTYPE="ja_JP.UTF-8"
-LOGIN_SHELL="1"
-LOGNAME="watanabeyouhei"
-LaunchInstanceID="808C01C6-3985-46E6-9FF7-0A59D587A096"
+HOME="/Users/wyohei"
+HOMEBREW_CACHE="/tmp/wyohei/Homebrew/Caches"
+HOMEBREW_TEMP="/tmp/wyohei/Homebrew/Temp"
+LOGNAME="wyohei"
+MAIL="/var/mail/wyohei"
 OLDPWD
-PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-PWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
-SECURITYSESSIONID="186b1"
+PATH="/Users/wyohei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/munki"
+PWD="/Users/wyohei/minishell/tester"
 SHELL="/bin/zsh"
 SHLVL="3"
-SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners"
+SSH_CLIENT="10.51.0.29
+SSH_CONNECTION="10.51.0.29
+SSH_TTY="/dev/ttys000"
 TERM="xterm-256color"
-TERMINAL_EMULATOR="JetBrains-JediTerm"
-TERM_SESSION_ID="d0469a8e-0dbf-4a33-99ae-0a29b1a0334f"
-TMPDIR="/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/"
-USER="watanabeyouhei"
-XPC_FLAGS="0x0"
-XPC_SERVICE_NAME="0"
-__CFBundleIdentifier="com.jetbrains.CLion"
-__CF_USER_TEXT_ENCODING="0x1F5:0x1:0xE"
+TMOUT="86400"
+TMPDIR="/var/folders/zz/zyxvpxvq6csfxvn_n0000sk00006ch/T/"
+USER="wyohei"
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -3390,82 +3333,68 @@ __CF_USER_TEXT_ENCODING="0x1F5:0x1:0xE"
 -------------------------
 diff :1,2d0
 < [0]minishell> export 1 _+ _OK _2? _OK2=VAR =NG OK3=
-< [1]minishell>  export | grep -v -E '^declare -x _=' | grep -v -E '_=' | cut -d " " -f 3 | sort
-11c9
+< [1]minishell>  export | grep -v -E '^declare -x _=' | grep -v -E '_=' | cut -d " " --f 3 | sort
+8c6
 < OK3
 ---
 > OK3=""
-13d10
-< OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
-18c15
+10d7
+< OLDPWD="/Users/wyohei/minishell/tester"
+14c11
 < SHLVL="2"
 ---
 > SHLVL="3"
-27,28c24,27
+22,23c19,20
 < [0]minishell> exit
 < exit
 ---
 > _OK
 > _OK2="VAR"
-> __CFBundleIdentifier="com.jetbrains.CLion"
-> __CF_USER_TEXT_ENCODING="0x1F5:0x1:0xE"
 # minishell: stdout
 [0]minishell> export 1 _+ _OK _2? _OK2=VAR =NG OK3=
-[1]minishell>  export | grep -v -E '^declare -x _=' | grep -v -E '_=' | cut -d " " -f 3 | sort
-COMMAND_MODE="unix2003"
-HOME="/Users/watanabeyouhei"
-HOMEBREW_CACHE="/tmp/watanabeyouhei/Homebrew/Caches"
-HOMEBREW_TEMP="/tmp/watanabeyouhei/Homebrew/Temp"
-LC_CTYPE="ja_JP.UTF-8"
-LOGIN_SHELL="1"
-LOGNAME="watanabeyouhei"
-LaunchInstanceID="808C01C6-3985-46E6-9FF7-0A59D587A096"
+[1]minishell>  export | grep -v -E '^declare -x _=' | grep -v -E '_=' | cut -d " " --f 3 | sort
+HOME="/Users/wyohei"
+HOMEBREW_CACHE="/tmp/wyohei/Homebrew/Caches"
+HOMEBREW_TEMP="/tmp/wyohei/Homebrew/Temp"
+LOGNAME="wyohei"
+MAIL="/var/mail/wyohei"
 OK3
 OLDPWD
-OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
-PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-PWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
-SECURITYSESSIONID="186b1"
+OLDPWD="/Users/wyohei/minishell/tester"
+PATH="/Users/wyohei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/munki"
+PWD="/Users/wyohei/minishell/tester"
 SHELL="/bin/zsh"
 SHLVL="2"
-SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners"
+SSH_CLIENT="10.51.0.29
+SSH_CONNECTION="10.51.0.29
+SSH_TTY="/dev/ttys000"
 TERM="xterm-256color"
-TERMINAL_EMULATOR="JetBrains-JediTerm"
-TERM_SESSION_ID="d0469a8e-0dbf-4a33-99ae-0a29b1a0334f"
-TMPDIR="/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/"
-USER="watanabeyouhei"
-XPC_FLAGS="0x0"
-XPC_SERVICE_NAME="0"
+TMOUT="86400"
+TMPDIR="/var/folders/zz/zyxvpxvq6csfxvn_n0000sk00006ch/T/"
+USER="wyohei"
 [0]minishell> exit
 exit
 # bash: stdout
-COMMAND_MODE="unix2003"
-HOME="/Users/watanabeyouhei"
-HOMEBREW_CACHE="/tmp/watanabeyouhei/Homebrew/Caches"
-HOMEBREW_TEMP="/tmp/watanabeyouhei/Homebrew/Temp"
-LC_CTYPE="ja_JP.UTF-8"
-LOGIN_SHELL="1"
-LOGNAME="watanabeyouhei"
-LaunchInstanceID="808C01C6-3985-46E6-9FF7-0A59D587A096"
+HOME="/Users/wyohei"
+HOMEBREW_CACHE="/tmp/wyohei/Homebrew/Caches"
+HOMEBREW_TEMP="/tmp/wyohei/Homebrew/Temp"
+LOGNAME="wyohei"
+MAIL="/var/mail/wyohei"
 OK3=""
 OLDPWD
-PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-PWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
-SECURITYSESSIONID="186b1"
+PATH="/Users/wyohei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/munki"
+PWD="/Users/wyohei/minishell/tester"
 SHELL="/bin/zsh"
 SHLVL="3"
-SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners"
+SSH_CLIENT="10.51.0.29
+SSH_CONNECTION="10.51.0.29
+SSH_TTY="/dev/ttys000"
 TERM="xterm-256color"
-TERMINAL_EMULATOR="JetBrains-JediTerm"
-TERM_SESSION_ID="d0469a8e-0dbf-4a33-99ae-0a29b1a0334f"
-TMPDIR="/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/"
-USER="watanabeyouhei"
-XPC_FLAGS="0x0"
-XPC_SERVICE_NAME="0"
+TMOUT="86400"
+TMPDIR="/var/folders/zz/zyxvpxvq6csfxvn_n0000sk00006ch/T/"
+USER="wyohei"
 _OK
 _OK2="VAR"
-__CFBundleIdentifier="com.jetbrains.CLion"
-__CF_USER_TEXT_ENCODING="0x1F5:0x1:0xE"
 # minishell: stderr
 minishell: unset: `1': not a valid identifier
 minishell: unset: `_+': not a valid identifier
@@ -3535,11 +3464,11 @@ diff :1,2d0
 # minishell: stdout
 [0]minishell> export PATH
 [0]minishell>  export | grep PATH
-declare -x PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+declare -x PATH="/Users/wyohei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/munki"
 [0]minishell> exit
 exit
 # bash: stdout
-declare -x PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+declare -x PATH="/Users/wyohei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/munki"
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -3552,7 +3481,7 @@ diff :1,2d0
 < [0]minishell> export PWD
 < [0]minishell>  export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort
 4d1
-< OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+< OLDPWD="/Users/wyohei/minishell/tester"
 6,7d2
 < [0]minishell> exit
 < exit
@@ -3560,13 +3489,13 @@ diff :1,2d0
 [0]minishell> export PWD
 [0]minishell>  export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort
 OLDPWD
-OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
-PWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+OLDPWD="/Users/wyohei/minishell/tester"
+PWD="/Users/wyohei/minishell/tester"
 [0]minishell> exit
 exit
 # bash: stdout
 OLDPWD
-PWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+PWD="/Users/wyohei/minishell/tester"
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -3579,14 +3508,14 @@ diff :1,2d0
 < [0]minishell> export OLDPWD
 < [0]minishell>  export | grep OLDPWD | grep -v -E '_=' | cut -d " " -f 3 | sort
 4,6d1
-< OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+< OLDPWD="/Users/wyohei/minishell/tester"
 < [0]minishell> exit
 < exit
 # minishell: stdout
 [0]minishell> export OLDPWD
 [0]minishell>  export | grep OLDPWD | grep -v -E '_=' | cut -d " " -f 3 | sort
 OLDPWD
-OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+OLDPWD="/Users/wyohei/minishell/tester"
 [0]minishell> exit
 exit
 # bash: stdout
@@ -3604,7 +3533,7 @@ diff :1,7c1
 < [0]minishell>  cd ..
 < [0]minishell>  export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort
 < OLDPWD
-< OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+< OLDPWD="/Users/wyohei/minishell/tester"
 < [0]minishell> exit
 < exit
 ---
@@ -3614,7 +3543,7 @@ diff :1,7c1
 [0]minishell>  cd ..
 [0]minishell>  export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort
 OLDPWD
-OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+OLDPWD="/Users/wyohei/minishell/tester"
 [0]minishell> exit
 exit
 # bash: stdout
@@ -3656,7 +3585,7 @@ diff :1,6c1
 < [0]minishell>  export PWD=new_value
 < [0]minishell>  export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort
 < OLDPWD
-< OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+< OLDPWD="/Users/wyohei/minishell/tester"
 ---
 > OLDPWD=""
 8,9d2
@@ -3668,7 +3597,7 @@ diff :1,6c1
 [0]minishell>  export PWD=new_value
 [0]minishell>  export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort
 OLDPWD
-OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+OLDPWD="/Users/wyohei/minishell/tester"
 PWD="new_value"
 [0]minishell> exit
 exit
@@ -3714,25 +3643,25 @@ diff :1,8c1,2
 < [0]minishell>  cd ..
 < [0]minishell>  export PWD
 < [0]minishell>  export | grep PWD
-< declare -x OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+< declare -x OLDPWD="/Users/wyohei/minishell/tester"
 < declare -x OLDPWD
 < [0]minishell> exit
 < exit
 ---
 > declare -x OLDPWD=""
-> declare -x PWD="/Users/watanabeyouhei/program/42tokyo/minishell"
+> declare -x PWD="/Users/wyohei/minishell"
 # minishell: stdout
 [0]minishell> unset PWD
 [0]minishell>  cd ..
 [0]minishell>  export PWD
 [0]minishell>  export | grep PWD
-declare -x OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+declare -x OLDPWD="/Users/wyohei/minishell/tester"
 declare -x OLDPWD
 [0]minishell> exit
 exit
 # bash: stdout
 declare -x OLDPWD=""
-declare -x PWD="/Users/watanabeyouhei/program/42tokyo/minishell"
+declare -x PWD="/Users/wyohei/minishell"
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -3750,7 +3679,7 @@ diff :1,7c1
 < [0]minishell> exit
 < exit
 ---
-> declare -x OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+> declare -x OLDPWD="/Users/wyohei/minishell/tester"
 # minishell: stdout
 [0]minishell> unset OLDPWD
 [0]minishell>  cd ..
@@ -3760,7 +3689,7 @@ declare -x OLDPWD
 [0]minishell> exit
 exit
 # bash: stdout
-declare -x OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+declare -x OLDPWD="/Users/wyohei/minishell/tester"
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -3793,7 +3722,7 @@ bash: line 1: export: `=': not a valid identifier
 -------------------------
 [KO ] case: echo a\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo a
 a
@@ -3809,7 +3738,7 @@ a
 -------------------------
 [KO ] case: echo hoge\necho 42TOKYO\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo hoge
 hoge
@@ -4492,10 +4421,10 @@ minishell: unset: `no_such_dir1:no_such_dir2:': not a valid identifier
 -------------------------
 [KO ] case: echo $OLDPWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo $OLDPWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
@@ -4508,11 +4437,11 @@ exit
 -------------------------
 [KO ] case: export OLDPWD=/\n echo $OLDPWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export OLDPWD=/
 [0]minishell>  echo $OLDPWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
@@ -4525,14 +4454,14 @@ exit
 -------------------------
 [KO ] case: echo $PWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo $PWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -4541,11 +4470,11 @@ exit
 -------------------------
 [KO ] case: export PWD=/\n echo $PWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export PWD=/
 [0]minishell>  echo $PWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
@@ -4558,17 +4487,17 @@ exit
 -------------------------
 [KO ] case: mkdir dir\n ln -s dir symdir\n cd symdir\n echo $PWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> mkdir dir
 [1]minishell>  ln -s dir symdir
 [0]minishell>  cd symdir
 [0]minishell>  echo $PWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/symdir
+/Users/wyohei/minishell/tester/symdir
 # minishell: stderr
 mkdir: dir: File exists
 # bash: stderr
@@ -4587,11 +4516,11 @@ diff :1d0
 < exit
 # minishell: stdout
 [0]minishell> pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -4608,12 +4537,12 @@ diff :1d0
 < exit
 # minishell: stdout
 [0]minishell> pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell>  export PWD=/
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 # minishell: stderr
 # bash: stderr
 # minishell: exit status = 0
@@ -4632,14 +4561,14 @@ diff :1d0
 < exit
 # minishell: stdout
 [0]minishell> pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell>  mkdir dir
 [1]minishell>  ln -s dir symdir
 [1]minishell>  cd symdir
 [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 # minishell: stderr
 mkdir: dir: File exists
 ln: symdir/dir: File exists
@@ -4652,20 +4581,20 @@ ln: symdir/dir: File exists
 -------------------------
 [KO ] case: export PWD=\n export OLDPWD=\n pwd\n echo $PWD\n echo $OLDPWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export PWD=
 [0]minishell>  export OLDPWD=
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell>  echo $PWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell>  echo $OLDPWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 
 
 # minishell: stderr
@@ -4676,23 +4605,23 @@ exit
 -------------------------
 [KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n cd dir\n pwd\n echo $PWD\n echo $OLDPWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export PWD=
 [0]minishell>  export OLDPWD=
 [0]minishell>  mkdir dir
 [1]minishell>  cd dir
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell>  echo $PWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell>  echo $OLDPWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 
 # minishell: stderr
 mkdir: dir: File exists
@@ -4704,7 +4633,7 @@ mkdir: dir: File exists
 -------------------------
 [KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n cd dir\n cd ..\n pwd\n echo $PWD\n echo $OLDPWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export PWD=
 [0]minishell>  export OLDPWD=
@@ -4712,17 +4641,17 @@ diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/mi
 [1]minishell>  cd dir
 [0]minishell>  cd ..
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell>  echo $PWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell>  echo $OLDPWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester
+/Users/wyohei/minishell/tester
+/Users/wyohei/minishell/tester/dir
 # minishell: stderr
 mkdir: dir: File exists
 # bash: stderr
@@ -4733,22 +4662,22 @@ mkdir: dir: File exists
 -------------------------
 [KO ] case: export PWD=\n export OLDPWD=\n cd\n pwd\n echo $PWD\n echo $OLDPWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export PWD=
 [0]minishell>  export OLDPWD=
 [0]minishell>  cd
 [0]minishell>  pwd
-/private/tmp/watanabeyouhei/Homebrew/Temp
+/private/tmp/wyohei/Homebrew/Temp
 [0]minishell>  echo $PWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell>  echo $OLDPWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei
-/Users/watanabeyouhei
+/Users/wyohei
+/Users/wyohei
 
 # minishell: stderr
 # bash: stderr
@@ -4758,7 +4687,7 @@ exit
 -------------------------
 [KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n cd dir\n rmdir ../dir\n cd ./\n pwd\n echo $PWD\n echo $OLDPWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export PWD=
 [0]minishell>  export OLDPWD=
@@ -4767,17 +4696,17 @@ diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/mi
 [0]minishell>  rmdir ../dir
 [1]minishell>  cd ./
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell>  echo $PWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell>  echo $OLDPWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 # minishell: stderr
 mkdir: dir: File exists
 rmdir: ../dir: Directory not empty
@@ -4790,7 +4719,7 @@ rmdir: ../dir: Directory not empty
 -------------------------
 [KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n cd dir\n rmdir ../dir\n cd ./\n cd ././././././//////////./././././././//////./\n pwd\n echo $PWD\n echo $OLDPWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export PWD=
 [0]minishell>  export OLDPWD=
@@ -4800,17 +4729,17 @@ diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/mi
 [1]minishell>  cd ./
 [0]minishell>  cd ././././././//////////./././././././//////./
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell>  echo $PWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell>  echo $OLDPWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 # minishell: stderr
 mkdir: dir: File exists
 rmdir: ../dir: Directory not empty
@@ -4823,7 +4752,7 @@ rmdir: ../dir: Directory not empty
 -------------------------
 [KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n cd dir\n rmdir ../dir\n cd ./\n cd ../\n pwd\n echo $PWD\n echo $OLDPWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export PWD=
 [0]minishell>  export OLDPWD=
@@ -4833,17 +4762,17 @@ diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/mi
 [1]minishell>  cd ./
 [0]minishell>  cd ../
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell>  echo $PWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell>  echo $OLDPWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester
+/Users/wyohei/minishell/tester
+/Users/wyohei/minishell/tester/dir
 # minishell: stderr
 mkdir: dir: File exists
 rmdir: ../dir: Directory not empty
@@ -4856,7 +4785,7 @@ rmdir: ../dir: Directory not empty
 -------------------------
 [KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n ln -s dir link\n cd link\n rmdir ../dir\n cd ./\n pwd\n echo $PWD\n echo $OLDPWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export PWD=
 [0]minishell>  export OLDPWD=
@@ -4866,17 +4795,17 @@ diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/mi
 [0]minishell>  rmdir ../dir
 [1]minishell>  cd ./
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell>  echo $PWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell>  echo $OLDPWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/link
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/link
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/link
+/Users/wyohei/minishell/tester/link
+/Users/wyohei/minishell/tester/link
+/Users/wyohei/minishell/tester/link
 # minishell: stderr
 mkdir: dir: File exists
 ln: link/dir: File exists
@@ -4891,7 +4820,7 @@ rmdir: ../dir: Directory not empty
 -------------------------
 [KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n ln -s dir link\n cd link\n rmdir ../dir\n cd ./\n cd ../\n pwd\n echo $PWD\n echo $OLDPWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export PWD=
 [0]minishell>  export OLDPWD=
@@ -4902,17 +4831,17 @@ diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/mi
 [1]minishell>  cd ./
 [0]minishell>  cd ../
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell>  echo $PWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell>  echo $OLDPWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/link
+/Users/wyohei/minishell/tester
+/Users/wyohei/minishell/tester
+/Users/wyohei/minishell/tester/link
 # minishell: stderr
 mkdir: dir: File exists
 ln: link/dir: File exists
@@ -4927,7 +4856,7 @@ rmdir: ../dir: Directory not empty
 -------------------------
 [KO ] case: export PWD=\n export OLDPWD=\n mkdir DIR\n cd dir\n rmdir ../DIR\n cd ./\n pwd\n echo $PWD\n echo $OLDPWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export PWD=
 [0]minishell>  export OLDPWD=
@@ -4936,17 +4865,17 @@ diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/mi
 [0]minishell>  rmdir ../DIR
 [1]minishell>  cd ./
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell>  echo $PWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell>  echo $OLDPWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 # minishell: stderr
 mkdir: DIR: File exists
 rmdir: ../DIR: Directory not empty
@@ -4959,7 +4888,7 @@ rmdir: ../DIR: Directory not empty
 -------------------------
 [KO ] case: export PWD=\n export OLDPWD=\n mkdir DIR\n cd dir\n rmdir ../DIR\n cd ./\n cd ../\n pwd\n echo $PWD\n echo $OLDPWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export PWD=
 [0]minishell>  export OLDPWD=
@@ -4969,17 +4898,17 @@ diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/mi
 [1]minishell>  cd ./
 [0]minishell>  cd ../
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell>  echo $PWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell>  echo $OLDPWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester
+/Users/wyohei/minishell/tester
+/Users/wyohei/minishell/tester/dir
 # minishell: stderr
 mkdir: DIR: File exists
 rmdir: ../DIR: Directory not empty
@@ -4992,7 +4921,7 @@ rmdir: ../DIR: Directory not empty
 -------------------------
 [KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n ln -s dir link\n cd LINK\n rmdir ../dir\n cd ./\n pwd\n echo $PWD\n echo $OLDPWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export PWD=
 [0]minishell>  export OLDPWD=
@@ -5002,17 +4931,17 @@ diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/mi
 [0]minishell>  rmdir ../dir
 [1]minishell>  cd ./
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/wyohei/minishell/tester/dir
 [0]minishell>  echo $PWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell>  echo $OLDPWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/LINK
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/LINK
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/LINK
+/Users/wyohei/minishell/tester/LINK
+/Users/wyohei/minishell/tester/LINK
+/Users/wyohei/minishell/tester/LINK
 # minishell: stderr
 mkdir: dir: File exists
 ln: link/dir: File exists
@@ -5027,7 +4956,7 @@ rmdir: ../dir: Directory not empty
 -------------------------
 [KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n ln -s dir link\n cd LINK\n rmdir ../dir\n cd ./\n cd ../\n pwd\n echo $PWD\n echo $OLDPWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export PWD=
 [0]minishell>  export OLDPWD=
@@ -5038,17 +4967,17 @@ diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/mi
 [1]minishell>  cd ./
 [0]minishell>  cd ../
 [0]minishell>  pwd
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
 [0]minishell>  echo $PWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell>  echo $OLDPWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
-/Users/watanabeyouhei/program/42tokyo/minishell/tester/LINK
+/Users/wyohei/minishell/tester
+/Users/wyohei/minishell/tester
+/Users/wyohei/minishell/tester/LINK
 # minishell: stderr
 mkdir: dir: File exists
 ln: link/dir: File exists
@@ -5095,9 +5024,9 @@ bash: line 1: no_such_file: No such file or directory
 -------------------------
 [KO ] case: echo hello > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
-[0]minishell> echo hello > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt
+[0]minishell> echo hello > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > errr3.txt
 hello
  [0]minishell>  cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
 [1]minishell> exit
@@ -5118,9 +5047,9 @@ cat: err3.txt: No such file or directory
 -------------------------
 [KO ] case: echo hello >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
-[0]minishell> echo hello >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt
+[0]minishell> echo hello >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txtt >> err3.txt
 hello
  [0]minishell>  cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
 [1]minishell> exit
@@ -5208,13 +5137,13 @@ tmp
 [KO ] case: ls >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt\nexit
 -------------------------
 diff :1,2d0
-< [0]minishell> ls >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt
+< [0]minishell> ls >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err33.txt
 < [0]minishell>  cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
 26,27d23
 < [0]minishell> exit
 < exit
 # minishell: stdout
-[0]minishell> ls >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt
+[0]minishell> ls >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err33.txt
 [0]minishell>  cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
 a
 a:b
@@ -5274,12 +5203,12 @@ tmp
 [KO ] case: ls no_such_file > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt\nexit
 -------------------------
 diff :1,4d0
-< [0]minishell> ls no_such_file > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt
+< [0]minishell> ls no_such_file > out1.txt > out2.txt > out3.txt > err1.txt > err2.txtt > err3.txt
 < [1]minishell>  cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
 < [0]minishell> exit
 < exit
 # minishell: stdout
-[0]minishell> ls no_such_file > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt
+[0]minishell> ls no_such_file > out1.txt > out2.txt > out3.txt > err1.txt > err2.txtt > err3.txt
 [1]minishell>  cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
 [0]minishell> exit
 exit
@@ -5295,12 +5224,12 @@ ls: no_such_file: No such file or directory
 [KO ] case: ls no_such_file >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt\nexit
 -------------------------
 diff :1,4d0
-< [0]minishell> ls no_such_file >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt
+< [0]minishell> ls no_such_file >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> errr2.txt >> err3.txt
 < [1]minishell>  cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
 < [0]minishell> exit
 < exit
 # minishell: stdout
-[0]minishell> ls no_such_file >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt
+[0]minishell> ls no_such_file >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> errr2.txt >> err3.txt
 [1]minishell>  cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
 [0]minishell> exit
 exit
@@ -5315,7 +5244,7 @@ ls: no_such_file: No such file or directory
 -------------------------
 [KO ] case: echo a > out\n echo b >> out\n echo c >> out\n echo d >> out\n cat out\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo a > out
 a
@@ -5342,7 +5271,7 @@ cat: out: No such file or directory
 -------------------------
 [KO ] case: echo a > out\n echo b >> out\n echo c >> out\n echo d > out\n cat out\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo a > out
 a
@@ -5366,7 +5295,7 @@ cat: out: No such file or directory
 -------------------------
 [KO ] case: unset NO_ENV\n echo a > $NO_ENV | echo b\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> unset NO_ENV
 [0]minishell>  echo a > $NO_ENV | echo b
@@ -5408,7 +5337,7 @@ fd1
 -------------------------
 [KO ] case: echo a > f\n echo b >> f\n cat f f f >> ff\n cat ff ff >> f\n cat f\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo a > f
 a
@@ -5446,13 +5375,13 @@ cat: f: No such file or directory
 [KO ] case: ls>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f\ncat f\nexit
 -------------------------
 diff :1,2d0
-< [0]minishell> ls>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f
+< [0]minishell> ls>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>ff>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>ff>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f
 < [0]minishell> cat f
 21,22d18
 < [0]minishell> exit
 < exit
 # minishell: stdout
-[0]minishell> ls>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f
+[0]minishell> ls>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>ff>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>ff>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f
 [0]minishell> cat f
 a
 a:b
@@ -5502,13 +5431,13 @@ tmp
 [KO ] case: ls>a>b>c>d>e>f>g>h>i>j>k>l>m>n>o>p>q>r>s>t>u>v>w>x>y>z>A>B>C>D>E>F>G>H>I>J>K>L>M>N>O>P>Q>R>S>T>U>V>W>X>Y>Z>aa>ab>ac>ad>ae>af>ag>ah>ai>aj>ak>al>am>an>ao>ap>aq>ar>as>at>au>av>aw>ax>ay>az>aA>aB>aC>aD>aE>aF>aG>aH>aI>aJ>aK>aL>aM>aN>aO>aP>aQ>aR>aS>aT>aU>aV\nls\nexit
 -------------------------
 diff :1,2d0
-< [0]minishell> ls>a>b>c>d>e>f>g>h>i>j>k>l>m>n>o>p>q>r>s>t>u>v>w>x>y>z>A>B>C>D>E>F>G>H>I>J>K>L>M>N>O>P>Q>R>S>T>U>V>W>X>Y>Z>aa>ab>ac>ad>ae>af>ag>ah>ai>aj>ak>al>am>an>ao>ap>aq>ar>as>at>au>av>aw>ax>ay>az>aA>aB>aC>aD>aE>aF>aG>aH>aI>aJ>aK>aL>aM>aN>aO>aP>aQ>aR>aS>aT>aU>aV
+< [0]minishell> ls>a>b>c>d>e>f>g>h>i>j>k>l>m>n>o>p>q>r>s>t>u>v>w>x>y>z>A>B>C>D>E>F>G>HH>I>J>K>L>M>N>O>P>Q>R>S>T>U>V>W>X>Y>Z>aa>ab>ac>ad>ae>af>ag>ah>ai>aj>ak>al>am>an>aao>ap>aq>ar>as>at>au>av>aw>ax>ay>az>aA>aB>aC>aD>aE>aF>aG>aH>aI>aJ>aK>aL>aM>aN>aO>>aP>aQ>aR>aS>aT>aU>aV
 < [1]minishell> ls
 20,21d17
 < [0]minishell> exit
 < exit
 # minishell: stdout
-[0]minishell> ls>a>b>c>d>e>f>g>h>i>j>k>l>m>n>o>p>q>r>s>t>u>v>w>x>y>z>A>B>C>D>E>F>G>H>I>J>K>L>M>N>O>P>Q>R>S>T>U>V>W>X>Y>Z>aa>ab>ac>ad>ae>af>ag>ah>ai>aj>ak>al>am>an>ao>ap>aq>ar>as>at>au>av>aw>ax>ay>az>aA>aB>aC>aD>aE>aF>aG>aH>aI>aJ>aK>aL>aM>aN>aO>aP>aQ>aR>aS>aT>aU>aV
+[0]minishell> ls>a>b>c>d>e>f>g>h>i>j>k>l>m>n>o>p>q>r>s>t>u>v>w>x>y>z>A>B>C>D>E>F>G>HH>I>J>K>L>M>N>O>P>Q>R>S>T>U>V>W>X>Y>Z>aa>ab>ac>ad>ae>af>ag>ah>ai>aj>ak>al>am>an>aao>ap>aq>ar>as>at>au>av>aw>ax>ay>az>aA>aB>aC>aD>aE>aF>aG>aH>aI>aJ>aK>aL>aM>aN>aO>>aP>aQ>aR>aS>aT>aU>aV
 [1]minishell> ls
 a
 a:b
@@ -5562,7 +5491,7 @@ bash: line 1: a: Is a directory
 -------------------------
 [KO ] case: export SHLVL=0\n echo $SHLVL\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export SHLVL=0
 [0]minishell>  echo $SHLVL
@@ -5579,7 +5508,7 @@ exit
 -------------------------
 [KO ] case: export SHLVL=998\n echo $SHLVL\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export SHLVL=998
 [0]minishell>  echo $SHLVL
@@ -5596,7 +5525,7 @@ exit
 -------------------------
 [KO ] case: export SHLVL=999\n echo $SHLVL\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export SHLVL=999
 [0]minishell>  echo $SHLVL
@@ -5613,7 +5542,7 @@ exit
 -------------------------
 [KO ] case: export SHLVL=1000\n echo $SHLVL\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export SHLVL=1000
 [0]minishell>  echo $SHLVL
@@ -5630,7 +5559,7 @@ exit
 -------------------------
 [KO ] case: export SHLVL=+42\n echo $SHLVL\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export SHLVL=+42
 [0]minishell>  echo $SHLVL
@@ -5647,7 +5576,7 @@ exit
 -------------------------
 [KO ] case: export SHLVL=-1\n echo $SHLVL\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export SHLVL=-1
 [0]minishell>  echo $SHLVL
@@ -5664,7 +5593,7 @@ exit
 -------------------------
 [KO ] case: export SHLVL=4294967295\n echo $SHLVL\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export SHLVL=4294967295
 [0]minishell>  echo $SHLVL
@@ -5681,7 +5610,7 @@ exit
 -------------------------
 [KO ] case: export SHLVL=4294967296\n echo $SHLVL\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export SHLVL=4294967296
 [0]minishell>  echo $SHLVL
@@ -5698,7 +5627,7 @@ exit
 -------------------------
 [KO ] case: export SHLVL=-4294967296\n echo $SHLVL\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export SHLVL=-4294967296
 [0]minishell>  echo $SHLVL
@@ -5715,7 +5644,7 @@ exit
 -------------------------
 [KO ] case: export SHLVL=-4294967297\n echo $SHLVL\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export SHLVL=-4294967297
 [0]minishell>  echo $SHLVL
@@ -5732,7 +5661,7 @@ exit
 -------------------------
 [KO ] case: export SHLVL=a\n echo $SHLVL\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export SHLVL=a
 [0]minishell>  echo $SHLVL
@@ -5749,7 +5678,7 @@ a
 -------------------------
 [KO ] case: export SHLVL=' 42'\n echo $SHLVL\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export SHLVL=' 42'
 [1]minishell>  echo $SHLVL
@@ -5767,7 +5696,7 @@ minishell: unset: ` 42': not a valid identifier
 -------------------------
 [KO ] case: export SHLVL=" 42 "\n echo $SHLVL\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export SHLVL=" 42 "
 [1]minishell>  echo $SHLVL
@@ -5785,7 +5714,7 @@ minishell: unset: ` 42 ': not a valid identifier
 -------------------------
 [KO ] case: export SHLVL=" 42 "\n echo $SHLVL\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export SHLVL=" 42"
 [1]minishell>  echo $SHLVL
@@ -5803,7 +5732,7 @@ exit
 -------------------------
 [KO ] case: export SHLVL=" 42 "\n echo $SHLVL\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export SHLVL=" 42"
 [1]minishell>  echo $SHLVL
@@ -6170,7 +6099,7 @@ cases
 -------------------------
 [KO ] case: echo hello world | cat\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> echo hello world | cat
 hello world
@@ -6550,7 +6479,7 @@ diff :1,4d0
 exit
 # bash: stdout
 # minishell: stderr
-minishell: /Users/watanabeyouhei/.brew/bin/: Permission denied
+minishell: /Users/wyohei/.brew/bin/: Permission denied
 # bash: stderr
 # minishell: exit status = 0
 # bash     : exit status = 0
@@ -6755,7 +6684,7 @@ bash: line 1: `cat < >'
 -------------------------
 [KO ] case: export A='test $A'\n unset A\n echo $A\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export A='test $A'
 [1]minishell>  unset A
@@ -6774,7 +6703,7 @@ minishell: unset: `test $A': not a valid identifier
 -------------------------
 [KO ] case: export _A1='test $_A1'\n unset _A1\n echo $_A1\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export _A1='test $_A1'
 [1]minishell>  unset _A1
@@ -6793,7 +6722,7 @@ minishell: unset: `test $_A1': not a valid identifier
 -------------------------
 [KO ] case: export A=test B=multiple C=var D=hello\n unset A B C\n echo $A$B$C$D\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export A=test B=multiple C=var D=hello
 [0]minishell>  unset A B C
@@ -6811,7 +6740,7 @@ hello
 -------------------------
 [KO ] case: export A=test B=multiple C=var D=hello\n unset A B =invalid C\n echo $A$B$C$D\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export A=test B=multiple C=var D=hello
 [0]minishell>  unset A B =invalid C
@@ -6831,11 +6760,11 @@ bash: line 2: unset: `=invalid': not a valid identifier
 -------------------------
 [KO ] case: unset PWD\n echo $PWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> unset PWD
 [0]minishell>  echo $PWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
@@ -6848,11 +6777,11 @@ exit
 -------------------------
 [KO ] case: unset OLDPWD\n echo $OLDPWD\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> unset OLDPWD
 [0]minishell>  echo $OLDPWD
-/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/wyohei/minishell/tester
  [0]minishell> exit
 exit
 # bash: stdout
@@ -6865,7 +6794,7 @@ exit
 -------------------------
 [KO ] case: unset NO_SUCH_ENV\n unset NO_SUCH_ENV\n echo $?$NO_SUCH_ENV\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> unset NO_SUCH_ENV
 [0]minishell>  unset NO_SUCH_ENV
@@ -6902,7 +6831,7 @@ bash: line 1: unset: `1': not a valid identifier
 -------------------------
 [KO ] case: export A=a\n unset A=a\n echo $A\nexit
 -------------------------
-diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+diff :Binary files /Users/wyohei/minishell/tester/tmp/minishell_stdout.txt and /Users/wyohei/minishell/tester/tmp/bash_stdout.txt differ
 # minishell: stdout
 [0]minishell> export A=a
 [0]minishell>  unset A=a
@@ -6960,7 +6889,7 @@ exit
 # bash: stdout
 # minishell: stderr
 minishell: unset: ` \"$&`': not a valid identifier
-minishell: /Users/watanabeyouhei/.brew/bin/: Permission denied
+minishell: /Users/wyohei/.brew/bin/: Permission denied
 # bash: stderr
 bash: line 2: unset: ` \"$&`
 ': not a valid identifier
