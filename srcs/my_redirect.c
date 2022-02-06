@@ -6,100 +6,78 @@ void redirect_error()
     exit(1);
 }
 
-void redirect_append(t_parsed *parsed)
+void redirect_append(t_redirect *redirect)
 {
     int fd;
-    if(parsed->next != NULL)
+    if(redirect->filename != NULL)
     {
-        parsed = parsed->next;
-        if(parsed->command[0] != NULL)
+        //my_close();
+        fd = open(redirect->filename, O_WRONLY | O_APPEND | O_CREAT, 0666);
+        if(fd == -1)
         {
-            //my_close();
-            fd = open(parsed->command[0],O_WRONLY|O_APPEND|O_CREAT, 0666);
-            if(fd == -1)
-            {
 
-                ft_putstr_fd("minishell: ",2);
-                ft_putstr_fd(parsed->command[0],2);
-                ft_putstr_fd(" :",2);
-                ft_putendl_fd(strerror(errno),2);
-                exit(1);
-            }
-            //my_dup2(fd,1);
+            ft_putstr_fd("minishell: ",2);
+            ft_putstr_fd(redirect->filename, 2);
+            ft_putstr_fd(" :",2);
+            ft_putendl_fd(strerror(errno),2);
+            exit(1);
         }
-        else
-            redirect_error();
+        //my_dup2(fd,1);
     }
+    else
+        redirect_error();
 }
 
-void redirect_output(t_parsed *parsed)
+void redirect_output(t_redirect *redirect)
 {
     //pid_t pid;
     int fd;
-    //int fd1;
-//    pid = my_fork();
-//    if(pid == 0) {
-    if (parsed->next != NULL) {
-        if (parsed->command[0] != NULL) {
-            //my_close(1)
-            parsed = parsed->next;
-            fd = open(parsed->command[0], O_WRONLY | O_TRUNC | O_CREAT, 0666);
-            if (fd == -1)
-            {
-                ft_putstr_fd("minishell: ", 2);
-                ft_putstr_fd(parsed->command[0], 2);
-                ft_putstr_fd(" :", 2);
-                ft_putendl_fd(strerror(errno), 2);
-                exit(1);
-            }
-            //fd1 = dup(1)
-            my_dup2(fd, 1);
-            my_close(fd);
-            //my_dup2(fd1, 1);
-        } else
-            redirect_error();
+    if(redirect->filename != NULL) {
+        fd = open(redirect->filename, O_WRONLY | O_TRUNC | O_CREAT, 0666);
+        if (fd == -1) {
+            ft_putstr_fd("minishell: ", 2);
+            ft_putstr_fd(redirect->filename, 2);
+            ft_putstr_fd(" :", 2);
+            ft_putendl_fd(strerror(errno), 2);
+            exit(1);
+        }
+        my_dup2(fd, 1);
+        my_close(fd);
     }
-        //exit(0);
-    //}
-    //int status;
-    //waitpid_get_status(pid,&status,0);
+    else
+        redirect_error();
 }
 
-void redirect_input(t_parsed *parsed)
+void redirect_input(t_redirect *redirect)
 {
     int fd;
-    if(parsed->next != NULL)
+    if(redirect->filename != NULL)
     {
-        parsed = parsed->next;
-        if(parsed->command[0] != NULL)
+        //my_close(0);
+        fd = open(redirect->filename,O_RDONLY);
+        if(fd == -1)
         {
-            //my_close(0);
-            fd = open(parsed->command[0],O_RDONLY);
-            if(fd == -1)
-            {
-                ft_putendl_fd("testerror",2);
-                exit(1);
-            }
-
-            my_dup2(fd,0);
+            ft_putendl_fd("testerror",2);
+            exit(1);
         }
-        else
-            redirect_error();
+        my_dup2(fd,0);
     }
+    else
+        redirect_error();
 }
-void select_redirect(t_parsed *parsed)
+void select_redirect(t_redirect *redirect)
 {
-    if(parsed->state == REDIRECT_INPUT)
+    if(redirect->state == REDIRECT_INPUT)
     {
-        redirect_input(parsed);
+        redirect_input(redirect);
     }
-    if(parsed->state == REDIRECT_OUTPUT)
+    if(redirect->state == REDIRECT_OUTPUT)
     {
-        redirect_output(parsed);
+        redirect_output(redirect);
     }
-    if(parsed->state == REDIRECT_APPEND)
+    if(redirect->state == REDIRECT_APPEND)
     {
-        redirect_append(parsed);
+        redirect_append(redirect);
     }
 
 

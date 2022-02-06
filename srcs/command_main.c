@@ -196,12 +196,15 @@ int count_pipe(t_parsed *parsed)
 }
 bool redirect_check(t_parsed *parsed)
 {
-    if(parsed->state == REDIRECT_APPEND)
-        return(true);
-    if(parsed->state == REDIRECT_OUTPUT)
-        return(true);
-    if(parsed->state == REDIRECT_INPUT)
-        return(true);
+    if(parsed->redirect != NULL)
+    {
+        if (parsed->redirect->state == REDIRECT_APPEND)
+            return (true);
+        if (parsed->redirect->state == REDIRECT_OUTPUT)
+            return (true);
+        if (parsed->redirect->state == REDIRECT_INPUT)
+            return (true);
+    }
     return(false);
 }
 int single_command(t_parsed *parsed, t_envlist **lst)
@@ -220,7 +223,7 @@ int single_command(t_parsed *parsed, t_envlist **lst)
     if (pid == 0)
     {
         if(redirect_check(parsed))
-            select_redirect(parsed);
+            select_redirect(parsed->redirect);
         path = get_path(*lst, parsed->command[0]);
         if(execve(path, parsed->command, env_array) == -1)
             exec_error(path);
@@ -284,23 +287,17 @@ void mult_command(t_pipe pipe,t_parsed *parsed,t_envlist  **lst,int pipe_count)
     while(parsed != NULL)
     {
         //printf("%d\n",pipe.i);
-        //if(i != pipe_count && parsed->state == PIPE)
-        if(parsed->state == PIPE)
+        if(i != pipe_count && parsed->state == PIPE)
             my_pipe(pipe.pipe_fd[i]);
         pipe.pid[i] = my_fork();
         if(pipe.pid[i] == 0)
         {
             //printf("parse   :%s\n",parsed->command[0]);
             //./miniprintf("state   : %d\n",parsed->state);
-            //if(parsed->state == PIPE)
-            multi_pipe(pipe.pipe_fd,i, pipe_count);
+            multi_pipe(pipe.pipe_fd, i, pipe_count);
             if(redirect_check(parsed))
-                select_redirect(parsed);
+                select_redirect(parsed->redirect);
             select_command(parsed, lst);
-            //while(parsed->state != PIPE) {
-            //    parsed = parsed->next;
-            //    printf("parsed no naka %s\n", parsed->command[0]);
-            //
         }
         else
         {
@@ -310,12 +307,8 @@ void mult_command(t_pipe pipe,t_parsed *parsed,t_envlist  **lst,int pipe_count)
             }
         }
         i++;
-        //if(parsed->state == PIPE)
-
-        //while(parsed->state != PIPE) {
         parsed = parsed->next;
-            //printf("parsed no naka %s\n", parsed->command[0]);
-        //}
+
     }
 }
 int command_part(t_parsed *parsed, t_envlist **lst)

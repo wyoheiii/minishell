@@ -4,7 +4,7 @@ SRCS = main.c command_main.c my_echo.c my_pwd.c my_exit.c my_cd.c my_env.c \
 		delimiter.c flag.c lexer.c parser.c utils.c token.c sig.c command_util.c \
 		multi_command.c error_function.c error_function2.c my_redirect.c \
 		variable_name.c list_utils.c libft_utils.c expansion.c expand_param.c \
-		expand_line.c
+		expand_line.c redirect_list.c
 SRCSD = ./srcs/
 
 ADDSRCS = $(addprefix $(SRCSD),$(SRCS))
