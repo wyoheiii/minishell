@@ -1,0 +1,27 @@
+touch a .a\n /bin/ls 
+touch a .a\n /bin/ls -a
+touch aa ab ac\n /bin/ls | /usr/bin/grep a
+touch aa ab ac\n /bin/ls | /usr/bin/grep a | /usr/bin/grep c
+touch a .a\n ls
+touch a .a\n ls -a
+touch aa ab ac\n ls | grep a
+touch aa ab ac\n ls | grep a | grep c
+echo hello world | cat
+no_such_file
+./no_such_file
+/bin/ls/no_such_file
+/bin/no_such_dir/file
+touch perm\n chmod 000 perm\n perm
+touch perm\n chmod 000 perm\n ./perm
+touch perm\n chmod 100 perm\n perm
+touch perm\n chmod 100 perm\n ./perm
+touch perm\n chmod 300 perm\n perm
+touch perm\n chmod 300 perm\n ./perm
+touch perm\n chmod 500 perm\n perm
+touch perm\n chmod 500 perm\n ./perm
+touch empty\n chmod +x empty\n ./empty
+mkdir dir\n dir
+mkdir dir\n ./dir
+ln -s exe sym\n chmod -h -x sym\n ./exe
+unset NO_ENV\n echo a | $NO_ENV | cat
+

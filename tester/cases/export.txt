@@ -1,0 +1,14 @@
+export | grep -v -E '_=' | cut -d " " -f 3 | sort
+export 1 _+ _OK _2? _OK2=VAR =NG OK3=\n export | grep -v -E '^declare -x _=' | grep -v -E '_=' | cut -d " " -f 3 | sort
+export OVERWRITE=42\n export OVERWRITE=a\n export | grep OVERWRITE
+export A=B=C=D\n export | grep A="B=C=D"
+export PATH\n export | grep PATH
+export PWD\n export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort
+export OLDPWD\n export | grep OLDPWD | grep -v -E '_=' | cut -d " " -f 3 | sort
+unset PWD\n cd ..\n export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort
+unset OLDPWD\n cd ..\n export | grep OLDPWD | grep -v -E '_=' | cut -d " " -f 3 | sort
+unset PWD\n cd ..\n export PWD=new_value\n export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort
+unset OLDPWD\n cd ..\n export OLDPWD=new_value\n export | grep OLDPWD | grep -v -E '_=' | cut -d " " -f 3 | sort
+unset PWD\n cd ..\n export PWD\n export | grep PWD
+unset OLDPWD\n cd ..\n export OLDPWD\n export | grep OLDPWD
+export =

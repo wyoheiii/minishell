@@ -1,0 +1,6968 @@
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            cdTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: mkdir dir \n cd dir \n pwd\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> mkdir dir 
+< [0]minishell>  cd dir 
+< [0]minishell>  pwd
+5,6d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> mkdir dir 
+[0]minishell>  cd dir 
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+# minishell: stderr
+# bash: stderr
+mkdir: dir: File exists
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: mkdir dir\n cd dir\n cd .\n pwd\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> mkdir dir
+< [1]minishell>  cd dir
+< [0]minishell>  cd .
+< [0]minishell>  pwd
+6,7d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> mkdir dir
+[1]minishell>  cd dir
+[0]minishell>  cd .
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+# minishell: stderr
+mkdir: dir: File exists
+# bash: stderr
+mkdir: dir: File exists
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: mkdir dir\n cd dir\n cd ./\n pwd\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> mkdir dir
+< [1]minishell>  cd dir
+< [0]minishell>  cd ./
+< [0]minishell>  pwd
+6,7d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> mkdir dir
+[1]minishell>  cd dir
+[0]minishell>  cd ./
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+# minishell: stderr
+mkdir: dir: File exists
+# bash: stderr
+mkdir: dir: File exists
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: mkdir dir\n cd dir\n cd ..\n pwd\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> mkdir dir
+< [1]minishell>  cd dir
+< [0]minishell>  cd ..
+< [0]minishell>  pwd
+6,7d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> mkdir dir
+[1]minishell>  cd dir
+[0]minishell>  cd ..
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+mkdir: dir: File exists
+# bash: stderr
+mkdir: dir: File exists
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: mkdir dir\n cd dir\n cd ../\n pwd\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> mkdir dir
+< [1]minishell>  cd dir
+< [0]minishell>  cd ../
+< [0]minishell>  pwd
+6,7d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> mkdir dir
+[1]minishell>  cd dir
+[0]minishell>  cd ../
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+mkdir: dir: File exists
+# bash: stderr
+mkdir: dir: File exists
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: touch testfile\n cd testfile\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> touch testfile
+< [0]minishell>  cd testfile
+< [1]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> touch testfile
+[0]minishell>  cd testfile
+[1]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: cd: testfile: Not a directory
+# bash: stderr
+bash: line 2: cd: testfile: Not a directory
+# minishell: exit status = 0
+# bash     : exit status = 1
+
+-------------------------
+[KO ] case: cd NO_SUCH_FILE\n pwd\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> cd NO_SUCH_FILE
+< [1]minishell>  pwd
+4,5d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cd NO_SUCH_FILE
+[1]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+minishell: cd: NO_SUCH_FILE: No such file or directory
+# bash: stderr
+bash: line 1: cd: NO_SUCH_FILE: No such file or directory
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: cd hello world\n pwd\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> cd hello world
+< [1]minishell>  pwd
+4,5d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cd hello world
+[1]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+minishell: cd: hello: No such file or directory
+# bash: stderr
+bash: line 1: cd: hello: No such file or directory
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: cd /\n cd ../../akjwyefgjkwveyjfgweyugyuwegf76t273/../../ \npwd\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> cd /
+< [0]minishell>  cd ../../akjwyefgjkwveyjfgweyugyuwegf76t273/../../ 
+< [1]minishell> pwd
+5,6d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cd /
+[0]minishell>  cd ../../akjwyefgjkwveyjfgweyugyuwegf76t273/../../ 
+[1]minishell> pwd
+/
+[0]minishell> exit
+exit
+# bash: stdout
+/
+# minishell: stderr
+minishell: cd: ../../akjwyefgjkwveyjfgweyugyuwegf76t273/../../: No such file or directory
+# bash: stderr
+bash: line 2: cd: ../../akjwyefgjkwveyjfgweyugyuwegf76t273/../../: No such file or directory
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: mkdir dir\n cd dir\n cd ../nosuchdir/../dir\n pwd\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> mkdir dir
+< [1]minishell>  cd dir
+< [0]minishell>  cd ../nosuchdir/../dir
+< [1]minishell>  pwd
+6,7d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> mkdir dir
+[1]minishell>  cd dir
+[0]minishell>  cd ../nosuchdir/../dir
+[1]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+# minishell: stderr
+mkdir: dir: File exists
+minishell: cd: ../nosuchdir/../dir: No such file or directory
+# bash: stderr
+mkdir: dir: File exists
+bash: line 3: cd: ../nosuchdir/../dir: No such file or directory
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: mkdir hello\n cd hello world\n pwd\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> mkdir hello
+< [0]minishell>  cd hello world
+< [0]minishell>  pwd
+5,6d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> mkdir hello
+[0]minishell>  cd hello world
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/hello
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/hello
+# minishell: stderr
+# bash: stderr
+mkdir: hello: File exists
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: cd /\n pwd\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> cd /
+< [0]minishell>  pwd
+4,5d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cd /
+[0]minishell>  pwd
+/
+[0]minishell> exit
+exit
+# bash: stdout
+/
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: cd /bin\n pwd\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> cd /bin
+< [0]minishell>  pwd
+4,5d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cd /bin
+[0]minishell>  pwd
+/bin
+[0]minishell> exit
+exit
+# bash: stdout
+/bin
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: cd /bin/../\n pwd\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> cd /bin/../
+< [0]minishell>  pwd
+4,5d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cd /bin/../
+[0]minishell>  pwd
+/
+[0]minishell> exit
+exit
+# bash: stdout
+/
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: mkdir dir\n cd DIR\n pwd\nexit
+-------------------------
+diff :1,6c1
+< [0]minishell> mkdir dir
+< [1]minishell>  cd DIR
+< [0]minishell>  pwd
+< /Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/DIR
+# minishell: stdout
+[0]minishell> mkdir dir
+[1]minishell>  cd DIR
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/DIR
+# minishell: stderr
+mkdir: dir: File exists
+# bash: stderr
+mkdir: dir: File exists
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: mkdir DIR\n cd dir\n pwd\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> mkdir DIR
+< [1]minishell>  cd dir
+< [0]minishell>  pwd
+5,6d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> mkdir DIR
+[1]minishell>  cd dir
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+# minishell: stderr
+mkdir: DIR: File exists
+# bash: stderr
+mkdir: DIR: File exists
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: mkdir dir\n chmod 000 dir\n cd dir\n pwd\nchmod 777 dir\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> mkdir dir
+< [1]minishell>  chmod 000 dir
+< [0]minishell>  cd dir
+< [1]minishell>  pwd
+6,8d1
+< [0]minishell> chmod 777 dir
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> mkdir dir
+[1]minishell>  chmod 000 dir
+[0]minishell>  cd dir
+[1]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell> chmod 777 dir
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+mkdir: dir: File exists
+minishell: cd: dir: Permission denied
+# bash: stderr
+mkdir: dir: File exists
+bash: line 3: cd: dir: Permission denied
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: mkdir dir\n ln -s dir link\n cd link\n pwd\nexit
+-------------------------
+diff :1,7c1
+< [0]minishell> mkdir dir
+< [1]minishell>  ln -s dir link
+< [0]minishell>  cd link
+< [0]minishell>  pwd
+< /Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/link
+# minishell: stdout
+[0]minishell> mkdir dir
+[1]minishell>  ln -s dir link
+[0]minishell>  cd link
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/link
+# minishell: stderr
+mkdir: dir: File exists
+# bash: stderr
+mkdir: dir: File exists
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: mkdir dir\n ln -s dir link\n rmdir dir\n cd link\n pwd\nexit
+-------------------------
+diff :1,8c1
+< [0]minishell> mkdir dir
+< [1]minishell>  ln -s dir link
+< [1]minishell>  rmdir dir
+< [1]minishell>  cd link
+< [0]minishell>  pwd
+< /Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/link
+# minishell: stdout
+[0]minishell> mkdir dir
+[1]minishell>  ln -s dir link
+[1]minishell>  rmdir dir
+[1]minishell>  cd link
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/link
+# minishell: stderr
+mkdir: dir: File exists
+ln: link/dir: File exists
+rmdir: dir: Directory not empty
+# bash: stderr
+mkdir: dir: File exists
+ln: link/dir: File exists
+rmdir: dir: Directory not empty
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: mkdir dir\n cd dir\n rmdir ../dir\n cd ./\n pwd\ncd .\n pwd\n cd ./././././\n pwd\n cd .////////./\n pwd\n cd ../\n pwd\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> mkdir dir
+< [1]minishell>  cd dir
+< [0]minishell>  rmdir ../dir
+< [1]minishell>  cd ./
+< [0]minishell>  pwd
+7,8d1
+< [0]minishell> cd .
+< [0]minishell>  pwd
+10,11d2
+< [0]minishell>  cd ./././././
+< [0]minishell>  pwd
+13,14d3
+< [0]minishell>  cd .////////./
+< [0]minishell>  pwd
+16,17d4
+< [0]minishell>  cd ../
+< [0]minishell>  pwd
+19,20d5
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> mkdir dir
+[1]minishell>  cd dir
+[0]minishell>  rmdir ../dir
+[1]minishell>  cd ./
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell> cd .
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell>  cd ./././././
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell>  cd .////////./
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell>  cd ../
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+mkdir: dir: File exists
+rmdir: ../dir: Directory not empty
+# bash: stderr
+mkdir: dir: File exists
+rmdir: ../dir: Directory not empty
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: mkdir -p a/b/c\n cd a/b/c\n rm -rf ../../b\n cd ./\n pwd\n cd ../\n pwd\n cd .////./\n pwd\nexit
+-------------------------
+diff :1,11c1,3
+< [0]minishell> mkdir -p a/b/c
+< [0]minishell>  cd a/b/c
+< [0]minishell>  rm -rf ../../b
+< [0]minishell>  cd ./
+< [0]minishell>  pwd
+< [0]minishell>  cd ../
+< [0]minishell>  pwd
+< [0]minishell>  cd .////./
+< [0]minishell>  pwd
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./../
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./.././///./
+# minishell: stdout
+[0]minishell> mkdir -p a/b/c
+[0]minishell>  cd a/b/c
+[0]minishell>  rm -rf ../../b
+[0]minishell>  cd ./
+[0]minishell>  pwd
+[0]minishell>  cd ../
+[0]minishell>  pwd
+[0]minishell>  cd .////./
+[0]minishell>  pwd
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./../
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./.././///./
+# minishell: stderr
+getcwd: No such file or directory
+getcwd: No such file or directory
+getcwd: No such file or directory
+# bash: stderr
+cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: mkdir -p a/b/c\n cd a/b/c\n rm -rf ../../b\n cd ./\n pwd\n cd .././.\n pwd\n cd ./\n pwd\n cd ../\n pwd\nexit
+-------------------------
+diff :1,11c1,3
+< [0]minishell> mkdir -p a/b/c
+< [0]minishell>  cd a/b/c
+< [0]minishell>  rm -rf ../../b
+< [0]minishell>  cd ./
+< [0]minishell>  pwd
+< [0]minishell>  cd .././.
+< [0]minishell>  pwd
+< [0]minishell>  cd ./
+< [0]minishell>  pwd
+< [0]minishell>  cd ../
+< [0]minishell>  pwd
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./.././.
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./.././././
+13,14d4
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> mkdir -p a/b/c
+[0]minishell>  cd a/b/c
+[0]minishell>  rm -rf ../../b
+[0]minishell>  cd ./
+[0]minishell>  pwd
+[0]minishell>  cd .././.
+[0]minishell>  pwd
+[0]minishell>  cd ./
+[0]minishell>  pwd
+[0]minishell>  cd ../
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./.././.
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/./.././././
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a
+# minishell: stderr
+getcwd: No such file or directory
+getcwd: No such file or directory
+getcwd: No such file or directory
+# bash: stderr
+cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: cd \n pwd\nexit
+-------------------------
+diff :1,5c1
+< [0]minishell> cd 
+< [0]minishell>  pwd
+< /private/tmp/watanabeyouhei/Homebrew/Temp
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei
+# minishell: stdout
+[0]minishell> cd 
+[0]minishell>  pwd
+/private/tmp/watanabeyouhei/Homebrew/Temp
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export HOME=\n cd \n pwd\nexit
+-------------------------
+diff :1,6c1
+< [0]minishell> export HOME=
+< [0]minishell>  cd 
+< [0]minishell>  pwd
+< /private/tmp/watanabeyouhei/Homebrew/Temp
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stdout
+[0]minishell> export HOME=
+[0]minishell>  cd 
+[0]minishell>  pwd
+/private/tmp/watanabeyouhei/Homebrew/Temp
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: unset HOME\n cd \n pwd\nexit
+-------------------------
+diff :1,6c1
+< [0]minishell> unset HOME
+< [0]minishell>  cd 
+< [0]minishell>  pwd
+< /private/tmp/watanabeyouhei/Homebrew/Temp
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stdout
+[0]minishell> unset HOME
+[0]minishell>  cd 
+[0]minishell>  pwd
+/private/tmp/watanabeyouhei/Homebrew/Temp
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+# bash: stderr
+bash: line 2: cd: HOME not set
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export HOME="./"\n cd \n pwd\nexit
+-------------------------
+diff :1,6c1
+< [0]minishell> export HOME="./"
+< [1]minishell>  cd 
+< [0]minishell>  pwd
+< /private/tmp/watanabeyouhei/Homebrew/Temp
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stdout
+[0]minishell> export HOME="./"
+[1]minishell>  cd 
+[0]minishell>  pwd
+/private/tmp/watanabeyouhei/Homebrew/Temp
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+minishell: unset: `./': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export HOME="../../"\n cd \n pwd\nexit
+-------------------------
+diff :1,6c1
+< [0]minishell> export HOME="../../"
+< [1]minishell>  cd 
+< [0]minishell>  pwd
+< /private/tmp/watanabeyouhei/Homebrew/Temp
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo
+# minishell: stdout
+[0]minishell> export HOME="../../"
+[1]minishell>  cd 
+[0]minishell>  pwd
+/private/tmp/watanabeyouhei/Homebrew/Temp
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo
+# minishell: stderr
+minishell: unset: `../../': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export HOME=""\n cd \n pwd\nexit
+-------------------------
+diff :1,6c1
+< [0]minishell> export HOME=""
+< [1]minishell>  cd 
+< [0]minishell>  pwd
+< /private/tmp/watanabeyouhei/Homebrew/Temp
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stdout
+[0]minishell> export HOME=""
+[1]minishell>  cd 
+[0]minishell>  pwd
+/private/tmp/watanabeyouhei/Homebrew/Temp
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+minishell: unset: `': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export HOME="/BIN"\n cd \n pwd\nexit
+-------------------------
+diff :1,6c1
+< [0]minishell> export HOME="/BIN"
+< [1]minishell>  cd 
+< [0]minishell>  pwd
+< /private/tmp/watanabeyouhei/Homebrew/Temp
+< [0]minishell> exit
+< exit
+---
+> /BIN
+# minishell: stdout
+[0]minishell> export HOME="/BIN"
+[1]minishell>  cd 
+[0]minishell>  pwd
+/private/tmp/watanabeyouhei/Homebrew/Temp
+[0]minishell> exit
+exit
+# bash: stdout
+/BIN
+# minishell: stderr
+minishell: unset: `/BIN': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export HOME=a\n mkdir -p a/b\n cd \n pwd\nexit
+-------------------------
+diff :1,7c1
+< [0]minishell> export HOME=a
+< [0]minishell>  mkdir -p a/b
+< [0]minishell>  cd 
+< [0]minishell>  pwd
+< /private/tmp/watanabeyouhei/Homebrew/Temp
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a
+# minishell: stdout
+[0]minishell> export HOME=a
+[0]minishell>  mkdir -p a/b
+[0]minishell>  cd 
+[0]minishell>  pwd
+/private/tmp/watanabeyouhei/Homebrew/Temp
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export HOME=NO_SUCH_FILE\n cd \n pwd\nexit
+-------------------------
+diff :1,6c1
+< [0]minishell> export HOME=NO_SUCH_FILE
+< [0]minishell>  cd 
+< [0]minishell>  pwd
+< /private/tmp/watanabeyouhei/Homebrew/Temp
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stdout
+[0]minishell> export HOME=NO_SUCH_FILE
+[0]minishell>  cd 
+[0]minishell>  pwd
+/private/tmp/watanabeyouhei/Homebrew/Temp
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+# bash: stderr
+bash: line 2: cd: NO_SUCH_FILE: No such file or directory
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH="/"\n cd bin\n pwd\nexit
+-------------------------
+diff :1,6c1,2
+< [0]minishell> export CDPATH="/"
+< [1]minishell>  cd bin
+< [1]minishell>  pwd
+< /Users/watanabeyouhei/program/42tokyo/minishell/tester
+< [0]minishell> exit
+< exit
+---
+> /bin
+> /bin
+# minishell: stdout
+[0]minishell> export CDPATH="/"
+[1]minishell>  cd bin
+[1]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell> exit
+exit
+# bash: stdout
+/bin
+/bin
+# minishell: stderr
+minishell: unset: `/': not a valid identifier
+minishell: cd: bin: No such file or directory
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH="/"\n cd \n pwd\nexit
+-------------------------
+diff :1,6c1
+< [0]minishell> export CDPATH="/"
+< [1]minishell>  cd 
+< [0]minishell>  pwd
+< /private/tmp/watanabeyouhei/Homebrew/Temp
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei
+# minishell: stdout
+[0]minishell> export CDPATH="/"
+[1]minishell>  cd 
+[0]minishell>  pwd
+/private/tmp/watanabeyouhei/Homebrew/Temp
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei
+# minishell: stderr
+minishell: unset: `/': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH="/"\n export HOME=\n cd \n pwd\nexit
+-------------------------
+diff :1,7c1
+< [0]minishell> export CDPATH="/"
+< [1]minishell>  export HOME=
+< [0]minishell>  cd 
+< [0]minishell>  pwd
+< /private/tmp/watanabeyouhei/Homebrew/Temp
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stdout
+[0]minishell> export CDPATH="/"
+[1]minishell>  export HOME=
+[0]minishell>  cd 
+[0]minishell>  pwd
+/private/tmp/watanabeyouhei/Homebrew/Temp
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+minishell: unset: `/': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH="/"\n unset HOME\n cd \n pwd\nexit
+-------------------------
+diff :1,7c1
+< [0]minishell> export CDPATH="/"
+< [1]minishell>  unset HOME
+< [0]minishell>  cd 
+< [0]minishell>  pwd
+< /private/tmp/watanabeyouhei/Homebrew/Temp
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stdout
+[0]minishell> export CDPATH="/"
+[1]minishell>  unset HOME
+[0]minishell>  cd 
+[0]minishell>  pwd
+/private/tmp/watanabeyouhei/Homebrew/Temp
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+minishell: unset: `/': not a valid identifier
+# bash: stderr
+bash: line 3: cd: HOME not set
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH=""\n mkdir -p a/b\n cd b\n pwd\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> export CDPATH=""
+< [1]minishell>  mkdir -p a/b
+< [0]minishell>  cd b
+< [0]minishell>  pwd
+6,7d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export CDPATH=""
+[1]minishell>  mkdir -p a/b
+[0]minishell>  cd b
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+# minishell: stderr
+minishell: unset: `': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH="./"\n mkdir dir\n cd dir\n pwd\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> export CDPATH="./"
+< [1]minishell>  mkdir dir
+< [1]minishell>  cd dir
+< [0]minishell>  pwd
+6,7c2
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+# minishell: stdout
+[0]minishell> export CDPATH="./"
+[1]minishell>  mkdir dir
+[1]minishell>  cd dir
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+# minishell: stderr
+minishell: unset: `./': not a valid identifier
+mkdir: dir: File exists
+# bash: stderr
+mkdir: dir: File exists
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH="../a"\n mkdir -p a/b/c\n cd b\n pwd\n cd a\n pwd\n cd b\n pwd\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> export CDPATH="../a"
+< [1]minishell>  mkdir -p a/b/c
+< [0]minishell>  cd b
+< [0]minishell>  pwd
+6,7d1
+< [0]minishell>  cd a
+< [1]minishell>  pwd
+9,13c3,4
+< [0]minishell>  cd b
+< [1]minishell>  pwd
+< /Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
+# minishell: stdout
+[0]minishell> export CDPATH="../a"
+[1]minishell>  mkdir -p a/b/c
+[0]minishell>  cd b
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+[0]minishell>  cd a
+[1]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+[0]minishell>  cd b
+[1]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
+# minishell: stderr
+minishell: unset: `../a': not a valid identifier
+minishell: cd: a: No such file or directory
+minishell: cd: b: No such file or directory
+# bash: stderr
+bash: line 5: cd: a: No such file or directory
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH=a\n mkdir -p a/b/c\n cd b\n pwd\nexit
+-------------------------
+diff :1,7c1,2
+< [0]minishell> export CDPATH=a
+< [0]minishell>  mkdir -p a/b/c
+< [0]minishell>  cd b
+< [0]minishell>  pwd
+< /Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
+# minishell: stdout
+[0]minishell> export CDPATH=a
+[0]minishell>  mkdir -p a/b/c
+[0]minishell>  cd b
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH=A\n mkdir -p a/b/c\n cd b\n pwd\nexit
+-------------------------
+diff :1,7c1,2
+< [0]minishell> export CDPATH=A
+< [0]minishell>  mkdir -p a/b/c
+< [0]minishell>  cd b
+< [0]minishell>  pwd
+< /Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/A/b
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/A/b
+# minishell: stdout
+[0]minishell> export CDPATH=A
+[0]minishell>  mkdir -p a/b/c
+[0]minishell>  cd b
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/A/b
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/A/b
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH=a\n mkdir -p a/b/c\n cd ./b\n pwd\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> export CDPATH=a
+< [0]minishell>  mkdir -p a/b/c
+< [0]minishell>  cd ./b
+< [0]minishell>  pwd
+6,7d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export CDPATH=a
+[0]minishell>  mkdir -p a/b/c
+[0]minishell>  cd ./b
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH=a\n mkdir -p a/b/c\n cd a\n cd ../b\n pwd\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> export CDPATH=a
+< [0]minishell>  mkdir -p a/b/c
+< [0]minishell>  cd a
+< [0]minishell>  cd ../b
+< [0]minishell>  pwd
+7,8d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export CDPATH=a
+[0]minishell>  mkdir -p a/b/c
+[0]minishell>  cd a
+[0]minishell>  cd ../b
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH=a\n mkdir -p a/b/c\n cd .\n pwd\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> export CDPATH=a
+< [0]minishell>  mkdir -p a/b/c
+< [0]minishell>  cd .
+< [0]minishell>  pwd
+6,7d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export CDPATH=a
+[0]minishell>  mkdir -p a/b/c
+[0]minishell>  cd .
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH=a\n mkdir -p a/b/c\n cd a\n cd ..\n pwd\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> export CDPATH=a
+< [0]minishell>  mkdir -p a/b/c
+< [0]minishell>  cd a
+< [0]minishell>  cd ..
+< [0]minishell>  pwd
+7,8d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export CDPATH=a
+[0]minishell>  mkdir -p a/b/c
+[0]minishell>  cd a
+[0]minishell>  cd ..
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH=a\n mkdir -p a/b/c\n mkdir b\n cd b\n pwd\nexit
+-------------------------
+diff :1,8c1,2
+< [0]minishell> export CDPATH=a
+< [0]minishell>  mkdir -p a/b/c
+< [0]minishell>  mkdir b
+< [1]minishell>  cd b
+< [0]minishell>  pwd
+< /Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
+# minishell: stdout
+[0]minishell> export CDPATH=a
+[0]minishell>  mkdir -p a/b/c
+[0]minishell>  mkdir b
+[1]minishell>  cd b
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/b
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b
+# minishell: stderr
+mkdir: b: File exists
+# bash: stderr
+mkdir: b: File exists
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH=a/b\n mkdir -p a/b/c\n cd c\n pwd\nexit
+-------------------------
+diff :1,7c1,2
+< [0]minishell> export CDPATH=a/b
+< [0]minishell>  mkdir -p a/b/c
+< [0]minishell>  cd c
+< [1]minishell>  pwd
+< /Users/watanabeyouhei/program/42tokyo/minishell/tester
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c
+# minishell: stdout
+[0]minishell> export CDPATH=a/b
+[0]minishell>  mkdir -p a/b/c
+[0]minishell>  cd c
+[1]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c
+# minishell: stderr
+minishell: cd: c: No such file or directory
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH=a:b:a:b\n mkdir -p a/test b/test\n mkdir -p a:b/test\n cd test\n pwd\nexit
+-------------------------
+diff :1,8c1,2
+< [0]minishell> export CDPATH=a:b:a:b
+< [0]minishell>  mkdir -p a/test  b/test
+< [0]minishell>  mkdir -p a:b/test
+< [0]minishell>  cd test
+< [1]minishell>  pwd
+< /Users/watanabeyouhei/program/42tokyo/minishell/tester
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/test
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/test
+# minishell: stdout
+[0]minishell> export CDPATH=a:b:a:b
+[0]minishell>  mkdir -p a/test  b/test
+[0]minishell>  mkdir -p a:b/test
+[0]minishell>  cd test
+[1]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/test
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/test
+# minishell: stderr
+minishell: cd: test: No such file or directory
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH=b:a:a:b\n mkdir -p a/test b/test\n mkdir -p a:b/test\n cd test\n pwd\nexit
+-------------------------
+diff :1,8c1,2
+< [0]minishell> export CDPATH=b:a:a:b
+< [0]minishell>  mkdir -p a/test  b/test
+< [0]minishell>  mkdir -p a:b/test
+< [0]minishell>  cd test
+< [1]minishell>  pwd
+< /Users/watanabeyouhei/program/42tokyo/minishell/tester
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/b/test
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/b/test
+# minishell: stdout
+[0]minishell> export CDPATH=b:a:a:b
+[0]minishell>  mkdir -p a/test  b/test
+[0]minishell>  mkdir -p a:b/test
+[0]minishell>  cd test
+[1]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/b/test
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/b/test
+# minishell: stderr
+minishell: cd: test: No such file or directory
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH=a:b:a:b\n mkdir -p a/hello b/hello\n mkdir -p a:b/test\n cd test\n pwd\nexit
+-------------------------
+diff :1,8c1,2
+< [0]minishell> export CDPATH=a:b:a:b
+< [0]minishell>  mkdir -p a/hello  b/hello
+< [0]minishell>  mkdir -p a:b/test
+< [0]minishell>  cd test
+< [1]minishell>  pwd
+< /Users/watanabeyouhei/program/42tokyo/minishell/tester
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/test
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/test
+# minishell: stdout
+[0]minishell> export CDPATH=a:b:a:b
+[0]minishell>  mkdir -p a/hello  b/hello
+[0]minishell>  mkdir -p a:b/test
+[0]minishell>  cd test
+[1]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/test
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/test
+# minishell: stderr
+minishell: cd: test: No such file or directory
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH=a:b:a:b\n mkdir -p a/test b/test\n mkdir -p a:b/test\n chmod 000 a/test \ncd test\n pwd\n cd ../../\n chmod 777 a/test\nexit
+-------------------------
+diff :1,11c1,2
+< [0]minishell> export CDPATH=a:b:a:b
+< [0]minishell>  mkdir -p a/test  b/test
+< [0]minishell>  mkdir -p a:b/test
+< [0]minishell>  chmod 000 a/test 
+< [0]minishell> cd test
+< [1]minishell>  pwd
+< /Users/watanabeyouhei/program/42tokyo/minishell/tester
+< [0]minishell>  cd ../../
+< [0]minishell>  chmod 777 a/test
+< [1]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/b/test
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/b/test
+# minishell: stdout
+[0]minishell> export CDPATH=a:b:a:b
+[0]minishell>  mkdir -p a/test  b/test
+[0]minishell>  mkdir -p a:b/test
+[0]minishell>  chmod 000 a/test 
+[0]minishell> cd test
+[1]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell>  cd ../../
+[0]minishell>  chmod 777 a/test
+[1]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/b/test
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/b/test
+# minishell: stderr
+minishell: cd: test: No such file or directory
+chmod: a/test: No such file or directory
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH="/"\n cd /\n pwd\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> export CDPATH="/"
+< [1]minishell>  cd /
+< [0]minishell>  pwd
+5,6d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export CDPATH="/"
+[1]minishell>  cd /
+[0]minishell>  pwd
+/
+[0]minishell> exit
+exit
+# bash: stdout
+/
+# minishell: stderr
+minishell: unset: `/': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH="/"\n cd /bin\n pwd\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> export CDPATH="/"
+< [1]minishell>  cd /bin
+< [0]minishell>  pwd
+5,6d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export CDPATH="/"
+[1]minishell>  cd /bin
+[0]minishell>  pwd
+/bin
+[0]minishell> exit
+exit
+# bash: stdout
+/bin
+# minishell: stderr
+minishell: unset: `/': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH="/bin"\n cd /bin\n pwd\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> export CDPATH="/bin"
+< [1]minishell>  cd /bin
+< [0]minishell>  pwd
+5,6d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export CDPATH="/bin"
+[1]minishell>  cd /bin
+[0]minishell>  pwd
+/bin
+[0]minishell> exit
+exit
+# bash: stdout
+/bin
+# minishell: stderr
+minishell: unset: `/bin': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH="/bin"\n cd /bin\n pwd\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> export CDPATH="/bin"
+< [1]minishell>  cd /bin
+< [0]minishell>  pwd
+5,6d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export CDPATH="/bin"
+[1]minishell>  cd /bin
+[0]minishell>  pwd
+/bin
+[0]minishell> exit
+exit
+# bash: stdout
+/bin
+# minishell: stderr
+minishell: unset: `/bin': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH="a"\n mkdir a\n cd a\n pwd\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> export CDPATH="a"
+< [0]minishell>  mkdir a
+< [1]minishell>  cd a
+< [0]minishell>  pwd
+6,7d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export CDPATH="a"
+[0]minishell>  mkdir a
+[1]minishell>  cd a
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a
+# minishell: stderr
+mkdir: a: File exists
+# bash: stderr
+mkdir: a: File exists
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH="a"\n mkdir -p a/a\n cd a\n pwd\nexit
+-------------------------
+diff :1,7c1,2
+< [0]minishell> export CDPATH="a"
+< [0]minishell>  mkdir -p a/a
+< [0]minishell>  cd a
+< [0]minishell>  pwd
+< /Users/watanabeyouhei/program/42tokyo/minishell/tester/a
+< [0]minishell> exit
+< exit
+---
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/a
+> /Users/watanabeyouhei/program/42tokyo/minishell/tester/a/a
+# minishell: stdout
+[0]minishell> export CDPATH="a"
+[0]minishell>  mkdir -p a/a
+[0]minishell>  cd a
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/a
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/a
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: mkdir -p a/b/c/d/e/f/g/h/i/\n cd a/b/c/d/../../c/d/e/f/g/h/i/../../../g/h/i/../.././././../g/h/i/../../../../../../../c/d/../d/../d/e/../../d/e/.././././e/f/.//////../f/g/h/i/////../../../\n pwd\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> mkdir -p a/b/c/d/e/f/g/h/i/
+< [0]minishell>  cd a/b/c/d/../../c/d/e/f/g/h/i/../../../g/h/i/../.././././../g/h/i/../../../../../../../c/d/../d/../d/e/../../d/e/.././././e/f/.//////../f/g/h/i/////../../../
+< [0]minishell>  pwd
+5,6d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> mkdir -p a/b/c/d/e/f/g/h/i/
+[0]minishell>  cd a/b/c/d/../../c/d/e/f/g/h/i/../../../g/h/i/../.././././../g/h/i/../../../../../../../c/d/../d/../d/e/../../d/e/.././././e/f/.//////../f/g/h/i/////../../../
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/d/e/f
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/a/b/c/d/e/f
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export HOME="/"\n cd\n cd ../../../../../././././../../../././../../../\n pwd\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> export HOME="/"
+< [1]minishell>  cd
+< [0]minishell>  cd ../../../../../././././../../../././../../../
+< [0]minishell>  pwd
+6,7d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export HOME="/"
+[1]minishell>  cd
+[0]minishell>  cd ../../../../../././././../../../././../../../
+[0]minishell>  pwd
+/
+[0]minishell> exit
+exit
+# bash: stdout
+/
+# minishell: stderr
+minishell: unset: `/': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: cd ///\n pwd\n cd ///bin\n pwd\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> cd ///
+< [0]minishell>  pwd
+4,5d1
+< [0]minishell>  cd ///bin
+< [0]minishell>  pwd
+7,8d2
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cd ///
+[0]minishell>  pwd
+/
+[0]minishell>  cd ///bin
+[0]minishell>  pwd
+/bin
+[0]minishell> exit
+exit
+# bash: stdout
+/
+/bin
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: cd ////\n pwd\n cd ////bin\n pwd\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> cd ////
+< [0]minishell>  pwd
+4,5d1
+< [0]minishell>  cd ////bin
+< [0]minishell>  pwd
+7,8d2
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cd ////
+[0]minishell>  pwd
+/
+[0]minishell>  cd ////bin
+[0]minishell>  pwd
+/bin
+[0]minishell> exit
+exit
+# bash: stdout
+/
+/bin
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: cd /////\n pwd\n cd /////bin\n pwd\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> cd /////
+< [0]minishell>  pwd
+4,5d1
+< [0]minishell>  cd /////bin
+< [0]minishell>  pwd
+7,8d2
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cd /////
+[0]minishell>  pwd
+/
+[0]minishell>  cd /////bin
+[0]minishell>  pwd
+/bin
+[0]minishell> exit
+exit
+# bash: stdout
+/
+/bin
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: cd //////\n pwd\n cd //////bin\n pwd\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> cd //////
+< [0]minishell>  pwd
+4,5d1
+< [0]minishell>  cd //////bin
+< [0]minishell>  pwd
+7,8d2
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cd //////
+[0]minishell>  pwd
+/
+[0]minishell>  cd //////bin
+[0]minishell>  pwd
+/bin
+[0]minishell> exit
+exit
+# bash: stdout
+/
+/bin
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: cd ///////\n pwd\n cd ///////bin\n pwd\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> cd ///////
+< [0]minishell>  pwd
+4,5d1
+< [0]minishell>  cd ///////bin
+< [0]minishell>  pwd
+7,8d2
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cd ///////
+[0]minishell>  pwd
+/
+[0]minishell>  cd ///////bin
+[0]minishell>  pwd
+/bin
+[0]minishell> exit
+exit
+# bash: stdout
+/
+/bin
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export HOME=//\n cd\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> export HOME=//
+< [0]minishell>  cd
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export HOME=//
+[0]minishell>  cd
+[0]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export HOME=//bin/..////////////bin/../\n cd\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> export HOME=//bin/..////////////bin/../
+< [0]minishell>  cd
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export HOME=//bin/..////////////bin/../
+[0]minishell>  cd
+[0]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export HOME=///\n cd\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> export HOME=///
+< [0]minishell>  cd
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export HOME=///
+[0]minishell>  cd
+[0]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH=///\n cd bin\nexit
+-------------------------
+diff :1,4c1
+< [0]minishell> export CDPATH=///
+< [0]minishell>  cd bin
+< [1]minishell> exit
+< exit
+---
+> /bin
+# minishell: stdout
+[0]minishell> export CDPATH=///
+[0]minishell>  cd bin
+[1]minishell> exit
+exit
+# bash: stdout
+/bin
+# minishell: stderr
+minishell: cd: bin: No such file or directory
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export CDPATH=":"\n cd dir\n pwd, mkdir dir\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> export CDPATH=":"
+< [1]minishell>  cd dir
+< [0]minishell>  pwd, mkdir dir
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export CDPATH=":"
+[1]minishell>  cd dir
+[0]minishell>  pwd, mkdir dir
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: unset: `:': not a valid identifier
+minishell: pwd,: command not found
+# bash: stderr
+bash: line 3: pwd,: command not found
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: export CDPATH="hello:"\n cd dir\n pwd, mkdir dir\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> export CDPATH="hello:"
+< [1]minishell>  cd dir
+< [0]minishell>  pwd, mkdir dir
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export CDPATH="hello:"
+[1]minishell>  cd dir
+[0]minishell>  pwd, mkdir dir
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: unset: `hello:': not a valid identifier
+minishell: pwd,: command not found
+# bash: stderr
+bash: line 3: pwd,: command not found
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: export CDPATH=":/"\n cd dir\n pwd, mkdir dir\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> export CDPATH=":/"
+< [1]minishell>  cd dir
+< [0]minishell>  pwd, mkdir dir
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export CDPATH=":/"
+[1]minishell>  cd dir
+[0]minishell>  pwd, mkdir dir
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: unset: `:/': not a valid identifier
+minishell: pwd,: command not found
+# bash: stderr
+bash: line 3: pwd,: command not found
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: export CDPATH="::/"\n cd bin\n pwd, mkdir bin\nexit
+-------------------------
+diff :1,5c1
+< [0]minishell> export CDPATH="::/"
+< [1]minishell>  cd bin
+< [1]minishell>  pwd, mkdir bin
+< [127]minishell> exit
+< exit
+---
+> /bin
+# minishell: stdout
+[0]minishell> export CDPATH="::/"
+[1]minishell>  cd bin
+[1]minishell>  pwd, mkdir bin
+[127]minishell> exit
+exit
+# bash: stdout
+/bin
+# minishell: stderr
+minishell: unset: `::/': not a valid identifier
+minishell: cd: bin: No such file or directory
+minishell: pwd,: command not found
+# bash: stderr
+bash: line 3: pwd,: command not found
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: export CDPATH="::/:"\n cd bin\n pwd, mkdir bin\nexit
+-------------------------
+diff :1,5c1
+< [0]minishell> export CDPATH="::/:"
+< [1]minishell>  cd bin
+< [1]minishell>  pwd, mkdir bin
+< [127]minishell> exit
+< exit
+---
+> /bin
+# minishell: stdout
+[0]minishell> export CDPATH="::/:"
+[1]minishell>  cd bin
+[1]minishell>  pwd, mkdir bin
+[127]minishell> exit
+exit
+# bash: stdout
+/bin
+# minishell: stderr
+minishell: unset: `::/:': not a valid identifier
+minishell: cd: bin: No such file or directory
+minishell: pwd,: command not found
+# bash: stderr
+bash: line 3: pwd,: command not found
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: export CDPATH=""\n cd bin\n pwd, mkdir bin\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> export CDPATH=""
+< [1]minishell>  cd bin
+< [1]minishell>  pwd, mkdir bin
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export CDPATH=""
+[1]minishell>  cd bin
+[1]minishell>  pwd, mkdir bin
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: unset: `': not a valid identifier
+minishell: cd: bin: No such file or directory
+minishell: pwd,: command not found
+# bash: stderr
+bash: line 2: cd: bin: No such file or directory
+bash: line 3: pwd,: command not found
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: export CDPATH="/:"\n cd bin\n pwd, mkdir bin\nexit
+-------------------------
+diff :1,5c1
+< [0]minishell> export CDPATH="/:"
+< [1]minishell>  cd bin
+< [1]minishell>  pwd, mkdir bin
+< [127]minishell> exit
+< exit
+---
+> /bin
+# minishell: stdout
+[0]minishell> export CDPATH="/:"
+[1]minishell>  cd bin
+[1]minishell>  pwd, mkdir bin
+[127]minishell> exit
+exit
+# bash: stdout
+/bin
+# minishell: stderr
+minishell: unset: `/:': not a valid identifier
+minishell: cd: bin: No such file or directory
+minishell: pwd,: command not found
+# bash: stderr
+bash: line 3: pwd,: command not found
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            echoTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: echo\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo
+
+ [0]minishell> exit
+exit
+# bash: stdout
+
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo a\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo a
+a
+ [0]minishell> exit
+exit
+# bash: stdout
+a
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo hello world\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo hello world
+hello world
+ [0]minishell> exit
+exit
+# bash: stdout
+hello world
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo -n\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> echo -n
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> echo -n
+[0]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo -nk hello\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo -nk hello
+-nk hello
+ [0]minishell> exit
+exit
+# bash: stdout
+-nk hello
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo -nnnnnnnnnnk hello\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo -nnnnnnnnnnk hello
+-nnnnnnnnnnk hello
+ [0]minishell> exit
+exit
+# bash: stdout
+-nnnnnnnnnnk hello
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo -nknknknk hello\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo -nknknknk hello
+-nknknknk hello
+ [0]minishell> exit
+exit
+# bash: stdout
+-nknknknk hello
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo hello -n\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo hello -n
+hello -n
+ [0]minishell> exit
+exit
+# bash: stdout
+hello -n
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo hello -nnnnnnn\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo hello -nnnnnnn
+hello -nnnnnnn
+ [0]minishell> exit
+exit
+# bash: stdout
+hello -nnnnnnn
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo hello -nknknknknk\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo hello -nknknknknk
+hello -nknknknknk
+ [0]minishell> exit
+exit
+# bash: stdout
+hello -nknknknknk
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo hello -nnnnnnnnn -nnnnnnnnn\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo hello -nnnnnnnnn -nnnnnnnnn
+hello -nnnnnnnnn -nnnnnnnnn
+ [0]minishell> exit
+exit
+# bash: stdout
+hello -nnnnnnnnn -nnnnnnnnn
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo $PATH\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo $PATH
+/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+ [0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo "$PATH"\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo "$PATH"
+/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+ [0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo '$PATH'\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo '$PATH'
+$PATH
+ [0]minishell> exit
+exit
+# bash: stdout
+$PATH
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo a "" b "" c\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo a "" b "" c
+a  b  c
+ [0]minishell> exit
+exit
+# bash: stdout
+a  b  c
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo a "$NO_SUCH_ENV" b $NO_SUCH_ENV c, unset NO_SUCH_ENV\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo a "$NO_SUCH_ENV" b $NO_SUCH_ENV c, unset NO_SUCH_ENV
+a  b  c, unset NO_SUCH_ENV
+ [0]minishell> exit
+exit
+# bash: stdout
+a  b c, unset NO_SUCH_ENV
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo $\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo $
+$
+ [0]minishell> exit
+exit
+# bash: stdout
+$
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            envTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: env | grep -v -E '^_=' | sort\nexit
+-------------------------
+diff :1d0
+< [0]minishell> env | grep -v -E '^_=' | sort
+10d8
+< OLDPWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
+15c13
+< SHLVL=2
+---
+> SHLVL=3
+26,27d23
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> env | grep -v -E '^_=' | sort
+COMMAND_MODE=unix2003
+HOME=/Users/watanabeyouhei
+HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
+HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
+LC_CTYPE=ja_JP.UTF-8
+LOGIN_SHELL=1
+LOGNAME=watanabeyouhei
+LaunchInstanceID=808C01C6-3985-46E6-9FF7-0A59D587A096
+OLDPWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
+PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+PWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
+SECURITYSESSIONID=186b1
+SHELL=/bin/zsh
+SHLVL=2
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners
+TERM=xterm-256color
+TERMINAL_EMULATOR=JetBrains-JediTerm
+TERM_SESSION_ID=d0469a8e-0dbf-4a33-99ae-0a29b1a0334f
+TMPDIR=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/
+USER=watanabeyouhei
+XPC_FLAGS=0x0
+XPC_SERVICE_NAME=0
+__CFBundleIdentifier=com.jetbrains.CLion
+__CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
+[0]minishell> exit
+exit
+# bash: stdout
+COMMAND_MODE=unix2003
+HOME=/Users/watanabeyouhei
+HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
+HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
+LC_CTYPE=ja_JP.UTF-8
+LOGIN_SHELL=1
+LOGNAME=watanabeyouhei
+LaunchInstanceID=808C01C6-3985-46E6-9FF7-0A59D587A096
+PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+PWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
+SECURITYSESSIONID=186b1
+SHELL=/bin/zsh
+SHLVL=3
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners
+TERM=xterm-256color
+TERMINAL_EMULATOR=JetBrains-JediTerm
+TERM_SESSION_ID=d0469a8e-0dbf-4a33-99ae-0a29b1a0334f
+TMPDIR=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/
+USER=watanabeyouhei
+XPC_FLAGS=0x0
+XPC_SERVICE_NAME=0
+__CFBundleIdentifier=com.jetbrains.CLion
+__CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export A=hello\n env | grep -v -E '^_=' | sort\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> export A=hello
+< [0]minishell>  env | grep -v -E '^_=' | sort
+12d9
+< OLDPWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
+17c14
+< SHLVL=2
+---
+> SHLVL=3
+28,29d24
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export A=hello
+[0]minishell>  env | grep -v -E '^_=' | sort
+A=hello
+COMMAND_MODE=unix2003
+HOME=/Users/watanabeyouhei
+HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
+HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
+LC_CTYPE=ja_JP.UTF-8
+LOGIN_SHELL=1
+LOGNAME=watanabeyouhei
+LaunchInstanceID=808C01C6-3985-46E6-9FF7-0A59D587A096
+OLDPWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
+PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+PWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
+SECURITYSESSIONID=186b1
+SHELL=/bin/zsh
+SHLVL=2
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners
+TERM=xterm-256color
+TERMINAL_EMULATOR=JetBrains-JediTerm
+TERM_SESSION_ID=d0469a8e-0dbf-4a33-99ae-0a29b1a0334f
+TMPDIR=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/
+USER=watanabeyouhei
+XPC_FLAGS=0x0
+XPC_SERVICE_NAME=0
+__CFBundleIdentifier=com.jetbrains.CLion
+__CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
+[0]minishell> exit
+exit
+# bash: stdout
+A=hello
+COMMAND_MODE=unix2003
+HOME=/Users/watanabeyouhei
+HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
+HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
+LC_CTYPE=ja_JP.UTF-8
+LOGIN_SHELL=1
+LOGNAME=watanabeyouhei
+LaunchInstanceID=808C01C6-3985-46E6-9FF7-0A59D587A096
+PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+PWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
+SECURITYSESSIONID=186b1
+SHELL=/bin/zsh
+SHLVL=3
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners
+TERM=xterm-256color
+TERMINAL_EMULATOR=JetBrains-JediTerm
+TERM_SESSION_ID=d0469a8e-0dbf-4a33-99ae-0a29b1a0334f
+TMPDIR=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/
+USER=watanabeyouhei
+XPC_FLAGS=0x0
+XPC_SERVICE_NAME=0
+__CFBundleIdentifier=com.jetbrains.CLion
+__CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: cd ../\n env | grep -v -E '^_=' | sort\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> cd ../
+< [0]minishell>  env | grep -v -E '^_=' | sort
+13c11
+< PWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
+---
+> PWD=/Users/watanabeyouhei/program/42tokyo/minishell
+16c14
+< SHLVL=2
+---
+> SHLVL=3
+27,28d24
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cd ../
+[0]minishell>  env | grep -v -E '^_=' | sort
+COMMAND_MODE=unix2003
+HOME=/Users/watanabeyouhei
+HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
+HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
+LC_CTYPE=ja_JP.UTF-8
+LOGIN_SHELL=1
+LOGNAME=watanabeyouhei
+LaunchInstanceID=808C01C6-3985-46E6-9FF7-0A59D587A096
+OLDPWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
+PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+PWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
+SECURITYSESSIONID=186b1
+SHELL=/bin/zsh
+SHLVL=2
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners
+TERM=xterm-256color
+TERMINAL_EMULATOR=JetBrains-JediTerm
+TERM_SESSION_ID=d0469a8e-0dbf-4a33-99ae-0a29b1a0334f
+TMPDIR=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/
+USER=watanabeyouhei
+XPC_FLAGS=0x0
+XPC_SERVICE_NAME=0
+__CFBundleIdentifier=com.jetbrains.CLion
+__CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
+[0]minishell> exit
+exit
+# bash: stdout
+COMMAND_MODE=unix2003
+HOME=/Users/watanabeyouhei
+HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
+HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
+LC_CTYPE=ja_JP.UTF-8
+LOGIN_SHELL=1
+LOGNAME=watanabeyouhei
+LaunchInstanceID=808C01C6-3985-46E6-9FF7-0A59D587A096
+OLDPWD=/Users/watanabeyouhei/program/42tokyo/minishell/tester
+PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+PWD=/Users/watanabeyouhei/program/42tokyo/minishell
+SECURITYSESSIONID=186b1
+SHELL=/bin/zsh
+SHLVL=3
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners
+TERM=xterm-256color
+TERMINAL_EMULATOR=JetBrains-JediTerm
+TERM_SESSION_ID=d0469a8e-0dbf-4a33-99ae-0a29b1a0334f
+TMPDIR=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/
+USER=watanabeyouhei
+XPC_FLAGS=0x0
+XPC_SERVICE_NAME=0
+__CFBundleIdentifier=com.jetbrains.CLion
+__CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            errorTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: hoge\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> hoge
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> hoge
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: hoge: command not found
+# bash: stderr
+bash: line 1: hoge: command not found
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            exitTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: exit 0\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit 0
+< exit
+# minishell: stdout
+[0]minishell> exit 0
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: exit 1\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit 1
+< exit
+# minishell: stdout
+[0]minishell> exit 1
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 1
+
+-------------------------
+[KO ] case: exit -1\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit -1
+< exit
+# minishell: stdout
+[0]minishell> exit -1
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 255
+
+-------------------------
+[KO ] case: exit 2147483647\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit 2147483647
+< exit
+# minishell: stdout
+[0]minishell> exit 2147483647
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 255
+
+-------------------------
+[KO ] case: exit 2147483648\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit 2147483648
+< exit
+# minishell: stdout
+[0]minishell> exit 2147483648
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: exit -2147483648\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit -2147483648
+< exit
+# minishell: stdout
+[0]minishell> exit -2147483648
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: exit -2147483649\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit -2147483649
+< exit
+# minishell: stdout
+[0]minishell> exit -2147483649
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 255
+
+-------------------------
+[KO ] case: exit 9223372036854775807\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit 9223372036854775807
+< exit
+# minishell: stdout
+[0]minishell> exit 9223372036854775807
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 255
+
+-------------------------
+[KO ] case: exit 9223372036854775808\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit 9223372036854775808
+< exit
+# minishell: stdout
+[0]minishell> exit 9223372036854775808
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+bash: line 1: exit: 9223372036854775808: numeric argument required
+# minishell: exit status = 0
+# bash     : exit status = 255
+
+-------------------------
+[KO ] case: exit " 42 "\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit "        42           "
+< exit
+# minishell: stdout
+[0]minishell> exit "        42           "
+exit
+# bash: stdout
+# minishell: stderr
+minishell: exit:         42           numeric argument required
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 42
+
+-------------------------
+[KO ] case: exit ++42\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit ++42
+< exit
+# minishell: stdout
+[0]minishell> exit ++42
+exit
+# bash: stdout
+# minishell: stderr
+minishell: exit: ++42numeric argument required
+# bash: stderr
+bash: line 1: exit: ++42: numeric argument required
+# minishell: exit status = 0
+# bash     : exit status = 255
+
+-------------------------
+[KO ] case: exit 42 42\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit 42 42
+< exit
+# minishell: stdout
+[0]minishell> exit 42 42
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+bash: line 1: exit: too many arguments
+# minishell: exit status = 0
+# bash     : exit status = 1
+
+-------------------------
+[KO ] case: exit a\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit a
+< exit
+# minishell: stdout
+[0]minishell> exit a
+exit
+# bash: stdout
+# minishell: stderr
+minishell: exit: anumeric argument required
+# bash: stderr
+bash: line 1: exit: a: numeric argument required
+# minishell: exit status = 0
+# bash     : exit status = 255
+
+-------------------------
+[KO ] case: exit 1a\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit 1a
+< exit
+# minishell: stdout
+[0]minishell> exit 1a
+exit
+# bash: stdout
+# minishell: stderr
+minishell: exit: 1anumeric argument required
+# bash: stderr
+bash: line 1: exit: 1a: numeric argument required
+# minishell: exit status = 0
+# bash     : exit status = 255
+
+-------------------------
+[KO ] case: exit +\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit +
+< exit
+# minishell: stdout
+[0]minishell> exit +
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+bash: line 1: exit: +: numeric argument required
+# minishell: exit status = 0
+# bash     : exit status = 255
+
+-------------------------
+[KO ] case: exit -\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit -
+< exit
+# minishell: stdout
+[0]minishell> exit -
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+bash: line 1: exit: -: numeric argument required
+# minishell: exit status = 0
+# bash     : exit status = 255
+
+-------------------------
+[KO ] case: exit " "\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit "          "
+< exit
+# minishell: stdout
+[0]minishell> exit "          "
+exit
+# bash: stdout
+# minishell: stderr
+minishell: exit:           numeric argument required
+# bash: stderr
+bash: line 1: exit:           : numeric argument required
+# minishell: exit status = 0
+# bash     : exit status = 255
+
+-------------------------
+[KO ] case: exit 0 0\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit 0 0
+< exit
+# minishell: stdout
+[0]minishell> exit 0 0
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+bash: line 1: exit: too many arguments
+# minishell: exit status = 0
+# bash     : exit status = 1
+
+-------------------------
+[KO ] case: exit 0 0\n exit\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> exit 0 0
+< exit
+# minishell: stdout
+[0]minishell> exit 0 0
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+bash: line 1: exit: too many arguments
+# minishell: exit status = 0
+# bash     : exit status = 1
+
+-------------------------
+[KO ] case: exit 0 0\n echo "this message should not be displayed" > file\n ls\nexit
+-------------------------
+diff :1,2c1,17
+< [0]minishell> exit 0 0
+< exit
+---
+> a
+> a:b
+> b
+> cases
+> cmd
+> dir
+> exe
+> file
+> hello
+> help
+> leaks.sh
+> link
+> rb.c
+> result.log
+> simple
+> test.sh
+> tmp
+# minishell: stdout
+[0]minishell> exit 0 0
+exit
+# bash: stdout
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+file
+hello
+help
+leaks.sh
+link
+rb.c
+result.log
+simple
+test.sh
+tmp
+# minishell: stderr
+# bash: stderr
+bash: line 1: exit: too many arguments
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: exit 0 0 | echo hello\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> exit 0 0 | echo hello
+hello
+ [0]minishell> exit
+exit
+# bash: stdout
+hello
+# minishell: stderr
+# bash: stderr
+bash: line 1: exit: too many arguments
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            expandTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: export HELLO=hello\n echo $HELLO\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export HELLO=hello
+[0]minishell>  echo $HELLO
+
+ [0]minishell> exit
+exit
+# bash: stdout
+hello
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export HELLO=hello\n echo $hello\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export HELLO=hello
+[0]minishell>  echo $hello
+
+ [0]minishell> exit
+exit
+# bash: stdout
+
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo $\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo $
+$
+ [0]minishell> exit
+exit
+# bash: stdout
+$
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo "$"\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo "$"
+
+ [0]minishell> exit
+exit
+# bash: stdout
+$
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo '$'\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo  '$'
+$
+ [0]minishell> exit
+exit
+# bash: stdout
+$
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export HELLO=hello\n echo '\\'$HELLO\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export HELLO=hello
+[0]minishell>  echo '\'$HELLO
+\
+ [0]minishell> exit
+exit
+# bash: stdout
+\hello
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export HELLO=hello\n echo "$HELLO"\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export HELLO=hello
+[0]minishell>  echo "$HELLO"
+
+ [0]minishell> exit
+exit
+# bash: stdout
+hello
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export TEST=ech\n "$TEST"o hello\nexit
+-------------------------
+diff :1,4c1
+< [0]minishell> export TEST=ech
+< [0]minishell>  "$TEST"o hello
+< [127]minishell> exit
+< exit
+---
+> hello
+# minishell: stdout
+[0]minishell> export TEST=ech
+[0]minishell>  "$TEST"o hello
+[127]minishell> exit
+exit
+# bash: stdout
+hello
+# minishell: stderr
+minishell: o: command not found
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export TEST="echo hello"\n $TEST\nexit
+-------------------------
+diff :1,4c1
+< [0]minishell> export TEST="echo hello"
+< [1]minishell>  $TEST
+< [127]minishell> exit
+< exit
+---
+> hello
+# minishell: stdout
+[0]minishell> export TEST="echo hello"
+[1]minishell>  $TEST
+[127]minishell> exit
+exit
+# bash: stdout
+hello
+# minishell: stderr
+minishell: unset: `echo hello': not a valid identifier
+minishell: /Users/watanabeyouhei/.brew/bin/: Permission denied
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export TEST='echo hello'\n $TEST\nexit
+-------------------------
+diff :1,4c1
+< [0]minishell> export TEST='echo hello'
+< [1]minishell>  $TEST
+< [127]minishell> exit
+< exit
+---
+> hello
+# minishell: stdout
+[0]minishell> export TEST='echo hello'
+[1]minishell>  $TEST
+[127]minishell> exit
+exit
+# bash: stdout
+hello
+# minishell: stderr
+minishell: unset: `echo hello': not a valid identifier
+minishell: /Users/watanabeyouhei/.brew/bin/: Permission denied
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export TEST="\$\"echo hello\""\n $TEST\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> export TEST="\$\"echo hello\""
+< [1]minishell>  $TEST
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export TEST="\$\"echo hello\""
+[1]minishell>  $TEST
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: unset: `\\echo': not a valid identifier
+minishell: unset: `hello\': not a valid identifier
+minishell: unset: `': not a valid identifier
+minishell: /Users/watanabeyouhei/.brew/bin/: Permission denied
+# bash: stderr
+bash: line 2: $"echo: command not found
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: export TEST="echo hello"\n export TEST2="\$TEST"\n $TEST2\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> export TEST="echo hello"
+< [1]minishell>  export TEST2="\$TEST"
+< [1]minishell>  $TEST2
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export TEST="echo hello"
+[1]minishell>  export TEST2="\$TEST"
+[1]minishell>  $TEST2
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: unset: `echo hello': not a valid identifier
+minishell: unset: `\': not a valid identifier
+minishell: /Users/watanabeyouhei/.brew/bin/: Permission denied
+# bash: stderr
+bash: line 3: $TEST: command not found
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: export abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890=hello\n echo $abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890=hello
+[0]minishell>  echo $abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890
+
+ [0]minishell> exit
+exit
+# bash: stdout
+hello
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export TEST="export TEST=echo"\n $TEST hello\n $TEST hello\nexit
+-------------------------
+diff :1,5c1
+< [0]minishell> export TEST="export TEST=echo"
+< [1]minishell>  $TEST hello
+< [127]minishell>  $TEST hello
+< [127]minishell> exit
+< exit
+---
+> hello
+# minishell: stdout
+[0]minishell> export TEST="export TEST=echo"
+[1]minishell>  $TEST hello
+[127]minishell>  $TEST hello
+[127]minishell> exit
+exit
+# bash: stdout
+hello
+# minishell: stderr
+minishell: unset: `export TEST=echo': not a valid identifier
+minishell: /Users/watanabeyouhei/.brew/bin/: Permission denied
+minishell: /Users/watanabeyouhei/.brew/bin/: Permission denied
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            exportTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: export | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
+-------------------------
+diff :1d0
+< [0]minishell> export | grep -v -E '_=' | cut -d " " -f 3 | sort
+11d9
+< OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+16c14
+< SHLVL="2"
+---
+> SHLVL="3"
+25,26c23,24
+< [0]minishell> exit
+< exit
+---
+> __CFBundleIdentifier="com.jetbrains.CLion"
+> __CF_USER_TEXT_ENCODING="0x1F5:0x1:0xE"
+# minishell: stdout
+[0]minishell> export | grep -v -E '_=' | cut -d " " -f 3 | sort
+COMMAND_MODE="unix2003"
+HOME="/Users/watanabeyouhei"
+HOMEBREW_CACHE="/tmp/watanabeyouhei/Homebrew/Caches"
+HOMEBREW_TEMP="/tmp/watanabeyouhei/Homebrew/Temp"
+LC_CTYPE="ja_JP.UTF-8"
+LOGIN_SHELL="1"
+LOGNAME="watanabeyouhei"
+LaunchInstanceID="808C01C6-3985-46E6-9FF7-0A59D587A096"
+OLDPWD
+OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+PWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+SECURITYSESSIONID="186b1"
+SHELL="/bin/zsh"
+SHLVL="2"
+SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners"
+TERM="xterm-256color"
+TERMINAL_EMULATOR="JetBrains-JediTerm"
+TERM_SESSION_ID="d0469a8e-0dbf-4a33-99ae-0a29b1a0334f"
+TMPDIR="/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/"
+USER="watanabeyouhei"
+XPC_FLAGS="0x0"
+XPC_SERVICE_NAME="0"
+[0]minishell> exit
+exit
+# bash: stdout
+COMMAND_MODE="unix2003"
+HOME="/Users/watanabeyouhei"
+HOMEBREW_CACHE="/tmp/watanabeyouhei/Homebrew/Caches"
+HOMEBREW_TEMP="/tmp/watanabeyouhei/Homebrew/Temp"
+LC_CTYPE="ja_JP.UTF-8"
+LOGIN_SHELL="1"
+LOGNAME="watanabeyouhei"
+LaunchInstanceID="808C01C6-3985-46E6-9FF7-0A59D587A096"
+OLDPWD
+PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+PWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+SECURITYSESSIONID="186b1"
+SHELL="/bin/zsh"
+SHLVL="3"
+SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners"
+TERM="xterm-256color"
+TERMINAL_EMULATOR="JetBrains-JediTerm"
+TERM_SESSION_ID="d0469a8e-0dbf-4a33-99ae-0a29b1a0334f"
+TMPDIR="/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/"
+USER="watanabeyouhei"
+XPC_FLAGS="0x0"
+XPC_SERVICE_NAME="0"
+__CFBundleIdentifier="com.jetbrains.CLion"
+__CF_USER_TEXT_ENCODING="0x1F5:0x1:0xE"
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export 1 _+ _OK _2? _OK2=VAR =NG OK3=\n export | grep -v -E '^declare -x _=' | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> export 1 _+ _OK _2? _OK2=VAR =NG OK3=
+< [1]minishell>  export | grep -v -E '^declare -x _=' | grep -v -E '_=' | cut -d " " -f 3 | sort
+11c9
+< OK3
+---
+> OK3=""
+13d10
+< OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+18c15
+< SHLVL="2"
+---
+> SHLVL="3"
+27,28c24,27
+< [0]minishell> exit
+< exit
+---
+> _OK
+> _OK2="VAR"
+> __CFBundleIdentifier="com.jetbrains.CLion"
+> __CF_USER_TEXT_ENCODING="0x1F5:0x1:0xE"
+# minishell: stdout
+[0]minishell> export 1 _+ _OK _2? _OK2=VAR =NG OK3=
+[1]minishell>  export | grep -v -E '^declare -x _=' | grep -v -E '_=' | cut -d " " -f 3 | sort
+COMMAND_MODE="unix2003"
+HOME="/Users/watanabeyouhei"
+HOMEBREW_CACHE="/tmp/watanabeyouhei/Homebrew/Caches"
+HOMEBREW_TEMP="/tmp/watanabeyouhei/Homebrew/Temp"
+LC_CTYPE="ja_JP.UTF-8"
+LOGIN_SHELL="1"
+LOGNAME="watanabeyouhei"
+LaunchInstanceID="808C01C6-3985-46E6-9FF7-0A59D587A096"
+OK3
+OLDPWD
+OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+PWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+SECURITYSESSIONID="186b1"
+SHELL="/bin/zsh"
+SHLVL="2"
+SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners"
+TERM="xterm-256color"
+TERMINAL_EMULATOR="JetBrains-JediTerm"
+TERM_SESSION_ID="d0469a8e-0dbf-4a33-99ae-0a29b1a0334f"
+TMPDIR="/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/"
+USER="watanabeyouhei"
+XPC_FLAGS="0x0"
+XPC_SERVICE_NAME="0"
+[0]minishell> exit
+exit
+# bash: stdout
+COMMAND_MODE="unix2003"
+HOME="/Users/watanabeyouhei"
+HOMEBREW_CACHE="/tmp/watanabeyouhei/Homebrew/Caches"
+HOMEBREW_TEMP="/tmp/watanabeyouhei/Homebrew/Temp"
+LC_CTYPE="ja_JP.UTF-8"
+LOGIN_SHELL="1"
+LOGNAME="watanabeyouhei"
+LaunchInstanceID="808C01C6-3985-46E6-9FF7-0A59D587A096"
+OK3=""
+OLDPWD
+PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+PWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+SECURITYSESSIONID="186b1"
+SHELL="/bin/zsh"
+SHLVL="3"
+SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners"
+TERM="xterm-256color"
+TERMINAL_EMULATOR="JetBrains-JediTerm"
+TERM_SESSION_ID="d0469a8e-0dbf-4a33-99ae-0a29b1a0334f"
+TMPDIR="/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/"
+USER="watanabeyouhei"
+XPC_FLAGS="0x0"
+XPC_SERVICE_NAME="0"
+_OK
+_OK2="VAR"
+__CFBundleIdentifier="com.jetbrains.CLion"
+__CF_USER_TEXT_ENCODING="0x1F5:0x1:0xE"
+# minishell: stderr
+minishell: unset: `1': not a valid identifier
+minishell: unset: `_+': not a valid identifier
+minishell: unset: `_2?': not a valid identifier
+minishell: unset: `=NG': not a valid identifier
+# bash: stderr
+bash: line 1: export: `1': not a valid identifier
+bash: line 1: export: `_+': not a valid identifier
+bash: line 1: export: `_2?': not a valid identifier
+bash: line 1: export: `=NG': not a valid identifier
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export OVERWRITE=42\n export OVERWRITE=a\n export | grep OVERWRITE\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> export OVERWRITE=42
+< [0]minishell>  export OVERWRITE=a
+< [0]minishell>  export | grep OVERWRITE
+5,6d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export OVERWRITE=42
+[0]minishell>  export OVERWRITE=a
+[0]minishell>  export | grep OVERWRITE
+declare -x OVERWRITE="a"
+[0]minishell> exit
+exit
+# bash: stdout
+declare -x OVERWRITE="a"
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export A=B=C=D\n export | grep A="B=C=D"\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> export A=B=C=D
+< [0]minishell>  export | grep A="B=C=D"
+< [2]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export A=B=C=D
+[0]minishell>  export | grep A="B=C=D"
+[2]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+grep: B=C=D: No such file or directory
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 1
+
+-------------------------
+[KO ] case: export PATH\n export | grep PATH\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> export PATH
+< [0]minishell>  export | grep PATH
+4,5d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export PATH
+[0]minishell>  export | grep PATH
+declare -x PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+[0]minishell> exit
+exit
+# bash: stdout
+declare -x PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PWD\n export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> export PWD
+< [0]minishell>  export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort
+4d1
+< OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+6,7d2
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export PWD
+[0]minishell>  export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort
+OLDPWD
+OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+PWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+[0]minishell> exit
+exit
+# bash: stdout
+OLDPWD
+PWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export OLDPWD\n export | grep OLDPWD | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> export OLDPWD
+< [0]minishell>  export | grep OLDPWD | grep -v -E '_=' | cut -d " " -f 3 | sort
+4,6d1
+< OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export OLDPWD
+[0]minishell>  export | grep OLDPWD | grep -v -E '_=' | cut -d " " -f 3 | sort
+OLDPWD
+OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+[0]minishell> exit
+exit
+# bash: stdout
+OLDPWD
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: unset PWD\n cd ..\n export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
+-------------------------
+diff :1,7c1
+< [0]minishell> unset PWD
+< [0]minishell>  cd ..
+< [0]minishell>  export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort
+< OLDPWD
+< OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+< [0]minishell> exit
+< exit
+---
+> OLDPWD=""
+# minishell: stdout
+[0]minishell> unset PWD
+[0]minishell>  cd ..
+[0]minishell>  export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort
+OLDPWD
+OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+[0]minishell> exit
+exit
+# bash: stdout
+OLDPWD=""
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: unset OLDPWD\n cd ..\n export | grep OLDPWD | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
+-------------------------
+diff :1,6d0
+< [0]minishell> unset OLDPWD
+< [0]minishell>  cd ..
+< [0]minishell>  export | grep OLDPWD | grep -v -E '_=' | cut -d " " -f 3 | sort
+< OLDPWD
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> unset OLDPWD
+[0]minishell>  cd ..
+[0]minishell>  export | grep OLDPWD | grep -v -E '_=' | cut -d " " -f 3 | sort
+OLDPWD
+[0]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: unset PWD\n cd ..\n export PWD=new_value\n export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
+-------------------------
+diff :1,6c1
+< [0]minishell> unset PWD
+< [0]minishell>  cd ..
+< [0]minishell>  export PWD=new_value
+< [0]minishell>  export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort
+< OLDPWD
+< OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+---
+> OLDPWD=""
+8,9d2
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> unset PWD
+[0]minishell>  cd ..
+[0]minishell>  export PWD=new_value
+[0]minishell>  export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort
+OLDPWD
+OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+PWD="new_value"
+[0]minishell> exit
+exit
+# bash: stdout
+OLDPWD=""
+PWD="new_value"
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: unset OLDPWD\n cd ..\n export OLDPWD=new_value\n export | grep OLDPWD | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> unset OLDPWD
+< [0]minishell>  cd ..
+< [0]minishell>  export OLDPWD=new_value
+< [0]minishell>  export | grep OLDPWD | grep -v -E '_=' | cut -d " " -f 3 | sort
+6,7d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> unset OLDPWD
+[0]minishell>  cd ..
+[0]minishell>  export OLDPWD=new_value
+[0]minishell>  export | grep OLDPWD | grep -v -E '_=' | cut -d " " -f 3 | sort
+OLDPWD="new_value"
+[0]minishell> exit
+exit
+# bash: stdout
+OLDPWD="new_value"
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: unset PWD\n cd ..\n export PWD\n export | grep PWD\nexit
+-------------------------
+diff :1,8c1,2
+< [0]minishell> unset PWD
+< [0]minishell>  cd ..
+< [0]minishell>  export PWD
+< [0]minishell>  export | grep PWD
+< declare -x OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+< declare -x OLDPWD
+< [0]minishell> exit
+< exit
+---
+> declare -x OLDPWD=""
+> declare -x PWD="/Users/watanabeyouhei/program/42tokyo/minishell"
+# minishell: stdout
+[0]minishell> unset PWD
+[0]minishell>  cd ..
+[0]minishell>  export PWD
+[0]minishell>  export | grep PWD
+declare -x OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+declare -x OLDPWD
+[0]minishell> exit
+exit
+# bash: stdout
+declare -x OLDPWD=""
+declare -x PWD="/Users/watanabeyouhei/program/42tokyo/minishell"
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: unset OLDPWD\n cd ..\n export OLDPWD\n export | grep OLDPWD\nexit
+-------------------------
+diff :1,7c1
+< [0]minishell> unset OLDPWD
+< [0]minishell>  cd ..
+< [0]minishell>  export OLDPWD
+< [0]minishell>  export | grep OLDPWD
+< declare -x OLDPWD
+< [0]minishell> exit
+< exit
+---
+> declare -x OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+# minishell: stdout
+[0]minishell> unset OLDPWD
+[0]minishell>  cd ..
+[0]minishell>  export OLDPWD
+[0]minishell>  export | grep OLDPWD
+declare -x OLDPWD
+[0]minishell> exit
+exit
+# bash: stdout
+declare -x OLDPWD="/Users/watanabeyouhei/program/42tokyo/minishell/tester"
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export =\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> export =
+< [1]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export =
+[1]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: unset: `=': not a valid identifier
+# bash: stderr
+bash: line 1: export: `=': not a valid identifier
+# minishell: exit status = 0
+# bash     : exit status = 1
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            normalTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: echo a\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo a
+a
+ [0]minishell> exit
+exit
+# bash: stdout
+a
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo hoge\necho 42TOKYO\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo hoge
+hoge
+ [0]minishell> echo 42TOKYO
+42TOKYO
+ [0]minishell> exit
+exit
+# bash: stdout
+hoge
+42TOKYO
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            pathTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH=":" \n ls\nexit
+-------------------------
+diff :1,6d0
+< [0]minishell> cp /bin/ls .
+< [0]minishell>  chmod 000 ls
+< [0]minishell>  export PATH=":" 
+< [1]minishell>  ls
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cp /bin/ls .
+[0]minishell>  chmod 000 ls
+[0]minishell>  export PATH=":" 
+[1]minishell>  ls
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: unset: `:': not a valid identifier
+minishell: ls: command not found
+# bash: stderr
+bash: line 4: ./ls: Permission denied
+# minishell: exit status = 0
+# bash     : exit status = 126
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH=":/" \n ls\nexit
+-------------------------
+diff :1,6d0
+< [0]minishell> cp /bin/ls .
+< [0]minishell>  chmod 000 ls
+< [0]minishell>  export PATH=":/" 
+< [1]minishell>  ls
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cp /bin/ls .
+[0]minishell>  chmod 000 ls
+[0]minishell>  export PATH=":/" 
+[1]minishell>  ls
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: unset: `:/': not a valid identifier
+minishell: ls: command not found
+# bash: stderr
+bash: line 4: ./ls: Permission denied
+# minishell: exit status = 0
+# bash     : exit status = 126
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH="::" \n ls\nexit
+-------------------------
+diff :1,6d0
+< [0]minishell> cp /bin/ls .
+< [0]minishell>  chmod 000 ls
+< [0]minishell>  export PATH="::" 
+< [1]minishell>  ls
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cp /bin/ls .
+[0]minishell>  chmod 000 ls
+[0]minishell>  export PATH="::" 
+[1]minishell>  ls
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: unset: `::': not a valid identifier
+minishell: ls: command not found
+# bash: stderr
+bash: line 4: ./ls: Permission denied
+# minishell: exit status = 0
+# bash     : exit status = 126
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH="/:" \n ls\nexit
+-------------------------
+diff :1,6d0
+< [0]minishell> cp /bin/ls .
+< [0]minishell>  chmod 000 ls
+< [0]minishell>  export PATH="/:" 
+< [1]minishell>  ls
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cp /bin/ls .
+[0]minishell>  chmod 000 ls
+[0]minishell>  export PATH="/:" 
+[1]minishell>  ls
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: unset: `/:': not a valid identifier
+minishell: ls: command not found
+# bash: stderr
+bash: line 4: ./ls: Permission denied
+# minishell: exit status = 0
+# bash     : exit status = 126
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH="/bin:" \n ls\nexit
+-------------------------
+diff :1,6c1,17
+< [0]minishell> cp /bin/ls .
+< [0]minishell>  chmod 000 ls
+< [0]minishell>  export PATH="/bin:" 
+< [1]minishell>  ls
+< [127]minishell> exit
+< exit
+---
+> a
+> a:b
+> b
+> cases
+> cmd
+> dir
+> exe
+> hello
+> help
+> leaks.sh
+> link
+> ls
+> rb.c
+> result.log
+> simple
+> test.sh
+> tmp
+# minishell: stdout
+[0]minishell> cp /bin/ls .
+[0]minishell>  chmod 000 ls
+[0]minishell>  export PATH="/bin:" 
+[1]minishell>  ls
+[127]minishell> exit
+exit
+# bash: stdout
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+hello
+help
+leaks.sh
+link
+ls
+rb.c
+result.log
+simple
+test.sh
+tmp
+# minishell: stderr
+minishell: unset: `/bin:': not a valid identifier
+minishell: ls: command not found
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH=":/bin" \n ls\nexit
+-------------------------
+diff :1,6c1,17
+< [0]minishell> cp /bin/ls .
+< [0]minishell>  chmod 000 ls
+< [0]minishell>  export PATH=":/bin" 
+< [1]minishell>  ls
+< [127]minishell> exit
+< exit
+---
+> a
+> a:b
+> b
+> cases
+> cmd
+> dir
+> exe
+> hello
+> help
+> leaks.sh
+> link
+> ls
+> rb.c
+> result.log
+> simple
+> test.sh
+> tmp
+# minishell: stdout
+[0]minishell> cp /bin/ls .
+[0]minishell>  chmod 000 ls
+[0]minishell>  export PATH=":/bin" 
+[1]minishell>  ls
+[127]minishell> exit
+exit
+# bash: stdout
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+hello
+help
+leaks.sh
+link
+ls
+rb.c
+result.log
+simple
+test.sh
+tmp
+# minishell: stderr
+minishell: unset: `:/bin': not a valid identifier
+minishell: ls: command not found
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH="::/bin::" \n ls\nexit
+-------------------------
+diff :1,6c1,17
+< [0]minishell> cp /bin/ls .
+< [0]minishell>  chmod 000 ls
+< [0]minishell>  export PATH="::/bin::" 
+< [1]minishell>  ls
+< [127]minishell> exit
+< exit
+---
+> a
+> a:b
+> b
+> cases
+> cmd
+> dir
+> exe
+> hello
+> help
+> leaks.sh
+> link
+> ls
+> rb.c
+> result.log
+> simple
+> test.sh
+> tmp
+# minishell: stdout
+[0]minishell> cp /bin/ls .
+[0]minishell>  chmod 000 ls
+[0]minishell>  export PATH="::/bin::" 
+[1]minishell>  ls
+[127]minishell> exit
+exit
+# bash: stdout
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+hello
+help
+leaks.sh
+link
+ls
+rb.c
+result.log
+simple
+test.sh
+tmp
+# minishell: stderr
+minishell: unset: `::/bin::': not a valid identifier
+minishell: ls: command not found
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH="/bin:" \n ls\nexit
+-------------------------
+diff :1,6c1,17
+< [0]minishell> cp /bin/ls .
+< [0]minishell>  chmod 000 ls
+< [0]minishell>  export PATH="/bin:" 
+< [1]minishell>  ls
+< [127]minishell> exit
+< exit
+---
+> a
+> a:b
+> b
+> cases
+> cmd
+> dir
+> exe
+> hello
+> help
+> leaks.sh
+> link
+> ls
+> rb.c
+> result.log
+> simple
+> test.sh
+> tmp
+# minishell: stdout
+[0]minishell> cp /bin/ls .
+[0]minishell>  chmod 000 ls
+[0]minishell>  export PATH="/bin:" 
+[1]minishell>  ls
+[127]minishell> exit
+exit
+# bash: stdout
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+hello
+help
+leaks.sh
+link
+ls
+rb.c
+result.log
+simple
+test.sh
+tmp
+# minishell: stderr
+minishell: unset: `/bin:': not a valid identifier
+minishell: ls: command not found
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH="hello:" \n ls\nexit
+-------------------------
+diff :1,6d0
+< [0]minishell> cp /bin/ls .
+< [0]minishell>  chmod 000 ls
+< [0]minishell>  export PATH="hello:" 
+< [1]minishell>  ls
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cp /bin/ls .
+[0]minishell>  chmod 000 ls
+[0]minishell>  export PATH="hello:" 
+[1]minishell>  ls
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: unset: `hello:': not a valid identifier
+minishell: ls: command not found
+# bash: stderr
+bash: line 4: ./ls: Permission denied
+# minishell: exit status = 0
+# bash     : exit status = 126
+
+-------------------------
+[KO ] case: export PATH=""\n nosuchfile\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> export PATH=""
+< [1]minishell>  nosuchfile
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export PATH=""
+[1]minishell>  nosuchfile
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: unset: `': not a valid identifier
+minishell: nosuchfile: command not found
+# bash: stderr
+bash: line 2: nosuchfile: No such file or directory
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: export PATH=''\n nosuchfile\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> export PATH=''
+< [1]minishell>  nosuchfile
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export PATH=''
+[1]minishell>  nosuchfile
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: unset: `': not a valid identifier
+minishell: nosuchfile: command not found
+# bash: stderr
+bash: line 2: nosuchfile: No such file or directory
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: unset PATH\n nosuchfile\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> unset PATH
+< [0]minishell>  nosuchfile
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> unset PATH
+[0]minishell>  nosuchfile
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: nosuchfile: command not found
+# bash: stderr
+bash: line 2: nosuchfile: No such file or directory
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: unset PATH\n export PATH\n nosuchfile\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> unset PATH
+< [0]minishell>  export PATH
+< [0]minishell>  nosuchfile
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> unset PATH
+[0]minishell>  export PATH
+[0]minishell>  nosuchfile
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: nosuchfile: command not found
+# bash: stderr
+bash: line 3: nosuchfile: No such file or directory
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: unset PATH\n export PATH=\n nosuchfile\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> unset PATH
+< [0]minishell>  export PATH=
+< [0]minishell>  nosuchfile
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> unset PATH
+[0]minishell>  export PATH=
+[0]minishell>  nosuchfile
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: nosuchfile: command not found
+# bash: stderr
+bash: line 3: nosuchfile: No such file or directory
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: unset PATH\n /bin/ls\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> unset PATH
+< [0]minishell>  /bin/ls
+19,20d16
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> unset PATH
+[0]minishell>  /bin/ls
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+hello
+help
+leaks.sh
+link
+rb.c
+result.log
+simple
+test.sh
+tmp
+[0]minishell> exit
+exit
+# bash: stdout
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+hello
+help
+leaks.sh
+link
+rb.c
+result.log
+simple
+test.sh
+tmp
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PATH=":a:b"\n cmd\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> export PATH=":a:b"
+< [1]minishell>  cmd
+4,5d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export PATH=":a:b"
+[1]minishell>  cmd
+cwd
+[0]minishell> exit
+exit
+# bash: stdout
+cwd
+# minishell: stderr
+minishell: unset: `:a:b': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PATH="b:a:"\n cmd\nexit
+-------------------------
+diff :1,5c1
+< [0]minishell> export PATH="b:a:"
+< [1]minishell>  cmd
+< cwd
+< [0]minishell> exit
+< exit
+---
+> b
+# minishell: stdout
+[0]minishell> export PATH="b:a:"
+[1]minishell>  cmd
+cwd
+[0]minishell> exit
+exit
+# bash: stdout
+b
+# minishell: stderr
+minishell: unset: `b:a:': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PATH="a:b"\n cmd\nexit
+-------------------------
+diff :1,5c1
+< [0]minishell> export PATH="a:b"
+< [1]minishell>  cmd
+< cwd
+< [0]minishell> exit
+< exit
+---
+> a
+# minishell: stdout
+[0]minishell> export PATH="a:b"
+[1]minishell>  cmd
+cwd
+[0]minishell> exit
+exit
+# bash: stdout
+a
+# minishell: stderr
+minishell: unset: `a:b': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PATH="no_such_dir:a"\n cmd\nexit
+-------------------------
+diff :1,5c1
+< [0]minishell> export PATH="no_such_dir:a"
+< [1]minishell>  cmd
+< cwd
+< [0]minishell> exit
+< exit
+---
+> a
+# minishell: stdout
+[0]minishell> export PATH="no_such_dir:a"
+[1]minishell>  cmd
+cwd
+[0]minishell> exit
+exit
+# bash: stdout
+a
+# minishell: stderr
+minishell: unset: `no_such_dir:a': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PATH="no_such_dir1:no_such_dir2:"\n cmd\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> export PATH="no_such_dir1:no_such_dir2:"
+< [1]minishell>  cmd
+4,5d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> export PATH="no_such_dir1:no_such_dir2:"
+[1]minishell>  cmd
+cwd
+[0]minishell> exit
+exit
+# bash: stdout
+cwd
+# minishell: stderr
+minishell: unset: `no_such_dir1:no_such_dir2:': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            pwdTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: echo $OLDPWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo $OLDPWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export OLDPWD=/\n echo $OLDPWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export OLDPWD=/
+[0]minishell>  echo $OLDPWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+/
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo $PWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo $PWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PWD=/\n echo $PWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export PWD=/
+[0]minishell>  echo $PWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+/
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: mkdir dir\n ln -s dir symdir\n cd symdir\n echo $PWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> mkdir dir
+[1]minishell>  ln -s dir symdir
+[0]minishell>  cd symdir
+[0]minishell>  echo $PWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/symdir
+# minishell: stderr
+mkdir: dir: File exists
+# bash: stderr
+mkdir: dir: File exists
+ln: symdir/dir: File exists
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: pwd\nexit
+-------------------------
+diff :1d0
+< [0]minishell> pwd
+3,4d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: pwd\n export PWD=/\nexit
+-------------------------
+diff :1d0
+< [0]minishell> pwd
+3,5d1
+< [0]minishell>  export PWD=/
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell>  export PWD=/
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: pwd\n mkdir dir\n ln -s dir symdir\n cd symdir\nexit
+-------------------------
+diff :1d0
+< [0]minishell> pwd
+3,7d1
+< [0]minishell>  mkdir dir
+< [1]minishell>  ln -s dir symdir
+< [1]minishell>  cd symdir
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell>  mkdir dir
+[1]minishell>  ln -s dir symdir
+[1]minishell>  cd symdir
+[0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+# minishell: stderr
+mkdir: dir: File exists
+ln: symdir/dir: File exists
+# bash: stderr
+mkdir: dir: File exists
+ln: symdir/dir: File exists
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export PWD=
+[0]minishell>  export OLDPWD=
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell>  echo $PWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell>  echo $OLDPWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+
+
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n cd dir\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export PWD=
+[0]minishell>  export OLDPWD=
+[0]minishell>  mkdir dir
+[1]minishell>  cd dir
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell>  echo $PWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell>  echo $OLDPWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+
+# minishell: stderr
+mkdir: dir: File exists
+# bash: stderr
+mkdir: dir: File exists
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n cd dir\n cd ..\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export PWD=
+[0]minishell>  export OLDPWD=
+[0]minishell>  mkdir dir
+[1]minishell>  cd dir
+[0]minishell>  cd ..
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell>  echo $PWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell>  echo $OLDPWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+# minishell: stderr
+mkdir: dir: File exists
+# bash: stderr
+mkdir: dir: File exists
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n cd\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export PWD=
+[0]minishell>  export OLDPWD=
+[0]minishell>  cd
+[0]minishell>  pwd
+/private/tmp/watanabeyouhei/Homebrew/Temp
+[0]minishell>  echo $PWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell>  echo $OLDPWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei
+/Users/watanabeyouhei
+
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n cd dir\n rmdir ../dir\n cd ./\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export PWD=
+[0]minishell>  export OLDPWD=
+[0]minishell>  mkdir dir
+[1]minishell>  cd dir
+[0]minishell>  rmdir ../dir
+[1]minishell>  cd ./
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell>  echo $PWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell>  echo $OLDPWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+# minishell: stderr
+mkdir: dir: File exists
+rmdir: ../dir: Directory not empty
+# bash: stderr
+mkdir: dir: File exists
+rmdir: ../dir: Directory not empty
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n cd dir\n rmdir ../dir\n cd ./\n cd ././././././//////////./././././././//////./\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export PWD=
+[0]minishell>  export OLDPWD=
+[0]minishell>  mkdir dir
+[1]minishell>  cd dir
+[0]minishell>  rmdir ../dir
+[1]minishell>  cd ./
+[0]minishell>  cd ././././././//////////./././././././//////./
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell>  echo $PWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell>  echo $OLDPWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+# minishell: stderr
+mkdir: dir: File exists
+rmdir: ../dir: Directory not empty
+# bash: stderr
+mkdir: dir: File exists
+rmdir: ../dir: Directory not empty
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n cd dir\n rmdir ../dir\n cd ./\n cd ../\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export PWD=
+[0]minishell>  export OLDPWD=
+[0]minishell>  mkdir dir
+[1]minishell>  cd dir
+[0]minishell>  rmdir ../dir
+[1]minishell>  cd ./
+[0]minishell>  cd ../
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell>  echo $PWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell>  echo $OLDPWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+# minishell: stderr
+mkdir: dir: File exists
+rmdir: ../dir: Directory not empty
+# bash: stderr
+mkdir: dir: File exists
+rmdir: ../dir: Directory not empty
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n ln -s dir link\n cd link\n rmdir ../dir\n cd ./\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export PWD=
+[0]minishell>  export OLDPWD=
+[0]minishell>  mkdir dir
+[1]minishell>  ln -s dir link
+[1]minishell>  cd link
+[0]minishell>  rmdir ../dir
+[1]minishell>  cd ./
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell>  echo $PWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell>  echo $OLDPWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/link
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/link
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/link
+# minishell: stderr
+mkdir: dir: File exists
+ln: link/dir: File exists
+rmdir: ../dir: Directory not empty
+# bash: stderr
+mkdir: dir: File exists
+ln: link/dir: File exists
+rmdir: ../dir: Directory not empty
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n ln -s dir link\n cd link\n rmdir ../dir\n cd ./\n cd ../\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export PWD=
+[0]minishell>  export OLDPWD=
+[0]minishell>  mkdir dir
+[1]minishell>  ln -s dir link
+[1]minishell>  cd link
+[0]minishell>  rmdir ../dir
+[1]minishell>  cd ./
+[0]minishell>  cd ../
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell>  echo $PWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell>  echo $OLDPWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/link
+# minishell: stderr
+mkdir: dir: File exists
+ln: link/dir: File exists
+rmdir: ../dir: Directory not empty
+# bash: stderr
+mkdir: dir: File exists
+ln: link/dir: File exists
+rmdir: ../dir: Directory not empty
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir DIR\n cd dir\n rmdir ../DIR\n cd ./\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export PWD=
+[0]minishell>  export OLDPWD=
+[0]minishell>  mkdir DIR
+[1]minishell>  cd dir
+[0]minishell>  rmdir ../DIR
+[1]minishell>  cd ./
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell>  echo $PWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell>  echo $OLDPWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+# minishell: stderr
+mkdir: DIR: File exists
+rmdir: ../DIR: Directory not empty
+# bash: stderr
+mkdir: DIR: File exists
+rmdir: ../DIR: Directory not empty
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir DIR\n cd dir\n rmdir ../DIR\n cd ./\n cd ../\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export PWD=
+[0]minishell>  export OLDPWD=
+[0]minishell>  mkdir DIR
+[1]minishell>  cd dir
+[0]minishell>  rmdir ../DIR
+[1]minishell>  cd ./
+[0]minishell>  cd ../
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell>  echo $PWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell>  echo $OLDPWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+# minishell: stderr
+mkdir: DIR: File exists
+rmdir: ../DIR: Directory not empty
+# bash: stderr
+mkdir: DIR: File exists
+rmdir: ../DIR: Directory not empty
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n ln -s dir link\n cd LINK\n rmdir ../dir\n cd ./\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export PWD=
+[0]minishell>  export OLDPWD=
+[0]minishell>  mkdir dir
+[1]minishell>  ln -s dir link
+[1]minishell>  cd LINK
+[0]minishell>  rmdir ../dir
+[1]minishell>  cd ./
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/dir
+[0]minishell>  echo $PWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell>  echo $OLDPWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/LINK
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/LINK
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/LINK
+# minishell: stderr
+mkdir: dir: File exists
+ln: link/dir: File exists
+rmdir: ../dir: Directory not empty
+# bash: stderr
+mkdir: dir: File exists
+ln: link/dir: File exists
+rmdir: ../dir: Directory not empty
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n ln -s dir link\n cd LINK\n rmdir ../dir\n cd ./\n cd ../\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export PWD=
+[0]minishell>  export OLDPWD=
+[0]minishell>  mkdir dir
+[1]minishell>  ln -s dir link
+[1]minishell>  cd LINK
+[0]minishell>  rmdir ../dir
+[1]minishell>  cd ./
+[0]minishell>  cd ../
+[0]minishell>  pwd
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+[0]minishell>  echo $PWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell>  echo $OLDPWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+/Users/watanabeyouhei/program/42tokyo/minishell/tester/LINK
+# minishell: stderr
+mkdir: dir: File exists
+ln: link/dir: File exists
+rmdir: ../dir: Directory not empty
+# bash: stderr
+mkdir: dir: File exists
+ln: link/dir: File exists
+rmdir: ../dir: Directory not empty
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            redirectTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: > file\nexit
+-------------------------
+diff :1d0
+< [0]minishell> > file
+# minishell: stdout
+[0]minishell> > file
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 139
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: > file | cat < no_such_file\nexit
+-------------------------
+diff :1d0
+< [0]minishell> > file | cat < no_such_file
+# minishell: stdout
+[0]minishell> > file | cat < no_such_file
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+bash: line 1: no_such_file: No such file or directory
+# minishell: exit status = 139
+# bash     : exit status = 1
+
+-------------------------
+[KO ] case: echo hello > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo hello > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt
+hello
+ [0]minishell>  cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+[1]minishell> exit
+exit
+# bash: stdout
+hello
+# minishell: stderr
+cat: out1.txt: No such file or directory
+cat: out2.txt: No such file or directory
+cat: out3.txt: No such file or directory
+cat: err1.txt: No such file or directory
+cat: err2.txt: No such file or directory
+cat: err3.txt: No such file or directory
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo hello >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo hello >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt
+hello
+ [0]minishell>  cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+[1]minishell> exit
+exit
+# bash: stdout
+hello
+# minishell: stderr
+cat: out1.txt: No such file or directory
+cat: out2.txt: No such file or directory
+cat: out3.txt: No such file or directory
+cat: err1.txt: No such file or directory
+cat: err2.txt: No such file or directory
+cat: err3.txt: No such file or directory
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: ls > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> ls > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt
+< [0]minishell>  cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+26,27d23
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> ls > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt
+[0]minishell>  cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+a
+a:b
+b
+cases
+cmd
+dir
+err1.txt
+err2.txt
+err3.txt
+exe
+hello
+help
+leaks.sh
+link
+out1.txt
+out2.txt
+out3.txt
+rb.c
+result.log
+simple
+symdir
+test.sh
+tmp
+[0]minishell> exit
+exit
+# bash: stdout
+a
+a:b
+b
+cases
+cmd
+dir
+err1.txt
+err2.txt
+err3.txt
+exe
+hello
+help
+leaks.sh
+link
+out1.txt
+out2.txt
+out3.txt
+rb.c
+result.log
+simple
+symdir
+test.sh
+tmp
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: ls >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> ls >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt
+< [0]minishell>  cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+26,27d23
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> ls >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt
+[0]minishell>  cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+a
+a:b
+b
+cases
+cmd
+dir
+err1.txt
+err2.txt
+err3.txt
+exe
+hello
+help
+leaks.sh
+link
+out1.txt
+out2.txt
+out3.txt
+rb.c
+result.log
+simple
+symdir
+test.sh
+tmp
+[0]minishell> exit
+exit
+# bash: stdout
+a
+a:b
+b
+cases
+cmd
+dir
+err1.txt
+err2.txt
+err3.txt
+exe
+hello
+help
+leaks.sh
+link
+out1.txt
+out2.txt
+out3.txt
+rb.c
+result.log
+simple
+symdir
+test.sh
+tmp
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: ls no_such_file > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> ls no_such_file > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt
+< [1]minishell>  cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> ls no_such_file > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt
+[1]minishell>  cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+[0]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+ls: no_such_file: No such file or directory
+# bash: stderr
+ls: no_such_file: No such file or directory
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: ls no_such_file >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> ls no_such_file >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt
+< [1]minishell>  cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> ls no_such_file >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt
+[1]minishell>  cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+[0]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+ls: no_such_file: No such file or directory
+# bash: stderr
+ls: no_such_file: No such file or directory
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo a > out\n echo b >> out\n echo c >> out\n echo d >> out\n cat out\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo a > out
+a
+ [0]minishell>  echo b >> out
+b
+ [0]minishell>  echo c >> out
+c
+ [0]minishell>  echo d >> out
+d
+ [0]minishell>  cat out
+[1]minishell> exit
+exit
+# bash: stdout
+a
+b
+c
+d
+# minishell: stderr
+cat: out: No such file or directory
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo a > out\n echo b >> out\n echo c >> out\n echo d > out\n cat out\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo a > out
+a
+ [0]minishell>  echo b >> out
+b
+ [0]minishell>  echo c >> out
+c
+ [0]minishell>  echo d > out
+d
+ [0]minishell>  cat out
+[1]minishell> exit
+exit
+# bash: stdout
+d
+# minishell: stderr
+cat: out: No such file or directory
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: unset NO_ENV\n echo a > $NO_ENV | echo b\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> unset NO_ENV
+[0]minishell>  echo a > $NO_ENV | echo b
+b
+ [0]minishell> exit
+exit
+# bash: stdout
+b
+# minishell: stderr
+# bash: stderr
+bash: line 2: $NO_ENV: ambiguous redirect
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: gcc rb.c \n ./a.out > file1 \n cat file1\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> gcc rb.c 
+< [0]minishell>  ./a.out > file1 
+< [0]minishell>  cat file1
+5,6d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> gcc rb.c 
+[0]minishell>  ./a.out > file1 
+[0]minishell>  cat file1
+fd1
+[0]minishell> exit
+exit
+# bash: stdout
+fd1
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo a > f\n echo b >> f\n cat f f f >> ff\n cat ff ff >> f\n cat f\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo a > f
+a
+ [0]minishell>  echo b >> f
+b
+ [0]minishell>  cat f f f >> ff
+[1]minishell>  cat ff ff >> f
+[0]minishell>  cat f
+[0]minishell> exit
+exit
+# bash: stdout
+a
+b
+a
+b
+a
+b
+a
+b
+a
+b
+a
+b
+a
+b
+# minishell: stderr
+cat: f: No such file or directory
+cat: f: No such file or directory
+cat: f: No such file or directory
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: ls>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f\ncat f\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> ls>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f
+< [0]minishell> cat f
+21,22d18
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> ls>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f
+[0]minishell> cat f
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+f
+hello
+help
+leaks.sh
+link
+rb.c
+result.log
+simple
+symdir
+test.sh
+tmp
+[0]minishell> exit
+exit
+# bash: stdout
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+f
+hello
+help
+leaks.sh
+link
+rb.c
+result.log
+simple
+symdir
+test.sh
+tmp
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: ls>a>b>c>d>e>f>g>h>i>j>k>l>m>n>o>p>q>r>s>t>u>v>w>x>y>z>A>B>C>D>E>F>G>H>I>J>K>L>M>N>O>P>Q>R>S>T>U>V>W>X>Y>Z>aa>ab>ac>ad>ae>af>ag>ah>ai>aj>ak>al>am>an>ao>ap>aq>ar>as>at>au>av>aw>ax>ay>az>aA>aB>aC>aD>aE>aF>aG>aH>aI>aJ>aK>aL>aM>aN>aO>aP>aQ>aR>aS>aT>aU>aV\nls\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> ls>a>b>c>d>e>f>g>h>i>j>k>l>m>n>o>p>q>r>s>t>u>v>w>x>y>z>A>B>C>D>E>F>G>H>I>J>K>L>M>N>O>P>Q>R>S>T>U>V>W>X>Y>Z>aa>ab>ac>ad>ae>af>ag>ah>ai>aj>ak>al>am>an>ao>ap>aq>ar>as>at>au>av>aw>ax>ay>az>aA>aB>aC>aD>aE>aF>aG>aH>aI>aJ>aK>aL>aM>aN>aO>aP>aQ>aR>aS>aT>aU>aV
+< [1]minishell> ls
+20,21d17
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> ls>a>b>c>d>e>f>g>h>i>j>k>l>m>n>o>p>q>r>s>t>u>v>w>x>y>z>A>B>C>D>E>F>G>H>I>J>K>L>M>N>O>P>Q>R>S>T>U>V>W>X>Y>Z>aa>ab>ac>ad>ae>af>ag>ah>ai>aj>ak>al>am>an>ao>ap>aq>ar>as>at>au>av>aw>ax>ay>az>aA>aB>aC>aD>aE>aF>aG>aH>aI>aJ>aK>aL>aM>aN>aO>aP>aQ>aR>aS>aT>aU>aV
+[1]minishell> ls
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+hello
+help
+leaks.sh
+link
+rb.c
+result.log
+simple
+symdir
+test.sh
+tmp
+[0]minishell> exit
+exit
+# bash: stdout
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+hello
+help
+leaks.sh
+link
+rb.c
+result.log
+simple
+symdir
+test.sh
+tmp
+# minishell: stderr
+minishell: a :Is a directory
+# bash: stderr
+bash: line 1: a: Is a directory
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            shlvlTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: export SHLVL=0\n echo $SHLVL\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export SHLVL=0
+[0]minishell>  echo $SHLVL
+2
+ [0]minishell> exit
+exit
+# bash: stdout
+0
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export SHLVL=998\n echo $SHLVL\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export SHLVL=998
+[0]minishell>  echo $SHLVL
+2
+ [0]minishell> exit
+exit
+# bash: stdout
+998
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export SHLVL=999\n echo $SHLVL\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export SHLVL=999
+[0]minishell>  echo $SHLVL
+2
+ [0]minishell> exit
+exit
+# bash: stdout
+999
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export SHLVL=1000\n echo $SHLVL\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export SHLVL=1000
+[0]minishell>  echo $SHLVL
+2
+ [0]minishell> exit
+exit
+# bash: stdout
+1000
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export SHLVL=+42\n echo $SHLVL\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export SHLVL=+42
+[0]minishell>  echo $SHLVL
+2
+ [0]minishell> exit
+exit
+# bash: stdout
++42
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export SHLVL=-1\n echo $SHLVL\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export SHLVL=-1
+[0]minishell>  echo $SHLVL
+2
+ [0]minishell> exit
+exit
+# bash: stdout
+-1
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export SHLVL=4294967295\n echo $SHLVL\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export SHLVL=4294967295
+[0]minishell>  echo $SHLVL
+2
+ [0]minishell> exit
+exit
+# bash: stdout
+4294967295
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export SHLVL=4294967296\n echo $SHLVL\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export SHLVL=4294967296
+[0]minishell>  echo $SHLVL
+2
+ [0]minishell> exit
+exit
+# bash: stdout
+4294967296
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export SHLVL=-4294967296\n echo $SHLVL\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export SHLVL=-4294967296
+[0]minishell>  echo $SHLVL
+2
+ [0]minishell> exit
+exit
+# bash: stdout
+-4294967296
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export SHLVL=-4294967297\n echo $SHLVL\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export SHLVL=-4294967297
+[0]minishell>  echo $SHLVL
+2
+ [0]minishell> exit
+exit
+# bash: stdout
+-4294967297
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export SHLVL=a\n echo $SHLVL\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export SHLVL=a
+[0]minishell>  echo $SHLVL
+2
+ [0]minishell> exit
+exit
+# bash: stdout
+a
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export SHLVL=' 42'\n echo $SHLVL\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export SHLVL=' 42'
+[1]minishell>  echo $SHLVL
+2
+ [0]minishell> exit
+exit
+# bash: stdout
+42
+# minishell: stderr
+minishell: unset: ` 42': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export SHLVL=" 42 "\n echo $SHLVL\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export SHLVL=" 42 "
+[1]minishell>  echo $SHLVL
+2
+ [0]minishell> exit
+exit
+# bash: stdout
+42
+# minishell: stderr
+minishell: unset: ` 42 ': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export SHLVL=" 42 "\n echo $SHLVL\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export SHLVL=" 42"
+[1]minishell>  echo $SHLVL
+2
+ [0]minishell> exit
+exit
+# bash: stdout
+42
+# minishell: stderr
+minishell: unset: ` 42': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export SHLVL=" 42 "\n echo $SHLVL\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export SHLVL=" 42"
+[1]minishell>  echo $SHLVL
+2
+ [0]minishell> exit
+exit
+# bash: stdout
+42
+# minishell: stderr
+minishell: unset: ` 42': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            simple_commandTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: touch a .a\n /bin/ls\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> touch a .a
+< [0]minishell>  /bin/ls
+20,21d17
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> touch a .a
+[0]minishell>  /bin/ls
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+hello
+help
+leaks.sh
+link
+rb.c
+result.log
+simple
+symdir
+test.sh
+tmp
+[0]minishell> exit
+exit
+# bash: stdout
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+hello
+help
+leaks.sh
+link
+rb.c
+result.log
+simple
+symdir
+test.sh
+tmp
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: touch a .a\n /bin/ls -a\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> touch a .a
+< [0]minishell>  /bin/ls -a
+23,24d20
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> touch a .a
+[0]minishell>  /bin/ls -a
+.
+..
+.a
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+hello
+help
+leaks.sh
+link
+rb.c
+result.log
+simple
+symdir
+test.sh
+tmp
+[0]minishell> exit
+exit
+# bash: stdout
+.
+..
+.a
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+hello
+help
+leaks.sh
+link
+rb.c
+result.log
+simple
+symdir
+test.sh
+tmp
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: touch aa ab ac\n /bin/ls | /usr/bin/grep a\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> touch aa ab ac
+< [0]minishell>  /bin/ls | /usr/bin/grep a
+10,11d7
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> touch aa ab ac
+[0]minishell>  /bin/ls | /usr/bin/grep a
+a
+a:b
+aa
+ab
+ac
+cases
+leaks.sh
+[0]minishell> exit
+exit
+# bash: stdout
+a
+a:b
+aa
+ab
+ac
+cases
+leaks.sh
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: touch aa ab ac\n /bin/ls | /usr/bin/grep a | /usr/bin/grep c\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> touch aa ab ac
+< [0]minishell>  /bin/ls | /usr/bin/grep a | /usr/bin/grep c
+5,6d2
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> touch aa ab ac
+[0]minishell>  /bin/ls | /usr/bin/grep a | /usr/bin/grep c
+ac
+cases
+[0]minishell> exit
+exit
+# bash: stdout
+ac
+cases
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: touch a .a\n ls\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> touch a .a
+< [0]minishell>  ls
+20,21d17
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> touch a .a
+[0]minishell>  ls
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+hello
+help
+leaks.sh
+link
+rb.c
+result.log
+simple
+symdir
+test.sh
+tmp
+[0]minishell> exit
+exit
+# bash: stdout
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+hello
+help
+leaks.sh
+link
+rb.c
+result.log
+simple
+symdir
+test.sh
+tmp
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: touch a .a\n ls -a\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> touch a .a
+< [0]minishell>  ls -a
+23,24d20
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> touch a .a
+[0]minishell>  ls -a
+.
+..
+.a
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+hello
+help
+leaks.sh
+link
+rb.c
+result.log
+simple
+symdir
+test.sh
+tmp
+[0]minishell> exit
+exit
+# bash: stdout
+.
+..
+.a
+a
+a:b
+b
+cases
+cmd
+dir
+exe
+hello
+help
+leaks.sh
+link
+rb.c
+result.log
+simple
+symdir
+test.sh
+tmp
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: touch aa ab ac\n ls | grep a\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> touch aa ab ac
+< [0]minishell>  ls | grep a
+10,11d7
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> touch aa ab ac
+[0]minishell>  ls | grep a
+a
+a:b
+aa
+ab
+ac
+cases
+leaks.sh
+[0]minishell> exit
+exit
+# bash: stdout
+a
+a:b
+aa
+ab
+ac
+cases
+leaks.sh
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: touch aa ab ac\n ls | grep a | grep c\nexit
+-------------------------
+diff :1,2d0
+< [0]minishell> touch aa ab ac
+< [0]minishell>  ls | grep a | grep c
+5,6d2
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> touch aa ab ac
+[0]minishell>  ls | grep a | grep c
+ac
+cases
+[0]minishell> exit
+exit
+# bash: stdout
+ac
+cases
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: echo hello world | cat\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> echo hello world | cat
+hello world
+ [0]minishell> exit
+exit
+# bash: stdout
+hello world
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: no_such_file\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> no_such_file
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> no_such_file
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: no_such_file: command not found
+# bash: stderr
+bash: line 1: no_such_file: command not found
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: ./no_such_file\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> ./no_such_file
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> ./no_such_file
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: ./no_such_file: No such file or directory
+# bash: stderr
+bash: line 1: ./no_such_file: No such file or directory
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: /bin/ls/no_such_file\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> /bin/ls/no_such_file
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> /bin/ls/no_such_file
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: /bin/ls/no_such_file: Not a directory
+# bash: stderr
+bash: line 1: /bin/ls/no_such_file: Not a directory
+# minishell: exit status = 0
+# bash     : exit status = 126
+
+-------------------------
+[KO ] case: /bin/no_such_dir/file\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> /bin/no_such_dir/file
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> /bin/no_such_dir/file
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: /bin/no_such_dir/file: No such file or directory
+# bash: stderr
+bash: line 1: /bin/no_such_dir/file: No such file or directory
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: touch perm\n chmod 000 perm\n perm\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> touch perm
+< [0]minishell>  chmod 000 perm
+< [0]minishell>  perm
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> touch perm
+[0]minishell>  chmod 000 perm
+[0]minishell>  perm
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: perm: command not found
+# bash: stderr
+bash: line 3: perm: command not found
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: touch perm\n chmod 000 perm\n ./perm\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> touch perm
+< [0]minishell>  chmod 000 perm
+< [0]minishell>  ./perm
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> touch perm
+[0]minishell>  chmod 000 perm
+[0]minishell>  ./perm
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: ./perm: Permission denied
+# bash: stderr
+bash: line 3: ./perm: Permission denied
+# minishell: exit status = 0
+# bash     : exit status = 126
+
+-------------------------
+[KO ] case: touch perm\n chmod 100 perm\n perm\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> touch perm
+< [0]minishell>  chmod 100 perm
+< [0]minishell>  perm
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> touch perm
+[0]minishell>  chmod 100 perm
+[0]minishell>  perm
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: perm: command not found
+# bash: stderr
+bash: line 3: perm: command not found
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: touch perm\n chmod 100 perm\n ./perm\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> touch perm
+< [0]minishell>  chmod 100 perm
+< [0]minishell>  ./perm
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> touch perm
+[0]minishell>  chmod 100 perm
+[0]minishell>  ./perm
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: ./perm: Exec format error
+# bash: stderr
+bash: ./perm: Permission denied
+# minishell: exit status = 0
+# bash     : exit status = 126
+
+-------------------------
+[KO ] case: touch perm\n chmod 300 perm\n perm\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> touch perm
+< [0]minishell>  chmod 300 perm
+< [0]minishell>  perm
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> touch perm
+[0]minishell>  chmod 300 perm
+[0]minishell>  perm
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: perm: command not found
+# bash: stderr
+bash: line 3: perm: command not found
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: touch perm\n chmod 300 perm\n ./perm\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> touch perm
+< [0]minishell>  chmod 300 perm
+< [0]minishell>  ./perm
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> touch perm
+[0]minishell>  chmod 300 perm
+[0]minishell>  ./perm
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: ./perm: Exec format error
+# bash: stderr
+bash: ./perm: Permission denied
+# minishell: exit status = 0
+# bash     : exit status = 126
+
+-------------------------
+[KO ] case: touch perm\n chmod 500 perm\n perm\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> touch perm
+< [0]minishell>  chmod 500 perm
+< [0]minishell>  perm
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> touch perm
+[0]minishell>  chmod 500 perm
+[0]minishell>  perm
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: perm: command not found
+# bash: stderr
+bash: line 3: perm: command not found
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: touch perm\n chmod 500 perm\n ./perm\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> touch perm
+< [0]minishell>  chmod 500 perm
+< [0]minishell>  ./perm
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> touch perm
+[0]minishell>  chmod 500 perm
+[0]minishell>  ./perm
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: ./perm: Exec format error
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: touch empty\n chmod +x empty\n ./empty\nexit
+-------------------------
+diff :1,5d0
+< [0]minishell> touch empty
+< [0]minishell>  chmod +x empty
+< [0]minishell>  ./empty
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> touch empty
+[0]minishell>  chmod +x empty
+[0]minishell>  ./empty
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: ./empty: Exec format error
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: mkdir dir\n dir\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> mkdir dir
+< [1]minishell>  dir
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> mkdir dir
+[1]minishell>  dir
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+mkdir: dir: File exists
+minishell: dir: command not found
+# bash: stderr
+mkdir: dir: File exists
+bash: line 2: dir: command not found
+# minishell: exit status = 0
+# bash     : exit status = 127
+
+-------------------------
+[KO ] case: mkdir dir\n ./dir\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> mkdir dir
+< [1]minishell>  ./dir
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> mkdir dir
+[1]minishell>  ./dir
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+mkdir: dir: File exists
+minishell: ./dir: Permission denied
+# bash: stderr
+mkdir: dir: File exists
+bash: line 2: ./dir: is a directory
+# minishell: exit status = 0
+# bash     : exit status = 126
+
+-------------------------
+[KO ] case: ln -s exe sym\n chmod -h -x sym\n ./exe\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> ln -s exe sym
+< [0]minishell>  chmod -h -x sym
+< [0]minishell>  ./exe
+5,6d1
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> ln -s exe sym
+[0]minishell>  chmod -h -x sym
+[0]minishell>  ./exe
+42
+[0]minishell> exit
+exit
+# bash: stdout
+42
+# minishell: stderr
+# bash: stderr
+ln: sym: File exists
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: unset NO_ENV\n echo a | $NO_ENV | cat\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> unset NO_ENV
+< [0]minishell>  echo a | $NO_ENV | cat
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> unset NO_ENV
+[0]minishell>  echo a | $NO_ENV | cat
+[0]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: /Users/watanabeyouhei/.brew/bin/: Permission denied
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: \nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> 
+< [0]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> 
+[0]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            syntax_errTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: |\nexit
+-------------------------
+diff :1d0
+< [0]minishell> |
+# minishell: stdout
+[0]minishell> |
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+bash: line 1: syntax error near unexpected token `|'
+bash: line 1: `|'
+# minishell: exit status = 139
+# bash     : exit status = 2
+
+-------------------------
+[KO ] case: | |\nexit
+-------------------------
+diff :1d0
+< [0]minishell> | |
+# minishell: stdout
+[0]minishell> | |
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+bash: line 1: syntax error near unexpected token `|'
+bash: line 1: `| |'
+# minishell: exit status = 139
+# bash     : exit status = 2
+
+-------------------------
+[KO ] case: >\nexit
+-------------------------
+diff :1d0
+< [0]minishell> >
+# minishell: stdout
+[0]minishell> >
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+bash: line 1: syntax error near unexpected token `newline'
+bash: line 1: `>'
+# minishell: exit status = 139
+# bash     : exit status = 2
+
+-------------------------
+[KO ] case: >>\nexit
+-------------------------
+diff :1d0
+< [0]minishell> >>
+# minishell: stdout
+[0]minishell> >>
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+bash: line 1: syntax error near unexpected token `newline'
+bash: line 1: `>>'
+# minishell: exit status = 139
+# bash     : exit status = 2
+
+-------------------------
+[KO ] case: >>>\nexit
+-------------------------
+diff :1d0
+< [0]minishell> >>>
+# minishell: stdout
+[0]minishell> >>>
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+bash: line 1: syntax error near unexpected token `>'
+bash: line 1: `>>>'
+# minishell: exit status = 139
+# bash     : exit status = 2
+
+-------------------------
+[KO ] case: >>>>\nexit
+-------------------------
+diff :1d0
+< [0]minishell> >>>>
+# minishell: stdout
+[0]minishell> >>>>
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+bash: line 1: syntax error near unexpected token `>>'
+bash: line 1: `>>>>'
+# minishell: exit status = 139
+# bash     : exit status = 2
+
+-------------------------
+[KO ] case: <\nexit
+-------------------------
+diff :1d0
+< [0]minishell> <
+# minishell: stdout
+[0]minishell> <
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+bash: line 1: syntax error near unexpected token `newline'
+bash: line 1: `<'
+# minishell: exit status = 139
+# bash     : exit status = 2
+
+-------------------------
+[KO ] case: < >\nexit
+-------------------------
+diff :1d0
+< [0]minishell> < >
+# minishell: stdout
+[0]minishell> < >
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+bash: line 1: syntax error near unexpected token `>'
+bash: line 1: `< >'
+# minishell: exit status = 139
+# bash     : exit status = 2
+
+-------------------------
+[KO ] case: | echo\nexit
+-------------------------
+diff :1d0
+< [0]minishell> | echo
+# minishell: stdout
+[0]minishell> | echo
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+bash: line 1: syntax error near unexpected token `|'
+bash: line 1: `| echo'
+# minishell: exit status = 139
+# bash     : exit status = 2
+
+-------------------------
+[KO ] case: echo | |\nexit
+-------------------------
+diff :1d0
+< [0]minishell> echo | |
+# minishell: stdout
+[0]minishell> echo | |
+# bash: stdout
+# minishell: stderr
+# bash: stderr
+bash: line 1: syntax error near unexpected token `|'
+bash: line 1: `echo | |'
+# minishell: exit status = 139
+# bash     : exit status = 2
+
+-------------------------
+[KO ] case: cat < >\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> cat < >
+< [1]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cat < >
+[1]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+testerror
+# bash: stderr
+bash: line 1: syntax error near unexpected token `>'
+bash: line 1: `cat < >'
+# minishell: exit status = 0
+# bash     : exit status = 2
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            unsetTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: export A='test $A'\n unset A\n echo $A\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export A='test $A'
+[1]minishell>  unset A
+[0]minishell>  echo $A
+
+ [0]minishell> exit
+exit
+# bash: stdout
+
+# minishell: stderr
+minishell: unset: `test $A': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export _A1='test $_A1'\n unset _A1\n echo $_A1\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export _A1='test $_A1'
+[1]minishell>  unset _A1
+[0]minishell>  echo $_A1
+
+ [0]minishell> exit
+exit
+# bash: stdout
+
+# minishell: stderr
+minishell: unset: `test $_A1': not a valid identifier
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export A=test B=multiple C=var D=hello\n unset A B C\n echo $A$B$C$D\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export A=test B=multiple C=var D=hello
+[0]minishell>  unset A B C
+[0]minishell>  echo $A$B$C$D
+
+ [0]minishell> exit
+exit
+# bash: stdout
+hello
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: export A=test B=multiple C=var D=hello\n unset A B =invalid C\n echo $A$B$C$D\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export A=test B=multiple C=var D=hello
+[0]minishell>  unset A B =invalid C
+[1]minishell>  echo $A$B$C$D
+
+ [0]minishell> exit
+exit
+# bash: stdout
+hello
+# minishell: stderr
+minishell: unset: `=invalid': not a valid identifier
+# bash: stderr
+bash: line 2: unset: `=invalid': not a valid identifier
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: unset PWD\n echo $PWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> unset PWD
+[0]minishell>  echo $PWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: unset OLDPWD\n echo $OLDPWD\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> unset OLDPWD
+[0]minishell>  echo $OLDPWD
+/Users/watanabeyouhei/program/42tokyo/minishell/tester
+ [0]minishell> exit
+exit
+# bash: stdout
+
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: unset NO_SUCH_ENV\n unset NO_SUCH_ENV\n echo $?$NO_SUCH_ENV\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> unset NO_SUCH_ENV
+[0]minishell>  unset NO_SUCH_ENV
+[0]minishell>  echo $?$NO_SUCH_ENV
+0
+ [0]minishell> exit
+exit
+# bash: stdout
+0
+# minishell: stderr
+# bash: stderr
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: unset 1\nexit
+-------------------------
+diff :1,3d0
+< [0]minishell> unset 1
+< [1]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> unset 1
+[1]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: unset: `1': not a valid identifier
+# bash: stderr
+bash: line 1: unset: `1': not a valid identifier
+# minishell: exit status = 0
+# bash     : exit status = 1
+
+-------------------------
+[KO ] case: export A=a\n unset A=a\n echo $A\nexit
+-------------------------
+diff :Binary files /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/minishell_stdout.txt and /Users/watanabeyouhei/program/42tokyo/minishell/tester/tmp/bash_stdout.txt differ
+# minishell: stdout
+[0]minishell> export A=a
+[0]minishell>  unset A=a
+[1]minishell>  echo $A
+
+ [0]minishell> exit
+exit
+# bash: stdout
+a
+# minishell: stderr
+minishell: unset: `A=a': not a valid identifier
+# bash: stderr
+bash: line 2: unset: `A=a': not a valid identifier
+# minishell: exit status = 0
+# bash     : exit status = 0
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ./ls\n unset PATH\n ls\nexit
+-------------------------
+diff :1,6d0
+< [0]minishell> cp /bin/ls .
+< [0]minishell>  chmod 000 ./ls
+< [0]minishell>  unset PATH
+< [0]minishell>  ls
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> cp /bin/ls .
+[0]minishell>  chmod 000 ./ls
+[0]minishell>  unset PATH
+[0]minishell>  ls
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: ls: command not found
+# bash: stderr
+bash: line 4: ls: Permission denied
+# minishell: exit status = 0
+# bash     : exit status = 126
+
+-------------------------
+[KO ] case: unset ' \"$&`\n'\nexit
+-------------------------
+diff :1,4d0
+< [0]minishell> unset ' \"$&`
+< [1]minishell> '
+< [127]minishell> exit
+< exit
+# minishell: stdout
+[0]minishell> unset ' \"$&`
+[1]minishell> '
+[127]minishell> exit
+exit
+# bash: stdout
+# minishell: stderr
+minishell: unset: ` \"$&`': not a valid identifier
+minishell: /Users/watanabeyouhei/.brew/bin/: Permission denied
+# bash: stderr
+bash: line 2: unset: ` \"$&`
+': not a valid identifier
+# minishell: exit status = 0
+# bash     : exit status = 1

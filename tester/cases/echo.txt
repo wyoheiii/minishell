@@ -1,0 +1,17 @@
+echo
+echo a
+echo hello world
+echo -n
+echo -nk hello
+echo -nnnnnnnnnnk hello
+echo -nknknknk hello
+echo hello -n
+echo hello -nnnnnnn
+echo hello -nknknknknk
+echo hello -nnnnnnnnn -nnnnnnnnn
+echo $PATH
+echo "$PATH"
+echo '$PATH'
+echo a "" b "" c
+echo a "$NO_SUCH_ENV" b $NO_SUCH_ENV c, unset NO_SUCH_ENV
+echo $

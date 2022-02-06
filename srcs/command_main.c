@@ -292,8 +292,6 @@ void mult_command(t_pipe pipe,t_parsed *parsed,t_envlist  **lst,int pipe_count)
         pipe.pid[i] = my_fork();
         if(pipe.pid[i] == 0)
         {
-            //printf("parse   :%s\n",parsed->command[0]);
-            //./miniprintf("state   : %d\n",parsed->state);
             multi_pipe(pipe.pipe_fd, i, pipe_count);
             if(redirect_check(parsed))
                 select_redirect(parsed->redirect);
