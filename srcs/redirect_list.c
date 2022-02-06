@@ -4,7 +4,7 @@ static t_redirect	*new_redirect(char	*filename, char *meta)
 {
 	t_redirect	*redirect;
 
-	if (filename == NULL)
+	if (filename == NULL && meta != NULL)
 	{
 		ft_putendl_fd("ambiguous redirect", 2);
 		return (NULL);
