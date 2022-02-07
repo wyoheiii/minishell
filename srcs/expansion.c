@@ -362,7 +362,6 @@ void    expansion(t_parsed *parsed, t_envlist *env)
 	while (tmp != NULL)
 	{
 		new_command[size] = tmp->argv;
-		printf("nc:%s\n", new_command[size]);
 		size += 1;
 		tmp = tmp->next;
 	}
