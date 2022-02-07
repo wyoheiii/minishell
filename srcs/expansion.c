@@ -362,6 +362,7 @@ void    expansion(t_parsed *parsed, t_envlist *env)
 	while (tmp != NULL)
 	{
 		new_command[size] = tmp->argv;
+		printf("nc:%s\n", new_command[size]);
 		size += 1;
 		tmp = tmp->next;
 	}
@@ -399,14 +400,6 @@ int main(int argc, char **argv, char **envp)
 	expand_argv(list, envlist);
 	tmp = list;
 
-	do
-	{
-		printf("%s\n", list->argv);
-		tmp = list->next;
-//		free(list->argv);
-//		free(list);
-		list = tmp;
-	} while (list != NULL);
 
 //	free(test);
 
