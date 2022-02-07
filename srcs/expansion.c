@@ -209,7 +209,7 @@ char	*param_func(t_expand *list, t_envlist *envlist)
 	char	*param;
 
 	variable_name = get_variable_name(list->argv, &list->index);
-	param = search_env_key_(variable_name, envlist);
+	param = ft_strdup(search_env_key_(variable_name, envlist));
 	free(variable_name);
 	list->checked = list->index;
 	return (param);
