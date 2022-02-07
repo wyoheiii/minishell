@@ -334,16 +334,30 @@ void	expand_argv(t_expand *list, t_envlist *envlist)
 	}
 }
 
-/*
 void    expansion(t_parsed *parsed, t_envlist *env)
 {
 	t_expand	*argv_list;
+	t_expand	*tmp;
 	char		**new_command;
+	size_t		size;
 
 	argv_list = convert_list(parsed->command);
-	expand_argv(argv_list);
+	expand_argv(argv_list, env);
+	tmp = argv_list;
+	while (tmp->next != NULL)
+	{
+		size += 1;
+		tmp = tmp->next;
+	}
+	new_command = (char **)malloc(sizeof(char *) * size);
+	size = 0;
+	tmp = argv_list;
+	while (tmp->next != NULL)
+	{
+		new_command[size] = tmp->argv;
+		tmp = argv_list;
+	}
 }
-*/
 
 /*
 // main for debug
@@ -385,6 +399,7 @@ int main(int argc, char **argv, char **envp)
 	} while (list != NULL);
 
 //	free(test);
+
 
 	return (0);
 }
