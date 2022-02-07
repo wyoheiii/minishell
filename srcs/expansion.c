@@ -355,7 +355,7 @@ void    expansion(t_parsed *parsed, t_envlist *env)
 	while (tmp->next != NULL)
 	{
 		new_command[size] = tmp->argv;
-		tmp = argv_list;
+		tmp = tmp->next;
 	}
 }
 
