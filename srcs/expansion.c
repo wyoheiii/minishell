@@ -352,7 +352,7 @@ void    expansion(t_parsed *parsed, t_envlist *env)
 	new_command = (char **)malloc(sizeof(char *) * size);
 	size = 0;
 	tmp = argv_list;
-	while (tmp->argv != NULL)
+	while (tmp != NULL)
 	{
 		new_command[size] = tmp->argv;
 		size += 1;
