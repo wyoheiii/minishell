@@ -356,6 +356,7 @@ void    expansion(t_parsed *parsed, t_envlist *env)
 	{
 		new_command[size] = tmp->argv;
 		printf("%s\n", new_command[size]);
+		size += 1;
 		tmp = tmp->next;
 	}
 	new_command[size] = NULL;
