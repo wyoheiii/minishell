@@ -206,10 +206,15 @@ char	*get_variable_name(char *line, size_t *start)
 char	*param_func(t_expand *list, t_envlist *envlist)
 {
 	char	*variable_name;
+	char	*tmp;
 	char	*param;
 
 	variable_name = get_variable_name(list->argv, &list->index);
-	param = ft_strdup(search_env_key_(variable_name, envlist));
+	tmp = search_env_key_(variable_name, envlist);
+	if (tmp != NULL)
+	{
+		param = ft_strdup(tmp);
+	}
 	free(variable_name);
 	list->checked = list->index;
 	return (param);
