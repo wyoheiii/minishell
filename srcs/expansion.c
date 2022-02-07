@@ -325,9 +325,8 @@ void	expand_argv(t_expand *list, t_envlist *envlist)
 			}
 		}
 		tmp = join_remaining_string(list, &line);
-		if (tmp != NULL && tmp[0] != '\0')
+		if (tmp != NULL)
 			line = tmp;
-		printf("env:%s\n", line);
 		//free(list->argv);
 		list->argv = line;
 		list = list->next;
@@ -358,6 +357,7 @@ void    expansion(t_parsed *parsed, t_envlist *env)
 		new_command[size] = tmp->argv;
 		tmp = tmp->next;
 	}
+	parsed->command = new_command;
 }
 
 /*
