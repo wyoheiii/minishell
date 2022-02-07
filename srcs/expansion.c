@@ -317,8 +317,6 @@ void	expand_argv(t_expand *list, t_envlist *envlist)
 				line = string_before_param(list, &line);
 				param = param_func(list, envlist);		//パラメータの値を取得
 				tmp = ft_strjoin(line, param);
-				printf("env:%s\n", tmp);
-
 				//split = word_splitting(param);	//単語分割したリスト
 				//func(&list, &line, split);
 				//free(param);
@@ -328,6 +326,7 @@ void	expand_argv(t_expand *list, t_envlist *envlist)
 			}
 		}
 		tmp = join_remaining_string(list, &line);
+				printf("env:%s\n", tmp);
 		if (tmp != NULL)
 			line = tmp;
 		//free(list->argv);
