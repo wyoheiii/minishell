@@ -325,9 +325,9 @@ void	expand_argv(t_expand *list, t_envlist *envlist)
 			}
 		}
 		tmp = join_remaining_string(list, &line);
-		printf("env:%s\n", tmp);
 		if (tmp != NULL && tmp[0] != '\0')
 			line = tmp;
+		printf("env:%s\n", line);
 		//free(list->argv);
 		list->argv = line;
 		list = list->next;
