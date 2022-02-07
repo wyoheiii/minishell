@@ -211,7 +211,6 @@ char	*param_func(t_expand *list, t_envlist *envlist)
 	variable_name = get_variable_name(list->argv, &list->index);
 	param = search_env_key_(variable_name, envlist);
 	free(variable_name);
-	printf("env:%s\n", param);
 	list->checked = list->index;
 	return (param);
 }
@@ -326,8 +325,8 @@ void	expand_argv(t_expand *list, t_envlist *envlist)
 			}
 		}
 		tmp = join_remaining_string(list, &line);
-				printf("env:%s\n", tmp);
-		if (tmp != NULL)
+		printf("env:%s\n", tmp);
+		if (tmp != NULL && tmp[0] != '\0')
 			line = tmp;
 		//free(list->argv);
 		list->argv = line;
