@@ -2,7 +2,7 @@
 # define EXPANSION_H
 
 # include "parser.h"
-# include "expand_line.h"
+//# include "expand_line.h"
 
 bool	expansion(t_parsed *parsed);
 
