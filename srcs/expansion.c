@@ -303,7 +303,7 @@ void	expand_argv(t_expand *list, t_envlist *envlist)
 	char	*line;
 	char	*tmp;
 	char	*param;
-	t_list	*split;
+//	t_list	*split;
 
 	while (list != NULL)
 	{
