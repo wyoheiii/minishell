@@ -344,6 +344,7 @@ void    expansion(t_parsed *parsed, t_envlist *env)
 	argv_list = convert_list(parsed->command);
 	expand_argv(argv_list, env);
 	tmp = argv_list;
+	size = 0;
 	while (tmp->next != NULL)
 	{
 		size += 1;
