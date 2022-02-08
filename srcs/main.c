@@ -16,7 +16,7 @@ void minishell(char **envp)
 	while (1)
     {
         catch_signal();
-        printf("[%d]", g_status);
+        //printf("[%d]", g_status);
         line = readline("minishell> ");
         if (line == NULL)
             break ;
@@ -33,9 +33,10 @@ void minishell(char **envp)
         free_parsed(&parsed);
 		free(line);
 	}
-    free_parsed(&parsed);
-    all_env_clear(&lst);
-    free(line);
+    //free_parsed(&parsed);
+    //all_env_clear(&lst);
+    //free(line);
+    exit(g_status);
 }
 
 int ft_launch_minishell(char *argv,char **envp)

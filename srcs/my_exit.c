@@ -84,7 +84,7 @@ int my_exit(char **command)
     num = 0;
     if(size == 1)
     {
-        g_status = 0;
+        //g_status = 0;
         return (EXIT);
     }
     if (check_num(command[1]) && exit_atoi(command[1] , &num))
