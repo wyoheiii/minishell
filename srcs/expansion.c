@@ -370,8 +370,12 @@ char	*func(t_expand **list, char **line, t_list *split)
 		new->next = next;
 		(*list) = new;
 		tmp = tmp->next;
+		return ((*list)->argv);
 	}
-	return ((*list)->argv);
+	else
+	{
+		return (NULL);
+	}
 }
 
 //リスト内の文字列を展開する
