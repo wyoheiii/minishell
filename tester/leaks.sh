@@ -5,7 +5,7 @@
 #-------------------------------------
 readonly MINISHELL_DIR="../"
 readonly MINISHELL_EXE="minishell_leaks"
-readonly MINISHELL_PROMPT="$ "
+readonly MINISHELL_PROMPT="minishell> "
 #-------------------------------------
 
 readonly MINISHELL_PATH="${MINISHELL_DIR}${MINISHELL_EXE}"

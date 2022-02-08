@@ -1,0 +1,1139 @@
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            cdTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: mkdir dir \n cd dir \n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: mkdir dir\n cd dir\n cd .\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: mkdir dir\n cd dir\n cd ./\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: mkdir dir\n cd dir\n cd ..\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: mkdir dir\n cd dir\n cd ../\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: touch testfile\n cd testfile\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cd NO_SUCH_FILE\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cd hello world\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cd /\n cd ../../akjwyefgjkwveyjfgweyugyuwegf76t273/../../ \npwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: mkdir dir\n cd dir\n cd ../nosuchdir/../dir\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: mkdir hello\n cd hello world\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cd /\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cd /bin\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cd /bin/../\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: mkdir dir\n cd DIR\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: mkdir DIR\n cd dir\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: mkdir dir\n chmod 000 dir\n cd dir\n pwd\nchmod 777 dir\nexit
+-------------------------
+
+-------------------------
+[KO ] case: mkdir dir\n ln -s dir link\n cd link\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: mkdir dir\n ln -s dir link\n rmdir dir\n cd link\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: mkdir dir\n cd dir\n rmdir ../dir\n cd ./\n pwd\ncd .\n pwd\n cd ./././././\n pwd\n cd .////////./\n pwd\n cd ../\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: mkdir -p a/b/c\n cd a/b/c\n rm -rf ../../b\n cd ./\n pwd\n cd ../\n pwd\n cd .////./\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: mkdir -p a/b/c\n cd a/b/c\n rm -rf ../../b\n cd ./\n pwd\n cd .././.\n pwd\n cd ./\n pwd\n cd ../\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cd \n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export HOME=\n cd \n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: unset HOME\n cd \n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export HOME="./"\n cd \n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export HOME="../../"\n cd \n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export HOME=""\n cd \n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export HOME="/BIN"\n cd \n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export HOME=a\n mkdir -p a/b\n cd \n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export HOME=NO_SUCH_FILE\n cd \n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH="/"\n cd bin\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH="/"\n cd \n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH="/"\n export HOME=\n cd \n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH="/"\n unset HOME\n cd \n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH=""\n mkdir -p a/b\n cd b\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH="./"\n mkdir dir\n cd dir\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH="../a"\n mkdir -p a/b/c\n cd b\n pwd\n cd a\n pwd\n cd b\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH=a\n mkdir -p a/b/c\n cd b\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH=A\n mkdir -p a/b/c\n cd b\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH=a\n mkdir -p a/b/c\n cd ./b\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH=a\n mkdir -p a/b/c\n cd a\n cd ../b\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH=a\n mkdir -p a/b/c\n cd .\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH=a\n mkdir -p a/b/c\n cd a\n cd ..\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH=a\n mkdir -p a/b/c\n mkdir b\n cd b\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH=a/b\n mkdir -p a/b/c\n cd c\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH=a:b:a:b\n mkdir -p a/test b/test\n mkdir -p a:b/test\n cd test\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH=b:a:a:b\n mkdir -p a/test b/test\n mkdir -p a:b/test\n cd test\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH=a:b:a:b\n mkdir -p a/hello b/hello\n mkdir -p a:b/test\n cd test\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH=a:b:a:b\n mkdir -p a/test b/test\n mkdir -p a:b/test\n chmod 000 a/test \ncd test\n pwd\n cd ../../\n chmod 777 a/test\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH="/"\n cd /\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH="/"\n cd /bin\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH="/bin"\n cd /bin\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH="/bin"\n cd /bin\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH="a"\n mkdir a\n cd a\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH="a"\n mkdir -p a/a\n cd a\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: mkdir -p a/b/c/d/e/f/g/h/i/\n cd a/b/c/d/../../c/d/e/f/g/h/i/../../../g/h/i/../.././././../g/h/i/../../../../../../../c/d/../d/../d/e/../../d/e/.././././e/f/.//////../f/g/h/i/////../../../\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export HOME="/"\n cd\n cd ../../../../../././././../../../././../../../\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cd ///\n pwd\n cd ///bin\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cd ////\n pwd\n cd ////bin\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cd /////\n pwd\n cd /////bin\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cd //////\n pwd\n cd //////bin\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cd ///////\n pwd\n cd ///////bin\n pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export HOME=//\n cd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export HOME=//bin/..////////////bin/../\n cd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export HOME=///\n cd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH=///\n cd bin\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH=":"\n cd dir\n pwd, mkdir dir\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH="hello:"\n cd dir\n pwd, mkdir dir\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH=":/"\n cd dir\n pwd, mkdir dir\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH="::/"\n cd bin\n pwd, mkdir bin\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH="::/:"\n cd bin\n pwd, mkdir bin\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH=""\n cd bin\n pwd, mkdir bin\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export CDPATH="/:"\n cd bin\n pwd, mkdir bin\nexit
+-------------------------
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            echoTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: echo\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo a\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo hello world\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo -n\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo -nk hello\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo -nnnnnnnnnnk hello\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo -nknknknk hello\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo hello -n\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo hello -nnnnnnn\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo hello -nknknknknk\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo hello -nnnnnnnnn -nnnnnnnnn\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo $PATH\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo "$PATH"\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo '$PATH'\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo a "" b "" c\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo a "$NO_SUCH_ENV" b $NO_SUCH_ENV c, unset NO_SUCH_ENV\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo $\nexit
+-------------------------
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            envTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: env | grep -v -E '^_=' | sort\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export A=hello\n env | grep -v -E '^_=' | sort\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cd ../\n env | grep -v -E '^_=' | sort\nexit
+-------------------------
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            errorTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: hoge\nexit
+-------------------------
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            exitTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: exit 0\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit 1\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit -1\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit 2147483647\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit 2147483648\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit -2147483648\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit -2147483649\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit 9223372036854775807\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit 9223372036854775808\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit " 42 "\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit ++42\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit 42 42\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit a\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit 1a\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit +\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit -\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit " "\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit 0 0\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit 0 0\n exit\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit 0 0\n echo "this message should not be displayed" > file\n ls\nexit
+-------------------------
+
+-------------------------
+[KO ] case: exit 0 0 | echo hello\nexit
+-------------------------
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            expandTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: export HELLO=hello\n echo $HELLO\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export HELLO=hello\n echo $hello\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo $\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo "$"\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo '$'\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export HELLO=hello\n echo '\\'$HELLO\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export HELLO=hello\n echo "$HELLO"\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export TEST=ech\n "$TEST"o hello\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export TEST="echo hello"\n $TEST\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export TEST='echo hello'\n $TEST\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export TEST="\$\"echo hello\""\n $TEST\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export TEST="echo hello"\n export TEST2="\$TEST"\n $TEST2\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890=hello\n echo $abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export TEST="export TEST=echo"\n $TEST hello\n $TEST hello\nexit
+-------------------------
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            exportTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: export | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export 1 _+ _OK _2? _OK2=VAR =NG OK3=\n export | grep -v -E '^declare -x _=' | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export OVERWRITE=42\n export OVERWRITE=a\n export | grep OVERWRITE\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export A=B=C=D\n export | grep A="B=C=D"\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PATH\n export | grep PATH\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PWD\n export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export OLDPWD\n export | grep OLDPWD | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
+-------------------------
+
+-------------------------
+[KO ] case: unset PWD\n cd ..\n export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
+-------------------------
+
+-------------------------
+[KO ] case: unset OLDPWD\n cd ..\n export | grep OLDPWD | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
+-------------------------
+
+-------------------------
+[KO ] case: unset PWD\n cd ..\n export PWD=new_value\n export | grep PWD | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
+-------------------------
+
+-------------------------
+[KO ] case: unset OLDPWD\n cd ..\n export OLDPWD=new_value\n export | grep OLDPWD | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
+-------------------------
+
+-------------------------
+[KO ] case: unset PWD\n cd ..\n export PWD\n export | grep PWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: unset OLDPWD\n cd ..\n export OLDPWD\n export | grep OLDPWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export =\nexit
+-------------------------
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            normalTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: echo a\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo hoge\necho 42TOKYO\nexit
+-------------------------
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            pathTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH=":" \n ls\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH=":/" \n ls\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH="::" \n ls\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH="/:" \n ls\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH="/bin:" \n ls\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH=":/bin" \n ls\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH="::/bin::" \n ls\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH="/bin:" \n ls\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH="hello:" \n ls\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PATH=""\n nosuchfile\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PATH=''\n nosuchfile\nexit
+-------------------------
+
+-------------------------
+[KO ] case: unset PATH\n nosuchfile\nexit
+-------------------------
+
+-------------------------
+[KO ] case: unset PATH\n export PATH\n nosuchfile\nexit
+-------------------------
+
+-------------------------
+[KO ] case: unset PATH\n export PATH=\n nosuchfile\nexit
+-------------------------
+
+-------------------------
+[KO ] case: unset PATH\n /bin/ls\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PATH=":a:b"\n cmd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PATH="b:a:"\n cmd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PATH="a:b"\n cmd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PATH="no_such_dir:a"\n cmd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PATH="no_such_dir1:no_such_dir2:"\n cmd\nexit
+-------------------------
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            pwdTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: echo $OLDPWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export OLDPWD=/\n echo $OLDPWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo $PWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PWD=/\n echo $PWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: mkdir dir\n ln -s dir symdir\n cd symdir\n echo $PWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: pwd\nexit
+-------------------------
+
+-------------------------
+[KO ] case: pwd\n export PWD=/\nexit
+-------------------------
+
+-------------------------
+[KO ] case: pwd\n mkdir dir\n ln -s dir symdir\n cd symdir\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n cd dir\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n cd dir\n cd ..\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n cd\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n cd dir\n rmdir ../dir\n cd ./\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n cd dir\n rmdir ../dir\n cd ./\n cd ././././././//////////./././././././//////./\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n cd dir\n rmdir ../dir\n cd ./\n cd ../\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n ln -s dir link\n cd link\n rmdir ../dir\n cd ./\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n ln -s dir link\n cd link\n rmdir ../dir\n cd ./\n cd ../\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir DIR\n cd dir\n rmdir ../DIR\n cd ./\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir DIR\n cd dir\n rmdir ../DIR\n cd ./\n cd ../\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n ln -s dir link\n cd LINK\n rmdir ../dir\n cd ./\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export PWD=\n export OLDPWD=\n mkdir dir\n ln -s dir link\n cd LINK\n rmdir ../dir\n cd ./\n cd ../\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+-------------------------
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            redirectTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: > file\nexit
+-------------------------
+
+-------------------------
+[KO ] case: > file | cat < no_such_file\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo hello > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo hello >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt\nexit
+-------------------------
+
+-------------------------
+[KO ] case: ls > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt\nexit
+-------------------------
+
+-------------------------
+[KO ] case: ls >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt\nexit
+-------------------------
+
+-------------------------
+[KO ] case: ls no_such_file > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt\nexit
+-------------------------
+
+-------------------------
+[KO ] case: ls no_such_file >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo a > out\n echo b >> out\n echo c >> out\n echo d >> out\n cat out\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo a > out\n echo b >> out\n echo c >> out\n echo d > out\n cat out\nexit
+-------------------------
+
+-------------------------
+[KO ] case: unset NO_ENV\n echo a > $NO_ENV | echo b\nexit
+-------------------------
+
+-------------------------
+[KO ] case: gcc rb.c \n ./a.out > file1 \n cat file1\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo a > f\n echo b >> f\n cat f f f >> ff\n cat ff ff >> f\n cat f\nexit
+-------------------------
+
+-------------------------
+[KO ] case: ls>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f\ncat f\nexit
+-------------------------
+
+-------------------------
+[KO ] case: ls>a>b>c>d>e>f>g>h>i>j>k>l>m>n>o>p>q>r>s>t>u>v>w>x>y>z>A>B>C>D>E>F>G>H>I>J>K>L>M>N>O>P>Q>R>S>T>U>V>W>X>Y>Z>aa>ab>ac>ad>ae>af>ag>ah>ai>aj>ak>al>am>an>ao>ap>aq>ar>as>at>au>av>aw>ax>ay>az>aA>aB>aC>aD>aE>aF>aG>aH>aI>aJ>aK>aL>aM>aN>aO>aP>aQ>aR>aS>aT>aU>aV\nls\nexit
+-------------------------
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            shlvlTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: export SHLVL=0\n echo $SHLVL\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export SHLVL=998\n echo $SHLVL\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export SHLVL=999\n echo $SHLVL\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export SHLVL=1000\n echo $SHLVL\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export SHLVL=+42\n echo $SHLVL\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export SHLVL=-1\n echo $SHLVL\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export SHLVL=4294967295\n echo $SHLVL\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export SHLVL=4294967296\n echo $SHLVL\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export SHLVL=-4294967296\n echo $SHLVL\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export SHLVL=-4294967297\n echo $SHLVL\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export SHLVL=a\n echo $SHLVL\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export SHLVL=' 42'\n echo $SHLVL\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export SHLVL=" 42 "\n echo $SHLVL\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export SHLVL=" 42 "\n echo $SHLVL\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export SHLVL=" 42 "\n echo $SHLVL\nexit
+-------------------------
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            simple_commandTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: touch a .a\n /bin/ls\nexit
+-------------------------
+
+-------------------------
+[KO ] case: touch a .a\n /bin/ls -a\nexit
+-------------------------
+
+-------------------------
+[KO ] case: touch aa ab ac\n /bin/ls | /usr/bin/grep a\nexit
+-------------------------
+
+-------------------------
+[KO ] case: touch aa ab ac\n /bin/ls | /usr/bin/grep a | /usr/bin/grep c\nexit
+-------------------------
+
+-------------------------
+[KO ] case: touch a .a\n ls\nexit
+-------------------------
+
+-------------------------
+[KO ] case: touch a .a\n ls -a\nexit
+-------------------------
+
+-------------------------
+[KO ] case: touch aa ab ac\n ls | grep a\nexit
+-------------------------
+
+-------------------------
+[KO ] case: touch aa ab ac\n ls | grep a | grep c\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo hello world | cat\nexit
+-------------------------
+
+-------------------------
+[KO ] case: no_such_file\nexit
+-------------------------
+
+-------------------------
+[KO ] case: ./no_such_file\nexit
+-------------------------
+
+-------------------------
+[KO ] case: /bin/ls/no_such_file\nexit
+-------------------------
+
+-------------------------
+[KO ] case: /bin/no_such_dir/file\nexit
+-------------------------
+
+-------------------------
+[KO ] case: touch perm\n chmod 000 perm\n perm\nexit
+-------------------------
+
+-------------------------
+[KO ] case: touch perm\n chmod 000 perm\n ./perm\nexit
+-------------------------
+
+-------------------------
+[KO ] case: touch perm\n chmod 100 perm\n perm\nexit
+-------------------------
+
+-------------------------
+[KO ] case: touch perm\n chmod 100 perm\n ./perm\nexit
+-------------------------
+
+-------------------------
+[KO ] case: touch perm\n chmod 300 perm\n perm\nexit
+-------------------------
+
+-------------------------
+[KO ] case: touch perm\n chmod 300 perm\n ./perm\nexit
+-------------------------
+
+-------------------------
+[KO ] case: touch perm\n chmod 500 perm\n perm\nexit
+-------------------------
+
+-------------------------
+[KO ] case: touch perm\n chmod 500 perm\n ./perm\nexit
+-------------------------
+
+-------------------------
+[KO ] case: touch empty\n chmod +x empty\n ./empty\nexit
+-------------------------
+
+-------------------------
+[KO ] case: mkdir dir\n dir\nexit
+-------------------------
+
+-------------------------
+[KO ] case: mkdir dir\n ./dir\nexit
+-------------------------
+
+-------------------------
+[KO ] case: ln -s exe sym\n chmod -h -x sym\n ./exe\nexit
+-------------------------
+
+-------------------------
+[KO ] case: unset NO_ENV\n echo a | $NO_ENV | cat\nexit
+-------------------------
+
+-------------------------
+[KO ] case: \nexit
+-------------------------
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            syntax_errTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: |\nexit
+-------------------------
+
+-------------------------
+[KO ] case: | |\nexit
+-------------------------
+
+-------------------------
+[KO ] case: >\nexit
+-------------------------
+
+-------------------------
+[KO ] case: >>\nexit
+-------------------------
+
+-------------------------
+[KO ] case: >>>\nexit
+-------------------------
+
+-------------------------
+[KO ] case: >>>>\nexit
+-------------------------
+
+-------------------------
+[KO ] case: <\nexit
+-------------------------
+
+-------------------------
+[KO ] case: < >\nexit
+-------------------------
+
+-------------------------
+[KO ] case: | echo\nexit
+-------------------------
+
+-------------------------
+[KO ] case: echo | |\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cat < >\nexit
+-------------------------
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            unsetTEST
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+-------------------------
+[KO ] case: export A='test $A'\n unset A\n echo $A\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export _A1='test $_A1'\n unset _A1\n echo $_A1\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export A=test B=multiple C=var D=hello\n unset A B C\n echo $A$B$C$D\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export A=test B=multiple C=var D=hello\n unset A B =invalid C\n echo $A$B$C$D\nexit
+-------------------------
+
+-------------------------
+[KO ] case: unset PWD\n echo $PWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: unset OLDPWD\n echo $OLDPWD\nexit
+-------------------------
+
+-------------------------
+[KO ] case: unset NO_SUCH_ENV\n unset NO_SUCH_ENV\n echo $?$NO_SUCH_ENV\nexit
+-------------------------
+
+-------------------------
+[KO ] case: unset 1\nexit
+-------------------------
+
+-------------------------
+[KO ] case: export A=a\n unset A=a\n echo $A\nexit
+-------------------------
+
+-------------------------
+[KO ] case: cp /bin/ls .\n chmod 000 ./ls\n unset PATH\n ls\nexit
+-------------------------
+
+-------------------------
+[KO ] case: unset ' \"$&`\n'\nexit
+-------------------------
