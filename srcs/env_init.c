@@ -1,12 +1,17 @@
 #include "minishell_c.h"
 //=の一個前までを入れる
-void    env_init(char **env, t_envlist **envlst)
-{
+//void env_pwd_set(t_envlist **lst,char  *pwd)
+//{
+//}
+void    env_init(char **env, t_envlist **envlst) {
     size_t i;
     //extern char **env;
     t_envlist *new;
 
     *envlst = NULL;
+//    for (int k = 0; env[k] != NULL; k++){
+//        printf(" env;  %s\n",env[k]);
+//    }
     if (*env)
         *envlst = env_new(env[0]);
     i = 1;
@@ -21,6 +26,24 @@ void    env_init(char **env, t_envlist **envlst)
         lstadd_back(envlst, new);
         i++;
     }
-    new = env_new("OLDPWD");
-    lstadd_back(envlst, new);
+    //env_pwd_set
+    if (!key_match_check("OLDPWD", *envlst))
+    {
+        new = env_new("OLDPWD");
+        lstadd_back(envlst, new);
+    }
+    if(!key_match_check("PWD",*envlst))
+    {
+        char *char_new;
+        char *pwd;
+        pwd = getcwd(NULL,0);
+        if(!pwd) {
+            perror("pwd");
+            exit(1);
+        }
+        char_new = ft_strjoin("PWD=",pwd);
+        //printf("char new   : %s\n",char_new);
+        new = env_new(char_new);
+        lstadd_back(envlst,new);
+    }
 }

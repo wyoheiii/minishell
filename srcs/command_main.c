@@ -8,7 +8,7 @@ int    return_builtin(char **command, t_envlist **envlst)
     if(!ft_strncmp(command[0], "echo", 5))
         ret = my_echo(command);
     else if(!ft_strncmp(command[0], "cd", 3))
-        ret = my_cd(command, *envlst);
+        ret = my_cd(command, envlst);
     else if(!ft_strncmp(command[0], "pwd", 4))
         ret = my_pwd();
     else if(!ft_strncmp(command[0], "export", 7))
@@ -19,6 +19,7 @@ int    return_builtin(char **command, t_envlist **envlst)
         ret = my_env(*envlst);
     else if(!ft_strncmp(command[0], "exit",5))
         ret = my_exit(command);
+
     return (ret);
 }
 
@@ -48,6 +49,7 @@ char **lst_in_array(t_envlist *lst)
 
     size_t i;
     i = 0;
+
     ret = (char **)malloc(sizeof(char *) * (env_lst_size(lst) + 1));
     if(!ret)
         exit(1);
@@ -56,7 +58,10 @@ char **lst_in_array(t_envlist *lst)
         tmp = ft_strjoin(lst->key, "=");
         if(!tmp)
             exit(1);
-        ret[i] = ft_strjoin(tmp,lst->value);
+        if(lst->value == NULL)
+            ret[i] = my_strdup("");
+        else
+            ret[i] = ft_strjoin(tmp,lst->value);
         if(!ret[i])
             exit(1);
         lst = lst->next;
@@ -145,10 +150,12 @@ char *get_path(t_envlist *lst, char *command)
     return (cmd);
 }
 
-void exec_error(char *command)
+void exec_error(char *command,t_envlist *lst)
 {
     //bash: ls: No such file or directory path消すとこうなるらしい
-    if(strchr(command, '/') == NULL)
+    char *path;
+    path= search_env_key_("PATH",lst);
+    if(strchr(command, '/') == NULL && path != NULL)
     {
         ft_putstr_fd("minishell: ", 2);
         ft_putstr_fd(command, 2);
@@ -158,7 +165,6 @@ void exec_error(char *command)
     }
     else if (errno)
     {
-        //commandなんちゃら追加
         ft_putstr_fd("minishell: ", 2);
         ft_putstr_fd(command, 2);
         ft_putstr_fd(": ", 2);
@@ -207,6 +213,26 @@ bool redirect_check(t_parsed *parsed)
     }
     return(false);
 }
+int single_builtin(t_parsed *parsed,t_envlist **lst)
+{
+    int fd1;
+    int fd2;
+    int fd3;
+    int ret;
+    fd1 = my_dup(0);
+    fd2 = my_dup(1);
+    fd3 = my_dup(2);
+    if(redirect_check(parsed))
+        select_redirect(parsed->redirect);
+    ret = return_builtin(parsed->command, lst);
+    my_dup2(fd1,0);
+    my_dup2(fd2,1);
+    my_dup2(fd3,2);
+    my_close(fd1);
+    my_close(fd2);
+    my_close(fd3);
+    return(ret);
+}
 int single_command(t_parsed *parsed, t_envlist **lst)
 {
     pid_t pid;
@@ -215,10 +241,8 @@ int single_command(t_parsed *parsed, t_envlist **lst)
     char **env_array;
 
     env_array = lst_in_array( *lst);
-//    if(redirect_check(parsed))
-//        select_redirect(parsed);
     if(builtin_select(parsed->command))
-        return (return_builtin(parsed->command, lst));
+        return (single_builtin(parsed, lst));
     pid = my_fork();
     if (pid == 0)
     {
@@ -226,7 +250,7 @@ int single_command(t_parsed *parsed, t_envlist **lst)
             select_redirect(parsed->redirect);
         path = get_path(*lst, parsed->command[0]);
         if(execve(path, parsed->command, env_array) == -1)
-            exec_error(path);
+            exec_error(path,*lst);
         free(path);
     }
     //ctrl c tokano signal moireru
@@ -243,11 +267,13 @@ void select_command(t_parsed *parsed, t_envlist **lst)
     path = get_path(*lst,parsed->command[0]);
     if(builtin_select(parsed->command))
     {
-        return_builtin(parsed->command,lst);
+        single_builtin(parsed, lst);
         exit(g_status);
     }
+    if(redirect_check(parsed))
+        select_redirect(parsed->redirect);
     if(execve(path, parsed->command, lst_array)== -1)
-        exec_error(path);
+        exec_error(path,*lst);
 }
 
 void multi_pipe(int (*pipe_fd)[2], int i,int pipe_count)
@@ -276,7 +302,6 @@ void multi_pipe(int (*pipe_fd)[2], int i,int pipe_count)
 }
 void pipe_init(t_pipe *p, int pipe_count)
 {
-    //p->i = 0;
     p->pipe_fd = my_malloc(sizeof(int *) * (pipe_count + 1));
     p->pid = my_malloc(sizeof(int) * (pipe_count + 1));
 }
@@ -286,15 +311,12 @@ void mult_command(t_pipe pipe,t_parsed *parsed,t_envlist  **lst,int pipe_count)
     int i = 0;
     while(parsed != NULL)
     {
-        //printf("%d\n",pipe.i);
         if(i != pipe_count && parsed->state == PIPE)
             my_pipe(pipe.pipe_fd[i]);
         pipe.pid[i] = my_fork();
         if(pipe.pid[i] == 0)
         {
             multi_pipe(pipe.pipe_fd, i, pipe_count);
-            if(redirect_check(parsed))
-                select_redirect(parsed->redirect);
             select_command(parsed, lst);
         }
         else

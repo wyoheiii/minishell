@@ -28,15 +28,14 @@ char *env_get_value(char *env)
     if(env)
     {
         tmp = ft_strchr(env, '=');
+//        if(!tmp)
+//            value = NULL;//ft_strdup("");
         if(!tmp)
-            value = ft_strdup("");
+            value = NULL;
+        else if(++tmp == 0)
+            value = my_strdup("");
         else
-            value = ft_strdup(++tmp);
-        if(!value)
-        {
-            perror("malloc");
-            exit(1);
-        }
+            value = my_strdup(++tmp);
         return(value);
     }
     return (NULL);
@@ -60,7 +59,6 @@ t_envlist   *env_new(char *envp)
         return (NULL);
     new->key = env_get_key(envp);
     new->value = env_get_value(envp);
-   // new->num = num;
     new->next = NULL;
     return(new);
 }

@@ -16,7 +16,7 @@ int my_env(t_envlist *envlst)
             continue;
             //_=/usr/bin/env
         }
-        else if(envlst->value[0] != '\0')
+        else if(envlst->value != NULL && envlst->value[0] != '\0')
                 printf("%s=%s\n", envlst->key, envlst->value);
         envlst = envlst->next;
     }

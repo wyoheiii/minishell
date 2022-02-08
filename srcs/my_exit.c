@@ -54,9 +54,7 @@ bool exit_atoi(char *str, long long *num)
         i++;
     }
     while(str[i] == '0' && str[i] != '\0')
-    {
         i++;
-    }
     return (exit_atoi2(str, flag , i, num));
     
 }

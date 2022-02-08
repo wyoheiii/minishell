@@ -9,13 +9,15 @@
 // =がなくてもkeyに保存　envは=あるやつだけ出力
 //_=は最後に使用した実行ファイルを表示
 //ex
+
 int	isenv(int	c)
 {
 	if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z')
-		|| (c >= 'a' && c <= 'z') || c == '_')
+		|| (c >= 'a' && c <= 'z') || c == '_' )
 		return (1);
 	return (0);
 }
+
 int is_alpha_(int c)
 {
     if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '_')
@@ -34,13 +36,19 @@ int print_export_env(t_envlist *lst)
             lst = lst->next;
             continue;
         }
-        if(lst->value[0] != '\0')
+        if(lst->key != NULL && lst->value == NULL) {
+            //printf("key%s\n",lst->key);
+            printf("declare -x %s\n", lst->key);
+//        else if(lst->value[0] != '\0')
+        }
+        else
             printf("declare -x %s=%c%s%c\n",lst->key, '"', lst->value, '"');
-        else 
-            printf("declare -x %s\n",lst->key);
+//        else
+//            printf("declare -x %s\n",lst->key);
         lst = lst->next;
     }
-    return (1);
+    g_status = 0;
+    return (0);
 }
 
 bool char_check(char *arg)
@@ -58,7 +66,16 @@ bool char_check(char *arg)
     }
     return(true);
 }
-
+bool check_arg2(char *arg, size_t i)
+{
+    while(i > 0)
+    {
+        i--;
+        if(!isenv(arg[i]))
+            return(false);
+    }
+    return(true);
+}
 bool check_arg(char *arg,int *join_flag)
 {
     size_t i;
@@ -83,7 +100,9 @@ bool check_arg(char *arg,int *join_flag)
         }
         return(true);
     }
-    return(false);
+    else
+        return(check_arg2(arg, i));
+    //return(true);
 }
 
 bool key_match_check(char *arg, t_envlist *lst)
@@ -106,7 +125,6 @@ bool key_match_check(char *arg, t_envlist *lst)
 void join_value(char *arg, t_envlist **lst)
 {
     size_t key_size;
-    char *tmp;
     char *value;
     char *key;
     t_envlist *top;
@@ -119,14 +137,7 @@ void join_value(char *arg, t_envlist **lst)
     {
         if(ft_strncmp(key,(*lst)->key, key_size + 1) == 0)
         {
-            tmp = ft_strjoin((*lst)->value, value);
-            if(!tmp)
-            {
-                perror("malloc");
-                exit(1);
-            }                        
-            free((*lst)->value);
-            (*lst)->value = tmp;
+            (*lst)->value = my_strjoin(&(*lst)->value, &value);
             *lst = top;
             return ;
         }
@@ -138,24 +149,17 @@ void dup_value(char *arg, t_envlist **lst)
 {
     size_t key_size;
     char *tmp;
-    char *value;
     char *key;
     t_envlist *top;
 
     key = env_get_key(arg);
-    value = env_get_value(arg);
     key_size = ft_strlen(key);
     top = *lst;
     while(*lst != NULL)
     {
         if(ft_strncmp(key,(*lst)->key, key_size + 1) == 0)
         {
-            tmp = ft_strdup(value);
-            if(!tmp)
-            {
-                perror("malloc");
-                exit(1);
-            }
+            tmp = env_get_value(arg);
             free((*lst)->value);
             (*lst)->value = tmp;
             *lst = top;
@@ -167,6 +171,7 @@ void dup_value(char *arg, t_envlist **lst)
 
 bool set_key_value(char *arg, t_envlist **lst)
 {
+
     int join_flag;
     t_envlist *new;
 
@@ -192,7 +197,7 @@ bool set_key_value(char *arg, t_envlist **lst)
 void export_error(char *error)
 {
     //printf("minishell: export: `%s': not a valid identifier\n",arg[i]);
-    ft_putstr_fd("minishell: unset: `",2);
+    ft_putstr_fd("minishell: export: `",2);
     ft_putstr_fd(error,2);
     ft_putstr_fd("': not a valid identifier\n",2);
     g_status = 1;
@@ -212,11 +217,12 @@ int my_export(char **arg, t_envlist **lst)
         i = 1;
         while(arg[i] != NULL)
         {
-            if(char_check(arg[i]))
-            {
-                i++;
-                continue;
-            }
+//            if(char_check(arg[i]))
+//            {
+//                printf("damedatta\n");
+//                i++;
+//                continue;
+//            }
             if(!set_key_value(arg[i], lst))
             {
                 ret_flag = 1;
