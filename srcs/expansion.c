@@ -307,7 +307,7 @@ bool	is_connect_prev(char *argv)
 {
 	if (argv == NULL)
 		return (false);
-	if (ft_isspace(argv[0]))
+	if (!ft_isspace(argv[0]))
 		return (true);
 	return (false);
 }
@@ -316,7 +316,7 @@ bool	is_connect_next(char *argv)
 {
 	if (argv == NULL || ft_strlen(argv) == 0)
 		return (false);
-	if (ft_isspace(argv[ft_strlen(argv) - 1]))
+	if (!ft_isspace(argv[ft_strlen(argv) - 1]))
 		return (true);
 	return (false);
 }
@@ -385,7 +385,10 @@ void	expand_argv(t_expand *list, t_envlist *envlist)
 				if (list->flag == NONE)
 				{
 					split = word_splitting(param);	//単語分割したリスト
-					tmp = func(&list, &line, split);
+					if (split != NULL)
+						tmp = func(&list, &line, split);
+					else
+						tmp = ft_strjoin(line, param);
 				}
 				else
 					tmp = ft_strjoin(line, param);
