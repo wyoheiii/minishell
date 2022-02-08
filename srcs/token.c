@@ -2,8 +2,7 @@
 
 static bool	is_special_char(const char ch)
 {
-	if (ch == '\'' || ch == '\"' || ch == EOF
-		|| ch == '\0' || ch == '<' || ch == '>' || ch == '|')
+	if (ch == EOF || ch == '\0' || ch == '<' || ch == '>' || ch == '|')
 		return (true);
 	else
 		return (false);
