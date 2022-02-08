@@ -300,6 +300,16 @@ t_list	*word_splitting(char *str)
 			length += 1;
 		index += 1;
 	}
+	if (length == 0)
+	{
+		tmp = ft_substr(str, index - length, length);
+		if (tmp == NULL)
+		{
+			ft_putendl_fd("malloc failure", 2);
+			exit(EXIT_FAILURE);
+		}
+		lstnew_add_back(&splitted, tmp);
+	}
 	return (splitted);
 }
 
