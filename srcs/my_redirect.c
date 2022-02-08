@@ -74,7 +74,6 @@ void redirect_input(t_redirect *redirect)
 }
 void select_redirect(t_redirect *redirect)
 {
-
     while (redirect != NULL) {
         if (redirect->state == REDIRECT_INPUT) {
             redirect_input(redirect);
@@ -87,5 +86,4 @@ void select_redirect(t_redirect *redirect)
         }
         redirect = redirect->next;
     }
-
 }

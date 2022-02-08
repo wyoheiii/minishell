@@ -43,6 +43,7 @@ void    env_init(char **env, t_envlist **envlst) {
         }
         char_new = ft_strjoin("PWD=",pwd);
         //printf("char new   : %s\n",char_new);
+        free(pwd);
         new = env_new(char_new);
         lstadd_back(envlst,new);
     }

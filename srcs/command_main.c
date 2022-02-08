@@ -213,6 +213,7 @@ bool redirect_check(t_parsed *parsed)
     }
     return(false);
 }
+
 int single_builtin(t_parsed *parsed,t_envlist **lst)
 {
     int fd1;
