@@ -300,7 +300,7 @@ t_list	*word_splitting(char *str)
 			length += 1;
 		index += 1;
 	}
-	if (length == 1)
+	if (length > 0 && index != length)
 	{
 		tmp = ft_substr(str, index - length, length);
 		if (tmp == NULL)
