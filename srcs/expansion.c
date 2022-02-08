@@ -303,13 +303,73 @@ t_list	*word_splitting(char *str)
 	return (splitted);
 }
 
+bool	is_connect_prev(char *argv)
+{
+	if (argv == NULL)
+		return (false);
+	if (ft_isspace(argv[0]))
+		return (true);
+	return (false);
+}
+
+bool	is_connect_next(char *argv)
+{
+	if (argv == NULL || ft_strlen(argv) == 0)
+		return (false);
+	if (ft_isspace(argv[ft_strlen(argv) - 1]))
+		return (true);
+	return (false);
+}
+
+char	*func(t_expand **list, char **line, t_list *split)
+{
+	t_list		*tmp;
+	t_expand	*new;
+	t_expand	*next;
+
+	if (split == NULL)
+		return (*line);
+
+	tmp = split;
+
+	//今の引数にくっつく
+	if (is_connect_prev(tmp->content))
+	{
+		(*line) = ft_strjoin(*line, tmp->content);
+		(*list)->argv = (*line);
+		tmp = tmp->next;
+	}
+
+	while (tmp->next != NULL && tmp->next->content != NULL)
+	{
+		new = expand_new(tmp->content);
+		next = (*list)->next;
+		(*list)->next = new;
+		new->next = next;
+		(*list) = new;
+		tmp = tmp->next;
+	}
+
+	if (is_connect_next(tmp->content))
+	{
+		*line = tmp->content;
+		new = expand_new(tmp->content);
+		next = (*list)->next;
+		(*list)->next = new;
+		new->next = next;
+		(*list) = new;
+		tmp = tmp->next;
+	}
+	return ((*list)->argv);
+}
+
 //リスト内の文字列を展開する
 void	expand_argv(t_expand *list, t_envlist *envlist)
 {
 	char	*line;
 	char	*tmp;
 	char	*param;
-//	t_list	*split;
+	t_list	*split;
 
 	while (list != NULL)
 	{
@@ -318,16 +378,19 @@ void	expand_argv(t_expand *list, t_envlist *envlist)
 		{
 			if (check_func(list, list->index) == true)
 				list->index += 1;
-			else if (list->argv[list->index] == '$')
+			else if (list->flag != SINGLE && list->argv[list->index] == '$')
 			{
 				line = string_before_param(list, &line);
 				param = param_func(list, envlist);		//パラメータの値を取得
-				tmp = ft_strjoin(line, param);
-				//split = word_splitting(param);	//単語分割したリスト
-				//func(&list, &line, split);
+				if (list->flag == NONE)
+				{
+					split = word_splitting(param);	//単語分割したリスト
+					tmp = func(&list, &line, split);
+				}
+				else
+					tmp = ft_strjoin(line, param);
+				//free(line);
 				//free(param);
-				free(line);
-				free(param);
 				line = tmp;
 			}
 		}
