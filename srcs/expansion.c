@@ -300,16 +300,7 @@ t_list	*word_splitting(char *str)
 			length += 1;
 		index += 1;
 	}
-	if (length == 1)
-	{
-		tmp = ft_substr(str, index - length, length);
-		if (tmp == NULL)
-		{
-			ft_putendl_fd("malloc failure", 2);
-			exit(EXIT_FAILURE);
-		}
-		lstnew_add_back(&splitted, tmp);
-	}
+	lstnew_add_back(&splitted, NULL);
 	return (splitted);
 }
 
@@ -395,7 +386,7 @@ void	expand_argv(t_expand *list, t_envlist *envlist)
 				if (list->flag == NONE)
 				{
 					split = word_splitting(param);	//単語分割したリスト
-					if (split != NULL)
+					if (split->content != NULL)
 						tmp = func(&list, &line, split);
 					else
 						tmp = ft_strjoin(line, param);
