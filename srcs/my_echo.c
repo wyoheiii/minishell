@@ -36,7 +36,7 @@ int my_echo(char **arg)
     size_t i;
     i = 1;
     if(arg[i] == NULL)
-        write(1,"\n",2);
+        write(1,"\n",1);
     else
     {
         option_flag = false;
@@ -49,7 +49,7 @@ int my_echo(char **arg)
             i++;
         }
         if(!option_flag)
-            write(1,"\n",2);
+            write(1,"\n",1);
     }
     g_status = 0;
     return (0);

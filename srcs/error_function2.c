@@ -9,6 +9,19 @@ void my_pipe(int *pipefd)
     }
 }
 
+int my_dup(int old_fd)
+{
+    int new;
+
+    new = dup(old_fd);
+    if(new == -1)
+    {
+        exit_error("dup");
+        exit(1);
+    }
+    return(new);
+}
+
 void waitpid_get_status(pid_t pid, int *status,int option)
 {
     if(waitpid(pid, status, option) < 0)
