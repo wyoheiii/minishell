@@ -21,9 +21,11 @@
 #define DEBUG_PRINT(fmt, ...) do {} while(0);
 #endif
 #define EXIT 1
-
+#define EQUAL 0
+#define NOT_EQUAL 1
 typedef struct s_envlist
 {
+    //int flag;
     char *key;
     char *value;
     struct s_envlist *next;
@@ -39,7 +41,7 @@ int command_part(t_parsed *parsed,t_envlist **lst);
 int my_echo(char **command);
 int my_pwd(void);
 int my_exit(char **command);
-int my_cd(char **command, t_envlist *lst);
+int my_cd(char **command, t_envlist **lst);
 void print_err(char *command, char *error);
 void    env_init(char **env, t_envlist **envlst);
 t_envlist   *env_new(char *envp);
@@ -61,12 +63,15 @@ char *search_env_key_(const char *search, t_envlist *lst);
 void split_free(char **split);
 //int multi_command(t_parsed *parsed, t_envlist **lst, char **env_array);
 //int my_env()
-
+void dup_value(char *arg, t_envlist **lst);
+bool key_match_check(char *arg, t_envlist *lst);
 void my_pipe(int *pipefd);
 void waitpid_get_status(pid_t pid, int *status,int option);
 void exit_error(char *error);
 void my_dup2(int old_fd, int newfd);
+int my_dup(int old_fd);
 void my_close(int fd);
 void	*my_malloc(size_t size);
+char *strjoinjoin(char *str1, char *str2, char *str3);
 pid_t my_fork(void);
 #endif 

@@ -54,9 +54,7 @@ bool exit_atoi(char *str, long long *num)
         i++;
     }
     while(str[i] == '0' && str[i] != '\0')
-    {
         i++;
-    }
     return (exit_atoi2(str, flag , i, num));
     
 }
@@ -86,7 +84,7 @@ int my_exit(char **command)
     num = 0;
     if(size == 1)
     {
-        g_status = 0;
+        //g_status = 0;
         return (EXIT);
     }
     if (check_num(command[1]) && exit_atoi(command[1] , &num))
