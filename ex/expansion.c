@@ -91,20 +91,13 @@ char	*join_remaining_string(t_expand *list, char **line)
 	return (NULL);
 }
 
-/*
-
-単語分割
-
-
-*/
-
 //リスト内の文字列を展開する
 void	expand_argv(t_expand *list, t_envlist *envlist)
 {
 	char	*line;
 	char	*tmp;
 	char	*param;
-	t_list	*split;
+	//t_list	*split;
 
 	while (list != NULL)
 	{
@@ -117,6 +110,7 @@ void	expand_argv(t_expand *list, t_envlist *envlist)
 			{
 				line = string_before_param(list, &line);
 				param = param_func(list, envlist);
+				/*
 				if (list->flag == NONE)
 				{
 					split = word_splitting(param);
@@ -126,6 +120,7 @@ void	expand_argv(t_expand *list, t_envlist *envlist)
 						tmp = ft_strjoin(line, param);
 				}
 				else
+				*/
 					tmp = ft_strjoin(line, param);
 				line = tmp;
 			}
@@ -138,6 +133,25 @@ void	expand_argv(t_expand *list, t_envlist *envlist)
 	}
 }
 
+char	**create_new_command(t_expand *argv_list, size_t size)
+{
+	char		**new_command;
+	t_expand	*tmp;
+	size_t		index;
+
+	new_command = (char **)malloc(sizeof(char *) * (size + 1));
+	index = 0;
+	tmp = argv_list;
+	while (index < size)
+	{
+		new_command[index] = tmp->argv;
+		index += 1;
+		tmp = tmp->next;
+	}
+	new_command[index] = NULL;
+	return (new_command);
+}
+
 void	expansion(t_parsed *parsed, t_envlist *env)
 {
 	t_expand	*argv_list;
@@ -148,22 +162,13 @@ void	expansion(t_parsed *parsed, t_envlist *env)
 	argv_list = convert_list(parsed->command);
 	expand_argv(argv_list, env);
 	tmp = argv_list;
-	size = 1;
-	while (tmp != NULL)
-	{
-		size += 1;
-		tmp = tmp->next;
-	}
-	new_command = (char **)malloc(sizeof(char *) * size);
 	size = 0;
-	tmp = argv_list;
 	while (tmp != NULL)
 	{
-		new_command[size] = tmp->argv;
 		size += 1;
 		tmp = tmp->next;
 	}
-	new_command[size] = NULL;
+	new_command = create_new_command(argv_list, size);
 	parsed->command = new_command;
 }
 
