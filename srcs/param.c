@@ -1,4 +1,4 @@
-#include "variable_name.h"
+#include "param.h"
 
 static size_t	get_name_size(const char *line, const size_t start)
 {
@@ -39,4 +39,32 @@ char	*get_variable_name(char *line, size_t *start)
 	(*start) += size;
 	variable_name[index] = '\0';
 	return (variable_name);
+}
+
+char	*param_func(t_expand *list, t_envlist *envlist)
+{
+	char	*variable_name;
+	char	*tmp;
+	char	*param;
+
+	param = NULL;
+	variable_name = get_variable_name(list->argv, &list->index);
+	if (variable_name[0] == '?')
+	{
+		param = ft_itoa(g_status);
+		if (param == NULL)
+		{
+			ft_putendl_fd("malloc failure", 2);
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		tmp = search_env_key_(variable_name, envlist);
+		if (tmp != NULL)
+			param = ft_strdup(tmp);
+	}
+	free(variable_name);
+	list->checked = list->index;
+	return (param);
 }

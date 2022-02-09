@@ -1,101 +1,4 @@
 #include "expansion.h"
-#include "minishell_c.h"
-
-/*
-bool	expansion(t_parsed *parsed)
-{
-	char		*str;
-	size_t		count;
-	t_parsed	*current;
-
-	current = parsed;
-	while (current != NULL)
-	{
-		count = 0;
-		while (current->command[count] != NULL)
-		{
-			str = get_expanded_line(current->command, &count);
-			free(current->command[count]);
-			current->command[count] = str;
-			count += 1;
-		}
-		current = current->next;
-	}
-	return (true);
-}
-*/
-
-#include "libft.h"
-#include "parser.h"
-#include "stdio.h"
-
-# define NONE	0
-# define SINGLE 1
-# define DOUBLE 2
-# define DELIMITER " \t\n"
-
-typedef struct s_expand
-{
-	char			*argv;
-	int				flag;
-	size_t			index;
-	size_t			checked;
-	struct s_expand	*next;
-} t_expand;
-
-t_expand	*expand_new(char *argv)
-{
-	t_expand	*new;
-
-	new = (t_expand *)malloc(sizeof(t_expand));
-	if (new == NULL)
-	{
-		ft_putendl_fd("malloc failure", 2);
-		exit(EXIT_FAILURE);
-	}
-	new->argv = argv;
-	new->flag = NONE;
-	new->index = 0;
-	new->checked = 0;
-	new->next = NULL;
-	return (new);
-}
-
-void	expand_add_back(t_expand **head, t_expand *new)
-{
-	t_expand *current;
-
-	current = *head;
-	while (current->next != NULL)
-		current = current->next;
-	current->next = new;
-}
-
-// 文字列の配列をリストにする
-t_expand *convert_list(char **command)
-{
-	t_expand	*new;
-	t_expand	*tmp;
-	size_t		size;
-	size_t		index;
-
-	size = 0;
-	while (command[size] != NULL)
-		size += 1;
-	index = 0;
-	new = expand_new(command[index++]);
-	if (new == NULL)
-	{
-		ft_putendl_fd("malloc failure", 2);
-		exit(EXIT_FAILURE);
-	}
-	while (index < size)
-	{
-		tmp = expand_new(command[index++]);
-		expand_add_back(&new, tmp);
-	}
-	return (new);
-}
 
 //取り除いた後、使用しないメモリが生まれるのでstrはコピーし、freeすること
 static void	quote_remove(char *str, size_t start)
@@ -134,7 +37,6 @@ static bool	check_func(t_expand *list, size_t index)
 	return (false);
 }
 
-
 char	*string_before_param(t_expand *list, char **line)
 {
 	char	*before_param;
@@ -143,14 +45,14 @@ char	*string_before_param(t_expand *list, char **line)
 	if (list->index != list->checked)
 	{
 		before_param = ft_substr(list->argv, list->checked,
-			(list->index - list->checked));
+				(list->index - list->checked));
 		if (before_param == NULL)
 		{
 			ft_putendl_fd("malloc failure", 2);
 			exit(EXIT_FAILURE);
 		}
 		new_line = ft_strjoin(*line, before_param);
-		free(*line); 
+		free(*line);
 		free(before_param);
 		if (new_line == NULL)
 		{
@@ -162,66 +64,6 @@ char	*string_before_param(t_expand *list, char **line)
 	return (*line);
 }
 
-static size_t	get_name_size(const char *line, const size_t start)
-{
-	size_t	size;
-
-	size = 0;
-	if (line[(start)] == '?')
-		size += 1;
-	else if (ft_isdigit(line[(start)]))
-		size += 1;
-	else
-		while (ft_isalnum(line[(start + size)])
-			|| line[(start + size)] == '_')
-			size += 1;
-	return (size);
-}
-
-char	*get_variable_name(char *line, size_t *start)
-{
-	char	*variable_name;
-	size_t	size;
-	size_t	index;
-
-	(*start) += 1;
-	size = get_name_size(line, *start);
-	variable_name = (char *)malloc(sizeof(char) * (size + 1));
-	if (variable_name == NULL)
-	{
-		ft_putendl_fd("malloc failure", 2);
-		exit(EXIT_FAILURE);
-	}
-	index = 0;
-	while (index < size)
-	{
-		variable_name[index] = line[(*start) + index];
-		index += 1;
-	}
-	(*start) += size;
-	variable_name[index] = '\0';
-	return (variable_name);
-}
-
-char	*param_func(t_expand *list, t_envlist *envlist)
-{
-	char	*variable_name;
-	char	*tmp;
-	char	*param;
-
-	param = NULL;
-	variable_name = get_variable_name(list->argv, &list->index);
-	tmp = search_env_key_(variable_name, envlist);
-	if (tmp != NULL)
-	{
-		param = ft_strdup(tmp);
-	}
-	
-	free(variable_name);
-	list->checked = list->index;
-	return (param);
-}
-
 char	*join_remaining_string(t_expand *list, char **line)
 {
 	char	*remaining;
@@ -230,7 +72,7 @@ char	*join_remaining_string(t_expand *list, char **line)
 	if (list->checked != list->index)
 	{
 		remaining = ft_substr(
-			list->argv, list->checked, list->index - list->checked);
+				list->argv, list->checked, list->index - list->checked);
 		if (remaining == NULL)
 		{
 			ft_putendl_fd("malloc failure", 2);
@@ -249,142 +91,13 @@ char	*join_remaining_string(t_expand *list, char **line)
 	return (NULL);
 }
 
-t_list	*my_lstnew(void *content)
-{
-	t_list	*new_list;
-
-	new_list = ft_lstnew(content);
-	if (new_list == NULL)
-	{
-		ft_putendl_fd("malloc failure", 2);
-		exit(EXIT_FAILURE);
-	}
-	return (new_list);
-}
-
-void	lstnew_add_back(t_list **lst, void *content)
-{
-	t_list	*new_list;
-
-	new_list = my_lstnew(content);
-	ft_lstadd_back(lst, new_list);
-}
-
-t_list	*word_splitting(char *str)
-{
-	t_list	*splitted;
-	size_t	index;
-	size_t	length;
-	char	*tmp;
-
-	index = 0;
-	length = 0;
-	splitted = NULL;
-	while (str[index] != '\0')
-	{
-		if (ft_strrchr(DELIMITER, str[index]))
-		{
-			if (length > 0)
-			{
-				tmp = ft_substr(str, index - length, length);
-				if (tmp == NULL)
-				{
-					ft_putendl_fd("malloc failure", 2);
-					exit(EXIT_FAILURE);
-				}
-				lstnew_add_back(&splitted, tmp);
-			}
-			length = 0;
-		}
-		else
-			length += 1;
-		index += 1;
-	}
-	if (length > 0 && index != length)
-	{
-		tmp = ft_substr(str, index - length, length);
-		if (tmp == NULL)
-		{
-			ft_putendl_fd("malloc failure", 2);
-			exit(EXIT_FAILURE);
-		}
-		lstnew_add_back(&splitted, tmp);
-	}
-	lstnew_add_back(&splitted, NULL);
-	return (splitted);
-}
-
-bool	is_connect_prev(char *argv)
-{
-	if (argv == NULL)
-		return (false);
-	if (!ft_isspace(argv[0]))
-		return (true);
-	return (false);
-}
-
-bool	is_connect_next(char *argv)
-{
-	if (argv == NULL || ft_strlen(argv) == 0)
-		return (false);
-	if (!ft_isspace(argv[ft_strlen(argv) - 1]))
-		return (true);
-	return (false);
-}
-
-char	*func(t_expand **list, char **line, t_list *split)
-{
-	t_list		*tmp;
-	t_expand	*new;
-	t_expand	*next;
-
-	if (split == NULL)
-		return (*line);
-
-	tmp = split;
-
-	//今の引数にくっつく
-	if (is_connect_prev(tmp->content))
-	{
-		(*line) = ft_strjoin(*line, tmp->content);
-		(*list)->argv = (*line);
-		tmp = tmp->next;
-	}
-
-	while (tmp->next != NULL && tmp->next->content != NULL)
-	{
-		new = expand_new(tmp->content);
-		next = (*list)->next;
-		(*list)->next = new;
-		new->next = next;
-		(*list) = new;
-		tmp = tmp->next;
-	}
-
-	if (is_connect_next(tmp->content))
-	{
-		*line = tmp->content;
-		new = expand_new(tmp->content);
-		next = (*list)->next;
-		(*list)->next = new;
-		new->next = next;
-		(*list) = new;
-		tmp = tmp->next;
-		return ((*list)->argv);
-	}
-	else
-	{
-		return (NULL);
-	}
-}
-
 //リスト内の文字列を展開する
 void	expand_argv(t_expand *list, t_envlist *envlist)
 {
 	char	*line;
 	char	*tmp;
 	char	*param;
-	t_list	*split;
+	//t_list	*split;
 
 	while (list != NULL)
 	{
@@ -396,32 +109,53 @@ void	expand_argv(t_expand *list, t_envlist *envlist)
 			else if (list->flag != SINGLE && list->argv[list->index] == '$')
 			{
 				line = string_before_param(list, &line);
-				param = param_func(list, envlist);		//パラメータの値を取得
+				param = param_func(list, envlist);
+				/*
 				if (list->flag == NONE)
 				{
-					split = word_splitting(param);	//単語分割したリスト
+					split = word_splitting(param);
 					if (split->content != NULL)
 						tmp = func(&list, &line, split);
 					else
 						tmp = ft_strjoin(line, param);
 				}
 				else
-					tmp = ft_strjoin(line, param);
-				//free(line);
-				//free(param);
+				*/
+				tmp = ft_strjoin(line, param);
+				free(line);
+				free(param);
 				line = tmp;
 			}
 		}
 		tmp = join_remaining_string(list, &line);
 		if (tmp != NULL)
 			line = tmp;
-		//free(list->argv);
+		free(list->argv);
 		list->argv = line;
 		list = list->next;
 	}
 }
 
-void    expansion(t_parsed *parsed, t_envlist *env)
+char	**create_new_command(t_expand *argv_list, size_t size)
+{
+	char		**new_command;
+	t_expand	*tmp;
+	size_t		index;
+
+	new_command = (char **)malloc(sizeof(char *) * (size + 1));
+	index = 0;
+	tmp = argv_list;
+	while (index < size)
+	{
+		new_command[index] = tmp->argv;
+		index += 1;
+		tmp = tmp->next;
+	}
+	new_command[index] = NULL;
+	return (new_command);
+}
+
+void	expansion(t_parsed *parsed, t_envlist *env)
 {
 	t_expand	*argv_list;
 	t_expand	*tmp;
@@ -431,22 +165,15 @@ void    expansion(t_parsed *parsed, t_envlist *env)
 	argv_list = convert_list(parsed->command);
 	expand_argv(argv_list, env);
 	tmp = argv_list;
-	size = 1;
-	while (tmp != NULL)
-	{
-		size += 1;
-		tmp = tmp->next;
-	}
-	new_command = (char **)malloc(sizeof(char *) * size);
 	size = 0;
-	tmp = argv_list;
 	while (tmp != NULL)
 	{
-		new_command[size] = tmp->argv;
 		size += 1;
 		tmp = tmp->next;
 	}
-	new_command[size] = NULL;
+	new_command = create_new_command(argv_list, size);
+	free_expand(&argv_list);
+	free(parsed->command);
 	parsed->command = new_command;
 }
 

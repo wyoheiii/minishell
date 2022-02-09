@@ -169,6 +169,8 @@ void	expansion(t_parsed *parsed, t_envlist *env)
 		tmp = tmp->next;
 	}
 	new_command = create_new_command(argv_list, size);
+	free_expand(&argv_list);
+	free(parsed->command);
 	parsed->command = new_command;
 }
 
