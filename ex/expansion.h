@@ -8,6 +8,7 @@
 # include "parser.h"
 # include "expand_struct.h"
 # include "word_splitting.h"
+# include "not_param_str.h"
 # include "param.h"
 
 void	expansion(t_parsed *parsed, t_envlist *envlist);
