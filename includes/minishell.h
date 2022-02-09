@@ -12,7 +12,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "../debug/debug.h"
-#include "expansion.h"
+//#include "expansion.h"
 //#include 
 int g_status;
 #endif // !
