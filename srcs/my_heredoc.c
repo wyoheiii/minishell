@@ -12,7 +12,7 @@ void heredoc_child(int pfd[2], char *str)
         if(line == NULL)
             continue;
         //printf("%s\n",line);
-        if(ft_strncmp(line, str, ft_strlen(str) + 1)==0)
+        if(ft_strncmp(line, str, ft_strlen(str) + 1) == 0)
         {
             break;
         }
@@ -39,7 +39,6 @@ void my_heredoc(t_redirect *redirect)
         waitpid_get_status(pid,&status,0);
     my_close(pfd[1]);
     redirect->fd = pfd[0];
-
 }
 
 //void heredoc_set(t_redirect *redirect)
@@ -56,7 +55,6 @@ void set_heredoc(t_parsed *parsed)
         {
             if(red->state == HERE_DOCUMENT) {
                 my_heredoc(red);
-                //printf("fd  ; %d\n",red->fd);
             }
             red = red->next;
         }

@@ -30,6 +30,7 @@ typedef struct s_envlist
     char *value;
     struct s_envlist *next;
 }   t_envlist;
+
 typedef struct s_pipe
 {
     //int i;
@@ -37,9 +38,16 @@ typedef struct s_pipe
     pid_t *pid;
     int status;
 }   t_pipe;
+typedef struct s_god
+{
+    t_envlist **envlist;
+    t_parsed *parsed;
+    char *pwd;
+}   t_god;
+
 int command_part(t_parsed *parsed,t_envlist **lst);
 int my_echo(char **command);
-int my_pwd(void);
+int my_pwd(char *pwd);
 int my_exit(char **command);
 int my_cd(char **command, t_envlist **lst);
 void print_err(char *command, char *error);
