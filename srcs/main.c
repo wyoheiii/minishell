@@ -30,7 +30,6 @@ void minishell(char **envp)
         //print_parsed(parsed);
         expansion(parsed,lst);
         if (command_part(parsed, &lst) == EXIT){
-            printf("exit\n");
             break;
         } // 1でexit
         free_parsed(&parsed);
@@ -39,6 +38,7 @@ void minishell(char **envp)
     //free_parsed(&parsed);
     //all_env_clear(&lst);
     //free(line);
+    printf("exit\n");
     exit(g_status);
 }
 

@@ -2,9 +2,9 @@
 int my_pwd(char *pwd)
 {
     char *dir;
-
+    (void)pwd;
     dir = getcwd((char *)NULL, 0);
-    //printf("pwd :%s\n",dir);
+   // printf("pwd :%s\n",pwd);
     if(!dir)
         perror("getcwd");
     else
