@@ -6,8 +6,6 @@
 
 # include "libft.h"
 # include "expand_struct.h"
-# include "list_utils.h"
-# include "utils.h"
 
 # define DELIMITER " \t\n"
 
