@@ -83,6 +83,7 @@ bool check_arg(char *arg,int *join_flag)
     i = 0;
     if(!is_alpha_(arg[0]))
         return(false);
+    //printf("%s\n",arg);
     while(arg[i] != '\0' && arg[i] != '=')
         i++;
     if(arg[i] == '=')
@@ -121,6 +122,31 @@ bool key_match_check(char *arg, t_envlist *lst)
     free(key);
     return(false);
 }
+void dup_value(char *arg, t_envlist **lst)
+{
+    size_t key_size;
+    char *tmp;
+    char *key;
+    t_envlist *top;
+
+    key = env_get_key(arg);
+    key_size = ft_strlen(key);
+    top = *lst;
+    while(*lst != NULL)
+    {
+        if(ft_strncmp(key,(*lst)->key, key_size + 1) == 0)
+        {
+            //printf("key  :%s",key);
+            tmp = env_get_value(arg);
+            //printf("value ;%s\n",tmp);
+            free((*lst)->value);
+            (*lst)->value = tmp;
+            *lst = top;
+            return ;
+        }
+        *lst = (*lst)->next;
+    }
+}
 
 void join_value(char *arg, t_envlist **lst)
 {
@@ -137,31 +163,10 @@ void join_value(char *arg, t_envlist **lst)
     {
         if(ft_strncmp(key,(*lst)->key, key_size + 1) == 0)
         {
-            (*lst)->value = my_strjoin(&(*lst)->value, &value);
-            *lst = top;
-            return ;
-        }
-        *lst = (*lst)->next;
-    }
-}
-
-void dup_value(char *arg, t_envlist **lst)
-{
-    size_t key_size;
-    char *tmp;
-    char *key;
-    t_envlist *top;
-
-    key = env_get_key(arg);
-    key_size = ft_strlen(key);
-    top = *lst;
-    while(*lst != NULL)
-    {
-        if(ft_strncmp(key,(*lst)->key, key_size + 1) == 0)
-        {
-            tmp = env_get_value(arg);
-            free((*lst)->value);
-            (*lst)->value = tmp;
+            if ((*lst)->value == NULL)
+                (*lst)->value =  value;
+            else
+                (*lst)->value = my_strjoin(&(*lst)->value, &value);
             *lst = top;
             return ;
         }
@@ -180,6 +185,8 @@ bool set_key_value(char *arg, t_envlist **lst)
     {
         if (key_match_check(arg, *lst))
         {
+            if(ft_strchr(arg,'=') == NULL)
+                return(true);
             if(join_flag)
                 join_value(arg, lst);
             else

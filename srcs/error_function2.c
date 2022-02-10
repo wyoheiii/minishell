@@ -27,7 +27,7 @@ void waitpid_get_status(pid_t pid, int *status,int option)
     if(waitpid(pid, status, option) < 0)
     {
         exit_error("waitpid");
-        exit(1);
+        //exit(1);
     }
     if(WIFEXITED(*status))
         g_status = WEXITSTATUS(*status);

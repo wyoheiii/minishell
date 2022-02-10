@@ -32,7 +32,7 @@ char *env_get_value(char *env)
 //            value = NULL;//ft_strdup("");
         if(!tmp)
             value = NULL;
-        else if(++tmp == 0)
+        else if(tmp[1] == '\0')
             value = my_strdup("");
         else
             value = my_strdup(++tmp);

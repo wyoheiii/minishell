@@ -28,8 +28,10 @@ void minishell(char **envp)
         parsed = parser(&token_list);
         //print_parsed(parsed);
         expansion(parsed);
-        if (command_part(parsed, &lst) == EXIT) // 1でexit
-             break ;
+        if (command_part(parsed, &lst) == EXIT){
+            printf("exit\n");
+            break;
+        } // 1でexit
         free_parsed(&parsed);
 		free(line);
 	}

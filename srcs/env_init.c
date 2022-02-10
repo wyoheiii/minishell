@@ -17,7 +17,7 @@ void    env_init(char **env, t_envlist **envlst) {
     i = 1;
     while(env[i] != NULL)
     {
-        if(env[i][0] == '_' && env[i][1] == '=')
+        if((env[i][0] == '_' && env[i][1] == '=')|| ft_strncmp(env[i],"OLDPWD",7)==0)
         {
             i++;
             continue ;
