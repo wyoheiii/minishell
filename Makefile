@@ -16,7 +16,7 @@ OBJS = $(addprefix $(OBJDIR)/, $(notdir $(ADDSRCS:%.c=%.o)))
 
 CC	 := gcc
 RM	 := rm -f
-CFLAGS	:= -Wall -Wextra -Werror
+CFLAGS	:= -Wall -Wextra -Werror  -g -fsanitize=address
 LIBFTD := ./libft
 LIBFT  := $(LIBFTD)/libft.a
 INC	:= ./includes
@@ -77,8 +77,7 @@ $(OBJDIR)/%.o : $(SRCSD)%.c
 
 leaks: $(LIBFT)
 	$(MAKE) CFLAGS="$(CFLAGS) -D LEAKS=1" INC="$(INC) $(INCLUDE_LEAKS)" ADDSRCS="$(ADDSRCS) $(SRCS_LEAKS)" LEAKS=TRUE
-	echo $(ADDSRCS)
-	echo "hogehoge"
+
 cleanleaks: clean
 	$(RM) ./test/help/leaks.o ./test/help/leaks.d
 

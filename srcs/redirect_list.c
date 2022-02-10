@@ -12,6 +12,7 @@ static t_redirect	*new_redirect(char	*filename, char *meta)
 	redirect = (t_redirect *)malloc(sizeof(t_redirect));
 	if (redirect == NULL)
 		return (NULL);
+    redirect->fd = -1;
 	redirect->filename = filename;
 	redirect->state = get_state(meta);
 	redirect->next = NULL;

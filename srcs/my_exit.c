@@ -11,8 +11,11 @@ bool    check_num(char *command)
 {
     size_t i;
     i = 0;
-    if(command[0] == '+' || command[0] == '-')
+    if(command[0] == '+' || command[0] == '-') {
         i++;
+        if(command[i] == '\0')
+            return(false);
+    }
     while(command[i] != '\0')
     {
         if(!ft_isdigit(command[i]))
@@ -39,6 +42,7 @@ static bool exit_atoi2(char *str,int flag, size_t i, long long *num)
         i++;
     }
     *num =  flag * ((long long)*num);
+    //printf(" num ;%lld",*num);
     return (true);
 }
 bool exit_atoi(char *str, long long *num)
@@ -87,12 +91,14 @@ int my_exit(char **command)
         //g_status = 0;
         return (EXIT);
     }
-    if (check_num(command[1]) && exit_atoi(command[1] , &num))
+    if (size == 2 && check_num(command[1]) && exit_atoi(command[1] , &num))
     {
         //printf("ret  :%lld\n",num);
         g_status = (unsigned char)num;
         return (EXIT);
     }
+    if(check_num(command[1]) && !exit_atoi(command[1] , &num))
+        return(exit_error_c(command[1]));
     //printf("ret  :%d",ret);
     if (size == 2 && check_num(command[1]))
         return(EXIT);

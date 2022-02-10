@@ -41,7 +41,7 @@ int my_echo(char **arg)
     {
         option_flag = false;
         i = check_option(arg, &option_flag);
-        while(arg[i] != NULL) 
+        while(arg[i] != NULL)
         {
             ft_putstr_fd(arg[i], 1);
             if (arg[i + 1] != NULL )
