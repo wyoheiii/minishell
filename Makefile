@@ -3,13 +3,17 @@ SRCS := main.c command_main.c my_echo.c my_pwd.c my_exit.c my_cd.c my_env.c \
 		env_init.c env_util.c env_util2.c my_export.c my_unset.c \
 		delimiter.c flag.c lexer.c parser.c utils.c token.c sig.c command_util.c \
 		multi_command.c error_function.c error_function2.c my_redirect.c \
+		list_utils.c libft_utils.c expansion.c expand_struct.c not_param_str.c\
+		param.c redirect_list.c my_heredoc.c
 
-		variable_name.c list_utils.c libft_utils.c expansion.c expand_param.c \
-		expand_line.c redirect_list.c my_heredoc.c
 SRCSD := ./srcs/
 
 ADDSRCS := $(addprefix $(SRCSD),$(SRCS))
-OBJS := $(ADDSRCS:.c=.o)
+
+OBJDIR = ./obj
+OBJS = $(addprefix $(OBJDIR)/, $(notdir $(ADDSRCS:%.c=%.o)))
+#OBJS := $(ADDSRCS:.c=.o)
+
 CC	 := gcc
 RM	 := rm -f
 CFLAGS	:= -Wall -Wextra -Werror
@@ -54,7 +58,8 @@ $(LIBFT):	$(LIBFTD)
 			$(MAKE) -C $(LIBFTD)
 
 clean:
-			$(RM) $(OBJS)
+			$(RM) -r $(OBJDIR)
+#			$(RM) $(OBJS)
 			$(MAKE) -C $(LIBFTD) clean
 
 fclean:		clean
@@ -63,8 +68,12 @@ fclean:		clean
 
 re:			fclean $(NAME)
 
-.c.o :
-			$(CC) $(CFLAGS)  -c -o $@ $< -I$(INC) -I$(LIBINC) $(RL1)
+$(OBJDIR)/%.o : $(SRCSD)%.c
+	@if [ ! -d $(OBJDIR) ]; then echo "mkdir -p $(OBJDIR)" && mkdir -p $(OBJDIR); fi    
+	$(CC) $(CFLAGS)  -c -o $@ $< -I$(INC) -I$(LIBINC) $(RL1)
+
+#.c.o :
+#			$(CC) $(CFLAGS)  -c -o $@ $< -I$(INC) -I$(LIBINC) $(RL1)
 
 leaks: $(LIBFT)
 	$(MAKE) CFLAGS="$(CFLAGS) -D LEAKS=1" INC="$(INC) $(INCLUDE_LEAKS)" ADDSRCS="$(ADDSRCS) $(SRCS_LEAKS)" LEAKS=TRUE
