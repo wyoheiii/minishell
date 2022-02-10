@@ -219,7 +219,7 @@ bool redirect_check(t_parsed *parsed)
     return(false);
 }
 
-int single_builtin(t_god god)
+int single_builtin(t_god god,t_envlist **lst)
 {
     int fd1;
     int fd2;
@@ -231,7 +231,7 @@ int single_builtin(t_god god)
     fd3 = my_dup(2);
     if(redirect_check(god.parsed))
         select_redirect(god.parsed->redirect);
-    ret = return_builtin(god.parsed->command, god.envlist,god);
+    ret = return_builtin(god.parsed->command, lst,god);
     my_dup2(fd1,0);
     my_dup2(fd2,1);
     my_dup2(fd3,2);
@@ -240,25 +240,25 @@ int single_builtin(t_god god)
     my_close(fd3);
     return(ret);
 }
-int single_command(t_god god)
+int single_command(t_god god,t_envlist **lst)
 {
     pid_t pid;
     char *path;
     int status;
     char **env_array;
 
-    env_array = lst_in_array( *god.envlist);
+    env_array = lst_in_array( *lst);
 
     if(builtin_select(god.parsed->command))
-        return (single_builtin(god));
+        return (single_builtin(god,lst));
     //printf("fd  ; %d\n",parsed->redirect->fd);
     pid = my_fork();
     if (pid == 0)
     {
-        if(redirect_check(parsed))
-            select_redirect(parsed->redirect);
-        path = get_path(*lst, parsed->command[0]);
-        if(execve(path, parsed->command, env_array) == -1)
+        if(redirect_check(god.parsed))
+            select_redirect(god.parsed->redirect);
+        path = get_path(*lst,god.parsed->command[0]);
+        if(execve(path, god.parsed->command, env_array) == -1)
             exec_error(path,*lst);
         free(path);
         //exit(g_status);
@@ -270,20 +270,20 @@ int single_command(t_god god)
     return (0);
 }
 
-void select_command(t_parsed *parsed, t_envlist **lst)
+void select_command(t_god god, t_envlist **lst)
 {
     char **lst_array;
     char *path;
     lst_array = lst_in_array(*lst);
-    path = get_path(*lst,parsed->command[0]);
-    if(builtin_select(parsed->command))
+    path = get_path(*lst,god.parsed->command[0]);
+    if(builtin_select(god.parsed->command))
     {
-        single_builtin(parsed, lst);
+        single_builtin(god, lst);
         exit(g_status);
     }
-    if(redirect_check(parsed))
-        select_redirect(parsed->redirect);
-    if(execve(path, parsed->command, lst_array)== -1)
+    if(redirect_check(god.parsed))
+        select_redirect(god.parsed->redirect);
+    if(execve(path, god.parsed->command, lst_array)== -1)
         exec_error(path,*lst);
 }
 
@@ -316,19 +316,19 @@ void pipe_init(t_pipe *p, int pipe_count)
     p->pipe_fd = my_malloc(sizeof(int *) * (pipe_count + 1));
     p->pid = my_malloc(sizeof(int) * (pipe_count + 1));
 }
-void mult_command(t_pipe pipe,t_god god,int pipe_count)
+void mult_command(t_pipe pipe,t_envlist **lst, t_god god,int pipe_count)
 {
     DEBUG_PRINT("a\n")
     int i = 0;
-    while(parsed != NULL)
+    while(god.parsed != NULL)
     {
-        if(i != pipe_count && parsed->state == PIPE)
+        if(i != pipe_count && god.parsed->state == PIPE)
             my_pipe(pipe.pipe_fd[i]);
         pipe.pid[i] = my_fork();
         if(pipe.pid[i] == 0)
         {
             multi_pipe(pipe.pipe_fd, i, pipe_count);
-            select_command(parsed, lst);
+            select_command(god, lst);
         }
         else
         {
@@ -338,15 +338,14 @@ void mult_command(t_pipe pipe,t_god god,int pipe_count)
             }
         }
         i++;
-        parsed = parsed->next;
+        god.parsed = god.parsed->next;
 
     }
 }
-void god_init(t_god *god,t_parsed *parsed, t_envlist **lst)
+void god_init(t_god *god,t_parsed *parsed,t_envlist *lst)
 {
     god->parsed = parsed;
-    god->envlist = lst;
-    god->pwd = search_env_key_("PWD",*lst);
+    god->pwd = search_env_key_("PWD",lst);
 }
 int command_part(t_parsed *parsed, t_envlist **lst)
 {
@@ -355,14 +354,14 @@ int command_part(t_parsed *parsed, t_envlist **lst)
     int pipe_count;
     int i;
 
-    god_init(&god, parsed, lst);
+    god_init(&god, parsed, *lst);
     pipe_count = count_pipe(god.parsed);
     set_heredoc(god.parsed);
     //printf("command :%s\n",parsed->command[0]);
     if(pipe_count == 0)
-        return (single_command(god));
+        return (single_command(god,lst));
     pipe_init(&p, pipe_count);
-    mult_command(p,god,pipe_count);
+    mult_command(p,lst,god,pipe_count);
     i = -1;
     while(++i < pipe_count + 1)
         waitpid_get_status(p.pid[i],&p.status, 0);

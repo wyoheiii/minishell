@@ -40,7 +40,7 @@ typedef struct s_pipe
 }   t_pipe;
 typedef struct s_god
 {
-    t_envlist **envlist;
+    //t_envlist **envlist;
     t_parsed *parsed;
     char *pwd;
 }   t_god;

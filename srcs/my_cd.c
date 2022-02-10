@@ -56,7 +56,6 @@ int my_cd(char **command, t_envlist **lst)
     if(command[1] == NULL)
     {
         path = search_env_key_("HOME", *lst);
-        //printf("path :%s\n",path);
         if(path == NULL)
             return (cd_error(NULL));
         if(chdir(path) != 0)
@@ -68,7 +67,7 @@ int my_cd(char **command, t_envlist **lst)
         {
             error = ft_strjoin("minishell: cd: ",command[1]);
             if(error == NULL)
-                exit(1);
+                exit_error("malloc");
             g_status = 1;
             perror(error);
             free(error);
