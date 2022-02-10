@@ -3,7 +3,7 @@ char *search_env_key_(const char *search, t_envlist *lst)
 {
     while(lst != NULL)
     {
-        if(ft_strncmp(search,lst->key, ft_strlen(search))== 0 \
+        if(ft_strncmp(search,lst->key, ft_strlen(search) + 1)== 0 \
         && lst->value != NULL && lst->value[0] != '\0')
             return (lst->value);
         lst = lst->next;

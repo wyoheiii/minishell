@@ -5,6 +5,8 @@ int    return_builtin(char **command, t_envlist **envlst)
     int ret;
 
     ret = 0;
+    if(command[0] == NULL)
+        return (0);
     if(!ft_strncmp(command[0], "echo", 5))
         ret = my_echo(command);
     else if(!ft_strncmp(command[0], "cd", 3))
@@ -19,12 +21,13 @@ int    return_builtin(char **command, t_envlist **envlst)
         ret = my_env(*envlst);
     else if(!ft_strncmp(command[0], "exit",5))
         ret = my_exit(command);
-
     return (ret);
 }
 
 bool    builtin_select(char **command)
 {
+    if(command[0] == NULL)
+        return(true);
     if(!ft_strncmp(command[0], "echo",5))
         return(true);
     else if(!ft_strncmp(command[0], "cd", 3))
@@ -210,6 +213,8 @@ bool redirect_check(t_parsed *parsed)
             return (true);
         if (parsed->redirect->state == REDIRECT_INPUT)
             return (true);
+        if (parsed->redirect->state == HERE_DOCUMENT)
+            return (true);
     }
     return(false);
 }
@@ -220,6 +225,7 @@ int single_builtin(t_parsed *parsed,t_envlist **lst)
     int fd2;
     int fd3;
     int ret;
+    //printf("kita\n");
     fd1 = my_dup(0);
     fd2 = my_dup(1);
     fd3 = my_dup(2);
@@ -242,8 +248,10 @@ int single_command(t_parsed *parsed, t_envlist **lst)
     char **env_array;
 
     env_array = lst_in_array( *lst);
+
     if(builtin_select(parsed->command))
         return (single_builtin(parsed, lst));
+    //printf("fd  ; %d\n",parsed->redirect->fd);
     pid = my_fork();
     if (pid == 0)
     {
@@ -253,9 +261,11 @@ int single_command(t_parsed *parsed, t_envlist **lst)
         if(execve(path, parsed->command, env_array) == -1)
             exec_error(path,*lst);
         free(path);
+        //exit(g_status);
     }
-    //ctrl c tokano signal moireru
-    waitpid_get_status(pid,&status,0);
+    else
+        waitpid_get_status(pid,&status,0);
+    //signal irukamo
     free_array(env_array);
     return (0);
 }
@@ -339,6 +349,8 @@ int command_part(t_parsed *parsed, t_envlist **lst)
     int i;
 
     pipe_count = count_pipe(parsed);
+    set_heredoc(parsed);
+    //printf("command :%s\n",parsed->command[0]);
     if(pipe_count == 0)
         return (single_command(parsed, lst));
     pipe_init(&p, pipe_count);

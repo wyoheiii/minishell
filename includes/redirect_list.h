@@ -16,6 +16,7 @@
 
 typedef struct s_redirect
 {
+    int                 fd;
 	char				*filename;
 	int					state;
 	struct s_redirect	*next;

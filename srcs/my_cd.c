@@ -56,6 +56,7 @@ int my_cd(char **command, t_envlist **lst)
     if(command[1] == NULL)
     {
         path = search_env_key_("HOME", *lst);
+        //printf("path :%s\n",path);
         if(path == NULL)
             return (cd_error(NULL));
         if(chdir(path) != 0)
