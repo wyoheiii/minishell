@@ -1,5 +1,5 @@
 #include "minishell_c.h"
-int my_pwd(void)
+int my_pwd(char *pwd)
 {
     char *dir;
 

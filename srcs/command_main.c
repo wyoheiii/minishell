@@ -1,6 +1,6 @@
 #include "minishell_c.h"
 
-int    return_builtin(char **command, t_envlist **envlst)
+int    return_builtin(char **command, t_envlist **envlst, t_god god)
 {
     int ret;
 
@@ -12,7 +12,7 @@ int    return_builtin(char **command, t_envlist **envlst)
     else if(!ft_strncmp(command[0], "cd", 3))
         ret = my_cd(command, envlst);
     else if(!ft_strncmp(command[0], "pwd", 4))
-        ret = my_pwd();
+        ret = my_pwd(god.pwd);
     else if(!ft_strncmp(command[0], "export", 7))
         ret = my_export(command, envlst);
     else if(!ft_strncmp(command[0], "unset",6))
@@ -62,7 +62,7 @@ char **lst_in_array(t_envlist *lst)
         if(!tmp)
             exit(1);
         if(lst->value == NULL)
-            ret[i] = my_strdup("");
+            ret[i] = ft_strdup("");
         else
             ret[i] = ft_strjoin(tmp,lst->value);
         if(!ret[i])
@@ -219,19 +219,19 @@ bool redirect_check(t_parsed *parsed)
     return(false);
 }
 
-int single_builtin(t_parsed *parsed,t_envlist **lst)
+int single_builtin(t_god god)
 {
     int fd1;
     int fd2;
     int fd3;
     int ret;
-    //printf("kita\n");
+
     fd1 = my_dup(0);
     fd2 = my_dup(1);
     fd3 = my_dup(2);
-    if(redirect_check(parsed))
-        select_redirect(parsed->redirect);
-    ret = return_builtin(parsed->command, lst);
+    if(redirect_check(god.parsed))
+        select_redirect(god.parsed->redirect);
+    ret = return_builtin(god.parsed->command, god.envlist,god);
     my_dup2(fd1,0);
     my_dup2(fd2,1);
     my_dup2(fd3,2);
@@ -240,17 +240,17 @@ int single_builtin(t_parsed *parsed,t_envlist **lst)
     my_close(fd3);
     return(ret);
 }
-int single_command(t_parsed *parsed, t_envlist **lst)
+int single_command(t_god god)
 {
     pid_t pid;
     char *path;
     int status;
     char **env_array;
 
-    env_array = lst_in_array( *lst);
+    env_array = lst_in_array( *god.envlist);
 
-    if(builtin_select(parsed->command))
-        return (single_builtin(parsed, lst));
+    if(builtin_select(god.parsed->command))
+        return (single_builtin(god));
     //printf("fd  ; %d\n",parsed->redirect->fd);
     pid = my_fork();
     if (pid == 0)
@@ -316,7 +316,7 @@ void pipe_init(t_pipe *p, int pipe_count)
     p->pipe_fd = my_malloc(sizeof(int *) * (pipe_count + 1));
     p->pid = my_malloc(sizeof(int) * (pipe_count + 1));
 }
-void mult_command(t_pipe pipe,t_parsed *parsed,t_envlist  **lst,int pipe_count)
+void mult_command(t_pipe pipe,t_god god,int pipe_count)
 {
     DEBUG_PRINT("a\n")
     int i = 0;
@@ -342,19 +342,27 @@ void mult_command(t_pipe pipe,t_parsed *parsed,t_envlist  **lst,int pipe_count)
 
     }
 }
+void god_init(t_god *god,t_parsed *parsed, t_envlist **lst)
+{
+    god->parsed = parsed;
+    god->envlist = lst;
+    god->pwd = search_env_key_("PWD",*lst);
+}
 int command_part(t_parsed *parsed, t_envlist **lst)
 {
+    t_god  god;
     t_pipe p;
     int pipe_count;
     int i;
 
-    pipe_count = count_pipe(parsed);
-    set_heredoc(parsed);
+    god_init(&god, parsed, lst);
+    pipe_count = count_pipe(god.parsed);
+    set_heredoc(god.parsed);
     //printf("command :%s\n",parsed->command[0]);
     if(pipe_count == 0)
-        return (single_command(parsed, lst));
+        return (single_command(god));
     pipe_init(&p, pipe_count);
-    mult_command(p,parsed,lst,pipe_count);
+    mult_command(p,god,pipe_count);
     i = -1;
     while(++i < pipe_count + 1)
         waitpid_get_status(p.pid[i],&p.status, 0);
