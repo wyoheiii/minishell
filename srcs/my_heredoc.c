@@ -6,12 +6,13 @@ void heredoc_child(int pfd[2], char *str)
     char *line;
     my_close(pfd[0]);
     //printf("str  ;%s\n",str);
-    heredoc_sig();
+
     while(1)
     {
+        heredoc_sig();
         line = readline("> ");
         if(line == NULL)
-            continue;
+            break;
         //printf("%s\n",line);
         if(ft_strncmp(line, str, ft_strlen(str) + 1) == 0)
         {
@@ -25,29 +26,51 @@ void heredoc_child(int pfd[2], char *str)
     my_close(pfd[1]);
     exit(0);
 }
-
-void my_heredoc(t_redirect *redirect)
+int heredoc_waitpid(pid_t pid,int *status,int option)
+{
+    if(waitpid(pid, status, option) < 0)
+    {
+        exit_error("waitpid");
+        //exit(1);
+    }
+    if(*status)
+    {
+        g_status = WEXITSTATUS(status);
+        return (1);
+    }
+    return (0);
+}
+int my_heredoc(t_redirect *redirect)
 {
     pid_t pid;
     int pfd[2];
     int status;
+    int ret;
+    ret = 0;
     my_pipe(pfd);
-    //int dup = my_dup(0);
 
     pid = my_fork();
     if(pid == 0)
         heredoc_child(pfd,redirect->filename);
     else
-        waitpid_get_status(pid,&status,0);
+        ret = heredoc_waitpid(pid,&status,0);
+    if(ret)
+    {
+        my_close(pfd[1]);
+        my_close(pfd[0]);
+        return(ret);
+    }
     my_close(pfd[1]);
     redirect->fd = pfd[0];
+    //printf("a\n");
+    return(ret);
 }
 
 //void heredoc_set(t_redirect *redirect)
 //{
 //
 //}
-void set_heredoc(t_parsed *parsed)
+bool  set_heredoc(t_parsed *parsed)
 {
     t_redirect *red;
     red = parsed->redirect;
@@ -56,7 +79,8 @@ void set_heredoc(t_parsed *parsed)
         while(red != NULL)
         {
             if(red->state == HERE_DOCUMENT) {
-                my_heredoc(red);
+                if(my_heredoc(red) != 0)
+                    return(false);
             }
             red = red->next;
         }
@@ -65,5 +89,5 @@ void set_heredoc(t_parsed *parsed)
         parsed = parsed->next;
 
     }
-
+    return(true);
 }

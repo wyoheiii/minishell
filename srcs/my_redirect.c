@@ -101,8 +101,10 @@ void select_redirect(t_redirect *redirect)
         }
         //error syori hituyou kamo
         if (redirect->state == HERE_DOCUMENT){;
-            my_dup2(redirect->fd,0);
-            my_close(redirect->fd);
+            if(redirect->fd > 0) {
+                my_dup2(redirect->fd, 0);
+                my_close(redirect->fd);
+            }
             redirect->fd = -1;
         }
         redirect = redirect->next;

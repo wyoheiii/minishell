@@ -324,9 +324,12 @@ void mult_command(t_pipe pipe,t_envlist **lst, t_god god,int pipe_count)
     {
         if(i != pipe_count && god.parsed->state == PIPE)
             my_pipe(pipe.pipe_fd[i]);
+        //catch_sasenai_signal();
+        catch_no_signal();
         pipe.pid[i] = my_fork();
         if(pipe.pid[i] == 0)
         {
+
             multi_pipe(pipe.pipe_fd, i, pipe_count);
             select_command(god, lst);
         }
@@ -353,16 +356,18 @@ int command_part(t_parsed *parsed, t_envlist **lst)
     t_pipe p;
     int pipe_count;
     int i;
-
+    catch_sasenai_signal();
     god_init(&god, parsed, *lst);
+    if(!set_heredoc(god.parsed))
+        return(0);
     pipe_count = count_pipe(god.parsed);
-    set_heredoc(god.parsed);
     //printf("command :%s\n",parsed->command[0]);
     if(pipe_count == 0)
         return (single_command(god,lst));
     pipe_init(&p, pipe_count);
     mult_command(p,lst,god,pipe_count);
     i = -1;
+    command_sig();
     while(++i < pipe_count + 1)
         waitpid_get_status(p.pid[i],&p.status, 0);
     free(p.pipe_fd);
