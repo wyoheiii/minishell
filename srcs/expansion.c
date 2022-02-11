@@ -16,9 +16,8 @@ static void	quote_remove(char *str, size_t start)
 	}
 }
 
-//クォートか、変数か、その他か調べる
-//クォートは取り除かれる
-static bool	check_func(t_expand *list, size_t index)
+// フラグを更新したらtrue
+bool	set_quote_flag(t_expand *list, size_t index)
 {
 	if (list->flag == NONE && list->argv[index] == '\'')
 		list->flag = SINGLE;
@@ -28,58 +27,153 @@ static bool	check_func(t_expand *list, size_t index)
 		list->flag = NONE;
 	else if (list->flag == DOUBLE && list->argv[index] == '\"')
 		list->flag = NONE;
-	else if (list->flag != SINGLE && list->argv[index] == '$'
-		&& list->argv[index + 1] != '\0')
-		return (false);
 	else
+		return (false);
+	return (true);
+}
+
+static size_t	search_expand_char(t_expand *list, size_t index)
+{
+	while (list->argv[index] != '\0')
+	{
+		if (set_quote_flag(list, index))
+			break ;
+		if (list->flag != SINGLE && list->argv[index] == '$')
+			break ;
+		index += 1;
+	}
+	return (index);
+}
+
+bool	is_remove(t_expand *list)
+{
+	if (list->flag == NONE
+		&& (list->argv[list->index] == '\''
+			|| list->argv[list->index] == '\"'))
 		return (true);
-	quote_remove(list->argv, index);
+	else if (list->flag == SINGLE && list->argv[list->index] == '\'')
+		return (true);
+	else if (list->flag == DOUBLE && list->argv[list->index] == '\"')
+		return (true);
 	return (false);
 }
 
-//リスト内の文字列を展開する
-void	expand_argv(t_expand *list, t_envlist *envlist)
+bool	is_expand(t_expand *list)
 {
-	char	*line;
-	char	*tmp;
-	char	*param;
-	//t_list	*split;
+	if (list->flag != SINGLE && (list->argv[list->index] == '$'
+			&& list->argv[list->index] != '\0'))
+		return (true);
+	return (false);
+}
 
+void	expand_join_last(t_expand *new, char *str)
+{
+	while (new->next != NULL)
+		new = new->next;
+	if (new->argv == NULL)
+		new->argv = my_strdup(str);
+	else
+		new->argv = my_strjoin(&(new->argv), &str);
+}
+
+void	expand_joinflag_on(t_expand *new)
+{
+	while (new->next != NULL)
+		new = new->next;
+	new->is_join = true;
+}
+
+void	expand_add_split(t_expand *new, char *param)
+{
+	t_list	*split;
+	t_list	*tmp;
+
+	split = word_splitting(param);
+	if (split == NULL)
+	{
+		split = ft_lstnew(param);
+	}
+	if (!ft_isspace(param[0]))
+	{
+		tmp = split;
+		expand_join_last(new, (char *)tmp->content);
+		split = split->next;
+		free(tmp);
+	}
+	while (split != NULL)
+	{
+		tmp = split;
+		expand_add_back(&new, expand_new(tmp->content));
+		split = split->next;
+		free(tmp);
+	}
+}
+
+void	add_expanded_param(t_expand *new, t_expand *list, t_envlist *envlist)
+{
+	char	*str;
+	char	*param;
+
+	if (list->index != list->checked)
+	{
+		str = my_substr(list->argv, list->checked,
+				(list->index - list->checked));
+		expand_join_last(new, str);
+	}
+	param = param_func(list, envlist);
+	list->checked = list->index;
+	if (list->flag == NONE)
+		expand_add_split(new, param);
+	else
+		expand_join_last(new, param);
+	if (!ft_isspace(param[ft_strlen(param) - 1]))
+		expand_joinflag_on(new);
+}
+
+void	add_remaining(t_expand *new, t_expand *list)
+{
+	t_expand	*current;
+	char		*str;
+	size_t		length;
+
+	length = ft_strlen(list->argv);
+	if (list->checked < length)
+	{
+		str = my_substr(list->argv, list->checked, list->index);
+		current = new;
+		while (current->next != NULL)
+			current = current->next;
+		if (current->is_join)
+			current->argv = my_strjoin(&(current->argv), &str);
+		else
+			expand_add_back(&new, expand_new(str));
+	}
+}
+
+//リスト内の文字列を展開する
+t_expand	*expand_argv(t_expand *list, t_envlist *envlist)
+{
+	t_expand	new_list;
+	t_expand	*tmp;
+
+	new_list.next = NULL;
 	while (list != NULL)
 	{
-		line = ft_strdup("");
+		tmp = expand_new(my_strdup(""));
+		tmp->is_join = true;
 		while (list->argv[list->index] != '\0')
 		{
-			if (check_func(list, list->index) == true)
-				list->index += 1;
-			else if (list->flag != SINGLE && list->argv[list->index] == '$')
-			{
-				line = string_before_param(list, &line);
-				param = param_func(list, envlist);
-				/*
-				if (list->flag == NONE)
-				{
-					split = word_splitting(param);
-					if (split->content != NULL)
-						tmp = func(&list, &line, split);
-					else
-						tmp = ft_strjoin(line, param);
-				}
-				else
-				*/
-				tmp = ft_strjoin(line, param);
-				free(line);
-				free(param);
-				line = tmp;
-			}
+			list->index = search_expand_char(list, list->index);
+			if (is_remove(list))
+				quote_remove(list->argv, list->index);
+			else if (is_expand(list))
+				add_expanded_param(tmp, list, envlist);
 		}
-		tmp = join_remaining_string(list, &line);
-		if (tmp != NULL)
-			line = tmp;
-		free(list->argv);
-		list->argv = line;
+		add_remaining(tmp, list);
+		expand_add_back(&(new_list.next), tmp);
 		list = list->next;
 	}
+	return (new_list.next);
 }
 
 char	**create_new_command(t_expand *argv_list, size_t size)
@@ -101,26 +195,36 @@ char	**create_new_command(t_expand *argv_list, size_t size)
 	return (new_command);
 }
 
+size_t	expand_lst_size(t_expand *argv_list)
+{
+	t_expand	*tmp;
+	size_t		size;
+
+	tmp = argv_list;
+	size = 0;
+	while (tmp != NULL)
+	{
+		size += 1;
+		tmp = tmp->next;
+	}
+	return (size);
+}
+
 void	expansion(t_parsed *parsed, t_envlist *env)
 {
 	t_expand	*argv_list;
-	t_expand	*tmp;
+	t_expand	*expand_argv_list;
 	char		**new_command;
 	size_t		size;
 
 	while (parsed != NULL)
 	{
 		argv_list = convert_list(parsed->command);
-		expand_argv(argv_list, env);
-		tmp = argv_list;
-		size = 0;
-		while (tmp != NULL)
-		{
-			size += 1;
-			tmp = tmp->next;
-		}
-		new_command = create_new_command(argv_list, size);
+		expand_argv_list = expand_argv(argv_list, env);
 		free_expand(&argv_list);
+		size = expand_lst_size(expand_argv_list);
+		new_command = create_new_command(expand_argv_list, size);
+		free_expand(&expand_argv_list);
 		free(parsed->command);
 		parsed->command = new_command;
 		parsed = parsed->next;
