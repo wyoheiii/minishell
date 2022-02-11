@@ -4,5 +4,6 @@
 #include <signal.h>
 #include "minishell.h"
 void signal_ctrl_c(int sig);
+void heredoc_sig(void);
 void catch_signal(void);
 #endif // !1

@@ -6,6 +6,7 @@ void heredoc_child(int pfd[2], char *str)
     char *line;
     my_close(pfd[0]);
     //printf("str  ;%s\n",str);
+    heredoc_sig();
     while(1)
     {
         line = readline("> ");
@@ -32,6 +33,7 @@ void my_heredoc(t_redirect *redirect)
     int status;
     my_pipe(pfd);
     //int dup = my_dup(0);
+
     pid = my_fork();
     if(pid == 0)
         heredoc_child(pfd,redirect->filename);

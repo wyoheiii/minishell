@@ -3,7 +3,6 @@
 #-------------------------------------
 # USER SETTING
 #-------------------------------------
-
 readonly MINISHELL_DIR="../"
 readonly MINISHELL_EXE="minishell"
 readonly MINISHELL_PROMPT="minishell> "
