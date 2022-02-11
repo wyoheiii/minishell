@@ -90,9 +90,7 @@ void	expand_add_split(t_expand *new, char *param)
 
 	split = word_splitting(param);
 	if (split == NULL)
-	{
 		split = ft_lstnew(param);
-	}
 	if (!ft_isspace(param[0]))
 	{
 		tmp = split;
@@ -109,7 +107,7 @@ void	expand_add_split(t_expand *new, char *param)
 	}
 }
 
-void	add_expanded_param(t_expand *new, t_expand *list, t_envlist *envlist)
+bool	add_expanded_param(t_expand *new, t_expand *list, t_envlist *envlist)
 {
 	char	*str;
 	char	*param;
@@ -122,12 +120,15 @@ void	add_expanded_param(t_expand *new, t_expand *list, t_envlist *envlist)
 	}
 	param = param_func(list, envlist);
 	list->checked = list->index;
+	if (param == NULL)
+		return (false);
 	if (list->flag == NONE)
 		expand_add_split(new, param);
 	else
 		expand_join_last(new, param);
 	if (!ft_isspace(param[ft_strlen(param) - 1]))
 		expand_joinflag_on(new);
+	return (true);
 }
 
 void	add_remaining(t_expand *new, t_expand *list)
@@ -155,10 +156,12 @@ t_expand	*expand_argv(t_expand *list, t_envlist *envlist)
 {
 	t_expand	new_list;
 	t_expand	*tmp;
+	bool		flag;
 
 	new_list.next = NULL;
 	while (list != NULL)
 	{
+		flag = true;
 		tmp = expand_new(my_strdup(""));
 		tmp->is_join = true;
 		while (list->argv[list->index] != '\0')
@@ -167,11 +170,14 @@ t_expand	*expand_argv(t_expand *list, t_envlist *envlist)
 			if (is_remove(list))
 				quote_remove(list->argv, list->index);
 			else if (is_expand(list))
-				add_expanded_param(tmp, list, envlist);
+				flag = add_expanded_param(tmp, list, envlist);
 		}
-		add_remaining(tmp, list);
-		expand_add_back(&(new_list.next), tmp);
-		list = list->next;
+		if (flag || tmp->argv[0] != '\0')
+		{
+			add_remaining(tmp, list);
+			expand_add_back(&(new_list.next), tmp);
+			list = list->next;
+		}
 	}
 	return (new_list.next);
 }
