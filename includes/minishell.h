@@ -15,5 +15,6 @@
 #include "libft_utils.h"
 //#include "expansion.h"
 #include "libft_utils.h"
+#include "word_splitting.h"
 int g_status;
 #endif // !
