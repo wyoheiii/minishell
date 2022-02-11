@@ -120,7 +120,9 @@ bool	add_expanded_param(t_expand *new, t_expand *list, t_envlist *envlist)
 	}
 	param = param_func(list, envlist);
 	list->checked = list->index;
-	if (param == NULL)
+	if (param == NULL && list->flag == DOUBLE)
+		return (true);
+	else if (param == NULL)
 		return (false);
 	if (list->flag == NONE)
 		expand_add_split(new, param);
@@ -176,8 +178,8 @@ t_expand	*expand_argv(t_expand *list, t_envlist *envlist)
 		{
 			add_remaining(tmp, list);
 			expand_add_back(&(new_list.next), tmp);
-			list = list->next;
 		}
+		list = list->next;
 	}
 	return (new_list.next);
 }
