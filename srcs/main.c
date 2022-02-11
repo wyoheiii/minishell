@@ -14,9 +14,9 @@ void minishell(char **envp)
 //        printf("%s\n",lst->key);
 //        lst= lst->next;
 //    }
+    catch_signal();
 	while (1)
     {
-        catch_signal();
         //printf("[%d]", g_status);
         line = readline("minishell> ");
         if (line == NULL)
@@ -30,6 +30,7 @@ void minishell(char **envp)
         //print_parsed(parsed);
         expansion(parsed,lst);
         if (command_part(parsed, &lst) == EXIT){
+
             break;
         } // 1でexit
         free_parsed(&parsed);
@@ -38,7 +39,7 @@ void minishell(char **envp)
     //free_parsed(&parsed);
     //all_env_clear(&lst);
     //free(line);
-    printf("exit\n");
+    ft_putendl_fd("exit",2);
     exit(g_status);
 }
 
@@ -69,6 +70,6 @@ int	main(int ac, char **av, char **envp)
 	if(ac != 1)
 		return (0);
 	minishell(envp);
-	printf("exit\n");
+	//printf("exit\n");
 	return (0);
 }
