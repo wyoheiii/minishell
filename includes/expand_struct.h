@@ -2,6 +2,7 @@
 # define EXPAND_STRUCT_H
 
 # include <stdlib.h>
+# include <stdbool.h>
 # include "libft.h"
 
 # define NONE	0
@@ -15,6 +16,7 @@ typedef struct s_expand
 	int				flag;
 	size_t			index;
 	size_t			checked;
+	bool			is_join;
 	struct s_expand	*next;
 }	t_expand;
 
