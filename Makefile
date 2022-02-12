@@ -18,7 +18,9 @@ OBJS = $(addprefix $(OBJDIR)/, $(notdir $(ADDSRCS:%.c=%.o)))
 
 CC	 := gcc
 RM	 := rm -f
+
 CFLAGS	:= -Wall -Wextra -Werror  -g #-fsanitize=address
+
 LIBFTD := ./libft
 LIBFT  := $(LIBFTD)/libft.a
 INC	:= ./includes
