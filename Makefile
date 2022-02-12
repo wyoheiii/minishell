@@ -5,7 +5,9 @@ SRCS := main.c command_main.c my_echo.c my_pwd.c my_exit.c my_cd.c my_env.c \
 		multi_command.c error_function.c error_function2.c my_redirect.c \
 		list_utils.c libft_utils.c expansion.c expand_struct.c not_param_str.c\
 		param.c redirect_list.c my_heredoc.c word_splitting.c my_builtin.c\
-		 command_util2.c sig2.c my_export2.c my_export3.c
+		command_util2.c sig2.c my_export2.c my_export3.c \
+    expand_argv.c expand_is.c expand_param.c
+
 SRCSD := ./srcs/
 
 ADDSRCS := $(addprefix $(SRCSD),$(SRCS))
@@ -16,7 +18,9 @@ OBJS = $(addprefix $(OBJDIR)/, $(notdir $(ADDSRCS:%.c=%.o)))
 
 CC	 := gcc
 RM	 := rm -f
-CFLAGS	:= -Wall -Wextra -Werror  -g -fsanitize=address
+
+CFLAGS	:= -Wall -Wextra -Werror  -g #-fsanitize=address
+
 LIBFTD := ./libft
 LIBFT  := $(LIBFTD)/libft.a
 INC	:= ./includes
