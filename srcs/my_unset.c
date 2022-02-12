@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   my_unset.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/12 18:17:41 by wyohei            #+#    #+#             */
+/*   Updated: 2022/02/12 18:17:42 by wyohei           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell_c.h"
-//bash-3.2$ unset AAA=
-//bash: unset: `AAA=': not a valid identifier
+
 void lst_unset(char *arg, t_envlist **lst)
 {
     t_envlist *top;

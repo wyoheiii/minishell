@@ -1432,30 +1432,34 @@ exit
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: echo a "$NO_SUCH_ENV" b $NO_SUCH_ENV c, unset NO_SUCH_ENV\nexit
+[OK ] case: echo a "$NO_SUCH_ENV" b $NO_SUCH_ENV c, unset NO_SUCH_ENV\nexit
 -------------------------
-diff :0a1
-> a  b c, unset NO_SUCH_ENV
+diff :
 # minishell: stdout
+a  b c, unset NO_SUCH_ENV
 # bash: stdout
 a  b c, unset NO_SUCH_ENV
 # minishell: stderr
-malloc failure
+exit
 # bash: stderr
-# minishell: exit status = 1
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
 [KO ] case: echo $\nexit
 -------------------------
-diff :0a1
+diff :1c1
+< 
+---
 > $
 # minishell: stdout
+
 # bash: stdout
 $
 # minishell: stderr
+exit
 # bash: stderr
-# minishell: exit status = 139
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -1469,9 +1473,9 @@ $
 diff :9d8
 < OLDPWD=/Users/watanabeyouhei/program/42tokyo/minishell/test
 14c13
-< SHLVL=3
+< SHLVL=2
 ---
-> SHLVL=4
+> SHLVL=3
 # minishell: stdout
 COMMAND_MODE=unix2003
 HOME=/Users/watanabeyouhei
@@ -1486,7 +1490,7 @@ PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbi
 PWD=/Users/watanabeyouhei/program/42tokyo/minishell/test
 SECURITYSESSIONID=186b1
 SHELL=/bin/zsh
-SHLVL=3
+SHLVL=2
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners
 TERM=xterm-256color
 TERMINAL_EMULATOR=JetBrains-JediTerm
@@ -1510,7 +1514,7 @@ PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbi
 PWD=/Users/watanabeyouhei/program/42tokyo/minishell/test
 SECURITYSESSIONID=186b1
 SHELL=/bin/zsh
-SHLVL=4
+SHLVL=3
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners
 TERM=xterm-256color
 TERMINAL_EMULATOR=JetBrains-JediTerm
@@ -1533,9 +1537,9 @@ exit
 diff :10d9
 < OLDPWD=/Users/watanabeyouhei/program/42tokyo/minishell/test
 15c14
-< SHLVL=3
+< SHLVL=2
 ---
-> SHLVL=4
+> SHLVL=3
 # minishell: stdout
 A=hello
 COMMAND_MODE=unix2003
@@ -1551,7 +1555,7 @@ PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbi
 PWD=/Users/watanabeyouhei/program/42tokyo/minishell/test
 SECURITYSESSIONID=186b1
 SHELL=/bin/zsh
-SHLVL=3
+SHLVL=2
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners
 TERM=xterm-256color
 TERMINAL_EMULATOR=JetBrains-JediTerm
@@ -1576,7 +1580,7 @@ PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbi
 PWD=/Users/watanabeyouhei/program/42tokyo/minishell/test
 SECURITYSESSIONID=186b1
 SHELL=/bin/zsh
-SHLVL=4
+SHLVL=3
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners
 TERM=xterm-256color
 TERMINAL_EMULATOR=JetBrains-JediTerm
@@ -1597,9 +1601,9 @@ exit
 [KO ] case: cd ../\n env | grep -v -E '^_=' | sort\nexit
 -------------------------
 diff :14c14
-< SHLVL=3
+< SHLVL=2
 ---
-> SHLVL=4
+> SHLVL=3
 # minishell: stdout
 COMMAND_MODE=unix2003
 HOME=/Users/watanabeyouhei
@@ -1614,7 +1618,7 @@ PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbi
 PWD=/Users/watanabeyouhei/program/42tokyo/minishell
 SECURITYSESSIONID=186b1
 SHELL=/bin/zsh
-SHLVL=3
+SHLVL=2
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners
 TERM=xterm-256color
 TERMINAL_EMULATOR=JetBrains-JediTerm
@@ -1639,7 +1643,7 @@ PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbi
 PWD=/Users/watanabeyouhei/program/42tokyo/minishell
 SECURITYSESSIONID=186b1
 SHELL=/bin/zsh
-SHLVL=4
+SHLVL=3
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners
 TERM=xterm-256color
 TERMINAL_EMULATOR=JetBrains-JediTerm
@@ -2013,43 +2017,51 @@ exit
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: export HELLO=hello\n echo $hello\nexit
+[OK ] case: export HELLO=hello\n echo $hello\nexit
 -------------------------
-diff :0a1
-> 
+diff :
 # minishell: stdout
+
 # bash: stdout
 
 # minishell: stderr
+exit
 # bash: stderr
-# minishell: exit status = 139
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
 [KO ] case: echo $\nexit
 -------------------------
-diff :0a1
+diff :1c1
+< 
+---
 > $
 # minishell: stdout
+
 # bash: stdout
 $
 # minishell: stderr
+exit
 # bash: stderr
-# minishell: exit status = 139
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
 [KO ] case: echo "$"\nexit
 -------------------------
-diff :0a1
+diff :1c1
+< 
+---
 > $
 # minishell: stdout
+
 # bash: stdout
 $
 # minishell: stderr
-malloc failure
+exit
 # bash: stderr
-# minishell: exit status = 1
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
@@ -2137,16 +2149,18 @@ exit
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: export TEST="\$\"echo hello\""\n $TEST\nexit
+[OK ] case: export TEST="\$\"echo hello\""\n $TEST\nexit
 -------------------------
 diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-malloc failure
+minishell: export: `hello\': not a valid identifier
+minishell: \\echo: command not found
+exit
 # bash: stderr
 bash: line 2: $"echo: command not found
-# minishell: exit status = 1
+# minishell: exit status = 127
 # bash     : exit status = 127
 
 -------------------------
@@ -2204,9 +2218,9 @@ diff :9c9
 ---
 > OLDPWD
 14c14
-< SHLVL="3"
+< SHLVL="2"
 ---
-> SHLVL="4"
+> SHLVL="3"
 22a23,24
 > __CFBundleIdentifier="com.jetbrains.CLion"
 > __CF_USER_TEXT_ENCODING="0x1F5:0x1:0xE"
@@ -2224,7 +2238,7 @@ PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sb
 PWD="/Users/watanabeyouhei/program/42tokyo/minishell/test"
 SECURITYSESSIONID="186b1"
 SHELL="/bin/zsh"
-SHLVL="3"
+SHLVL="2"
 SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners"
 TERM="xterm-256color"
 TERMINAL_EMULATOR="JetBrains-JediTerm"
@@ -2247,7 +2261,7 @@ PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sb
 PWD="/Users/watanabeyouhei/program/42tokyo/minishell/test"
 SECURITYSESSIONID="186b1"
 SHELL="/bin/zsh"
-SHLVL="4"
+SHLVL="3"
 SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners"
 TERM="xterm-256color"
 TERMINAL_EMULATOR="JetBrains-JediTerm"
@@ -2272,9 +2286,9 @@ diff :10c10
 ---
 > OLDPWD
 15c15
-< SHLVL="3"
+< SHLVL="2"
 ---
-> SHLVL="4"
+> SHLVL="3"
 23a24,27
 > _OK
 > _OK2="VAR"
@@ -2295,7 +2309,7 @@ PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sb
 PWD="/Users/watanabeyouhei/program/42tokyo/minishell/test"
 SECURITYSESSIONID="186b1"
 SHELL="/bin/zsh"
-SHLVL="3"
+SHLVL="2"
 SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners"
 TERM="xterm-256color"
 TERMINAL_EMULATOR="JetBrains-JediTerm"
@@ -2319,7 +2333,7 @@ PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sb
 PWD="/Users/watanabeyouhei/program/42tokyo/minishell/test"
 SECURITYSESSIONID="186b1"
 SHELL="/bin/zsh"
-SHLVL="4"
+SHLVL="3"
 SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.OuNCQD3Bld/Listeners"
 TERM="xterm-256color"
 TERMINAL_EMULATOR="JetBrains-JediTerm"
@@ -3148,20 +3162,21 @@ ln: symdir/dir: File exists
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: export PWD=\n export OLDPWD=\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+[OK ] case: export PWD=\n export OLDPWD=\n pwd\n echo $PWD\n echo $OLDPWD\nexit
 -------------------------
-diff :1a2,3
-> 
-> 
+diff :
 # minishell: stdout
 /Users/watanabeyouhei/program/42tokyo/minishell/test
+
+
 # bash: stdout
 /Users/watanabeyouhei/program/42tokyo/minishell/test
 
 
 # minishell: stderr
+exit
 # bash: stderr
-# minishell: exit status = 139
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
@@ -4641,14 +4656,15 @@ ln: sym: File exists
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: unset NO_ENV\n echo a | $NO_ENV | cat\nexit
+[OK ] case: unset NO_ENV\n echo a | $NO_ENV | cat\nexit
 -------------------------
 diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
+exit
 # bash: stderr
-# minishell: exit status = 139
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
@@ -4821,96 +4837,103 @@ bash: line 1: `cat < >'
 
 
 -------------------------
-[KO ] case: export A='test $A'\n unset A\n echo $A\nexit
+[OK ] case: export A='test $A'\n unset A\n echo $A\nexit
 -------------------------
-diff :0a1
-> 
+diff :
 # minishell: stdout
+
 # bash: stdout
 
 # minishell: stderr
+exit
 # bash: stderr
-# minishell: exit status = 139
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: export _A1='test $_A1'\n unset _A1\n echo $_A1\nexit
+[OK ] case: export _A1='test $_A1'\n unset _A1\n echo $_A1\nexit
 -------------------------
-diff :0a1
-> 
+diff :
 # minishell: stdout
+
 # bash: stdout
 
 # minishell: stderr
+exit
 # bash: stderr
-# minishell: exit status = 139
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: export A=test B=multiple C=var D=hello\n unset A B C\n echo $A$B$C$D\nexit
+[OK ] case: export A=test B=multiple C=var D=hello\n unset A B C\n echo $A$B$C$D\nexit
 -------------------------
-diff :0a1
-> hello
+diff :
 # minishell: stdout
+hello
 # bash: stdout
 hello
 # minishell: stderr
+exit
 # bash: stderr
-# minishell: exit status = 139
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: export A=test B=multiple C=var D=hello\n unset A B =invalid C\n echo $A$B$C$D\nexit
+[OK ] case: export A=test B=multiple C=var D=hello\n unset A B =invalid C\n echo $A$B$C$D\nexit
 -------------------------
-diff :0a1
-> hello
+diff :
 # minishell: stdout
+hello
 # bash: stdout
 hello
 # minishell: stderr
 minishell: unset: `=invalid': not a valid identifier
+exit
 # bash: stderr
 bash: line 2: unset: `=invalid': not a valid identifier
-# minishell: exit status = 139
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: unset PWD\n echo $PWD\nexit
+[OK ] case: unset PWD\n echo $PWD\nexit
 -------------------------
-diff :0a1
-> 
+diff :
 # minishell: stdout
+
 # bash: stdout
 
 # minishell: stderr
+exit
 # bash: stderr
-# minishell: exit status = 139
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: unset OLDPWD\n echo $OLDPWD\nexit
+[OK ] case: unset OLDPWD\n echo $OLDPWD\nexit
 -------------------------
-diff :0a1
-> 
+diff :
 # minishell: stdout
+
 # bash: stdout
 
 # minishell: stderr
+exit
 # bash: stderr
-# minishell: exit status = 139
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: unset NO_SUCH_ENV\n unset NO_SUCH_ENV\n echo $?$NO_SUCH_ENV\nexit
+[OK ] case: unset NO_SUCH_ENV\n unset NO_SUCH_ENV\n echo $?$NO_SUCH_ENV\nexit
 -------------------------
-diff :0a1
-> 0
+diff :
 # minishell: stdout
+0
 # bash: stdout
 0
 # minishell: stderr
+exit
 # bash: stderr
-# minishell: exit status = 139
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------

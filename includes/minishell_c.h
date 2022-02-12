@@ -23,13 +23,16 @@
 #define EXIT 1
 #define EQUAL 0
 #define NOT_EQUAL 1
+typedef struct s_envlist t_envlist;
+typedef struct s_pipe t_pipe;
+typedef struct s_god  t_god;
 typedef struct s_envlist
 {
     //int flag;
     char *key;
     char *value;
     struct s_envlist *next;
-}   t_envlist;
+} t_envlist;
 
 typedef struct s_pipe
 {
@@ -37,13 +40,13 @@ typedef struct s_pipe
     int (*pipe_fd)[2];
     pid_t *pid;
     int status;
-}   t_pipe;
+}  t_pipe;
 typedef struct s_god
 {
     //t_envlist **envlist;
     t_parsed *parsed;
     char *pwd;
-}   t_god;
+} t_god;
 
 int command_part(t_parsed *parsed,t_envlist **lst);
 int my_echo(char **command);
@@ -69,8 +72,6 @@ void	*god_malloc(size_t size);
 size_t env_lst_size(t_envlist *lst);
 char *search_env_key_(const char *search, t_envlist *lst);
 void split_free(char **split);
-//int multi_command(t_parsed *parsed, t_envlist **lst, char **env_array);
-//int my_env()
 void dup_value(char *arg, t_envlist **lst);
 bool key_match_check(char *arg, t_envlist *lst);
 void my_pipe(int *pipefd);
@@ -82,4 +83,30 @@ void my_close(int fd);
 void	*my_malloc(size_t size);
 char *strjoinjoin(char *str1, char *str2, char *str3);
 pid_t my_fork(void);
+char **lst_in_array(t_envlist *lst);
+char *strjoinjoin(char *str1, char *str2, char *str3);
+void free_array(char **array);
+char *check_access(char **path,char  *command);
+char *check_access_f(char **path,char *command);
+char *get_path(t_envlist *lst, char *command);
+void exec_error(char *command,t_envlist *lst);
+bool redirect_check(t_parsed *parsed);
+int     return_builtin(char **command, t_envlist **envlst, t_god god);
+int     single_builtin(t_god god,t_envlist **lst);
+bool    builtin_select(char **command);
+int     single_command(t_god god,t_envlist **lst);
+void multi_command(t_pipe pipe,t_envlist **lst, t_god god,int pipe_count);
+void pipe_init(t_pipe *p, int pipe_count);
+void multi_pipe(int (*pipe_fd)[2], int i,int pipe_count);
+void select_command(t_god god, t_envlist **lst);
+int	isenv(int	c);
+int is_alpha_(int c);
+void dup_value(char *arg, t_envlist **lst);
+void join_value(char *arg, t_envlist **lst);
+bool set_key_value(char *arg, t_envlist **lst);
+int  print_export_env(t_envlist *lst);
+bool char_check(char *arg);
+bool check_arg2(char *arg, size_t i);
+bool check_arg(char *arg,int *join_flag);
+bool key_match_check(char *arg, t_envlist *lst);
 #endif 
