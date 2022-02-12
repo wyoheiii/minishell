@@ -9,4 +9,5 @@ void catch_signal(void);
 void catch_sasenai_signal(void);
 void command_sig(void);
 void catch_no_signal(void);
+
 #endif // !1

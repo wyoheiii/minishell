@@ -78,13 +78,16 @@ int	command_part(t_parsed *parsed, t_envlist **lst)
 	int		pipe_count;
 	int		i;
 
-	catch_sasenai_signal();
+    if (parsed == NULL)
+        return (0);
+
 	god_init(&god, parsed);
 	if (!set_heredoc(god.parsed))
 		return (0);
 	pipe_count = count_pipe(god.parsed);
 	if (pipe_count == 0)
 		return (single_command(god, lst));
+    catch_sasenai_signal();
 	pipe_init(&p, pipe_count);
 	multi_command(p, lst, god, pipe_count);
 	i = -1;
