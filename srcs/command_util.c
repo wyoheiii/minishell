@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   command_util.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/12 18:16:09 by wyohei            #+#    #+#             */
+/*   Updated: 2022/02/12 18:16:10 by wyohei           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell_c.h"
 char *search_env_key_(const char *search, t_envlist *lst)
 {
@@ -10,7 +22,17 @@ char *search_env_key_(const char *search, t_envlist *lst)
     }
     return(NULL);
 }
-
+void free_array(char **array)
+{
+    size_t i;
+    i = 0;
+    while(array[i])
+    {
+        free(array[i]);
+        i++;
+    }
+    free(array);
+}
 void split_free(char **split)
 {
     size_t i;
