@@ -34,6 +34,21 @@ void	expand_add_back(t_expand **head, t_expand *new)
 	current->next = new;
 }
 
+size_t	expand_lst_size(t_expand *argv_list)
+{
+	t_expand	*tmp;
+	size_t		size;
+
+	tmp = argv_list;
+	size = 0;
+	while (tmp != NULL)
+	{
+		size += 1;
+		tmp = tmp->next;
+	}
+	return (size);
+}
+
 void	free_expand(t_expand **expand)
 {
 	t_expand	*tmp;
@@ -44,12 +59,9 @@ void	free_expand(t_expand **expand)
 		tmp = (*expand);
 		(*expand) = (*expand)->next;
 		free (tmp);
-		//free (tmp->argv);
 	}
 }
 
-// 文字列の配列をリストにする
-// コマンドに格納されてるポインタをそのまま使用
 t_expand	*convert_list(char **command)
 {
 	t_expand	*new;

@@ -76,9 +76,9 @@ static t_parsed	*get_parsed(t_list **token_list)
 
 	size = get_delimiter_count((*token_list));
 	command = create_command(token_list, size);
-	if (command == NULL || command[0] == NULL)
-		return (NULL);
 	redirect = create_redirect(token_list);
+	if (command == NULL && redirect != NULL)
+		return (NULL);
 	if (redirect == NULL)
 	{
 		free(command[0]);

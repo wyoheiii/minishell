@@ -22,6 +22,7 @@ typedef struct s_expand
 
 t_expand	*convert_list(char **command);
 t_expand	*expand_new(char *argv);
+size_t		expand_lst_size(t_expand *argv_list);
 void		expand_add_back(t_expand **head, t_expand *new);
 void		free_expand(t_expand **expand);
 
