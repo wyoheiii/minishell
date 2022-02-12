@@ -66,6 +66,7 @@ void	multi_command(t_pipe pipe, t_envlist **lst, t_god god, int pipe_count)
 	int	i;
 
 	i = 0;
+    catch_signal();
 	while (god.parsed != NULL)
 	{
 		if (i != pipe_count && god.parsed->state == PIPE)
@@ -74,7 +75,7 @@ void	multi_command(t_pipe pipe, t_envlist **lst, t_god god, int pipe_count)
 		pipe.pid[i] = my_fork();
 		if (pipe.pid[i] == 0)
 		{
-			multi_pipe(pipe.pipe_fd, i, pipe_count);
+            multi_pipe(pipe.pipe_fd, i, pipe_count);
 			select_command(god, lst);
 		}
 		else

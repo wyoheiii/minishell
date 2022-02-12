@@ -22,7 +22,7 @@ char	*env_get_key(char *env)
 		i = 0;
 		while (env[i] != '\0' && isenv(env[i]))
 			i++;
-		key = ft_substr(env, 0, i);
+		key = ft_substr(env, 0, i + 1);
 		if (!key)
 			exit_error("malloc");
 		return (key);

@@ -83,10 +83,11 @@ int	single_command(t_god god, t_envlist **lst)
 	int		status;
 	char	**env_array;
 
-	env_array = lst_in_array(*lst);
 	if (builtin_select(god.parsed->command))
 		return (single_builtin(god, lst));
+    env_array = lst_in_array(*lst);
 	pid = my_fork();
+    catch_no_signal();
 	if (pid == 0)
 	{
 		if (redirect_check(god.parsed))
@@ -96,8 +97,9 @@ int	single_command(t_god god, t_envlist **lst)
 			exec_error(path, *lst);
 		free(path);
 	}
-	else
-		waitpid_get_status(pid, &status, 0);
+    command_sig();
+    waitpid_get_status(pid, &status, 0);
 	free_array(env_array);
+    catch_signal();
 	return (0);
 }

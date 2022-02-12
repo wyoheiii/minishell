@@ -47,3 +47,4 @@ void	heredoc_sig(void)
 	signal(SIGINT, sig_heredoc);
 	signal(SIGQUIT, SIG_IGN);
 }
+
