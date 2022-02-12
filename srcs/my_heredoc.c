@@ -39,7 +39,7 @@ int	heredoc_waitpid(pid_t pid, int *status, int option)
 		exit_error("waitpid");
 	if (*status)
 	{
-		g_status = WEXITSTATUS(status);
+		g_status = WEXITSTATUS(*status);
 		return (1);
 	}
 	return (0);

@@ -80,7 +80,6 @@ int	command_part(t_parsed *parsed, t_envlist **lst)
 
     if (parsed == NULL)
         return (0);
-
 	god_init(&god, parsed);
 	if (!set_heredoc(god.parsed))
 		return (0);
