@@ -40,9 +40,6 @@ void	exec_error(char *command, t_envlist *lst)
         ft_putendl_fd(strerror(errno), 2);
         exit(126);
     }
-
-
-
 }
 
 int	count_pipe(t_parsed *parsed)
