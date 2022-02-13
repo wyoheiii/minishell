@@ -39,8 +39,8 @@ void	set_pwd(t_envlist **lst, char *pwd)
 		cwd = getcwd(NULL, 0);
 		if (cwd == NULL)
 		{
-			perror("cwd");
-			exit(1);
+			//perror("cwd");
+			return ;
 		}
 		key_value = strjoinjoin(pwd, "=", cwd);
 		dup_value(key_value, lst);
@@ -62,7 +62,7 @@ int	my_cd(char **command, t_envlist **lst)
 		if (chdir(path) != 0)
 			perror("chdir");
 	}
-	if (chdir(command[1]) != 0)
+	else if (chdir(command[1]) != 0)
 	{
 		error = ft_strjoin("minishell: cd: ", command[1]);
 		if (error == NULL)

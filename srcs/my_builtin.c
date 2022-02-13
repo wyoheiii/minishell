@@ -65,7 +65,8 @@ int	single_builtin(t_god god, t_envlist **lst)
 	fd2 = my_dup(1);
 	fd3 = my_dup(2);
 	if (redirect_check(god.parsed))
-		select_redirect(god.parsed->redirect);
+		if(select_redirect(god.parsed->redirect) == -1)
+            return(0);
 	ret = return_builtin(god.parsed->command, lst, god);
 	my_dup2(fd1, 0);
 	my_dup2(fd2, 1);
@@ -91,7 +92,9 @@ int	single_command(t_god god, t_envlist **lst)
 	if (pid == 0)
 	{
 		if (redirect_check(god.parsed))
-			select_redirect(god.parsed->redirect);
+			if(select_redirect(god.parsed->redirect)== -1)
+                exit(g_status);
+        check_period(god.parsed);
 		path = get_path(*lst, god.parsed->command[0]);
 		if (execve(path, god.parsed->command, env_array) == -1)
 			exec_error(path, *lst);

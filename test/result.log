@@ -354,50 +354,55 @@ diff :0a1,3
 /Users/watanabeyouhei/program/42tokyo/minishell/test/a/b/c/./../
 /Users/watanabeyouhei/program/42tokyo/minishell/test/a/b/c/./.././///./
 # minishell: stderr
-cwd: No such file or directory
+getcwd: No such file or directory
+getcwd: No such file or directory
+getcwd: No such file or directory
+exit
 # bash: stderr
 cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
 cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
 cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-# minishell: exit status = 1
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
 [KO ] case: mkdir -p a/b/c\n cd a/b/c\n rm -rf ../../b\n cd ./\n pwd\n cd .././.\n pwd\n cd ./\n pwd\n cd ../\n pwd\nexit
 -------------------------
-diff :0a1,4
+diff :0a1,3
 > /Users/watanabeyouhei/program/42tokyo/minishell/test/a/b/c/./
 > /Users/watanabeyouhei/program/42tokyo/minishell/test/a/b/c/./.././.
 > /Users/watanabeyouhei/program/42tokyo/minishell/test/a/b/c/./.././././
-> /Users/watanabeyouhei/program/42tokyo/minishell/test/a
 # minishell: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/test/a
 # bash: stdout
 /Users/watanabeyouhei/program/42tokyo/minishell/test/a/b/c/./
 /Users/watanabeyouhei/program/42tokyo/minishell/test/a/b/c/./.././.
 /Users/watanabeyouhei/program/42tokyo/minishell/test/a/b/c/./.././././
 /Users/watanabeyouhei/program/42tokyo/minishell/test/a
 # minishell: stderr
-cwd: No such file or directory
+getcwd: No such file or directory
+getcwd: No such file or directory
+getcwd: No such file or directory
+exit
 # bash: stderr
 cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
 cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
 cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
-# minishell: exit status = 1
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: cd \n pwd\nexit
+[OK ] case: cd \n pwd\nexit
 -------------------------
-diff :0a1
-> /Users/watanabeyouhei
+diff :
 # minishell: stdout
+/Users/watanabeyouhei
 # bash: stdout
 /Users/watanabeyouhei
 # minishell: stderr
-malloc: Bad address
-malloc error
+exit
 # bash: stderr
-# minishell: exit status = 1
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
@@ -432,33 +437,31 @@ bash: line 2: cd: HOME not set
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: export HOME="./"\n cd \n pwd\nexit
+[OK ] case: export HOME="./"\n cd \n pwd\nexit
 -------------------------
-diff :0a1
-> /Users/watanabeyouhei/program/42tokyo/minishell/test
+diff :
 # minishell: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/test
 # bash: stdout
 /Users/watanabeyouhei/program/42tokyo/minishell/test
 # minishell: stderr
-malloc: Bad address
-malloc error
+exit
 # bash: stderr
-# minishell: exit status = 1
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: export HOME="../../"\n cd \n pwd\nexit
+[OK ] case: export HOME="../../"\n cd \n pwd\nexit
 -------------------------
-diff :0a1
-> /Users/watanabeyouhei/program/42tokyo
+diff :
 # minishell: stdout
+/Users/watanabeyouhei/program/42tokyo
 # bash: stdout
 /Users/watanabeyouhei/program/42tokyo
 # minishell: stderr
-malloc: Bad address
-malloc error
+exit
 # bash: stderr
-# minishell: exit status = 1
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
@@ -479,48 +482,48 @@ exit
 -------------------------
 [KO ] case: export HOME="/BIN"\n cd \n pwd\nexit
 -------------------------
-diff :0a1
+diff :1c1
+< /bin
+---
 > /BIN
 # minishell: stdout
+/bin
 # bash: stdout
 /BIN
 # minishell: stderr
-malloc: Bad address
-malloc error
+exit
 # bash: stderr
-# minishell: exit status = 1
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: export HOME=a\n mkdir -p a/b\n cd \n pwd\nexit
+[OK ] case: export HOME=a\n mkdir -p a/b\n cd \n pwd\nexit
 -------------------------
-diff :0a1
-> /Users/watanabeyouhei/program/42tokyo/minishell/test/a
+diff :
 # minishell: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/test/a
 # bash: stdout
 /Users/watanabeyouhei/program/42tokyo/minishell/test/a
 # minishell: stderr
-malloc: Bad address
-malloc error
+exit
 # bash: stderr
-# minishell: exit status = 1
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: export HOME=NO_SUCH_FILE\n cd \n pwd\nexit
+[OK ] case: export HOME=NO_SUCH_FILE\n cd \n pwd\nexit
 -------------------------
-diff :0a1
-> /Users/watanabeyouhei/program/42tokyo/minishell/test
+diff :
 # minishell: stdout
+/Users/watanabeyouhei/program/42tokyo/minishell/test
 # bash: stdout
 /Users/watanabeyouhei/program/42tokyo/minishell/test
 # minishell: stderr
 chdir: No such file or directory
-malloc: Bad address
-malloc error
+exit
 # bash: stderr
 bash: line 2: cd: NO_SUCH_FILE: No such file or directory
-# minishell: exit status = 1
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
@@ -544,18 +547,17 @@ exit
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: export CDPATH="/"\n cd \n pwd\nexit
+[OK ] case: export CDPATH="/"\n cd \n pwd\nexit
 -------------------------
-diff :0a1
-> /Users/watanabeyouhei
+diff :
 # minishell: stdout
+/Users/watanabeyouhei
 # bash: stdout
 /Users/watanabeyouhei
 # minishell: stderr
-malloc: Bad address
-malloc error
+exit
 # bash: stderr
-# minishell: exit status = 1
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
@@ -857,7 +859,7 @@ diff :1c1,2
 /Users/watanabeyouhei/program/42tokyo/minishell/test/b/test
 # minishell: stderr
 minishell: cd: test: No such file or directory
-chmod: a/test: Not a directory
+chmod: a/test: No such file or directory
 exit
 # bash: stderr
 # minishell: exit status = 1
@@ -969,18 +971,17 @@ exit
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: export HOME="/"\n cd\n cd ../../../../../././././../../../././../../../\n pwd\nexit
+[OK ] case: export HOME="/"\n cd\n cd ../../../../../././././../../../././../../../\n pwd\nexit
 -------------------------
-diff :0a1
-> /
+diff :
 # minishell: stdout
+/
 # bash: stdout
 /
 # minishell: stderr
-malloc: Bad address
-malloc error
+exit
 # bash: stderr
-# minishell: exit status = 1
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
@@ -1064,42 +1065,39 @@ exit
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: export HOME=//\n cd\nexit
+[OK ] case: export HOME=//\n cd\nexit
 -------------------------
 diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-malloc: Bad address
-malloc error
+exit
 # bash: stderr
-# minishell: exit status = 1
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: export HOME=//bin/..////////////bin/../\n cd\nexit
+[OK ] case: export HOME=//bin/..////////////bin/../\n cd\nexit
 -------------------------
 diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-malloc: Bad address
-malloc error
+exit
 # bash: stderr
-# minishell: exit status = 1
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: export HOME=///\n cd\nexit
+[OK ] case: export HOME=///\n cd\nexit
 -------------------------
 diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-malloc: Bad address
-malloc error
+exit
 # bash: stderr
-# minishell: exit status = 1
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
@@ -2592,59 +2590,59 @@ exit
 
 
 -------------------------
-[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH=":" \n ls\nexit
+[OK ] case: cp /bin/ls .\n chmod 000 ls\n export PATH=":" \n ls\nexit
 -------------------------
 diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: ls: command not found
+minishell: ls: Permission denied
 exit
 # bash: stderr
 bash: line 4: ./ls: Permission denied
-# minishell: exit status = 127
+# minishell: exit status = 126
 # bash     : exit status = 126
 
 -------------------------
-[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH=":/" \n ls\nexit
+[OK ] case: cp /bin/ls .\n chmod 000 ls\n export PATH=":/" \n ls\nexit
 -------------------------
 diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: ls: command not found
+minishell: ls: Permission denied
 exit
 # bash: stderr
 bash: line 4: ./ls: Permission denied
-# minishell: exit status = 127
+# minishell: exit status = 126
 # bash     : exit status = 126
 
 -------------------------
-[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH="::" \n ls\nexit
+[OK ] case: cp /bin/ls .\n chmod 000 ls\n export PATH="::" \n ls\nexit
 -------------------------
 diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: ls: command not found
+minishell: ls: Permission denied
 exit
 # bash: stderr
 bash: line 4: ./ls: Permission denied
-# minishell: exit status = 127
+# minishell: exit status = 126
 # bash     : exit status = 126
 
 -------------------------
-[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH="/:" \n ls\nexit
+[OK ] case: cp /bin/ls .\n chmod 000 ls\n export PATH="/:" \n ls\nexit
 -------------------------
 diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: ls: command not found
+minishell: ls: Permission denied
 exit
 # bash: stderr
 bash: line 4: ./ls: Permission denied
-# minishell: exit status = 127
+# minishell: exit status = 126
 # bash     : exit status = 126
 
 -------------------------
@@ -2840,17 +2838,17 @@ exit
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: cp /bin/ls .\n chmod 000 ls\n export PATH="hello:" \n ls\nexit
+[OK ] case: cp /bin/ls .\n chmod 000 ls\n export PATH="hello:" \n ls\nexit
 -------------------------
 diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: ls: command not found
+minishell: ls: Permission denied
 exit
 # bash: stderr
 bash: line 4: ./ls: Permission denied
-# minishell: exit status = 127
+# minishell: exit status = 126
 # bash     : exit status = 126
 
 -------------------------
@@ -2860,7 +2858,7 @@ diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: nosuchfile: No such file or directory
+minishell: nosuchfile: command not found
 exit
 # bash: stderr
 bash: line 2: nosuchfile: No such file or directory
@@ -2874,7 +2872,7 @@ diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: nosuchfile: No such file or directory
+minishell: nosuchfile: command not found
 exit
 # bash: stderr
 bash: line 2: nosuchfile: No such file or directory
@@ -2888,7 +2886,7 @@ diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: nosuchfile: No such file or directory
+minishell: nosuchfile: command not found
 exit
 # bash: stderr
 bash: line 2: nosuchfile: No such file or directory
@@ -2902,7 +2900,7 @@ diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: nosuchfile: No such file or directory
+minishell: nosuchfile: command not found
 exit
 # bash: stderr
 bash: line 3: nosuchfile: No such file or directory
@@ -2916,7 +2914,7 @@ diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: nosuchfile: No such file or directory
+minishell: nosuchfile: command not found
 exit
 # bash: stderr
 bash: line 3: nosuchfile: No such file or directory
@@ -3236,20 +3234,22 @@ mkdir: dir: File exists
 -------------------------
 [KO ] case: export PWD=\n export OLDPWD=\n cd\n pwd\n echo $PWD\n echo $OLDPWD\nexit
 -------------------------
-diff :0a1,3
-> /Users/watanabeyouhei
-> /Users/watanabeyouhei
+diff :3c3
+< /Users/watanabeyouhei/program/42tokyo/minishell/test
+---
 > 
 # minishell: stdout
+/Users/watanabeyouhei
+/Users/watanabeyouhei
+/Users/watanabeyouhei/program/42tokyo/minishell/test
 # bash: stdout
 /Users/watanabeyouhei
 /Users/watanabeyouhei
 
 # minishell: stderr
-malloc: Bad address
-malloc error
+exit
 # bash: stderr
-# minishell: exit status = 1
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
@@ -3496,7 +3496,7 @@ exit
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: > file | cat < no_such_file\nexit
+[OK ] case: > file | cat < no_such_file\nexit
 -------------------------
 diff :
 # minishell: stdout
@@ -3506,7 +3506,7 @@ minishell: no_such_file :No such file or directory
 exit
 # bash: stderr
 bash: line 1: no_such_file: No such file or directory
-# minishell: exit status = 0
+# minishell: exit status = 1
 # bash     : exit status = 1
 
 -------------------------
@@ -3839,46 +3839,10 @@ exit
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: ls>a>b>c>d>e>f>g>h>i>j>k>l>m>n>o>p>q>r>s>t>u>v>w>x>y>z>A>B>C>D>E>F>G>H>I>J>K>L>M>N>O>P>Q>R>S>T>U>V>W>X>Y>Z>aa>ab>ac>ad>ae>af>ag>ah>ai>aj>ak>al>am>an>ao>ap>aq>ar>as>at>au>av>aw>ax>ay>az>aA>aB>aC>aD>aE>aF>aG>aH>aI>aJ>aK>aL>aM>aN>aO>aP>aQ>aR>aS>aT>aU>aV\nls\nexit
+[OK ] case: ls>a>b>c>d>e>f>g>h>i>j>k>l>m>n>o>p>q>r>s>t>u>v>w>x>y>z>A>B>C>D>E>F>G>H>I>J>K>L>M>N>O>P>Q>R>S>T>U>V>W>X>Y>Z>aa>ab>ac>ad>ae>af>ag>ah>ai>aj>ak>al>am>an>ao>ap>aq>ar>as>at>au>av>aw>ax>ay>az>aA>aB>aC>aD>aE>aF>aG>aH>aI>aJ>aK>aL>aM>aN>aO>aP>aQ>aR>aS>aT>aU>aV\nls\nexit
 -------------------------
-diff :19,36d18
-< a
-< a:b
-< b
-< cases
-< cmd
-< dir
-< exe
-< hello
-< help
-< leaks.log
-< leaks.sh
-< link
-< rb.c
-< result.log
-< simple
-< symdir
-< test.sh
-< tmp
+diff :
 # minishell: stdout
-a
-a:b
-b
-cases
-cmd
-dir
-exe
-hello
-help
-leaks.log
-leaks.sh
-link
-rb.c
-result.log
-simple
-symdir
-test.sh
-tmp
 a
 a:b
 b
@@ -4483,7 +4447,7 @@ diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: ./no_such_file: No such file or directory
+minishell: ./no_such_file: command not found
 exit
 # bash: stderr
 bash: line 1: ./no_such_file: No such file or directory
@@ -4491,7 +4455,7 @@ bash: line 1: ./no_such_file: No such file or directory
 # bash     : exit status = 127
 
 -------------------------
-[KO ] case: /bin/ls/no_such_file\nexit
+[OK ] case: /bin/ls/no_such_file\nexit
 -------------------------
 diff :
 # minishell: stdout
@@ -4501,7 +4465,7 @@ minishell: /bin/ls/no_such_file: Not a directory
 exit
 # bash: stderr
 bash: line 1: /bin/ls/no_such_file: Not a directory
-# minishell: exit status = 127
+# minishell: exit status = 126
 # bash     : exit status = 126
 
 -------------------------
@@ -4511,7 +4475,7 @@ diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: /bin/no_such_dir/file: No such file or directory
+minishell: /bin/no_such_dir/file: command not found
 exit
 # bash: stderr
 bash: line 1: /bin/no_such_dir/file: No such file or directory
@@ -4519,21 +4483,21 @@ bash: line 1: /bin/no_such_dir/file: No such file or directory
 # bash     : exit status = 127
 
 -------------------------
-[OK ] case: touch perm\n chmod 000 perm\n perm\nexit
+[KO ] case: touch perm\n chmod 000 perm\n perm\nexit
 -------------------------
 diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: perm: command not found
+minishell: perm: Permission denied
 exit
 # bash: stderr
 bash: line 3: perm: command not found
-# minishell: exit status = 127
+# minishell: exit status = 126
 # bash     : exit status = 127
 
 -------------------------
-[KO ] case: touch perm\n chmod 000 perm\n ./perm\nexit
+[OK ] case: touch perm\n chmod 000 perm\n ./perm\nexit
 -------------------------
 diff :
 # minishell: stdout
@@ -4543,7 +4507,7 @@ minishell: ./perm: Permission denied
 exit
 # bash: stderr
 bash: line 3: ./perm: Permission denied
-# minishell: exit status = 127
+# minishell: exit status = 126
 # bash     : exit status = 126
 
 -------------------------
@@ -4553,7 +4517,7 @@ diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: perm: command not found
+minishell: perm: Exec format error
 exit
 # bash: stderr
 bash: line 3: perm: command not found
@@ -4581,7 +4545,7 @@ diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: perm: command not found
+minishell: perm: Exec format error
 exit
 # bash: stderr
 bash: line 3: perm: command not found
@@ -4609,7 +4573,7 @@ diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: perm: command not found
+minishell: perm: Exec format error
 exit
 # bash: stderr
 bash: line 3: perm: command not found
@@ -4643,23 +4607,23 @@ exit
 # bash     : exit status = 0
 
 -------------------------
-[OK ] case: mkdir dir\n dir\nexit
+[KO ] case: mkdir dir\n dir\nexit
 -------------------------
 diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
 mkdir: dir: File exists
-minishell: dir: command not found
+minishell: dir: Permission denied
 exit
 # bash: stderr
 mkdir: dir: File exists
 bash: line 2: dir: command not found
-# minishell: exit status = 127
+# minishell: exit status = 126
 # bash     : exit status = 127
 
 -------------------------
-[KO ] case: mkdir dir\n ./dir\nexit
+[OK ] case: mkdir dir\n ./dir\nexit
 -------------------------
 diff :
 # minishell: stdout
@@ -4671,7 +4635,7 @@ exit
 # bash: stderr
 mkdir: dir: File exists
 bash: line 2: ./dir: is a directory
-# minishell: exit status = 127
+# minishell: exit status = 126
 # bash     : exit status = 126
 
 -------------------------
@@ -4867,10 +4831,8 @@ bash: line 1: `echo | |'
 -------------------------
 [KO ] case: cat < >\nexit
 -------------------------
-diff :1d0
-< exit
+diff :
 # minishell: stdout
-exit
 # bash: stdout
 # minishell: stderr
 minishell: > :No such file or directory
@@ -4878,7 +4840,7 @@ exit
 # bash: stderr
 bash: line 1: syntax error near unexpected token `>'
 bash: line 1: `cat < >'
-# minishell: exit status = 0
+# minishell: exit status = 1
 # bash     : exit status = 2
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -5017,7 +4979,7 @@ bash: line 2: unset: `A=a': not a valid identifier
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: cp /bin/ls .\n chmod 000 ./ls\n unset PATH\n ls\nexit
+[OK ] case: cp /bin/ls .\n chmod 000 ./ls\n unset PATH\n ls\nexit
 -------------------------
 diff :
 # minishell: stdout
@@ -5027,7 +4989,7 @@ minishell: ls: Permission denied
 exit
 # bash: stderr
 bash: line 4: ls: Permission denied
-# minishell: exit status = 127
+# minishell: exit status = 126
 # bash     : exit status = 126
 
 -------------------------
@@ -5043,5 +5005,5 @@ exit
 # bash: stderr
 bash: line 2: unset: ` \"$&`
 ': not a valid identifier
-# minishell: exit status = 127
+# minishell: exit status = 126
 # bash     : exit status = 1

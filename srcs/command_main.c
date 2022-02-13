@@ -14,25 +14,35 @@
 
 void	exec_error(char *command, t_envlist *lst)
 {
-	char	*path;
+    (void)lst;
+    if (errno == 2)
+    {
+        ft_putstr_fd("minishell: ", 2);
+        ft_putstr_fd(command, 2);
+        ft_putstr_fd(": ", 2);
+        ft_putendl_fd("command not found", 2);
+        //ft_putendl_fd(strerror(errno), 2);
+        exit(127);
+    }
+    if (errno == 8)
+    {
+        ft_putstr_fd("minishell: ", 2);
+        ft_putstr_fd(command, 2);
+        ft_putstr_fd(": ", 2);
+        ft_putendl_fd(strerror(errno), 2);
+        exit(127);
+    }
+    if (errno)
+    {
+        ft_putstr_fd("minishell: ", 2);
+        ft_putstr_fd(command, 2);
+        ft_putstr_fd(": ", 2);
+        ft_putendl_fd(strerror(errno), 2);
+        exit(126);
+    }
 
-	path = search_env_key_("PATH", lst);
-	if ((strchr(command, '/') == NULL) && path != NULL)
-	{
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(command, 2);
-		ft_putstr_fd(": ", 2);
-		ft_putendl_fd("command not found", 2);
-		exit(127);
-	}
-	else if (errno)
-	{
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(command, 2);
-		ft_putstr_fd(": ", 2);
-		ft_putendl_fd(strerror(errno), 2);
-		exit(127);
-	}
+
+
 }
 
 int	count_pipe(t_parsed *parsed)

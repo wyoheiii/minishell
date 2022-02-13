@@ -93,7 +93,7 @@ int	redirect_input(t_redirect *redirect)
 	return (-1);
 }
 
-void	select_redirect(t_redirect *redirect)
+int	select_redirect(t_redirect *redirect)
 {
 	int	fd;
 
@@ -120,4 +120,5 @@ void	select_redirect(t_redirect *redirect)
 			break ;
 		redirect = redirect->next;
 	}
+    return (fd);
 }

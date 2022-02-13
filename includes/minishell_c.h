@@ -108,4 +108,5 @@ bool		check_arg2(char *arg, size_t i);
 bool		check_arg(char *arg,int *join_flag);
 bool		key_match_check(char *arg, t_envlist *lst);
 int			command_size(char **arg);
+void        check_period(t_parsed *parsed);
 #endif

@@ -25,8 +25,10 @@ void	select_command(t_god god, t_envlist **lst)
 		exit(g_status);
 	}
 	if (redirect_check(god.parsed))
-		select_redirect(god.parsed->redirect);
-	if (execve(path, god.parsed->command, lst_array) == -1)
+		if(select_redirect(god.parsed->redirect)== -1)
+            exit(g_status);
+    check_period(god.parsed);
+	if(execve(path, god.parsed->command, lst_array) == -1)
 		exec_error(path,*lst);
 }
 
