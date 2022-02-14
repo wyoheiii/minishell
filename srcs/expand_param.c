@@ -6,7 +6,7 @@
 /*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:43:00 by tkaneshi          #+#    #+#             */
-/*   Updated: 2022/02/14 16:43:00 by tkaneshi         ###   ########.fr       */
+/*   Updated: 2022/02/14 21:14:14 by tkaneshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	expand_add_split(t_expand *new, char *param)
 	split = word_splitting(param);
 	if (split == NULL)
 		split = ft_lstnew(param);
-	if (!ft_isspace(param[0]))
+	if (!ft_isspace(param[0]) || new->argv[0] == '\0')
 	{
 		tmp = split;
 		expand_join_last(new, (char *)tmp->content);
