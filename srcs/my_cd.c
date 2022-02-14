@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:16:55 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/14 23:33:34 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/15 00:21:53 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,10 @@ void	set_pwd(t_envlist **lst, char *pwd)
 	{
 		cwd = getcwd(NULL, 0);
 		if (cwd == NULL)
-		{
 			return ;
-		}
 		key_value = strjoinjoin(pwd, "=", cwd);
 		dup_value(key_value, lst);
+		free(key_value);
 		free(cwd);
 	}
 }
