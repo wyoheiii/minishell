@@ -25,10 +25,25 @@ char	*expand_heredoc(char *line, t_envlist *envlist)
     free_expand(&new);
     return (ret);
 }
+void line_in_fd(int fd, t_redirect *redirect, t_envlist *lst,char *line)
+{
+    char    *expand;
+    if(redirect->quote != 1)
+    {
+        expand = expand_heredoc(line, lst);
+        ft_putendl_fd(expand, fd);
+        free(expand);
+    }
+    else
+    {
+        ft_putendl_fd(line, fd);
+        free(line);
+    }
+}
 void	heredoc_child(int pfd[2], t_redirect *redirect, t_envlist *lst)
 {
 	char	*line;
-    char    *expand;
+
 	my_close(pfd[0]);
 	while (1)
 	{
@@ -39,17 +54,7 @@ void	heredoc_child(int pfd[2], t_redirect *redirect, t_envlist *lst)
 		if (ft_strncmp(line, redirect->filename, \
         ft_strlen(redirect->filename) + 1) == 0)
 			break ;
-        if(redirect->quote != 1)
-        {
-            expand = expand_heredoc(line, lst);
-            ft_putendl_fd(expand, pfd[1]);
-            free(expand);
-        }
-        else
-        {
-            ft_putendl_fd(line, pfd[1]);
-            free(line);
-        }
+        line_in_fd(pfd[1],redirect,lst,line);
 	}
 	free(line);
 	my_close(pfd[1]);

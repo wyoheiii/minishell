@@ -11,11 +11,20 @@
 /* ************************************************************************** */
 
 #include "minishell_c.h"
-//: syntax error near unexpected token `newline'
-void	redirect_error(void)
+
+void	redirect_error(char *str)
 {
-	ft_putendl_fd("minishell : syntax error near unexpected \
-	token `newline'", 2);
+    if(str == NULL)
+    {
+        ft_putendl_fd("minishell : syntax error near unexpected ", 2);
+        ft_putendl_fd("token `newline'", 2);
+    }
+    else
+    {
+        ft_putstr_fd("bash:", 2);
+        ft_putstr_fd(str, 2);
+        ft_putstr_fd(": ambiguous redirect", 2);
+    }
 }
 
 int	redirect_append(t_redirect *redirect)
@@ -39,7 +48,7 @@ int	redirect_append(t_redirect *redirect)
 		return (fd);
 	}
 	else
-		redirect_error();
+		redirect_error(1);
 	return (-1);
 }
 
@@ -64,7 +73,7 @@ int	redirect_output(t_redirect *redirect)
 		return (fd);
 	}
 	else
-		redirect_error();
+		redirect_error(1);
 	return (-1);
 }
 
@@ -89,31 +98,34 @@ int	redirect_input(t_redirect *redirect)
 		return (fd);
 	}
 	else
-		redirect_error();
+		redirect_error(1);
 	return (-1);
 }
-
+void hedoc_fd(t_redirect *redirect)
+{
+    if (redirect->fd > 0)
+    {
+        my_dup2(redirect->fd, 0);
+        my_close(redirect->fd);
+    }
+    redirect->fd = -1;
+}
 int	select_redirect(t_redirect *redirect)
 {
 	int	fd;
 
 	while (redirect != NULL)
 	{
-		if (redirect->state == REDIRECT_INPUT)
+        if(redirect->is_error == AMBIGUOUS)
+            redirect_error(redirect->filename);
+		else if (redirect->state == REDIRECT_INPUT)
 			fd = redirect_input(redirect);
-		if (redirect->state == REDIRECT_OUTPUT)
+		else if (redirect->state == REDIRECT_OUTPUT)
 			fd = redirect_output(redirect);
-		if (redirect->state == REDIRECT_APPEND)
+		else if (redirect->state == REDIRECT_APPEND)
 			fd = redirect_append(redirect);
-		if (redirect->state == HERE_DOCUMENT)
-		{
-			if (redirect->fd > 0)
-			{
-				my_dup2(redirect->fd, 0);
-				my_close(redirect->fd);
-			}
-			redirect->fd = -1;
-		}
+		else if (redirect->state == HERE_DOCUMENT)
+            hedoc_fd(redirect);
 		if ((redirect->state == REDIRECT_APPEND || \
 		redirect->state == REDIRECT_OUTPUT || \
 		redirect->state == REDIRECT_INPUT) && fd == -1)
