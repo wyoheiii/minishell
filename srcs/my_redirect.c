@@ -23,7 +23,7 @@ void	redirect_error(char *str)
     {
         ft_putstr_fd("bash:", 2);
         ft_putstr_fd(str, 2);
-        ft_putstr_fd(": ambiguous redirect", 2);
+        ft_putendl_fd(": ambiguous redirect", 2);
     }
 }
 

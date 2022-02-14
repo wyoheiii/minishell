@@ -37,7 +37,7 @@ int syntax_check2(t_parsed *parsed)
 int syntax_check(t_parsed *parsed)
 {
     int i = 1;
-    printf("parsed :%p\n",parsed);
+    //printf("parsed :%p\n",parsed);
     while (parsed != NULL)
     {
 //        printf("parsed ;%p\n",parsed);

@@ -17,8 +17,6 @@ void	select_command(t_god god, t_envlist **lst)
 	char	**lst_array;
 	char	*path;
 
-	lst_array = lst_in_array(*lst);
-	path = get_path(*lst, god.parsed->command[0]);
 	if (builtin_select(god.parsed->command))
 	{
 		single_builtin(god, lst);
@@ -28,6 +26,8 @@ void	select_command(t_god god, t_envlist **lst)
 		if(select_redirect(god.parsed->redirect)== -1)
             exit(g_status);
     check_period(god.parsed);
+    lst_array = lst_in_array(*lst);
+    path = get_path(*lst, god.parsed->command[0]);
 	if(execve(path, god.parsed->command, lst_array) == -1)
 		exec_error(path,*lst);
 }
