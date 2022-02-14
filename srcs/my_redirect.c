@@ -12,18 +12,20 @@
 
 #include "minishell_c.h"
 
-void	redirect_error(char *str)
+int	redirect_error(char *str)
 {
     if(str == NULL)
     {
         ft_putendl_fd("minishell : syntax error near unexpected ", 2);
         ft_putendl_fd("token `newline'", 2);
+        return(0);
     }
     else
     {
-        ft_putstr_fd("bash:", 2);
+        ft_putstr_fd("bash: ", 2);
         ft_putstr_fd(str, 2);
         ft_putendl_fd(": ambiguous redirect", 2);
+        return(-1);
     }
 }
 
@@ -109,7 +111,7 @@ int	select_redirect(t_redirect *redirect)
 	while (redirect != NULL)
 	{
         if(redirect->is_error == AMBIGUOUS)
-            redirect_error(redirect->filename);
+            return(redirect_error(redirect->filename));
 		else if (redirect->state == REDIRECT_INPUT)
 			fd = redirect_input(redirect);
 		else if (redirect->state == REDIRECT_OUTPUT)

@@ -53,7 +53,15 @@ bool	builtin_select(char **command)
 		return (true);
 	return (false);
 }
-
+void reset_fd(int fd1, int fd2,int fd3)
+{
+    my_dup2(fd1, 0);
+    my_dup2(fd2, 1);
+    my_dup2(fd3, 2);
+    my_close(fd1);
+    my_close(fd2);
+    my_close(fd3);
+}
 int	single_builtin(t_god god, t_envlist **lst)
 {
 	int	fd1;
@@ -64,16 +72,15 @@ int	single_builtin(t_god god, t_envlist **lst)
 	fd1 = my_dup(0);
 	fd2 = my_dup(1);
 	fd3 = my_dup(2);
-	if (redirect_check(god.parsed))
-		if(select_redirect(god.parsed->redirect) == -1)
-            return(0);
+	if (redirect_check(god.parsed)) {
+
+        if (select_redirect(god.parsed->redirect) == -1) {
+            reset_fd(fd1, fd2, fd3);
+            return (0);
+        }
+    }
 	ret = return_builtin(god.parsed->command, lst, god);
-	my_dup2(fd1, 0);
-	my_dup2(fd2, 1);
-	my_dup2(fd3, 2);
-	my_close(fd1);
-	my_close(fd2);
-	my_close(fd3);
+    reset_fd(fd1,fd2,fd3);
 	return (ret);
 }
 
