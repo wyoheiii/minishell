@@ -6,7 +6,7 @@
 /*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:42:46 by tkaneshi          #+#    #+#             */
-/*   Updated: 2022/02/14 16:42:46 by tkaneshi         ###   ########.fr       */
+/*   Updated: 2022/02/14 18:23:08 by tkaneshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,9 @@ size_t	get_delimiter_count(t_list *token_list)
 		else if (is_redirect(tmp->content))
 		{
 			if (tmp->next != NULL && tmp->content != NULL)
-			{
-				tmp = tmp->next->next;
-				continue ;
-			}
+				tmp = tmp->next;
+			else
+				break ;
 		}
 		count += 1;
 		tmp = tmp->next;

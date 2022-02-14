@@ -6,7 +6,7 @@
 /*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:42:15 by tkaneshi          #+#    #+#             */
-/*   Updated: 2022/02/14 16:42:18 by tkaneshi         ###   ########.fr       */
+/*   Updated: 2022/02/14 18:27:33 by tkaneshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ static char	**create_command(t_list **token_list, size_t size)
 	}
 	index = 0;
 	tmp = (*token_list);
-	while (index < size)
+	while (index < size && tmp != NULL)
 	{
+		command[index] = NULL;
 		if (is_delimiter(tmp->content) == false)
 			command[index++] = tmp->content;
 		else
@@ -67,7 +68,7 @@ void	free_parsed(t_parsed **parsed)
 	{
 		tmp = (*parsed)->next;
 		index = 0;
-		while ((*parsed)->command[index] != NULL)
+		while ((*parsed)->command != NULL && (*parsed)->command[index] != NULL)
 			free((*parsed)->command[index++]);
 		while ((*parsed)->redirect != NULL)
 		{
