@@ -96,7 +96,10 @@ bool	key_match_check(char *arg, t_envlist *lst)
 	while (lst != NULL)
 	{
 		if (ft_strncmp(key, lst->key, key_size + 1) == 0)
-			return (true);
+        {
+            free(key);
+            return (true);
+        }
 		lst = lst->next;
 	}
 	free(key);
