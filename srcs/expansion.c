@@ -6,7 +6,7 @@
 /*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:43:07 by tkaneshi          #+#    #+#             */
-/*   Updated: 2022/02/14 19:03:15 by tkaneshi         ###   ########.fr       */
+/*   Updated: 2022/02/14 19:08:37 by tkaneshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	expand_redirect(t_redirect	*redirect, t_envlist *envlist)
 			free(redirect->filename);
 			redirect->filename = my_strdup(new->argv);
 		}
-		if (is_delimiter(redirect->filename[0]))
+		if (is_delimiter(redirect->filename))
 			redirect->is_error = SYNTAX;
 		free_expand(&new);
 		redirect = redirect->next;
