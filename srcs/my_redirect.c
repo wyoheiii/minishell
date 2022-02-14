@@ -48,7 +48,7 @@ int	redirect_append(t_redirect *redirect)
 		return (fd);
 	}
 	else
-		redirect_error(1);
+		redirect_error(NULL);
 	return (-1);
 }
 
@@ -73,7 +73,7 @@ int	redirect_output(t_redirect *redirect)
 		return (fd);
 	}
 	else
-		redirect_error(1);
+		redirect_error(NULL);
 	return (-1);
 }
 
@@ -98,7 +98,7 @@ int	redirect_input(t_redirect *redirect)
 		return (fd);
 	}
 	else
-		redirect_error(1);
+		redirect_error(NULL);
 	return (-1);
 }
 void hedoc_fd(t_redirect *redirect)
