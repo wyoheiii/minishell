@@ -6,7 +6,7 @@
 /*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:43:45 by tkaneshi          #+#    #+#             */
-/*   Updated: 2022/02/14 18:15:05 by tkaneshi         ###   ########.fr       */
+/*   Updated: 2022/02/14 20:27:23 by tkaneshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,5 @@ t_redirect	*create_redirect(t_list **token_list)
 		free(*token_list);
 		*token_list = tmp;
 	}
-	new = new_redirect(NULL, NULL);
-	redirect_add_back(&redirect, new);
 	return (redirect);
 }

@@ -6,7 +6,7 @@
 /*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:47:39 by tkaneshi          #+#    #+#             */
-/*   Updated: 2022/02/14 16:47:40 by tkaneshi         ###   ########.fr       */
+/*   Updated: 2022/02/14 20:44:26 by tkaneshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "parser.h"
 # include "expand_struct.h"
 # include "expand_argv.h"
+# include "quote.h"
 
 # define NONE		0
 # define AMBIGUOUS	1

@@ -6,7 +6,7 @@
 /*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:43:07 by tkaneshi          #+#    #+#             */
-/*   Updated: 2022/02/14 19:08:37 by tkaneshi         ###   ########.fr       */
+/*   Updated: 2022/02/14 20:47:48 by tkaneshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,38 @@ bool	exist_quote(char *str)
 	return (false);
 }
 
+t_expand	*quote_remove_for_eol(t_expand *expand)
+{
+	size_t		index;
+	t_expand	*new;
+
+	index = 0;
+	while (expand->argv[index] != '\0')
+	{
+		if (set_quote_flag(expand, index))
+			quote_remove(expand->argv, index);
+		index += 1;
+	}
+	new = expand_new(my_strdup(expand->argv));
+	return (new);
+}
+
 void	expand_redirect(t_redirect	*redirect, t_envlist *envlist)
 {
 	t_expand	*expand;
 	t_expand	*new;
-	size_t		size;
 
 	while (redirect != NULL)
 	{
 		expand = expand_new(my_strdup(redirect->filename));
-		new = expand_argv(expand, envlist);
+		if (redirect->state == HERE_DOCUMENT)
+			new = quote_remove_for_eol(expand);
+		else
+			new = expand_argv(expand, envlist);
 		free_expand(&expand);
 		redirect->quote = exist_quote(redirect->filename);
-		size = expand_lst_size(new);
-		if (size != 1)
-			redirect->is_error = 1;
+		if (expand_lst_size(new) != 1)
+			redirect->is_error = AMBIGUOUS;
 		else if (redirect->filename != NULL && redirect->filename[0] != '\0')
 		{
 			free(redirect->filename);
