@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:17:26 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/12 20:20:35 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/15 00:02:51 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	dup_value(char *arg, t_envlist **lst)
 	{
 		if (ft_strncmp(key, (*lst)->key, key_size + 1) == 0)
 		{
+			free(key);
 			tmp = env_get_value(arg);
 			free((*lst)->value);
 			(*lst)->value = tmp;
