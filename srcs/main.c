@@ -38,6 +38,7 @@ int syntax_check(t_parsed *parsed)
     printf("parsed :%p\n",parsed);
     while (parsed != NULL)
     {
+        printf("parsed ;%p\n",parsed);
         printf("                          %d\n",i);
         printf("=====================================================\n");
         printf("parsed coma ;%p\n",parsed->command);

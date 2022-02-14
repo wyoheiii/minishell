@@ -13,6 +13,22 @@
 #ifndef MINISHELL_C_H
 #define MINISHELL_C_H
 #include "minishell.h"
+#include "sig.h"
+#include "delimiter.h"
+#include "flag.h"
+#include "lexer.h"
+#include "parser.h"
+#include "token.h"
+#include "utils.h"
+#include "my_redirect.h"
+#include <readline/readline.h>
+#include <readline/history.h>
+#include "../debug/debug.h"
+#include "libft_utils.h"
+#include "expansion.h"
+#include "libft_utils.h"
+#include "word_splitting.h"
+#include "expand_argv.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
@@ -22,17 +38,9 @@
 #include <errno.h>
 #include <string.h>
 #include <stdbool.h>
+# include "expand_argv.h"
 #define EXIT 1
-#define EQUAL 0
-#define NOT_EQUAL 1
 
-typedef struct s_envlist
-{
-
-    char *key;
-    char *value;
-    struct s_envlist *next;
-} t_envlist;
 
 typedef struct s_pipe
 {
@@ -41,6 +49,7 @@ typedef struct s_pipe
     pid_t *pid;
     int status;
 }  t_pipe;
+
 typedef struct s_god
 {
     t_parsed *parsed;
@@ -109,4 +118,7 @@ bool		check_arg(char *arg,int *join_flag);
 bool		key_match_check(char *arg, t_envlist *lst);
 int			command_size(char **arg);
 void        check_period(t_parsed *parsed);
+int select_redirect(t_redirect *redirect);
+//int my_heredoc(t_redirect *redirect, t_envlist *lst);
+bool set_heredoc(t_parsed *parsed,t_envlist *lst);
 #endif

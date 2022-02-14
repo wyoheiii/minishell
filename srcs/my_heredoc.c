@@ -10,12 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "my_redirect.h"
+# include "minishell_c.h"
 
-void	heredoc_child(int pfd[2], char *str)
+char	*expand_heredoc(char *line, t_envlist *envlist)
+{
+    t_expand	*expand;
+    t_expand	*new;
+    char *ret;
+
+    expand = expand_new(line);
+    new = expand_argv(expand, envlist);
+    free_expand(&expand);
+    ret = my_strdup((new->argv));
+    free_expand(&new);
+    return (ret);
+}
+void	heredoc_child(int pfd[2], t_redirect *redirect, t_envlist *lst)
 {
 	char	*line;
-
+    char    *expand;
 	my_close(pfd[0]);
 	while (1)
 	{
@@ -23,10 +36,20 @@ void	heredoc_child(int pfd[2], char *str)
 		line = readline("> ");
 		if (line == NULL)
 			break ;
-		if (ft_strncmp(line, str, ft_strlen(str) + 1) == 0)
+		if (ft_strncmp(line, redirect->filename, \
+        ft_strlen(redirect->filename) + 1) == 0)
 			break ;
-		ft_putendl_fd(line, pfd[1]);
-		free(line);
+        if(redirect->quote)
+        {
+            expand = expand_heredoc(line, lst);
+            ft_putendl_fd(expand, pfd[1]);
+            free(expand);
+        }
+        else
+        {
+            ft_putendl_fd(line, pfd[1]);
+            free(line);
+        }
 	}
 	free(line);
 	my_close(pfd[1]);
@@ -45,7 +68,7 @@ int	heredoc_waitpid(pid_t pid, int *status, int option)
 	return (0);
 }
 
-int	my_heredoc(t_redirect *redirect)
+int	my_heredoc(t_redirect *redirect, t_envlist *lst)
 {
 	pid_t	pid;
 	int		pfd[2];
@@ -56,7 +79,7 @@ int	my_heredoc(t_redirect *redirect)
 	my_pipe(pfd);
 	pid = my_fork();
 	if (pid == 0)
-		heredoc_child(pfd, redirect->filename);
+		heredoc_child(pfd, redirect, lst);
 	else
 		ret = heredoc_waitpid(pid, &status, 0);
 	if (ret)
@@ -70,7 +93,7 @@ int	my_heredoc(t_redirect *redirect)
 	return (ret);
 }
 
-bool	set_heredoc(t_parsed *parsed)
+bool	set_heredoc(t_parsed *parsed, t_envlist *lst)
 {
 	t_redirect	*red;
 
@@ -81,7 +104,7 @@ bool	set_heredoc(t_parsed *parsed)
 		{
 			if (red->state == HERE_DOCUMENT)
 			{
-				if (my_heredoc(red) != 0)
+				if (my_heredoc(red, lst) != 0)
 					return (false);
 			}
 			red = red->next;

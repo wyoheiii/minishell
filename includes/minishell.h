@@ -1,21 +1,12 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
-#include "sig.h"
-#include "delimiter.h"
-#include "flag.h"
-#include "lexer.h"
+typedef struct s_envlist
+{
+    char *key;
+    char *value;
+    struct s_envlist *next;
+} t_envlist;
 #include "minishell_c.h"
-#include "parser.h"
-#include "token.h"
-#include "utils.h"
-#include "my_redirect.h"
-#include <readline/readline.h>
-#include <readline/history.h>
-#include "../debug/debug.h"
-#include "libft_utils.h"
-//#include "expansion.h"
-#include "libft_utils.h"
-#include "word_splitting.h"
 
 int g_status;
 #endif // !
