@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_utils.h                                      :+:      :+:    :+:   */
+/*   quote.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/14 16:45:38 by tkaneshi          #+#    #+#             */
-/*   Updated: 2022/02/14 16:45:38 by tkaneshi         ###   ########.fr       */
+/*   Created: 2022/02/14 16:45:56 by tkaneshi          #+#    #+#             */
+/*   Updated: 2022/02/14 16:45:57 by tkaneshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_UTILS_H
-# define LIBFT_UTILS_H
+#ifndef QUOTE_H
+# define QUOTE_H
 
+# include <stdbool.h>
 # include <stdlib.h>
 
 # include "libft.h"
+# include "expand_struct.h"
 
-char	*my_substr(char *str, size_t start, size_t length);
-char	*my_strdup(char *str);
-char	*my_strjoin(char **s1, char **s2);
-void	*my_calloc(size_t count, size_t size);
+bool	set_quote_flag(t_expand *list, size_t index);
+void	quote_remove(char *str, size_t start);
 
 #endif

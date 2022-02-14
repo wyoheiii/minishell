@@ -1,34 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand_argv.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/14 16:42:53 by tkaneshi          #+#    #+#             */
+/*   Updated: 2022/02/14 16:42:54 by tkaneshi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "expand_argv.h"
-
-static void	quote_remove(char *str, size_t start)
-{
-	size_t	index;
-
-	index = start + 1;
-	if (str[index] == '\0')
-		str[start] = '\0';
-	else
-	{
-		while (str[index] != '\0')
-			str[start++] = str[index++];
-		str[start] = '\0';
-	}
-}
-
-static bool	set_quote_flag(t_expand *list, size_t index)
-{
-	if (list->flag == NONE && list->argv[index] == '\'')
-		list->flag = SINGLE;
-	else if (list->flag == NONE && list->argv[index] == '\"')
-		list->flag = DOUBLE;
-	else if (list->flag == SINGLE && list->argv[index] == '\'')
-		list->flag = NONE;
-	else if (list->flag == DOUBLE && list->argv[index] == '\"')
-		list->flag = NONE;
-	else
-		return (false);
-	return (true);
-}
 
 static size_t	search_expand_char(t_expand *list, size_t index)
 {
@@ -63,6 +45,24 @@ static void	add_remaining(t_expand *new, t_expand *list)
 	}
 }
 
+t_expand	*get_expanded(t_expand *list, t_envlist *envlist, bool *flag)
+{
+	t_expand	*tmp;
+
+	*flag = true;
+	tmp = expand_new(my_strdup(""));
+	tmp->is_join = true;
+	while (list->argv != NULL && list->argv[list->index] != '\0')
+	{
+		list->index = search_expand_char(list, list->index);
+		if (is_remove(list))
+			quote_remove(list->argv, list->index);
+		else if (is_expand(list))
+			*flag = add_expanded_param(tmp, list, envlist);
+	}
+	return (tmp);
+}
+
 t_expand	*expand_argv(t_expand *list, t_envlist *envlist)
 {
 	t_expand	new_list;
@@ -72,22 +72,14 @@ t_expand	*expand_argv(t_expand *list, t_envlist *envlist)
 	new_list.next = NULL;
 	while (list != NULL)
 	{
-		flag = true;
-		tmp = expand_new(my_strdup(""));
-		tmp->is_join = true;
-		while (list->argv != NULL && list->argv[list->index] != '\0')
-		{
-			list->index = search_expand_char(list, list->index);
-			if (is_remove(list))
-				quote_remove(list->argv, list->index);
-			else if (is_expand(list))
-				flag = add_expanded_param(tmp, list, envlist);
-		}
+		tmp = get_expanded(list, envlist, &flag);
 		if (list->argv != NULL && (flag || tmp->argv[0] != '\0'))
 		{
 			add_remaining(tmp, list);
 			expand_add_back(&(new_list.next), tmp);
 		}
+		else
+			free_expand(&tmp);
 		list = list->next;
 	}
 	return (new_list.next);

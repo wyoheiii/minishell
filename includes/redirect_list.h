@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirect_list.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/14 16:46:56 by tkaneshi          #+#    #+#             */
+/*   Updated: 2022/02/14 16:46:56 by tkaneshi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef REDIRECT_LIST_H
 # define REDIRECT_LIST_H
 
@@ -16,9 +28,11 @@
 
 typedef struct s_redirect
 {
-    int                 fd;
+	int					fd;
 	char				*filename;
 	int					state;
+	int					quote;
+	int					is_error;
 	struct s_redirect	*next;
 }	t_redirect;
 
