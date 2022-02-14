@@ -6,7 +6,7 @@
 /*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:43:45 by tkaneshi          #+#    #+#             */
-/*   Updated: 2022/02/14 16:43:46 by tkaneshi         ###   ########.fr       */
+/*   Updated: 2022/02/14 18:15:05 by tkaneshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static t_redirect	*get_redirect(t_list **token_list, t_list *tmp)
 	if (tmp == NULL)
 	{
 		new = new_redirect(NULL, (*token_list)->content);
+		free((*token_list)->content);
 		free(*token_list);
 		*token_list = tmp;
 	}
@@ -81,7 +82,8 @@ t_redirect	*create_redirect(t_list **token_list)
 			*token_list = tmp;
 			redirect_add_back(&redirect, new);
 		}
-		tmp = (*token_list)->next;
+		if ((*token_list) != NULL)
+			tmp = (*token_list)->next;
 		free(*token_list);
 		*token_list = tmp;
 	}
