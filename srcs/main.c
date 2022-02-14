@@ -34,37 +34,54 @@ int syntax_check2(t_parsed *parsed)
 
     return(0);
 }
-int syntax_check(t_parsed *parsed)
-{
-    int i = 1;
-    //printf("parsed :%p\n",parsed);
-    while (parsed != NULL)
-    {
-//        printf("parsed ;%p\n",parsed);
+//int syntax_check(t_parsed *parsed)
+//{
+//    int i = 1;
+//    //printf("parsed :%p\n",parsed);
+//    while (parsed != NULL)
+//    {
+//        //printf("parsed ;%p\n",parsed);
 //        printf("                          %d\n",i);
 //        printf("=====================================================\n");
 //        printf("parsed coma ;%p\n",parsed->command);
 //        printf("parsed redirect ;%p\n",parsed->redirect);
 //        printf("parsed coma ;%s\n",parsed->command[0]);
-//        printf("parsed red ;%p\n",parsed->redirect);
 //        printf("parse stas %d\n",parsed->state);
 //        printf("=====================================================\n");
-        if((parsed->command[0] == NULL && parsed->redirect == NULL\
-        && parsed->state == PIPE) || (parsed->next == NULL && parsed->state == PIPE))
-        {
-            if(parsed->next != NULL) {
-                if (parsed->next->command[0] == NULL && parsed->next->redirect == NULL\
-                        && parsed->next->state == PIPE)
-                    return (print_syntax_err("||"));
-            }
-            return(print_syntax_err("|"));
-        }
-        if(parsed->redirect != NULL && syntax_check2(parsed) == -1)
+//        if((parsed->command[0] == NULL && parsed->redirect == NULL\
+//        && parsed->state == PIPE) || (parsed->next == NULL && parsed->state == PIPE))
+//        //if(parsed->command[0] == NULL && parsed->redirect == NULL
+//        {
+//            if(parsed->next != NULL) {
+//                if (parsed->next->command[0] == NULL && parsed->next->redirect == NULL\
+//                        && parsed->next->state == PIPE)
+//                    return (print_syntax_err("||"));
+//            }
+//            return(print_syntax_err("|"));
+//        }
+//        if(parsed->redirect != NULL && syntax_check2(parsed) == -1)
+//            return (-1);
+//        parsed = parsed->next;
+//        i++;
+//    }
+//    return(0);
+//}
+int syntax_check(t_parsed *parsed)
+{
+    int  i;
+    i = 0;
+    while (parsed != NULL)
+    {
+        if(parsed->command[0] == NULL && parsed->redirect == NULL \
+        && i == 0 && parsed->state == PIPE)
+            return (print_syntax_err("|"));
+        else if((parsed->next == NULL && parsed->state == PIPE))
+            return (print_syntax_err("|"));
+        else if(parsed->redirect != NULL && syntax_check2(parsed) == -1)
             return (-1);
         parsed = parsed->next;
         i++;
     }
-
     return(0);
 }
 int set_command(t_envlist **lst, t_parsed *parsed)

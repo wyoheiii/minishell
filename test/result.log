@@ -3736,21 +3736,19 @@ exit
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: unset NO_ENV\n echo a > $NO_ENV | echo b\nexit
+[OK ] case: unset NO_ENV\n echo a > $NO_ENV | echo b\nexit
 -------------------------
-diff :1c1
-< echo
----
-> b
+diff :
 # minishell: stdout
-echo
+b
 # bash: stdout
 b
 # minishell: stderr
-bash:$NO_ENV: ambiguous redirect
+bash: $NO_ENV: ambiguous redirect
+exit
 # bash: stderr
 bash: line 2: $NO_ENV: ambiguous redirect
-# minishell: exit status = 134
+# minishell: exit status = 0
 # bash     : exit status = 0
 
 -------------------------
