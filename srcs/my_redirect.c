@@ -105,7 +105,7 @@ int	redirect_input(t_redirect *redirect)
 int	select_redirect(t_redirect *redirect)
 {
 	int	fd;
-
+    fd = 0;
 	while (redirect != NULL)
 	{
         if(redirect->is_error == AMBIGUOUS)
