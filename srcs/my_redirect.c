@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "my_redirect.h"
+#include "minishell_c.h"
 //: syntax error near unexpected token `newline'
 void	redirect_error(void)
 {

@@ -39,7 +39,7 @@ void	heredoc_child(int pfd[2], t_redirect *redirect, t_envlist *lst)
 		if (ft_strncmp(line, redirect->filename, \
         ft_strlen(redirect->filename) + 1) == 0)
 			break ;
-        if(redirect->quote)
+        if(redirect->quote != 1)
         {
             expand = expand_heredoc(line, lst);
             ft_putendl_fd(expand, pfd[1]);

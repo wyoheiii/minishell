@@ -20,7 +20,6 @@
 #include "parser.h"
 #include "token.h"
 #include "utils.h"
-#include "my_redirect.h"
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "../debug/debug.h"
@@ -34,6 +33,7 @@
 #include <sys/wait.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include "libft.h"
 #include <errno.h>
 #include <string.h>
