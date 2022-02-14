@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:17:26 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/15 00:02:51 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/15 00:11:14 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	join_value(char *arg, t_envlist **lst)
 			else
 				(*lst)->value = my_strjoin(&(*lst)->value, &value);
 			*lst = top;
+			free(key);
 			return ;
 		}
 		*lst = (*lst)->next;
