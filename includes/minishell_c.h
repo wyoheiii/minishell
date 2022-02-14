@@ -121,4 +121,6 @@ void        check_period(t_parsed *parsed);
 int select_redirect(t_redirect *redirect);
 //int my_heredoc(t_redirect *redirect, t_envlist *lst);
 bool set_heredoc(t_parsed *parsed,t_envlist *lst);
+int	my_heredoc(t_redirect *redirect, t_envlist *lst);
+void hedoc_fd(t_redirect *redirect);
 #endif
