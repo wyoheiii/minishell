@@ -6,7 +6,7 @@
 /*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:43:07 by tkaneshi          #+#    #+#             */
-/*   Updated: 2022/02/14 20:47:48 by tkaneshi         ###   ########.fr       */
+/*   Updated: 2022/02/14 20:58:00 by tkaneshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_expand	*quote_remove_for_eol(t_expand *expand)
 	t_expand	*new;
 
 	index = 0;
-	while (expand->argv[index] != '\0')
+	while (expand->argv != NULL && expand->argv[index] != '\0')
 	{
 		if (set_quote_flag(expand, index))
 			quote_remove(expand->argv, index);
