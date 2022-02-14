@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand_struct.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/14 16:43:04 by tkaneshi          #+#    #+#             */
+/*   Updated: 2022/02/14 16:43:05 by tkaneshi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "expand_struct.h"
 
 t_expand	*expand_new(char *argv)
@@ -58,6 +70,7 @@ void	free_expand(t_expand **expand)
 	{
 		tmp = (*expand);
 		(*expand) = (*expand)->next;
+		free (tmp->argv);
 		free (tmp);
 	}
 }

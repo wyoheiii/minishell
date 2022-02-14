@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   word_splitting.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/14 16:44:01 by tkaneshi          #+#    #+#             */
+/*   Updated: 2022/02/14 16:44:02 by tkaneshi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "word_splitting.h"
 
 static void	add_split_token(t_list **list, char *str,
@@ -39,6 +51,6 @@ t_list	*word_splitting(char *str)
 	if (index != length)
 		add_split_token(&(splitted.next), str, index - length, length);
 	if (splitted.next == NULL)
-		lstnew_add_back(&(splitted.next), str);
+		lstnew_add_back(&(splitted.next), my_strdup(str));
 	return (splitted.next);
 }

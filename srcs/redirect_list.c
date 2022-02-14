@@ -1,20 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirect_list.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/14 16:43:45 by tkaneshi          #+#    #+#             */
+/*   Updated: 2022/02/14 16:43:46 by tkaneshi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "redirect_list.h"
 
 static t_redirect	*new_redirect(char	*filename, char *meta)
 {
 	t_redirect	*redirect;
 
-	if (filename == NULL && meta != NULL)
-	{
-		ft_putendl_fd("ambiguous redirect", 2);
-		return (NULL);
-	}
 	redirect = (t_redirect *)malloc(sizeof(t_redirect));
 	if (redirect == NULL)
-		return (NULL);
-    redirect->fd = -1;
+	{
+		ft_putendl_fd("malloc failure", 2);
+		exit(EXIT_FAILURE);
+	}
+	redirect->fd = -1;
 	redirect->filename = filename;
 	redirect->state = get_state(meta);
+	redirect->is_error = NONE;
+	redirect->quote = NONE;
 	redirect->next = NULL;
 	return (redirect);
 }
@@ -34,6 +46,24 @@ static void	redirect_add_back(t_redirect **head, t_redirect *new)
 	tmp->next = new;
 }
 
+static t_redirect	*get_redirect(t_list **token_list, t_list *tmp)
+{
+	t_redirect	*new;
+
+	if (tmp == NULL)
+	{
+		new = new_redirect(NULL, (*token_list)->content);
+		free(*token_list);
+		*token_list = tmp;
+	}
+	else
+	{
+		new = new_redirect(tmp->content, (*token_list)->content);
+		free((*token_list)->content);
+	}
+	return (new);
+}
+
 t_redirect	*create_redirect(t_list **token_list)
 {
 	t_redirect	*redirect;
@@ -46,14 +76,9 @@ t_redirect	*create_redirect(t_list **token_list)
 		if (is_redirect((*token_list)->content))
 		{
 			tmp = (*token_list)->next;
-			if (tmp == NULL)
-				return (NULL);
-			new = new_redirect(tmp->content, (*token_list)->content);
-			free((*token_list)->content);
+			new = get_redirect(token_list, tmp);
 			free(*token_list);
 			*token_list = tmp;
-			if (new == NULL)
-				return (NULL);
 			redirect_add_back(&redirect, new);
 		}
 		tmp = (*token_list)->next;
