@@ -6,7 +6,7 @@
 /*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:43:00 by tkaneshi          #+#    #+#             */
-/*   Updated: 2022/02/14 23:52:13 by tkaneshi         ###   ########.fr       */
+/*   Updated: 2022/02/15 00:06:29 by tkaneshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,10 @@ void	expand_add_split(t_expand *new, char *param)
 	{
 		tmp = split;
 		if (is_empty(tmp->content) == false)
-			expand_add_back(&new, expand_new(tmp->content));
+			expand_add_back(&new, expand_new(my_strdup(tmp->content)));
 		else
 			new->is_join = false;
+		free(tmp->content);
 		split = split->next;
 		free(tmp);
 	}
