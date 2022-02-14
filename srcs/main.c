@@ -37,7 +37,7 @@ int syntax_check2(t_parsed *parsed)
 int syntax_check(t_parsed *parsed)
 {
     int i = 1;
-//    printf("parsed :%p\n",parsed);
+    printf("parsed :%p\n",parsed);
     while (parsed != NULL)
     {
 //        printf("parsed ;%p\n",parsed);
@@ -46,14 +46,14 @@ int syntax_check(t_parsed *parsed)
 //        printf("parsed coma ;%p\n",parsed->command);
 //        printf("parsed redirect ;%p\n",parsed->redirect);
 //        printf("parsed coma ;%s\n",parsed->command[0]);
-//        printf("parsed filename ;%s\n",parsed->redirect->filename);
+//        printf("parsed red ;%p\n",parsed->redirect);
 //        printf("parse stas %d\n",parsed->state);
 //        printf("=====================================================\n");
-        if((parsed->command[0] == NULL && parsed->redirect->filename == NULL\
+        if((parsed->command[0] == NULL && parsed->redirect == NULL\
         && parsed->state == PIPE) || (parsed->next == NULL && parsed->state == PIPE))
         {
             if(parsed->next != NULL) {
-                if (parsed->next->command[0] == NULL && parsed->next->redirect->filename == NULL\
+                if (parsed->next->command[0] == NULL && parsed->next->redirect == NULL\
                         && parsed->next->state == PIPE)
                     return (print_syntax_err("||"));
             }
