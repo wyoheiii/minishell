@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   leaks.h                                            :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/27 10:27:18 by jnakahod          #+#    #+#             */
-/*   Updated: 2021/10/27 10:27:21 by jnakahod         ###   ########.fr       */
+/*   Created: 2022/02/14 23:03:52 by wyohei            #+#    #+#             */
+/*   Updated: 2022/02/14 23:05:09 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEAKS
-#define LEAKS 0
-#endif
+#ifndef STRUCT_H
+# define STRUCT_H
 
-#if LEAKS
-
-void end(void) __attribute__((destructor));
-
+typedef struct s_envlist
+{
+	char				*key;
+	char				*value;
+	struct s_envlist	*next;
+}t_envlist;
 #endif

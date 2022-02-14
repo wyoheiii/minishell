@@ -6,94 +6,23 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:16:48 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/12 20:19:56 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/14 23:15:12 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "expansion.h"
 
-int print_syntax_err(char *err)
+int	set_command(t_envlist **lst, t_parsed *parsed)
 {
-    ft_putstr_fd("minishell: syntax error near unexpected token", 2);
-    ft_putstr_fd("`",2);
-    ft_putstr_fd(err,2);
-    ft_putendl_fd("'",2);
-    g_status = 2;
-    return (-1);
+	expansion(parsed, *lst);
+	if (syntax_check(parsed) == -1)
+		return (0);
+	if (command_part(parsed, lst) == EXIT)
+		return (EXIT);
+	return (0);
 }
-int syntax_check2(t_parsed *parsed)
-{
-    //printf("iserro ;      %d\n",parsed->redirect->is_error);
-    if(parsed->redirect->is_error == SYNTAX) {
-        //printf("iserro ;      %d\n", parsed->redirect->is_error);
-        return (print_syntax_err("newline"));
-    }
-    if(parsed->redirect->filename == NULL)
-        return(print_syntax_err("newline"));
 
-    return(0);
-}
-//int syntax_check(t_parsed *parsed)
-//{
-//    int i = 1;
-//    //printf("parsed :%p\n",parsed);
-//    while (parsed != NULL)
-//    {
-//        //printf("parsed ;%p\n",parsed);
-//        printf("                          %d\n",i);
-//        printf("=====================================================\n");
-//        printf("parsed coma ;%p\n",parsed->command);
-//        printf("parsed redirect ;%p\n",parsed->redirect);
-//        printf("parsed coma ;%s\n",parsed->command[0]);
-//        printf("parse stas %d\n",parsed->state);
-//        printf("=====================================================\n");
-//        if((parsed->command[0] == NULL && parsed->redirect == NULL\
-//        && parsed->state == PIPE) || (parsed->next == NULL && parsed->state == PIPE))
-//        //if(parsed->command[0] == NULL && parsed->redirect == NULL
-//        {
-//            if(parsed->next != NULL) {
-//                if (parsed->next->command[0] == NULL && parsed->next->redirect == NULL\
-//                        && parsed->next->state == PIPE)
-//                    return (print_syntax_err("||"));
-//            }
-//            return(print_syntax_err("|"));
-//        }
-//        if(parsed->redirect != NULL && syntax_check2(parsed) == -1)
-//            return (-1);
-//        parsed = parsed->next;
-//        i++;
-//    }
-//    return(0);
-//}
-int syntax_check(t_parsed *parsed)
-{
-    int  i;
-    i = 0;
-    while (parsed != NULL)
-    {
-        if(parsed->command[0] == NULL && parsed->redirect == NULL \
-        && i == 0 && parsed->state == PIPE)
-            return (print_syntax_err("|"));
-        else if((parsed->next == NULL && parsed->state == PIPE))
-            return (print_syntax_err("|"));
-        else if(parsed->redirect != NULL && syntax_check2(parsed) == -1)
-            return (-1);
-        parsed = parsed->next;
-        i++;
-    }
-    return(0);
-}
-int set_command(t_envlist **lst, t_parsed *parsed)
-{
-
-    expansion(parsed, *lst);
-    if(syntax_check(parsed) == -1)
-        return (0);
-    if (command_part(parsed, lst) == EXIT)
-        return (EXIT);
-    return (0);
-}
 void	minishell(char **envp)
 {
 	char		*line;
@@ -113,8 +42,8 @@ void	minishell(char **envp)
 		add_history(line);
 		token_list = lexer(line);
 		parsed = parser(&token_list);
-		if(set_command(&lst,parsed) == EXIT)
-            break;
+		if (set_command(&lst, parsed) == EXIT)
+			break ;
 		free_parsed(&parsed);
 		free(line);
 	}

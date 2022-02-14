@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:17:23 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/12 20:10:38 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/14 23:34:04 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,10 @@ bool	key_match_check(char *arg, t_envlist *lst)
 	while (lst != NULL)
 	{
 		if (ft_strncmp(key, lst->key, key_size + 1) == 0)
-        {
-            free(key);
-            return (true);
-        }
+		{
+			free(key);
+			return (true);
+		}
 		lst = lst->next;
 	}
 	free(key);

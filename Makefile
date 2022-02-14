@@ -6,7 +6,8 @@ SRCS := main.c command_main.c my_echo.c my_pwd.c my_exit.c my_cd.c my_env.c \
 		list_utils.c libft_utils.c expansion.c expand_struct.c not_param_str.c\
 		param.c redirect_list.c my_heredoc.c word_splitting.c my_builtin.c\
 		command_util2.c sig2.c my_export2.c my_export3.c expand_argv.c \
-     	expand_is.c expand_param.c command_util3.c quote.c my_heredoc2.c my_redirect2.c
+     	expand_is.c expand_param.c command_util3.c quote.c my_heredoc2.c my_redirect2.c \
+		 snytax_err.c
 SRCSD := ./srcs/
 
 ADDSRCS := $(addprefix $(SRCSD),$(SRCS))
@@ -72,19 +73,19 @@ fclean:		clean
 re:			fclean $(NAME)
 
 $(OBJDIR)/%.o : $(SRCSD)%.c
-	@if [ ! -d $(OBJDIR) ]; then echo "mkdir -p $(OBJDIR)" && mkdir -p $(OBJDIR); fi    
+	@if [ ! -d $(OBJDIR) ]; then echo "mkdir -p $(OBJDIR)" && mkdir -p $(OBJDIR); fi
 	$(CC) $(CFLAGS)  -c -o $@ $< -I$(INC) -I$(LIBINC) $(RL1)
 
 #.c.o :
 #			$(CC) $(CFLAGS)  -c -o $@ $< -I$(INC) -I$(LIBINC) $(RL1)
 
-leaks: $(LIBFT)
-	$(MAKE) CFLAGS="$(CFLAGS) -D LEAKS=1" INC="$(INC) $(INCLUDE_LEAKS)" ADDSRCS="$(ADDSRCS) $(SRCS_LEAKS)" LEAKS=TRUE
+#leaks: $(LIBFT)
+#	$(MAKE) CFLAGS="$(CFLAGS) -D LEAKS=1" INC="$(INC) $(INCLUDE_LEAKS)" ADDSRCS="$(ADDSRCS) $(SRCS_LEAKS)" LEAKS=TRUE
 
-cleanleaks: clean
-	$(RM) ./test/help/leaks.o ./test/help/leaks.d
+#cleanleaks: clean
+#	$(RM) ./test/help/leaks.o ./test/help/leaks.d
 
-fcleanleaks: cleanleaks
-	$(RM) $(MINISHL_LEAKS)
+#fcleanleaks: cleanleaks
+#	$(RM) $(MINISHL_LEAKS)
 
 .PHONY:		all clean fclean r

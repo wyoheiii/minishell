@@ -1,12 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/14 22:55:43 by wyohei            #+#    #+#             */
+/*   Updated: 2022/02/14 23:05:32 by wyohei           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
-typedef struct s_envlist
-{
-    char *key;
-    char *value;
-    struct s_envlist *next;
-} t_envlist;
-#include "minishell_c.h"
-
-int g_status;
+# include "struct.h"
+# include "minishell_c.h"
+int	g_status;
 #endif // !

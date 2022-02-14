@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:17:35 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/12 20:38:27 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/14 23:31:00 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 int	redirect_error(char *str)
 {
-    if(str == NULL)
-    {
-        ft_putendl_fd("minishell : syntax error near unexpected ", 2);
-        ft_putendl_fd("token `newline'", 2);
-        return(0);
-    }
-    else
-    {
-        ft_putstr_fd("bash: ", 2);
-        ft_putstr_fd(str, 2);
-        ft_putendl_fd(": ambiguous redirect", 2);
-        return(-1);
-    }
+	if (str == NULL)
+	{
+		ft_putendl_fd("minishell : syntax error near unexpected ", 2);
+		ft_putendl_fd("token `newline'", 2);
+		return (0);
+	}
+	else
+	{
+		ft_putstr_fd("bash: ", 2);
+		ft_putstr_fd(str, 2);
+		ft_putendl_fd(": ambiguous redirect", 2);
+		return (-1);
+	}
 }
 
 int	redirect_append(t_redirect *redirect)
@@ -107,11 +107,12 @@ int	redirect_input(t_redirect *redirect)
 int	select_redirect(t_redirect *redirect)
 {
 	int	fd;
-    fd = 0;
+
+	fd = 0;
 	while (redirect != NULL)
 	{
-        if(redirect->is_error == AMBIGUOUS)
-            return(redirect_error(redirect->filename));
+		if (redirect->is_error == AMBIGUOUS)
+			return (redirect_error(redirect->filename));
 		else if (redirect->state == REDIRECT_INPUT)
 			fd = redirect_input(redirect);
 		else if (redirect->state == REDIRECT_OUTPUT)
@@ -119,12 +120,12 @@ int	select_redirect(t_redirect *redirect)
 		else if (redirect->state == REDIRECT_APPEND)
 			fd = redirect_append(redirect);
 		else if (redirect->state == HERE_DOCUMENT)
-            hedoc_fd(redirect);
+			hedoc_fd(redirect);
 		if ((redirect->state == REDIRECT_APPEND || \
 		redirect->state == REDIRECT_OUTPUT || \
 		redirect->state == REDIRECT_INPUT) && fd == -1)
 			break ;
 		redirect = redirect->next;
 	}
-    return (fd);
+	return (fd);
 }

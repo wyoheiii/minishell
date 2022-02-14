@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 15:57:41 by watanabeyou       #+#    #+#             */
-/*   Updated: 2022/02/12 19:08:41 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/14 23:08:23 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,31 @@
 
 void	exec_error(char *command, t_envlist *lst)
 {
-    (void)lst;
-    if (errno == 2)
-    {
-        ft_putstr_fd("minishell: ", 2);
-        ft_putstr_fd(command, 2);
-        ft_putstr_fd(": ", 2);
-        ft_putendl_fd("command not found", 2);
-        //ft_putendl_fd(strerror(errno), 2);
-        exit(127);
-    }
-    if (errno == 8)
-    {
-        ft_putstr_fd("minishell: ", 2);
-        ft_putstr_fd(command, 2);
-        ft_putstr_fd(": ", 2);
-        ft_putendl_fd(strerror(errno), 2);
-        exit(127);
-    }
-    if (errno)
-    {
-        ft_putstr_fd("minishell: ", 2);
-        ft_putstr_fd(command, 2);
-        ft_putstr_fd(": ", 2);
-        ft_putendl_fd(strerror(errno), 2);
-        exit(126);
-    }
+	(void)lst;
+	if (errno == 2)
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(command, 2);
+		ft_putstr_fd(": ", 2);
+		ft_putendl_fd("command not found", 2);
+		exit(127);
+	}
+	if (errno == 8)
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(command, 2);
+		ft_putstr_fd(": ", 2);
+		ft_putendl_fd(strerror(errno), 2);
+		exit(127);
+	}
+	if (errno)
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(command, 2);
+		ft_putstr_fd(": ", 2);
+		ft_putendl_fd(strerror(errno), 2);
+		exit(126);
+	}
 }
 
 int	count_pipe(t_parsed *parsed)
@@ -85,15 +84,15 @@ int	command_part(t_parsed *parsed, t_envlist **lst)
 	int		pipe_count;
 	int		i;
 
-    if (parsed == NULL)
-        return (0);
+	if (parsed == NULL)
+		return (0);
 	god_init(&god, parsed);
 	if (!set_heredoc(god.parsed, *lst))
 		return (0);
 	pipe_count = count_pipe(god.parsed);
 	if (pipe_count == 0)
 		return (single_command(god, lst));
-    catch_sasenai_signal();
+	catch_sasenai_signal();
 	pipe_init(&p, pipe_count);
 	multi_command(p, lst, god, pipe_count);
 	i = -1;

@@ -6,40 +6,43 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:17:29 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/12 20:17:17 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/14 23:33:12 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell_c.h"
+#include "minishell_c.h"
 
 char	*expand_heredoc(char *line, t_envlist *envlist)
 {
-    t_expand	*expand;
-    t_expand	*new;
-    char *ret;
+	t_expand	*expand;
+	t_expand	*new;
+	char		*ret;
 
-    expand = expand_new(line);
-    new = expand_argv(expand, envlist);
-    free_expand(&expand);
-    ret = my_strdup((new->argv));
-    free_expand(&new);
-    return (ret);
+	expand = expand_new(line);
+	new = expand_argv(expand, envlist);
+	free_expand(&expand);
+	ret = my_strdup((new->argv));
+	free_expand(&new);
+	return (ret);
 }
-void line_in_fd(int fd, t_redirect *redirect, t_envlist *lst,char *line)
+
+void	line_in_fd(int fd, t_redirect *redirect, t_envlist *lst, char *line)
 {
-    char    *expand;
-    if(redirect->quote != 1)
-    {
-        expand = expand_heredoc(line, lst);
-        ft_putendl_fd(expand, fd);
-        free(expand);
-    }
-    else
-    {
-        ft_putendl_fd(line, fd);
-        free(line);
-    }
+	char	*expand;
+
+	if (redirect->quote != 1)
+	{
+		expand = expand_heredoc(line, lst);
+		ft_putendl_fd(expand, fd);
+		free(expand);
+	}
+	else
+	{
+		ft_putendl_fd(line, fd);
+		free(line);
+	}
 }
+
 void	heredoc_child(int pfd[2], t_redirect *redirect, t_envlist *lst)
 {
 	char	*line;
@@ -52,9 +55,9 @@ void	heredoc_child(int pfd[2], t_redirect *redirect, t_envlist *lst)
 		if (line == NULL)
 			break ;
 		if (ft_strncmp(line, redirect->filename, \
-        ft_strlen(redirect->filename) + 1) == 0)
+		ft_strlen(redirect->filename) + 1) == 0)
 			break ;
-        line_in_fd(pfd[1],redirect,lst,line);
+		line_in_fd(pfd[1], redirect, lst, line);
 	}
 	free(line);
 	my_close(pfd[1]);
@@ -97,4 +100,3 @@ int	my_heredoc(t_redirect *redirect, t_envlist *lst)
 	redirect->fd = pfd[0];
 	return (ret);
 }
-

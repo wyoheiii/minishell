@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:17:54 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/12 20:42:57 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/14 23:29:27 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,3 @@ void	heredoc_sig(void)
 	signal(SIGINT, sig_heredoc);
 	signal(SIGQUIT, SIG_IGN);
 }
-

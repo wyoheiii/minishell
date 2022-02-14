@@ -1,2 +1,0 @@
-echo a
-echo hoge\necho 42TOKYO
