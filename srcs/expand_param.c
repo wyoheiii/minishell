@@ -6,7 +6,7 @@
 /*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:43:00 by tkaneshi          #+#    #+#             */
-/*   Updated: 2022/02/14 21:14:14 by tkaneshi         ###   ########.fr       */
+/*   Updated: 2022/02/14 23:52:13 by tkaneshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,20 @@ void	expand_joinflag_on(t_expand *new)
 	new->is_join = true;
 }
 
+bool	is_empty(char *str)
+{
+	size_t	index;
+
+	index = 0;
+	while (str[index] != '\0')
+	{
+		if (!ft_strchr(DELIMITER, str[index]))
+			return (false);
+		index += 1;
+	}
+	return (true);
+}
+
 void	expand_add_split(t_expand *new, char *param)
 {
 	t_list	*split;
@@ -54,7 +68,10 @@ void	expand_add_split(t_expand *new, char *param)
 	while (split != NULL)
 	{
 		tmp = split;
-		expand_add_back(&new, expand_new(tmp->content));
+		if (is_empty(tmp->content) == false)
+			expand_add_back(&new, expand_new(tmp->content));
+		else
+			new->is_join = false;
 		split = split->next;
 		free(tmp);
 	}
