@@ -6,7 +6,7 @@
 /*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:43:50 by tkaneshi          #+#    #+#             */
-/*   Updated: 2022/02/14 16:43:50 by tkaneshi         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:17:55 by tkaneshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,12 +122,12 @@ char	*get_token(const char *line, size_t *index, size_t size)
 	length = start;
 	flags = '\0';
 	set_flag(&flags, FIRST_FLAG);
-	while (lookahead(line[length], &flags))
+	while (line[length] != '\0' && lookahead(line[length], &flags))
 	{
 		(*index) += 1;
 		length += 1;
 	}
-	if (check_last(line, &flags, index, &length))
+	if (line[length] != '\0' && check_last(line, &flags, index, &length))
 		return (NULL);
 	token = ft_substr(line, start, (length - start));
 	return (token);
