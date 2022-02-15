@@ -19,7 +19,7 @@ int	return_builtin(char **command, t_envlist **envlst, t_god god)
 	else if (!ft_strncmp(command[0], "echo", 5))
 		return (my_echo(command));
 	else if (!ft_strncmp(command[0], "cd", 3))
-		return (my_cd(command, envlst));
+		return (my_cd(command, envlst, god));
 	else if (!ft_strncmp(command[0], "pwd", 4))
 		return (my_pwd());
 	else if (!ft_strncmp(command[0], "export", 7))

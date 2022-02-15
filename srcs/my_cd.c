@@ -45,21 +45,34 @@ void	set_pwd(t_envlist **lst, char *pwd)
 		free(cwd);
 	}
 }
-
-int	my_cd(char **command, t_envlist **lst)
+int chdir_err(char *err)
 {
-	char	*path;
+    g_status = 1;
+    ft_putstr_fd("minishell : cd :", 2);
+    ft_putstr_fd(err, 2);
+    ft_putstr_fd(":", 2);
+    ft_putendl_fd(strerror(errno), 2);
+    return (0);
+}
+int cd_home(t_envlist **lst, t_god god)
+{
+    char *path;
+    (void)god;
+    path = search_env_key_("HOME", *lst);
+    if (path == NULL)
+        return (cd_error(NULL));
+    if (chdir(path) != 0)
+        chdir_err(path);
+    return (0);
+}
+int	my_cd(char **command, t_envlist **lst, t_god god)
+{
+	//char	*path;
 	char	*error;
 
 	set_pwd(lst, "OLDPWD");
 	if (command[1] == NULL)
-	{
-		path = search_env_key_("HOME", *lst);
-		if (path == NULL)
-			return (cd_error(NULL));
-		if (chdir(path) != 0)
-			perror("chdir");
-	}
+        return(cd_home(lst, god));
 	else if (chdir(command[1]) != 0)
 	{
 		error = ft_strjoin("minishell: cd: ", command[1]);

@@ -40,7 +40,6 @@ void	set_exec(t_god god, t_envlist **lst)
 	path = get_path(*lst, god.parsed->command[0]);
 	if (execve(path, god.parsed->command, env_array) == -1)
 	{
-		free(path);
 		free(env_array);
 		exec_error(path, *lst);
 	}

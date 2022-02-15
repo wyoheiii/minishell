@@ -55,7 +55,7 @@ int			command_part(t_parsed *parsed, t_envlist **lst);
 int			my_echo(char **command);
 int			my_pwd(void);
 int			my_exit(char **command);
-int			my_cd(char **command, t_envlist **lst);
+int			my_cd(char **command, t_envlist **lst, t_god god);
 void		print_err(char *command, char *error);
 void		env_init(char **env, t_envlist **envlst);
 t_envlist	*env_new(char *envp);
