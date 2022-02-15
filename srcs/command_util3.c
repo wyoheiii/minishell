@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 23:10:11 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/14 23:34:55 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/15 15:27:42 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,9 @@ void	set_exec(t_god god, t_envlist **lst)
 	env_array = lst_in_array(*lst);
 	path = get_path(*lst, god.parsed->command[0]);
 	if (execve(path, god.parsed->command, env_array) == -1)
+	{
+		free(path);
+		free(env_array);
 		exec_error(path, *lst);
+	}
 }

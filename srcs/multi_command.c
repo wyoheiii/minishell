@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:16:51 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/14 23:22:52 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/15 15:29:13 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	select_command(t_god god, t_envlist **lst)
 {
-	char	**lst_array;
-	char	*path;
-
 	if (builtin_select(god.parsed->command))
 	{
 		single_builtin(god, lst);
@@ -26,10 +23,7 @@ void	select_command(t_god god, t_envlist **lst)
 		if (select_redirect(god.parsed->redirect) == -1)
 			exit(g_status);
 	check_period(god.parsed);
-	lst_array = lst_in_array(*lst);
-	path = get_path(*lst, god.parsed->command[0]);
-	if (execve(path, god.parsed->command, lst_array) == -1)
-		exec_error(path,*lst);
+	set_exec(god, lst);
 }
 
 void	multi_pipe(int (*pipe_fd)[2], int i, int pipe_count)
