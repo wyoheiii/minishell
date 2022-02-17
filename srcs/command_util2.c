@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_util2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 16:19:29 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/12 19:17:08 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/17 21:00:10 by tkaneshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ char	*get_path(t_envlist *lst, char *command)
 	cmd = ft_strdup(command);
 	if (cmd == NULL)
 		exit(1);
+	if (ft_strncmp(cmd, "\0", 1) == 0)
+		return (cmd);
 	if (ft_strchr(command, '/') == NULL)
 	{
 		path = search_env_key_("PATH", lst);
