@@ -1,0 +1,20 @@
+cp /bin/ls .\n chmod 000 ls\n export PATH=":" \n ls
+cp /bin/ls .\n chmod 000 ls\n export PATH=":/" \n ls
+cp /bin/ls .\n chmod 000 ls\n export PATH="::" \n ls
+cp /bin/ls .\n chmod 000 ls\n export PATH="/:" \n ls
+cp /bin/ls .\n chmod 000 ls\n export PATH="/bin:" \n ls
+cp /bin/ls .\n chmod 000 ls\n export PATH=":/bin" \n ls
+cp /bin/ls .\n chmod 000 ls\n export PATH="::/bin::" \n ls
+cp /bin/ls .\n chmod 000 ls\n export PATH="/bin:" \n ls
+cp /bin/ls .\n chmod 000 ls\n export PATH="hello:" \n ls
+export PATH=""\n nosuchfile
+export PATH=''\n nosuchfile
+unset PATH\n nosuchfile
+unset PATH\n export PATH\n nosuchfile
+unset PATH\n export PATH=\n nosuchfile
+unset PATH\n /bin/ls
+export PATH=":a:b"\n cmd
+export PATH="b:a:"\n cmd
+export PATH="a:b"\n cmd
+export PATH="no_such_dir:a"\n cmd
+export PATH="no_such_dir1:no_such_dir2:"\n cmd

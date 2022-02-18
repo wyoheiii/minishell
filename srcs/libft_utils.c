@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft_utils.h"
-
+#include "minishell_c.h"
 char	*my_substr(char *str, size_t start, size_t length)
 {
 	char	*sub;
@@ -68,4 +68,13 @@ void	*my_calloc(size_t count, size_t size)
 		exit(EXIT_FAILURE);
 	}
 	return (mem);
+}
+
+char **my_split(char *str, char c)
+{
+    char **split;
+    split = ft_split(str, c);
+    if(split == NULL)
+        exit_error("malloc");
+    return(split);
 }

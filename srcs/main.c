@@ -13,14 +13,20 @@
 #include "minishell.h"
 #include "expansion.h"
 
-int	set_command(t_envlist **lst, t_parsed *parsed)
+int	set_command(t_envlist **lst, t_parsed *parsed,t_god *god)
 {
 	expansion(parsed, *lst);
 	if (syntax_check(parsed) == -1)
 		return (0);
-	if (command_part(parsed, lst) == EXIT)
+	if (command_part(parsed, lst, god) == EXIT)
 		return (EXIT);
 	return (0);
+}
+
+void god_set(t_god *god)
+{
+    god->pwd = getcwd(NULL, 0);
+    god->oldpwd = NULL;
 }
 
 void	minishell(char **envp)
@@ -29,7 +35,8 @@ void	minishell(char **envp)
 	t_list		*token_list;
 	t_parsed	*parsed;
 	t_envlist	*lst;
-
+    t_god   god;
+    god_set(&god);
 	env_init(envp, &lst);
 	catch_signal();
 	while (1)
@@ -42,7 +49,7 @@ void	minishell(char **envp)
 		add_history(line);
 		token_list = lexer(line);
 		parsed = parser(&token_list);
-		if (set_command(&lst, parsed) == EXIT)
+		if (set_command(&lst, parsed, &god) == EXIT)
 			break ;
 		free_parsed(&parsed);
 		free(line);

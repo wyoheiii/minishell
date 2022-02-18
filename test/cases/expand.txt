@@ -1,0 +1,14 @@
+export HELLO=hello\n echo $HELLO
+export HELLO=hello\n echo $hello
+echo $
+echo "$"
+echo  '$'
+export HELLO=hello\n echo '\\'$HELLO
+export HELLO=hello\n echo "$HELLO"
+export TEST=ech\n "$TEST"o hello
+export TEST="echo hello"\n $TEST
+export TEST='echo hello'\n $TEST
+export TEST="\$\"echo hello\""\n $TEST
+export TEST="echo hello"\n export TEST2="\$TEST"\n $TEST2
+export abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890=hello\n echo $abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890
+export TEST="export TEST=echo"\n $TEST hello\n $TEST hello

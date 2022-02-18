@@ -1,0 +1,15 @@
+export SHLVL=0\n echo $SHLVL 
+export SHLVL=998\n echo $SHLVL
+export SHLVL=999\n echo $SHLVL
+export SHLVL=1000\n echo $SHLVL
+export SHLVL=+42\n echo $SHLVL
+export SHLVL=-1\n echo $SHLVL
+export SHLVL=4294967295\n echo $SHLVL
+export SHLVL=4294967296\n echo $SHLVL
+export SHLVL=-4294967296\n echo $SHLVL
+export SHLVL=-4294967297\n echo $SHLVL
+export SHLVL=a\n echo $SHLVL
+export SHLVL=' 42'\n echo $SHLVL
+export SHLVL=" 42 "\n echo $SHLVL
+export SHLVL=" 42	"\n echo $SHLVL
+export SHLVL=" 42	"\n echo $SHLVL

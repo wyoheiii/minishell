@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 #include "minishell_c.h"
-int	return_builtin(char **command, t_envlist **envlst, t_god god)
+int	return_builtin(char **command, t_envlist **envlst, t_god *god)
 {
-	(void)god;
 	if (command == NULL || command[0] == NULL)
 		return (0);
 	else if (!ft_strncmp(command[0], "echo", 5))
@@ -21,7 +20,7 @@ int	return_builtin(char **command, t_envlist **envlst, t_god god)
 	else if (!ft_strncmp(command[0], "cd", 3))
 		return (my_cd(command, envlst, god));
 	else if (!ft_strncmp(command[0], "pwd", 4))
-		return (my_pwd());
+		return (my_pwd(god));
 	else if (!ft_strncmp(command[0], "export", 7))
 		return (my_export(command, envlst));
 	else if (!ft_strncmp(command[0], "unset", 6))
@@ -64,7 +63,7 @@ void	reset_fd(int fd1, int fd2, int fd3)
 	my_close(fd3);
 }
 
-int	single_builtin(t_god god, t_envlist **lst)
+int	single_builtin(t_god *god, t_envlist **lst)
 {
 	int	fd1;
 	int	fd2;
@@ -74,34 +73,34 @@ int	single_builtin(t_god god, t_envlist **lst)
 	fd1 = my_dup(0);
 	fd2 = my_dup(1);
 	fd3 = my_dup(2);
-	if (redirect_check(god.parsed))
+	if (redirect_check(god->parsed))
 	{
-		if (select_redirect(god.parsed->redirect) == -1)
+		if (select_redirect(god->parsed->redirect) == -1)
 		{
 			reset_fd(fd1, fd2, fd3);
 			return (0);
 		}
 	}
-	ret = return_builtin(god.parsed->command, lst, god);
+	ret = return_builtin(god->parsed->command, lst, god);
 	reset_fd(fd1, fd2, fd3);
 	return (ret);
 }
 
-int	single_command(t_god god, t_envlist **lst)
+int	single_command(t_god *god, t_envlist **lst)
 {
 	pid_t	pid;
 	int		status;
 
-	if (builtin_select(god.parsed->command))
+	if (builtin_select(god->parsed->command))
 		return (single_builtin(god, lst));
 	pid = my_fork();
 	catch_no_signal();
 	if (pid == 0)
 	{
-		if (redirect_check(god.parsed))
-			if (select_redirect(god.parsed->redirect) == -1)
+		if (redirect_check(god->parsed))
+			if (select_redirect(god->parsed->redirect) == -1)
 				exit(g_status);
-		check_period(god.parsed);
+		check_period(god->parsed);
 		set_exec(god, lst);
 	}
 	command_sig();

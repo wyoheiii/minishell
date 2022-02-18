@@ -108,6 +108,8 @@ char	*get_path(t_envlist *lst, char *command)
 	cmd = ft_strdup(command);
 	if (cmd == NULL)
 		exit(1);
+    if(ft_strncmp(cmd , "\0", 1) == 0)
+        return (cmd);
 	if (ft_strchr(command, '/') == NULL)
 	{
 		path = search_env_key_("PATH", lst);

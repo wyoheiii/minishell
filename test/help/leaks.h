@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_pwd.c                                           :+:      :+:    :+:   */
+/*   leaks.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: jnakahod <jnakahod@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/12 18:17:32 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/12 20:21:47 by wyohei           ###   ########.fr       */
+/*   Created: 2021/10/27 10:27:18 by jnakahod          #+#    #+#             */
+/*   Updated: 2021/10/27 10:27:21 by jnakahod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_c.h"
-int	my_pwd(t_god *god)
-{
-    ft_putendl_fd(god->pwd, 1);
-	g_status = 0;
-	return (0);
-}
+#ifndef LEAKS
+#define LEAKS 0
+#endif
+
+#if LEAKS
+
+void end(void) __attribute__((destructor));
+
+#endif

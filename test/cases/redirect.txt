@@ -1,0 +1,15 @@
+> file
+> file | cat < no_such_file
+echo hello > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+echo hello >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+ls > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+ls >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+ls no_such_file > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+ls no_such_file >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+echo a > out\n echo b >> out\n echo c >> out\n echo d >> out\n cat out
+echo a > out\n echo b >> out\n echo c >> out\n echo d > out\n cat out
+unset NO_ENV\n echo a > $NO_ENV | echo b
+gcc rb.c \n ./a.out > file1 \n cat file1
+echo a > f\n echo b >> f\n cat f f f >> ff\n cat ff ff >> f\n cat f
+ls>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f\ncat f
+ls>a>b>c>d>e>f>g>h>i>j>k>l>m>n>o>p>q>r>s>t>u>v>w>x>y>z>A>B>C>D>E>F>G>H>I>J>K>L>M>N>O>P>Q>R>S>T>U>V>W>X>Y>Z>aa>ab>ac>ad>ae>af>ag>ah>ai>aj>ak>al>am>an>ao>ap>aq>ar>as>at>au>av>aw>ax>ay>az>aA>aB>aC>aD>aE>aF>aG>aH>aI>aJ>aK>aL>aM>aN>aO>aP>aQ>aR>aS>aT>aU>aV\nls

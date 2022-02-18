@@ -12,17 +12,17 @@
 
 #include "minishell_c.h"
 
-void	select_command(t_god god, t_envlist **lst)
+void	select_command(t_god *god, t_envlist **lst)
 {
-	if (builtin_select(god.parsed->command))
+	if (builtin_select(god->parsed->command))
 	{
 		single_builtin(god, lst);
 		exit(g_status);
 	}
-	if (redirect_check(god.parsed))
-		if (select_redirect(god.parsed->redirect) == -1)
+	if (redirect_check(god->parsed))
+		if (select_redirect(god->parsed->redirect) == -1)
 			exit(g_status);
-	check_period(god.parsed);
+	check_period(god->parsed);
 	set_exec(god, lst);
 }
 
@@ -57,15 +57,15 @@ void	pipe_init(t_pipe *p, int pipe_count)
 	p->pid = my_malloc(sizeof(int) * (pipe_count + 1));
 }
 
-void	multi_command(t_pipe pipe, t_envlist **lst, t_god god, int pipe_count)
+void	multi_command(t_pipe pipe, t_envlist **lst, t_god *god, int pipe_count)
 {
 	int	i;
 
 	i = 0;
 	catch_signal();
-	while (god.parsed != NULL)
+	while (god->parsed != NULL)
 	{
-		if (i != pipe_count && god.parsed->state == PIPE)
+		if (i != pipe_count && god->parsed->state == PIPE)
 			my_pipe(pipe.pipe_fd[i]);
 		catch_no_signal();
 		pipe.pid[i] = my_fork();
@@ -80,6 +80,6 @@ void	multi_command(t_pipe pipe, t_envlist **lst, t_god god, int pipe_count)
 			my_close(pipe.pipe_fd[i - 1][1]);
 		}
 		i++;
-		god.parsed = god.parsed->next;
+		god->parsed = god->parsed->next;
 	}
 }

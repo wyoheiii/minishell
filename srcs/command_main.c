@@ -71,25 +71,24 @@ bool	redirect_check(t_parsed *parsed)
 	return (false);
 }
 
-void	god_init(t_god *god, t_parsed *parsed)
+void	god_parsed_set(t_god *god, t_parsed *parsed)
 {
 	god->parsed = parsed;
-	god->pwd = NULL;
 }
 
-int	command_part(t_parsed *parsed, t_envlist **lst)
+int	command_part(t_parsed *parsed, t_envlist **lst, t_god *god)
 {
-	t_god	god;
+
 	t_pipe	p;
 	int		pipe_count;
 	int		i;
 
 	if (parsed == NULL)
 		return (0);
-	god_init(&god, parsed);
-	if (!set_heredoc(god.parsed, *lst))
+    god_parsed_set(god, parsed);
+	if (!set_heredoc(god->parsed, *lst))
 		return (0);
-	pipe_count = count_pipe(god.parsed);
+	pipe_count = count_pipe(god->parsed);
 	if (pipe_count == 0)
 		return (single_command(god, lst));
 	catch_sasenai_signal();

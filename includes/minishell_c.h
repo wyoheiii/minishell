@@ -46,16 +46,27 @@ typedef struct s_pipe
 	pid_t	*pid;
 	int		status;
 }t_pipe;
+
+typedef struct s_pwd
+{
+    char    *dir_name;
+    struct s_pwd *next;
+    struct s_pwd *prev;
+}t_pwd;
+
 typedef struct s_god
 {
 	t_parsed	*parsed;
+    //t_pwd       *pwd_top;
 	char		*pwd;
+    char        *oldpwd;
 }t_god;
-int			command_part(t_parsed *parsed, t_envlist **lst);
+
+int			command_part(t_parsed *parsed, t_envlist **lst, t_god *god);
 int			my_echo(char **command);
-int			my_pwd(void);
+int			my_pwd(t_god *god);
 int			my_exit(char **command);
-int			my_cd(char **command, t_envlist **lst, t_god god);
+int			my_cd(char **command, t_envlist **lst, t_god *god);
 void		print_err(char *command, char *error);
 void		env_init(char **env, t_envlist **envlst);
 t_envlist	*env_new(char *envp);
@@ -93,15 +104,15 @@ char		*check_access_f(char **path, char *command);
 char		*get_path(t_envlist *lst, char *command);
 void		exec_error(char *command, t_envlist *lst);
 bool		redirect_check(t_parsed *parsed);
-int			return_builtin(char **command, t_envlist **envlst, t_god god);
-int			single_builtin(t_god god, t_envlist **lst);
+int			return_builtin(char **command, t_envlist **envlst, t_god *god);
+int			single_builtin(t_god *god, t_envlist **lst);
 bool		builtin_select(char **command);
-int			single_command(t_god god, t_envlist **lst);
+int			single_command(t_god *god, t_envlist **lst);
 void		multi_command(t_pipe pipe, t_envlist **lst, \
-t_god god, int pipe_count);
+t_god *god, int pipe_count);
 void		pipe_init(t_pipe *p, int pipe_count);
 void		multi_pipe(int (*pipe_fd)[2], int i, int pipe_count);
-void		select_command(t_god god, t_envlist **lst);
+void		select_command(t_god *god, t_envlist **lst);
 int			isenv(int	c);
 int			is_alpha_(int c);
 void		dup_value(char *arg, t_envlist **lst);
@@ -119,5 +130,8 @@ bool		set_heredoc(t_parsed *parsed, t_envlist *lst);
 int			my_heredoc(t_redirect *redirect, t_envlist *lst);
 void		hedoc_fd(t_redirect *redirect);
 int			syntax_check(t_parsed *parsed);
-void		set_exec(t_god god, t_envlist **lst);
+void		set_exec(t_god *god, t_envlist **lst);
+void pwd_add_back(t_pwd **top, t_pwd *new);
+t_pwd *pwd_new(char *dir);
+void	pwd_lstclear(t_pwd	**lst);
 #endif
