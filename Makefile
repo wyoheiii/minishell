@@ -7,7 +7,7 @@ SRCS := main.c command_main.c my_echo.c my_pwd.c my_exit.c my_cd.c my_env.c \
 		param.c redirect_list.c my_heredoc.c word_splitting.c my_builtin.c\
 		command_util2.c sig2.c my_export2.c my_export3.c expand_argv.c \
      	expand_is.c expand_param.c command_util3.c quote.c my_heredoc2.c my_redirect2.c \
-		 snytax_err.c pwd_list.c
+		 snytax_err.c pwd_list.c util2.c
 SRCSD := ./srcs/
 
 ADDSRCS := $(addprefix $(SRCSD),$(SRCS))

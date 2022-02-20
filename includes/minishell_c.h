@@ -39,28 +39,31 @@
 # include <stdbool.h>
 # include "expand_argv.h"
 # define EXIT 1
-
+#define NO_SUCH 1
+#define NOT_DIR 2
+#define IS_DIR 3
+# define PERM 4
+//#define
 typedef struct s_pipe
 {
 	int		(*pipe_fd)[2];
 	pid_t	*pid;
 	int		status;
-}t_pipe;
+} t_pipe;
 
 typedef struct s_pwd
 {
     char    *dir_name;
     struct s_pwd *next;
     struct s_pwd *prev;
-}t_pwd;
+} t_pwd;
 
 typedef struct s_god
 {
 	t_parsed	*parsed;
-    //t_pwd       *pwd_top;
 	char		*pwd;
     char        *oldpwd;
-}t_god;
+} t_god;
 
 int			command_part(t_parsed *parsed, t_envlist **lst, t_god *god);
 int			my_echo(char **command);
@@ -102,7 +105,7 @@ void		free_array(char **array);
 char		*check_access(char **path, char *command);
 char		*check_access_f(char **path, char *command);
 char		*get_path(t_envlist *lst, char *command);
-void		exec_error(char *command, t_envlist *lst);
+void		exec_error(char *path,char *command,struct stat st);
 bool		redirect_check(t_parsed *parsed);
 int			return_builtin(char **command, t_envlist **envlst, t_god *god);
 int			single_builtin(t_god *god, t_envlist **lst);
@@ -134,4 +137,6 @@ void		set_exec(t_god *god, t_envlist **lst);
 void pwd_add_back(t_pwd **top, t_pwd *new);
 t_pwd *pwd_new(char *dir);
 void	pwd_lstclear(t_pwd	**lst);
+void cmd_not_fo(char *str);
+char	**path_split(char const	*s, char	c);
 #endif

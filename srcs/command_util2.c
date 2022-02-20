@@ -73,7 +73,7 @@ char	*check_access_f(char **path, char *command)
 		free(access_path);
 	}
 	split_free(path);
-	return (NULL);
+	return (command);
 }
 
 char	*check_access(char **path, char *command)
@@ -93,33 +93,27 @@ char	*check_access(char **path, char *command)
 		i++;
 		free(access_path);
 	}
-	access_path = check_access_f(path, command);
-	if (access_path == NULL)
-		return (command);
-	return (command);
+	return (check_access_f(path, command));
 }
 
 char	*get_path(t_envlist *lst, char *command)
 {
 	char	*path;
 	char	**array_path;
-	char	*cmd;
+	//char	*cmd;
 
-	cmd = ft_strdup(command);
-	if (cmd == NULL)
-		exit(1);
-    if(ft_strncmp(cmd , "\0", 1) == 0)
-        return (cmd);
+    if(command == NULL)
+        exit(0);
 	if (ft_strchr(command, '/') == NULL)
 	{
 		path = search_env_key_("PATH", lst);
 		if (path != NULL)
 		{
-			array_path = ft_split(path, ':');
+			array_path = path_split(path, ':');
 			if (array_path == NULL)
-				exit(1);
-			return (check_access(array_path, cmd));
+                exit_error("malloc");
+			return (check_access(array_path, command));
 		}
 	}
-	return (cmd);
+	return (command);
 }

@@ -110,10 +110,6 @@ int ret_err_period(char *path,t_god *god, t_envlist **lst, bool flag)
     if(flag)
         free(path);
     g_status = 0;
-//    printf("god  pwd  :%s\n",god->pwd);
-//    printf("lst pwd  ;%s\n", search_env_key_("PWD",*lst));
-//    printf("god  oldpwd  :%s\n",god->oldpwd);
-//    printf("lst oldpwd  ;%s\n", search_env_key_("OLDPWD",*lst));
     return(0);
 }
 
@@ -123,14 +119,12 @@ void    pwd_splitarray_to_list(char *path, t_pwd **pwd)
     int i;
 
     i = 0;
-    //printf("kokomade\n");
     split = my_split(path, '/');
     while(split[i] != NULL)
     {
         pwd_add_back(pwd, pwd_new(my_strdup(split[i])));
         i++;
     }
-    //printf("kokomade\n");
     split_free(split);
 }
 
@@ -203,8 +197,6 @@ char *join_path(t_pwd *pwd)
     while(pwd != NULL)
     {
         tmp = strjoinjoin(path,"/",pwd->dir_name);
-        if(tmp == NULL)
-            exit_error("malloc");
         free(path);
         path = tmp;
         pwd = pwd->next;
@@ -218,15 +210,10 @@ char *create_path(char *path, t_god *god)
 
     pwd = NULL;
     new_path = strjoinjoin(god->pwd,"/",path);
-    if(new_path == NULL)
-        exit_error("malloc");
-    //printf("kokomade\n");
     pwd_splitarray_to_list(new_path, &pwd);
-    //printf("kokomade\n");
     del_period(&pwd);
     free(new_path);
     new_path = join_path(pwd);
-    //printf("kokomade\n");
     pwd_lstclear(&pwd);
     return(new_path);
 }
@@ -252,19 +239,17 @@ void set_new_pwd(t_god *god, char *path,t_envlist **lst,char *err_path)
         ret_err_period(err_path, god, lst,false);
         return ;
     }
-    if(path != NULL && ft_strncmp(path, "/",2) != 0) {
+    if(path != NULL && ft_strncmp(path, "/",2) != 0)
+    {
         pwd_splitarray_to_list(path, &pwd);
         del_period(&pwd);
     }
     new_path = join_path(pwd);
     if(new_path == NULL)
         new_path = my_strdup("/");
-    //free(path);
-    //printf("kokomade\n");
     if(god->oldpwd != NULL)
         free(god->oldpwd);
     god->oldpwd = my_strdup(god->pwd);
-    //pwd_splitarray_to_list(path, &pwd);
     set_pwd("PWD",new_path, lst);
     set_pwd("OLDPWD", god->pwd, lst);
     if(god->pwd != NULL)
@@ -278,31 +263,25 @@ int	my_cd(char **command, t_envlist **lst, t_god *god)
 	char	*path;
     char    *cwd;
     char    *new_path;
+
     if (command != NULL && command[1] != NULL && command[1][0] == '~')
-        return(0);
+        return (0);
     path = get_cd_path(command[1], lst);
     if (path == NULL && key_match_check( "HOME",  *lst))
         return (cd_err(2, " "));
     if (path == NULL && !key_match_check("HOME",*lst))
-        return(cd_error(NULL));
+        return (cd_error(NULL));
     cwd = getcwd(NULL, 0);
     if((ft_strncmp(path,".", 2) == 0 || ft_strncmp(path,"./", 3) == 0) && cwd == NULL)
         return(ret_err_period(path, god, lst,true));
-    //printf("path  ;%s\n",path);
-    //printf("kokomade\n");
     if(path && path[0] == '/')
         new_path = my_strdup(path);
     else
         new_path = create_path(path, god);
-    //printf("kokomade\n");
     if (chdir(path) != 0)
-    {
-        //printf("chdir sippai kokomade\n");
-        cd_error(path);}
+        cd_error(path);
     else
         set_new_pwd(god, new_path, lst, path);
-    //printf("path   ;%s\n",path);
-    //printf("new path   ;%s\n",new_path);
     free(new_path);
     free(cwd);
     free(path);
