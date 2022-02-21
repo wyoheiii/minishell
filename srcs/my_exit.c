@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:17:07 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/12 20:05:24 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/21 15:10:57 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,46 +32,6 @@ bool	check_num(char *command)
 	return (true);
 }
 
-static bool	exit_atoi2(char *str, int flag, size_t i, long long *num)
-{
-	long long	max;
-	long long	one;
-
-	max = (LLONG_MAX) / 10;
-	one = (LLONG_MAX) % 10;
-	while (str[i] != '\0')
-	{
-		if (i > 19)
-			return (false);
-		if (flag == 1 && (*num > max || (*num == max && (str[i] - '0' > one))))
-			return (false);
-		if (flag == -1 && (*num > max || \
-		(*num == max && ((str[i] - '0') > one + 1))))
-			return (false);
-		*num = *num * 10 + str[i] - '0';
-		i++;
-	}
-	*num = flag * ((long long)*num);
-	return (true);
-}
-
-bool	exit_atoi(char *str, long long *num)
-{
-	int		flag;
-	size_t	i;
-
-	i = 0;
-	flag = 1;
-	if (str[0] == '+' || str[0] == '-')
-	{
-		if (str[0] == '-')
-			flag = -1;
-		i++;
-	}
-	while (str[i] == '0' && str[i] != '\0')
-		i++;
-	return (exit_atoi2(str, flag, i, num));
-}
 
 int	exit_error_c(char *error)
 {
@@ -90,23 +50,11 @@ int	exit_error_c(char *error)
 		return (EXIT);
 	}
 }
-
-int	my_exit(char **command)
+int	my_exit2(char **command, int size, long long num)
 {
-	int			size;
-	long long	num;
-
-	size = command_size(command);
-	num = 0;
-	if (size == 1)
-		return (EXIT);
-	if (size == 2 && check_num(command[1]) && exit_atoi(command[1], &num))
-	{
-		g_status = (unsigned char)num;
-		return (EXIT);
-	}
 	if (check_num(command[1]) && !exit_atoi(command[1], &num))
 		return (exit_error_c(command[1]));
+
 	if (size == 2 && check_num(command[1]))
 		return (EXIT);
 	if (size > 2 && check_num(command[1]))
@@ -114,5 +62,29 @@ int	my_exit(char **command)
 	else if (size > 1)
 		return (exit_error_c(command[1]));
 	g_status = 0;
-	return (EXIT);
+	return(EXIT);
+}
+
+int	my_exit(char **command)
+{
+	int			size;
+	long long	num;
+	char		*str;
+
+	ft_putendl_fd("exit", 2);
+	size = command_size(command);
+	num = 0;
+	if (size == 1)
+		return (EXIT);
+	str = ft_strtrim(command[1], " ");
+	if (str == NULL)
+		exit_error("malloc");
+	if (str[0] != '\0' && size == 2 && check_num(str) && exit_atoi(str, &num))
+	{
+		free(str);
+		g_status = (unsigned char)num;
+		return (EXIT);
+	}
+	free(str);
+	return (my_exit2(command, size, num));
 }

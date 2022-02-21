@@ -102,5 +102,6 @@ bool	set_key_value(char *arg, t_envlist **lst)
 		}
 		return (true);
 	}
+
 	return (false);
 }

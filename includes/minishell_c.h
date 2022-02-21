@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:39:52 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/14 23:39:58 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/21 15:54:55 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,4 +139,20 @@ t_pwd *pwd_new(char *dir);
 void	pwd_lstclear(t_pwd	**lst);
 void cmd_not_fo(char *str);
 char	**path_split(char const	*s, char	c);
+bool	exit_atoi(char *str, long long *num);
+void set_pwd(char *pwd, char *value, t_envlist **lst);
+int cd_err(int errr, char *err);
+char *get_cd_path(char *command, t_envlist **lst);
+int nosuch_err(char *err);
+int	cd_error(char *error);
+void  del_period(t_pwd **pwd);
+void del_current(t_pwd **pwd, t_pwd **top, bool flag);
+void    pwd_splitarray_to_list(char *path, t_pwd **pwd);
+int ret_err_period(char *path,t_god *god, t_envlist **lst, bool flag);
+void new_pwd_oldpwd(t_god *god,t_envlist **lst, char *path);
+void set_new_pwd(t_god *god, char *path,t_envlist **lst,char *err_path);
+bool end_slash(char *path);
+char *join_path(t_pwd *pwd);
+char *create_path(char *path, t_god *god);
+bool current_dir_check(void);
 #endif

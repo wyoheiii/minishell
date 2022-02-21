@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:16:48 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/14 23:15:12 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/21 15:24:35 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	set_command(t_envlist **lst, t_parsed *parsed,t_god *god)
 
 void god_set(t_god *god)
 {
-    god->pwd = getcwd(NULL, 0);
-    god->oldpwd = NULL;
+	god->pwd = getcwd(NULL, 0);
+	god->oldpwd = NULL;
 }
 
 void	minishell(char **envp)
@@ -50,7 +50,7 @@ void	minishell(char **envp)
 		token_list = lexer(line);
 		parsed = parser(&token_list);
 		if (set_command(&lst, parsed, &god) == EXIT)
-			break ;
+			exit(g_status) ;
 		free_parsed(&parsed);
 		free(line);
 	}
