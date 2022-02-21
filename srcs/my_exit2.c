@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 15:11:08 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/21 15:11:31 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/21 16:41:11 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ bool	exit_atoi(char *str, long long *num)
 		i++;
 	}
 	while (str[i] == '0' && str[i] != '\0')
-	i++;
+		i++;
 	return (exit_atoi2(str, flag, i, num));
 }

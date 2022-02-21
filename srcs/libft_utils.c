@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:42:33 by tkaneshi          #+#    #+#             */
-/*   Updated: 2022/02/14 23:30:35 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/21 16:36:15 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,12 @@ void	*my_calloc(size_t count, size_t size)
 	return (mem);
 }
 
-char **my_split(char *str, char c)
+char	**my_split(char *str, char c)
 {
-    char **split;
-    split = ft_split(str, c);
-    if(split == NULL)
-        exit_error("malloc");
-    return(split);
+	char	**split;
+
+	split = ft_split(str, c);
+	if (split == NULL)
+		exit_error("malloc");
+	return (split);
 }

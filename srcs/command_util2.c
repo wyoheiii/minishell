@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_util2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 16:19:29 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/17 21:00:10 by tkaneshi         ###   ########.fr       */
+/*   Updated: 2022/02/21 16:38:07 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,9 @@ char	*get_path(t_envlist *lst, char *command)
 {
 	char	*path;
 	char	**array_path;
-	//char	*cmd;
 
-    if(command == NULL)
-        exit(0);
+	if (command == NULL)
+		exit(0);
 	if (ft_strchr(command, '/') == NULL)
 	{
 		path = search_env_key_("PATH", lst);
@@ -111,7 +110,7 @@ char	*get_path(t_envlist *lst, char *command)
 		{
 			array_path = path_split(path, ':');
 			if (array_path == NULL)
-                exit_error("malloc");
+				exit_error("malloc");
 			return (check_access(array_path, command));
 		}
 	}

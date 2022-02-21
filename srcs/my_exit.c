@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:17:07 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/21 15:10:57 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/21 16:41:29 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ bool	check_num(char *command)
 	return (true);
 }
 
-
 int	exit_error_c(char *error)
 {
 	if (error == NULL)
@@ -50,11 +49,11 @@ int	exit_error_c(char *error)
 		return (EXIT);
 	}
 }
+
 int	my_exit2(char **command, int size, long long num)
 {
 	if (check_num(command[1]) && !exit_atoi(command[1], &num))
 		return (exit_error_c(command[1]));
-
 	if (size == 2 && check_num(command[1]))
 		return (EXIT);
 	if (size > 2 && check_num(command[1]))
@@ -62,7 +61,7 @@ int	my_exit2(char **command, int size, long long num)
 	else if (size > 1)
 		return (exit_error_c(command[1]));
 	g_status = 0;
-	return(EXIT);
+	return (EXIT);
 }
 
 int	my_exit(char **command)

@@ -6,12 +6,11 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 15:57:41 by watanabeyou       #+#    #+#             */
-/*   Updated: 2022/02/14 23:08:23 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/21 15:59:57 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_c.h"
-
 
 int	count_pipe(t_parsed *parsed)
 {
@@ -50,14 +49,13 @@ void	god_parsed_set(t_god *god, t_parsed *parsed)
 
 int	command_part(t_parsed *parsed, t_envlist **lst, t_god *god)
 {
-
 	t_pipe	p;
 	int		pipe_count;
 	int		i;
 
 	if (parsed == NULL)
 		return (0);
-    god_parsed_set(god, parsed);
+	god_parsed_set(god, parsed);
 	if (!set_heredoc(god->parsed, *lst))
 		return (0);
 	pipe_count = count_pipe(god->parsed);

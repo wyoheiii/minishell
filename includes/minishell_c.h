@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:39:52 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/21 15:54:55 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/21 17:01:20 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,31 +39,31 @@
 # include <stdbool.h>
 # include "expand_argv.h"
 # define EXIT 1
-#define NO_SUCH 1
-#define NOT_DIR 2
-#define IS_DIR 3
+# define NO_SUCH 1
+# define NOT_DIR 2
+# define IS_DIR 3
 # define PERM 4
-//#define
+
 typedef struct s_pipe
 {
 	int		(*pipe_fd)[2];
 	pid_t	*pid;
 	int		status;
-} t_pipe;
+}t_pipe;
 
 typedef struct s_pwd
 {
-    char    *dir_name;
-    struct s_pwd *next;
-    struct s_pwd *prev;
-} t_pwd;
+	char			*dir_name;
+	struct s_pwd	*next;
+	struct s_pwd	*prev;
+}t_pwd;
 
 typedef struct s_god
 {
 	t_parsed	*parsed;
 	char		*pwd;
-    char        *oldpwd;
-} t_god;
+	char		*oldpwd;
+}t_god;
 
 int			command_part(t_parsed *parsed, t_envlist **lst, t_god *god);
 int			my_echo(char **command);
@@ -105,7 +105,7 @@ void		free_array(char **array);
 char		*check_access(char **path, char *command);
 char		*check_access_f(char **path, char *command);
 char		*get_path(t_envlist *lst, char *command);
-void		exec_error(char *path,char *command,struct stat st);
+void		exec_error(char *path, char *command, struct stat st);
 bool		redirect_check(t_parsed *parsed);
 int			return_builtin(char **command, t_envlist **envlst, t_god *god);
 int			single_builtin(t_god *god, t_envlist **lst);
@@ -134,25 +134,26 @@ int			my_heredoc(t_redirect *redirect, t_envlist *lst);
 void		hedoc_fd(t_redirect *redirect);
 int			syntax_check(t_parsed *parsed);
 void		set_exec(t_god *god, t_envlist **lst);
-void pwd_add_back(t_pwd **top, t_pwd *new);
-t_pwd *pwd_new(char *dir);
-void	pwd_lstclear(t_pwd	**lst);
-void cmd_not_fo(char *str);
-char	**path_split(char const	*s, char	c);
-bool	exit_atoi(char *str, long long *num);
-void set_pwd(char *pwd, char *value, t_envlist **lst);
-int cd_err(int errr, char *err);
-char *get_cd_path(char *command, t_envlist **lst);
-int nosuch_err(char *err);
-int	cd_error(char *error);
-void  del_period(t_pwd **pwd);
-void del_current(t_pwd **pwd, t_pwd **top, bool flag);
-void    pwd_splitarray_to_list(char *path, t_pwd **pwd);
-int ret_err_period(char *path,t_god *god, t_envlist **lst, bool flag);
-void new_pwd_oldpwd(t_god *god,t_envlist **lst, char *path);
-void set_new_pwd(t_god *god, char *path,t_envlist **lst,char *err_path);
-bool end_slash(char *path);
-char *join_path(t_pwd *pwd);
-char *create_path(char *path, t_god *god);
-bool current_dir_check(void);
+void		pwd_add_back(t_pwd **top, t_pwd *new);
+t_pwd		*pwd_new(char *dir);
+void		pwd_lstclear(t_pwd	**lst);
+void		cmd_not_fo(char *str);
+char		**path_split(char const	*s, char	c);
+bool		exit_atoi(char *str, long long *num);
+void		set_pwd(char *pwd, char *value, t_envlist **lst);
+int			cd_err(int errr, char *err);
+char		*get_cd_path(char *command, t_envlist **lst);
+int			nosuch_err(char *err);
+int			cd_error(char *error);
+void		del_period(t_pwd **pwd);
+void		del_current(t_pwd **pwd, t_pwd **top, bool flag);
+void		pwd_splitarray_to_list(char *path, t_pwd **pwd);
+int			ret_err_period(char *path, t_god *god, t_envlist **lst, bool flag);
+void		new_pwd_oldpwd(t_god *god, t_envlist **lst, char *path);
+void		set_new_pwd(t_god *god, char *path, \
+t_envlist **lst, char *err_path);
+bool		end_slash(char *path);
+char		*join_path(t_pwd *pwd);
+char		*create_path(char *path, t_god *god);
+bool		current_dir_check(void);
 #endif

@@ -6,14 +6,14 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:16:48 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/21 15:24:35 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/21 16:55:31 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "expansion.h"
 
-int	set_command(t_envlist **lst, t_parsed *parsed,t_god *god)
+int	set_command(t_envlist **lst, t_parsed *parsed, t_god *god)
 {
 	expansion(parsed, *lst);
 	if (syntax_check(parsed) == -1)
@@ -23,10 +23,16 @@ int	set_command(t_envlist **lst, t_parsed *parsed,t_god *god)
 	return (0);
 }
 
-void god_set(t_god *god)
+void	god_set(t_god *god)
 {
 	god->pwd = getcwd(NULL, 0);
 	god->oldpwd = NULL;
+}
+
+void	all_init(char **envp, t_god *god, t_envlist **lst)
+{
+	god_set(god);
+	env_init(envp, lst);
 }
 
 void	minishell(char **envp)
@@ -35,9 +41,9 @@ void	minishell(char **envp)
 	t_list		*token_list;
 	t_parsed	*parsed;
 	t_envlist	*lst;
-    t_god   god;
-    god_set(&god);
-	env_init(envp, &lst);
+	t_god		god;
+
+	all_init(envp, &god, &lst);
 	catch_signal();
 	while (1)
 	{
@@ -50,7 +56,7 @@ void	minishell(char **envp)
 		token_list = lexer(line);
 		parsed = parser(&token_list);
 		if (set_command(&lst, parsed, &god) == EXIT)
-			exit(g_status) ;
+			exit(g_status);
 		free_parsed(&parsed);
 		free(line);
 	}

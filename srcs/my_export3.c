@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:17:26 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/15 00:11:14 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/21 16:35:48 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,5 @@ bool	set_key_value(char *arg, t_envlist **lst)
 		}
 		return (true);
 	}
-
 	return (false);
 }
