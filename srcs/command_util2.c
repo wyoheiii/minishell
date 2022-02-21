@@ -73,6 +73,7 @@ char	*check_access_f(char **path, char *command)
 		free(access_path);
 	}
 	split_free(path);
+    cmd_not_fo(command);
 	return (command);
 }
 
@@ -108,7 +109,7 @@ char	*get_path(t_envlist *lst, char *command)
 		path = search_env_key_("PATH", lst);
 		if (path != NULL)
 		{
-			array_path = path_split(path, ':');
+			array_path = ft_split(path, ':');//path_split(path, ':');
 			if (array_path == NULL)
 				exit_error("malloc");
 			return (check_access(array_path, command));

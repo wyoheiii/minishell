@@ -12,20 +12,6 @@
 
 #include "minishell_c.h"
 
-static int	error(char	**split, size_t	cnt)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < cnt)
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
-	return (1);
-}
-
 static void	word(char	*d, char	*s, char	c)
 {
 	size_t	i;
@@ -39,7 +25,7 @@ static void	word(char	*d, char	*s, char	c)
 	d[i] = '\0';
 }
 
-static int	return_split(char	**split, char	*s, char	c)
+void	return_split(char	**split, char	*s, char	c)
 {
 	size_t	i;
 	size_t	j;
@@ -58,13 +44,12 @@ static int	return_split(char	**split, char	*s, char	c)
 				j++;
 			split[cnt] = (char *)malloc(sizeof(char) * (j + 1));
 			if (split[cnt] == NULL)
-				return (error(split, cnt));
+                exit_error("malloc");
 			word(split[cnt], &s[i], c);
 			i += j;
 			cnt++;
 		}
 	}
-	return (0);
 }
 
 char	**path_split(char const	*s, char	c)
@@ -85,9 +70,8 @@ char	**path_split(char const	*s, char	c)
 	}
 	split = (char **)malloc(sizeof(char *) * (size + 2));
 	if (split == NULL)
-		return (NULL);
-	if (return_split(split, (char *)s, c) == 1)
-		return (NULL);
+        exit_error("malloc");
+	return_split(split, (char *)s, c);
 	split[size + 1] = 0;
 	split[size] = my_strdup(".");
 	return (split);
