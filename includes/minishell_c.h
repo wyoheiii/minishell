@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:39:52 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/21 17:01:20 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/21 22:18:45 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,4 +156,6 @@ bool		end_slash(char *path);
 char		*join_path(t_pwd *pwd);
 char		*create_path(char *path, t_god *god);
 bool		current_dir_check(void);
+void		print_error(char *command, int ret);
+char		*check_current(char *command, char *path);
 #endif
