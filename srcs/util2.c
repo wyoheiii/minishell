@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:36:39 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/21 16:38:51 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/21 22:16:45 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	word(char	*d, char	*s, char	c)
 	d[i] = '\0';
 }
 
-void	return_split(char	**split, char	*s, char	c)
+static int	return_split(char	**split, char	*s, char	c)
 {
 	size_t	i;
 	size_t	j;
@@ -44,12 +44,13 @@ void	return_split(char	**split, char	*s, char	c)
 				j++;
 			split[cnt] = (char *)malloc(sizeof(char) * (j + 1));
 			if (split[cnt] == NULL)
-                exit_error("malloc");
+				exit_error("malloc");
 			word(split[cnt], &s[i], c);
 			i += j;
 			cnt++;
 		}
 	}
+	return (0);
 }
 
 char	**path_split(char const	*s, char	c)
@@ -70,7 +71,7 @@ char	**path_split(char const	*s, char	c)
 	}
 	split = (char **)malloc(sizeof(char *) * (size + 2));
 	if (split == NULL)
-        exit_error("malloc");
+		exit_error("malloc");
 	return_split(split, (char *)s, c);
 	split[size + 1] = 0;
 	split[size] = my_strdup(".");

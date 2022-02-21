@@ -24,7 +24,7 @@ int	cd_error(char *error)
 		g_status = 1;
 		ft_putstr_fd("minishell: cd: ", 2);
 		ft_putstr_fd(error, 2);
-		ft_putstr_fd(" :", 2);
+		ft_putstr_fd(":", 2);
 		ft_putendl_fd(strerror(errno), 2);
 		return (0);
 	}

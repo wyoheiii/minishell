@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 16:19:29 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/21 16:38:07 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/21 22:17:14 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ char	*check_access_f(char **path, char *command)
 		free(access_path);
 	}
 	split_free(path);
-    cmd_not_fo(command);
-	return (command);
+	return (NULL);
 }
 
 char	*check_access(char **path, char *command)
@@ -101,6 +100,7 @@ char	*get_path(t_envlist *lst, char *command)
 {
 	char	*path;
 	char	**array_path;
+	char	*ret;
 
 	if (command == NULL)
 		exit(0);
@@ -109,10 +109,11 @@ char	*get_path(t_envlist *lst, char *command)
 		path = search_env_key_("PATH", lst);
 		if (path != NULL)
 		{
-			array_path = ft_split(path, ':');//path_split(path, ':');
-			if (array_path == NULL)
-				exit_error("malloc");
-			return (check_access(array_path, command));
+			array_path = my_split(path, ':');
+			ret = check_access(array_path, command);
+			if (ret == NULL)
+				ret = check_current(command, path);
+			return (ret);
 		}
 	}
 	return (command);

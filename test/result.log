@@ -90,7 +90,7 @@ diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: cd: testfileNot a directory
+minishell: cd: testfile:Not a directory
 exit
 # bash: stderr
 bash: line 2: cd: testfile: Not a directory
@@ -106,7 +106,7 @@ diff :
 # bash: stdout
 /Users/watanabeyouhei/program/42tokyo/minishell/test
 # minishell: stderr
-minishell: cd: NO_SUCH_FILENo such file or directory
+minishell: cd: NO_SUCH_FILE:No such file or directory
 exit
 # bash: stderr
 bash: line 1: cd: NO_SUCH_FILE: No such file or directory
@@ -122,7 +122,7 @@ diff :
 # bash: stdout
 /Users/watanabeyouhei/program/42tokyo/minishell/test
 # minishell: stderr
-minishell: cd: helloNo such file or directory
+minishell: cd: hello:No such file or directory
 exit
 # bash: stderr
 bash: line 1: cd: hello: No such file or directory
@@ -138,7 +138,7 @@ diff :
 # bash: stdout
 /
 # minishell: stderr
-minishell: cd: ../../akjwyefgjkwveyjfgweyugyuwegf76t273/../../No such file or directory
+minishell: cd: ../../akjwyefgjkwveyjfgweyugyuwegf76t273/../../:No such file or directory
 exit
 # bash: stderr
 bash: line 2: cd: ../../akjwyefgjkwveyjfgweyugyuwegf76t273/../../: No such file or directory
@@ -155,7 +155,7 @@ diff :
 /Users/watanabeyouhei/program/42tokyo/minishell/test/dir
 # minishell: stderr
 mkdir: dir: File exists
-minishell: cd: ../nosuchdir/../dirNo such file or directory
+minishell: cd: ../nosuchdir/../dir:No such file or directory
 exit
 # bash: stderr
 mkdir: dir: File exists
@@ -262,7 +262,7 @@ diff :
 /Users/watanabeyouhei/program/42tokyo/minishell/test
 # minishell: stderr
 mkdir: dir: File exists
-minishell: cd: dirPermission denied
+minishell: cd: dir:Permission denied
 exit
 # bash: stderr
 mkdir: dir: File exists
@@ -507,7 +507,7 @@ diff :
 # bash: stdout
 /Users/watanabeyouhei/program/42tokyo/minishell/test
 # minishell: stderr
-minishell: cd: NO_SUCH_FILENo such file or directory
+minishell: cd: NO_SUCH_FILE:No such file or directory
 exit
 # bash: stderr
 bash: line 2: cd: NO_SUCH_FILE: No such file or directory
@@ -1121,7 +1121,7 @@ diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: hoge: No such file or directory
+minishell: hoge: command not found
 exit
 # bash: stderr
 bash: line 1: hoge: command not found
@@ -1603,7 +1603,7 @@ diff :
 # bash: stdout
 # minishell: stderr
 minishell: export: `hello\': not a valid identifier
-minishell: \\echo: No such file or directory
+minishell: \\echo: command not found
 exit
 # bash: stderr
 bash: line 2: $"echo: command not found
@@ -1617,7 +1617,7 @@ diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: \echo: No such file or directory
+minishell: \echo: command not found
 exit
 # bash: stderr
 bash: line 3: $TEST: command not found
@@ -3798,7 +3798,7 @@ diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: no_such_file: No such file or directory
+minishell: no_such_file: command not found
 exit
 # bash: stderr
 bash: line 1: no_such_file: command not found
@@ -3848,17 +3848,17 @@ bash: line 1: /bin/no_such_dir/file: No such file or directory
 # bash     : exit status = 127
 
 -------------------------
-[KO ] case: touch perm\n chmod 000 perm\n perm\nexit
+[OK ] case: touch perm\n chmod 000 perm\n perm\nexit
 -------------------------
 diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: perm: Permission denied
+minishell: perm: command not found
 exit
 # bash: stderr
 bash: line 3: perm: command not found
-# minishell: exit status = 126
+# minishell: exit status = 127
 # bash     : exit status = 127
 
 -------------------------
@@ -3876,17 +3876,17 @@ bash: line 3: ./perm: Permission denied
 # bash     : exit status = 126
 
 -------------------------
-[KO ] case: touch perm\n chmod 100 perm\n perm\nexit
+[OK ] case: touch perm\n chmod 100 perm\n perm\nexit
 -------------------------
 diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: perm: Permission denied
+minishell: perm: command not found
 exit
 # bash: stderr
 bash: line 3: perm: command not found
-# minishell: exit status = 126
+# minishell: exit status = 127
 # bash     : exit status = 127
 
 -------------------------
@@ -3904,17 +3904,17 @@ bash: ./perm: Permission denied
 # bash     : exit status = 126
 
 -------------------------
-[KO ] case: touch perm\n chmod 300 perm\n perm\nexit
+[OK ] case: touch perm\n chmod 300 perm\n perm\nexit
 -------------------------
 diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
-minishell: perm: Permission denied
+minishell: perm: command not found
 exit
 # bash: stderr
 bash: line 3: perm: command not found
-# minishell: exit status = 126
+# minishell: exit status = 127
 # bash     : exit status = 127
 
 -------------------------
@@ -3932,16 +3932,17 @@ bash: ./perm: Permission denied
 # bash     : exit status = 126
 
 -------------------------
-[KO ] case: touch perm\n chmod 500 perm\n perm\nexit
+[OK ] case: touch perm\n chmod 500 perm\n perm\nexit
 -------------------------
 diff :
 # minishell: stdout
 # bash: stdout
 # minishell: stderr
+minishell: perm: command not found
 exit
 # bash: stderr
 bash: line 3: perm: command not found
-# minishell: exit status = 0
+# minishell: exit status = 127
 # bash     : exit status = 127
 
 -------------------------
@@ -3992,7 +3993,7 @@ diff :
 # bash: stdout
 # minishell: stderr
 mkdir: dir: File exists
-minishell: ./dir: Is a directory
+minishell: ./dir: Permission denied
 exit
 # bash: stderr
 mkdir: dir: File exists
@@ -4366,7 +4367,7 @@ diff :
 # bash: stdout
 # minishell: stderr
 minishell: unset: `' \"&`': not a valid identifier
-minishell: ': No such file or directory
+minishell: ': command not found
 exit
 # bash: stderr
 bash: line 2: unset: ` \"$&`
