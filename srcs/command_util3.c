@@ -15,7 +15,8 @@
 void	check_period(t_parsed *parsed)
 {
 	if (ft_strncmp(parsed->command[0], "..", 3) == 0 || \
-	ft_strncmp(parsed->command[0], ".", 2) == 0)
+	ft_strncmp(parsed->command[0], ".", 2) == 0 ||
+    ft_strncmp(parsed->command[0], "\0", 1) == 0)
 		cmd_not_fo(parsed->command[0]);
 }
 

@@ -16,9 +16,7 @@ int	my_env(t_envlist *envlst)
 {
 	while (envlst != NULL)
 	{
-		if (envlst->key[0] == '_' && envlst->key[1] == '\0')
-			continue ;
-		else if (envlst->value != NULL && envlst->value[0] != '\0')
+		if (envlst->value != NULL && envlst->value[0] != '\0')
 			printf("%s=%s\n", envlst->key, envlst->value);
 		envlst = envlst->next;
 	}

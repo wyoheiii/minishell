@@ -47,12 +47,15 @@ void	minishell(char **envp)
 	catch_signal();
 	while (1)
 	{
-		line = readline("minishell> ");
-		if (line == NULL)
-			break ;
-		if (ft_strlen(line) == 0)
-			continue ;
-		add_history(line);
+        line = readline("minishell> ");
+        if (line == NULL)
+            break ;
+        if (ft_strlen(line) == 0)
+        {
+            free(line);
+            continue ;
+        }
+        add_history(line);
 		token_list = lexer(line);
 		parsed = parser(&token_list);
 		if (set_command(&lst, parsed, &god) == EXIT)
