@@ -64,17 +64,15 @@ bool	current_dir_check(void)
 	return (false);
 }
 
-void	cd_free(char *str1, char *str2, char *str3)
+void	cd_free(char *str1, char *str3)
 {
 	free(str1);
-	free(str2);
 	free(str3);
 }
 
 int	my_cd(char **command, t_envlist **lst, t_god *god)
 {
 	char	*path;
-	char	*cwd;
 	char	*new_path;
 
 	if (command != NULL && command[1] != NULL && command[1][0] == '~')
@@ -82,10 +80,6 @@ int	my_cd(char **command, t_envlist **lst, t_god *god)
 	path = get_cd_path(command[1], lst);
 	if (path == NULL)
 		return (cd_error(NULL));
-	cwd = getcwd(NULL, 0);
-	if ((ft_strncmp(path, ".", 2) == 0 || \
-	 ft_strncmp(path, "./", 3) == 0) && cwd == NULL)
-		return (ret_err_period(path, god, lst, true));
 	if (path && path[0] == '/')
 		new_path = my_strdup(path);
 	else
@@ -94,6 +88,6 @@ int	my_cd(char **command, t_envlist **lst, t_god *god)
 		cd_error(path);
 	else
 		set_new_pwd(god, new_path, lst, path);
-	cd_free(new_path, cwd, path);
+	cd_free(new_path, path);
 	return (0);
 }

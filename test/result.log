@@ -405,7 +405,7 @@ diff :
 # bash: stdout
 /Users/watanabeyouhei/program/42tokyo/minishell/test
 # minishell: stderr
-minishell : cd : :No such file or directory
+minishell: cd: HOME not set
 exit
 # bash: stderr
 # minishell: exit status = 0
@@ -464,7 +464,7 @@ diff :
 # bash: stdout
 /Users/watanabeyouhei/program/42tokyo/minishell/test
 # minishell: stderr
-minishell : cd : :No such file or directory
+minishell: cd: HOME not set
 exit
 # bash: stderr
 # minishell: exit status = 0
@@ -671,7 +671,6 @@ diff :
 # minishell: stderr
 exit
 # bash: stderr
-ln: c/a: File exists
 # minishell: exit status = 0
 # bash     : exit status = 0
 
@@ -782,7 +781,6 @@ diff :
 /Users/watanabeyouhei/program/42tokyo/minishell/test/li/link2
 /Users/watanabeyouhei/program/42tokyo/minishell/test/li/link2/c
 # minishell: stderr
-ln: li/a: File exists
 exit
 # bash: stderr
 ln: li/a: File exists
@@ -951,9 +949,9 @@ exit
 -------------------------
 diff :
 # minishell: stdout
-/Users/watanabeyouhei/program/venv/bin:/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/watanabeyouhei/.brew/bin
+/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 # bash: stdout
-/Users/watanabeyouhei/program/venv/bin:/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/watanabeyouhei/.brew/bin
+/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 # minishell: stderr
 exit
 # bash: stderr
@@ -965,9 +963,9 @@ exit
 -------------------------
 diff :
 # minishell: stdout
-/Users/watanabeyouhei/program/venv/bin:/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/watanabeyouhei/.brew/bin
+/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 # bash: stdout
-/Users/watanabeyouhei/program/venv/bin:/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/watanabeyouhei/.brew/bin
+/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 # minishell: stderr
 exit
 # bash: stderr
@@ -1038,72 +1036,60 @@ exit
 -------------------------
 [KO ] case: env | grep -v -E '^_=' | sort\nexit
 -------------------------
-diff :15c15
+diff :13c13
 < SHLVL=2
 ---
 > SHLVL=3
 # minishell: stdout
-COLORTERM=truecolor
 COMMAND_MODE=unix2003
-GIT_ASKPASS=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh
 HOME=/Users/watanabeyouhei
 HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
 HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
-LANG=ja_JP.UTF-8
+LC_CTYPE=ja_JP.UTF-8
+LOGIN_SHELL=1
 LOGNAME=watanabeyouhei
 LaunchInstanceID=E9B62947-207A-45B8-B426-748895131EDB
-ORIGINAL_XDG_CURRENT_DESKTOP=undefined
-PATH=/Users/watanabeyouhei/program/venv/bin:/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/watanabeyouhei/.brew/bin
+PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 PWD=/Users/watanabeyouhei/program/42tokyo/minishell/test
 SECURITYSESSIONID=186ab
 SHELL=/bin/zsh
 SHLVL=2
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.i4wn8gFajb/Listeners
 TERM=xterm-256color
-TERM_PROGRAM=vscode
-TERM_PROGRAM_VERSION=1.64.2
+TERMINAL_EMULATOR=JetBrains-JediTerm
+TERM_SESSION_ID=b0a1c3d0-6088-4ad8-802c-5b5bdf6663a4
 TMPDIR=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/
 USER=watanabeyouhei
-VIRTUAL_ENV=/Users/watanabeyouhei/program/venv
-VSCODE_GIT_ASKPASS_EXTRA_ARGS=--ms-enable-electron-run-as-node
-VSCODE_GIT_ASKPASS_MAIN=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
-VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/MacOS/Electron
-VSCODE_GIT_IPC_HANDLE=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/vscode-git-1569016b1a.sock
 XPC_FLAGS=0x0
 XPC_SERVICE_NAME=0
-__CFBundleIdentifier=com.microsoft.VSCode
+__CFBundleIdentifier=com.jetbrains.CLion
 __CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
+__INTELLIJ_COMMAND_HISTFILE__=/Users/watanabeyouhei/Library/Caches/JetBrains/CLion2021.3/terminal/history/program-history
 # bash: stdout
-COLORTERM=truecolor
 COMMAND_MODE=unix2003
-GIT_ASKPASS=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh
 HOME=/Users/watanabeyouhei
 HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
 HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
-LANG=ja_JP.UTF-8
+LC_CTYPE=ja_JP.UTF-8
+LOGIN_SHELL=1
 LOGNAME=watanabeyouhei
 LaunchInstanceID=E9B62947-207A-45B8-B426-748895131EDB
-ORIGINAL_XDG_CURRENT_DESKTOP=undefined
-PATH=/Users/watanabeyouhei/program/venv/bin:/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/watanabeyouhei/.brew/bin
+PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 PWD=/Users/watanabeyouhei/program/42tokyo/minishell/test
 SECURITYSESSIONID=186ab
 SHELL=/bin/zsh
 SHLVL=3
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.i4wn8gFajb/Listeners
 TERM=xterm-256color
-TERM_PROGRAM=vscode
-TERM_PROGRAM_VERSION=1.64.2
+TERMINAL_EMULATOR=JetBrains-JediTerm
+TERM_SESSION_ID=b0a1c3d0-6088-4ad8-802c-5b5bdf6663a4
 TMPDIR=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/
 USER=watanabeyouhei
-VIRTUAL_ENV=/Users/watanabeyouhei/program/venv
-VSCODE_GIT_ASKPASS_EXTRA_ARGS=--ms-enable-electron-run-as-node
-VSCODE_GIT_ASKPASS_MAIN=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
-VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/MacOS/Electron
-VSCODE_GIT_IPC_HANDLE=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/vscode-git-1569016b1a.sock
 XPC_FLAGS=0x0
 XPC_SERVICE_NAME=0
-__CFBundleIdentifier=com.microsoft.VSCode
+__CFBundleIdentifier=com.jetbrains.CLion
 __CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
+__INTELLIJ_COMMAND_HISTFILE__=/Users/watanabeyouhei/Library/Caches/JetBrains/CLion2021.3/terminal/history/program-history
 # minishell: stderr
 exit
 # bash: stderr
@@ -1113,74 +1099,62 @@ exit
 -------------------------
 [KO ] case: export A=hello\n env | grep -v -E '^_=' | sort\nexit
 -------------------------
-diff :16c16
+diff :14c14
 < SHLVL=2
 ---
 > SHLVL=3
 # minishell: stdout
 A=hello
-COLORTERM=truecolor
 COMMAND_MODE=unix2003
-GIT_ASKPASS=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh
 HOME=/Users/watanabeyouhei
 HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
 HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
-LANG=ja_JP.UTF-8
+LC_CTYPE=ja_JP.UTF-8
+LOGIN_SHELL=1
 LOGNAME=watanabeyouhei
 LaunchInstanceID=E9B62947-207A-45B8-B426-748895131EDB
-ORIGINAL_XDG_CURRENT_DESKTOP=undefined
-PATH=/Users/watanabeyouhei/program/venv/bin:/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/watanabeyouhei/.brew/bin
+PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 PWD=/Users/watanabeyouhei/program/42tokyo/minishell/test
 SECURITYSESSIONID=186ab
 SHELL=/bin/zsh
 SHLVL=2
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.i4wn8gFajb/Listeners
 TERM=xterm-256color
-TERM_PROGRAM=vscode
-TERM_PROGRAM_VERSION=1.64.2
+TERMINAL_EMULATOR=JetBrains-JediTerm
+TERM_SESSION_ID=b0a1c3d0-6088-4ad8-802c-5b5bdf6663a4
 TMPDIR=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/
 USER=watanabeyouhei
-VIRTUAL_ENV=/Users/watanabeyouhei/program/venv
-VSCODE_GIT_ASKPASS_EXTRA_ARGS=--ms-enable-electron-run-as-node
-VSCODE_GIT_ASKPASS_MAIN=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
-VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/MacOS/Electron
-VSCODE_GIT_IPC_HANDLE=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/vscode-git-1569016b1a.sock
 XPC_FLAGS=0x0
 XPC_SERVICE_NAME=0
-__CFBundleIdentifier=com.microsoft.VSCode
+__CFBundleIdentifier=com.jetbrains.CLion
 __CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
+__INTELLIJ_COMMAND_HISTFILE__=/Users/watanabeyouhei/Library/Caches/JetBrains/CLion2021.3/terminal/history/program-history
 # bash: stdout
 A=hello
-COLORTERM=truecolor
 COMMAND_MODE=unix2003
-GIT_ASKPASS=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh
 HOME=/Users/watanabeyouhei
 HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
 HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
-LANG=ja_JP.UTF-8
+LC_CTYPE=ja_JP.UTF-8
+LOGIN_SHELL=1
 LOGNAME=watanabeyouhei
 LaunchInstanceID=E9B62947-207A-45B8-B426-748895131EDB
-ORIGINAL_XDG_CURRENT_DESKTOP=undefined
-PATH=/Users/watanabeyouhei/program/venv/bin:/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/watanabeyouhei/.brew/bin
+PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 PWD=/Users/watanabeyouhei/program/42tokyo/minishell/test
 SECURITYSESSIONID=186ab
 SHELL=/bin/zsh
 SHLVL=3
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.i4wn8gFajb/Listeners
 TERM=xterm-256color
-TERM_PROGRAM=vscode
-TERM_PROGRAM_VERSION=1.64.2
+TERMINAL_EMULATOR=JetBrains-JediTerm
+TERM_SESSION_ID=b0a1c3d0-6088-4ad8-802c-5b5bdf6663a4
 TMPDIR=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/
 USER=watanabeyouhei
-VIRTUAL_ENV=/Users/watanabeyouhei/program/venv
-VSCODE_GIT_ASKPASS_EXTRA_ARGS=--ms-enable-electron-run-as-node
-VSCODE_GIT_ASKPASS_MAIN=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
-VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/MacOS/Electron
-VSCODE_GIT_IPC_HANDLE=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/vscode-git-1569016b1a.sock
 XPC_FLAGS=0x0
 XPC_SERVICE_NAME=0
-__CFBundleIdentifier=com.microsoft.VSCode
+__CFBundleIdentifier=com.jetbrains.CLion
 __CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
+__INTELLIJ_COMMAND_HISTFILE__=/Users/watanabeyouhei/Library/Caches/JetBrains/CLion2021.3/terminal/history/program-history
 # minishell: stderr
 exit
 # bash: stderr
@@ -1190,74 +1164,62 @@ exit
 -------------------------
 [KO ] case: cd ../\n env | grep -v -E '^_=' | sort\nexit
 -------------------------
-diff :16c16
+diff :14c14
 < SHLVL=2
 ---
 > SHLVL=3
 # minishell: stdout
-COLORTERM=truecolor
 COMMAND_MODE=unix2003
-GIT_ASKPASS=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh
 HOME=/Users/watanabeyouhei
 HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
 HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
-LANG=ja_JP.UTF-8
+LC_CTYPE=ja_JP.UTF-8
+LOGIN_SHELL=1
 LOGNAME=watanabeyouhei
 LaunchInstanceID=E9B62947-207A-45B8-B426-748895131EDB
 OLDPWD=/Users/watanabeyouhei/program/42tokyo/minishell/test
-ORIGINAL_XDG_CURRENT_DESKTOP=undefined
-PATH=/Users/watanabeyouhei/program/venv/bin:/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/watanabeyouhei/.brew/bin
+PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 PWD=/Users/watanabeyouhei/program/42tokyo/minishell
 SECURITYSESSIONID=186ab
 SHELL=/bin/zsh
 SHLVL=2
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.i4wn8gFajb/Listeners
 TERM=xterm-256color
-TERM_PROGRAM=vscode
-TERM_PROGRAM_VERSION=1.64.2
+TERMINAL_EMULATOR=JetBrains-JediTerm
+TERM_SESSION_ID=b0a1c3d0-6088-4ad8-802c-5b5bdf6663a4
 TMPDIR=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/
 USER=watanabeyouhei
-VIRTUAL_ENV=/Users/watanabeyouhei/program/venv
-VSCODE_GIT_ASKPASS_EXTRA_ARGS=--ms-enable-electron-run-as-node
-VSCODE_GIT_ASKPASS_MAIN=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
-VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/MacOS/Electron
-VSCODE_GIT_IPC_HANDLE=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/vscode-git-1569016b1a.sock
 XPC_FLAGS=0x0
 XPC_SERVICE_NAME=0
-__CFBundleIdentifier=com.microsoft.VSCode
+__CFBundleIdentifier=com.jetbrains.CLion
 __CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
+__INTELLIJ_COMMAND_HISTFILE__=/Users/watanabeyouhei/Library/Caches/JetBrains/CLion2021.3/terminal/history/program-history
 # bash: stdout
-COLORTERM=truecolor
 COMMAND_MODE=unix2003
-GIT_ASKPASS=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh
 HOME=/Users/watanabeyouhei
 HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
 HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
-LANG=ja_JP.UTF-8
+LC_CTYPE=ja_JP.UTF-8
+LOGIN_SHELL=1
 LOGNAME=watanabeyouhei
 LaunchInstanceID=E9B62947-207A-45B8-B426-748895131EDB
 OLDPWD=/Users/watanabeyouhei/program/42tokyo/minishell/test
-ORIGINAL_XDG_CURRENT_DESKTOP=undefined
-PATH=/Users/watanabeyouhei/program/venv/bin:/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/watanabeyouhei/.brew/bin
+PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 PWD=/Users/watanabeyouhei/program/42tokyo/minishell
 SECURITYSESSIONID=186ab
 SHELL=/bin/zsh
 SHLVL=3
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.i4wn8gFajb/Listeners
 TERM=xterm-256color
-TERM_PROGRAM=vscode
-TERM_PROGRAM_VERSION=1.64.2
+TERMINAL_EMULATOR=JetBrains-JediTerm
+TERM_SESSION_ID=b0a1c3d0-6088-4ad8-802c-5b5bdf6663a4
 TMPDIR=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/
 USER=watanabeyouhei
-VIRTUAL_ENV=/Users/watanabeyouhei/program/venv
-VSCODE_GIT_ASKPASS_EXTRA_ARGS=--ms-enable-electron-run-as-node
-VSCODE_GIT_ASKPASS_MAIN=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
-VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/MacOS/Electron
-VSCODE_GIT_IPC_HANDLE=/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/vscode-git-1569016b1a.sock
 XPC_FLAGS=0x0
 XPC_SERVICE_NAME=0
-__CFBundleIdentifier=com.microsoft.VSCode
+__CFBundleIdentifier=com.jetbrains.CLion
 __CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
+__INTELLIJ_COMMAND_HISTFILE__=/Users/watanabeyouhei/Library/Caches/JetBrains/CLion2021.3/terminal/history/program-history
 # minishell: stderr
 exit
 # bash: stderr
@@ -1819,73 +1781,59 @@ exit
 -------------------------
 [KO ] case: export | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
 -------------------------
-diff :16c16
+diff :14c14
 < SHLVL="2"
 ---
 > SHLVL="3"
 # minishell: stdout
-COLORTERM="truecolor"
 COMMAND_MODE="unix2003"
-GIT_ASKPASS="/Applications/Visual
 HOME="/Users/watanabeyouhei"
 HOMEBREW_CACHE="/tmp/watanabeyouhei/Homebrew/Caches"
 HOMEBREW_TEMP="/tmp/watanabeyouhei/Homebrew/Temp"
-LANG="ja_JP.UTF-8"
+LC_CTYPE="ja_JP.UTF-8"
+LOGIN_SHELL="1"
 LOGNAME="watanabeyouhei"
 LaunchInstanceID="E9B62947-207A-45B8-B426-748895131EDB"
 OLDPWD
-ORIGINAL_XDG_CURRENT_DESKTOP="undefined"
-PATH="/Users/watanabeyouhei/program/venv/bin:/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/watanabeyouhei/.brew/bin"
+PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 PWD="/Users/watanabeyouhei/program/42tokyo/minishell/test"
 SECURITYSESSIONID="186ab"
 SHELL="/bin/zsh"
 SHLVL="2"
 SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.i4wn8gFajb/Listeners"
 TERM="xterm-256color"
-TERM_PROGRAM="vscode"
-TERM_PROGRAM_VERSION="1.64.2"
+TERMINAL_EMULATOR="JetBrains-JediTerm"
+TERM_SESSION_ID="b0a1c3d0-6088-4ad8-802c-5b5bdf6663a4"
 TMPDIR="/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/"
 USER="watanabeyouhei"
-VIRTUAL_ENV="/Users/watanabeyouhei/program/venv"
-VSCODE_GIT_ASKPASS_EXTRA_ARGS="--ms-enable-electron-run-as-node"
-VSCODE_GIT_ASKPASS_MAIN="/Applications/Visual
-VSCODE_GIT_ASKPASS_NODE="/Applications/Visual
-VSCODE_GIT_IPC_HANDLE="/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/vscode-git-1569016b1a.sock"
 XPC_FLAGS="0x0"
 XPC_SERVICE_NAME="0"
-__CFBundleIdentifier="com.microsoft.VSCode"
+__CFBundleIdentifier="com.jetbrains.CLion"
 __CF_USER_TEXT_ENCODING="0x1F5:0x1:0xE"
 # bash: stdout
-COLORTERM="truecolor"
 COMMAND_MODE="unix2003"
-GIT_ASKPASS="/Applications/Visual
 HOME="/Users/watanabeyouhei"
 HOMEBREW_CACHE="/tmp/watanabeyouhei/Homebrew/Caches"
 HOMEBREW_TEMP="/tmp/watanabeyouhei/Homebrew/Temp"
-LANG="ja_JP.UTF-8"
+LC_CTYPE="ja_JP.UTF-8"
+LOGIN_SHELL="1"
 LOGNAME="watanabeyouhei"
 LaunchInstanceID="E9B62947-207A-45B8-B426-748895131EDB"
 OLDPWD
-ORIGINAL_XDG_CURRENT_DESKTOP="undefined"
-PATH="/Users/watanabeyouhei/program/venv/bin:/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/watanabeyouhei/.brew/bin"
+PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 PWD="/Users/watanabeyouhei/program/42tokyo/minishell/test"
 SECURITYSESSIONID="186ab"
 SHELL="/bin/zsh"
 SHLVL="3"
 SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.i4wn8gFajb/Listeners"
 TERM="xterm-256color"
-TERM_PROGRAM="vscode"
-TERM_PROGRAM_VERSION="1.64.2"
+TERMINAL_EMULATOR="JetBrains-JediTerm"
+TERM_SESSION_ID="b0a1c3d0-6088-4ad8-802c-5b5bdf6663a4"
 TMPDIR="/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/"
 USER="watanabeyouhei"
-VIRTUAL_ENV="/Users/watanabeyouhei/program/venv"
-VSCODE_GIT_ASKPASS_EXTRA_ARGS="--ms-enable-electron-run-as-node"
-VSCODE_GIT_ASKPASS_MAIN="/Applications/Visual
-VSCODE_GIT_ASKPASS_NODE="/Applications/Visual
-VSCODE_GIT_IPC_HANDLE="/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/vscode-git-1569016b1a.sock"
 XPC_FLAGS="0x0"
 XPC_SERVICE_NAME="0"
-__CFBundleIdentifier="com.microsoft.VSCode"
+__CFBundleIdentifier="com.jetbrains.CLion"
 __CF_USER_TEXT_ENCODING="0x1F5:0x1:0xE"
 # minishell: stderr
 exit
@@ -1896,79 +1844,65 @@ exit
 -------------------------
 [KO ] case: export 1 _+ _OK _2? _OK2=VAR =NG OK3=\n export | grep -v -E '^declare -x _=' | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
 -------------------------
-diff :17c17
+diff :15c15
 < SHLVL="2"
 ---
 > SHLVL="3"
 # minishell: stdout
-COLORTERM="truecolor"
 COMMAND_MODE="unix2003"
-GIT_ASKPASS="/Applications/Visual
 HOME="/Users/watanabeyouhei"
 HOMEBREW_CACHE="/tmp/watanabeyouhei/Homebrew/Caches"
 HOMEBREW_TEMP="/tmp/watanabeyouhei/Homebrew/Temp"
-LANG="ja_JP.UTF-8"
+LC_CTYPE="ja_JP.UTF-8"
+LOGIN_SHELL="1"
 LOGNAME="watanabeyouhei"
 LaunchInstanceID="E9B62947-207A-45B8-B426-748895131EDB"
 OK3=""
 OLDPWD
-ORIGINAL_XDG_CURRENT_DESKTOP="undefined"
-PATH="/Users/watanabeyouhei/program/venv/bin:/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/watanabeyouhei/.brew/bin"
+PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 PWD="/Users/watanabeyouhei/program/42tokyo/minishell/test"
 SECURITYSESSIONID="186ab"
 SHELL="/bin/zsh"
 SHLVL="2"
 SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.i4wn8gFajb/Listeners"
 TERM="xterm-256color"
-TERM_PROGRAM="vscode"
-TERM_PROGRAM_VERSION="1.64.2"
+TERMINAL_EMULATOR="JetBrains-JediTerm"
+TERM_SESSION_ID="b0a1c3d0-6088-4ad8-802c-5b5bdf6663a4"
 TMPDIR="/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/"
 USER="watanabeyouhei"
-VIRTUAL_ENV="/Users/watanabeyouhei/program/venv"
-VSCODE_GIT_ASKPASS_EXTRA_ARGS="--ms-enable-electron-run-as-node"
-VSCODE_GIT_ASKPASS_MAIN="/Applications/Visual
-VSCODE_GIT_ASKPASS_NODE="/Applications/Visual
-VSCODE_GIT_IPC_HANDLE="/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/vscode-git-1569016b1a.sock"
 XPC_FLAGS="0x0"
 XPC_SERVICE_NAME="0"
 _OK
 _OK2="VAR"
-__CFBundleIdentifier="com.microsoft.VSCode"
+__CFBundleIdentifier="com.jetbrains.CLion"
 __CF_USER_TEXT_ENCODING="0x1F5:0x1:0xE"
 # bash: stdout
-COLORTERM="truecolor"
 COMMAND_MODE="unix2003"
-GIT_ASKPASS="/Applications/Visual
 HOME="/Users/watanabeyouhei"
 HOMEBREW_CACHE="/tmp/watanabeyouhei/Homebrew/Caches"
 HOMEBREW_TEMP="/tmp/watanabeyouhei/Homebrew/Temp"
-LANG="ja_JP.UTF-8"
+LC_CTYPE="ja_JP.UTF-8"
+LOGIN_SHELL="1"
 LOGNAME="watanabeyouhei"
 LaunchInstanceID="E9B62947-207A-45B8-B426-748895131EDB"
 OK3=""
 OLDPWD
-ORIGINAL_XDG_CURRENT_DESKTOP="undefined"
-PATH="/Users/watanabeyouhei/program/venv/bin:/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/watanabeyouhei/.brew/bin"
+PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 PWD="/Users/watanabeyouhei/program/42tokyo/minishell/test"
 SECURITYSESSIONID="186ab"
 SHELL="/bin/zsh"
 SHLVL="3"
 SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.i4wn8gFajb/Listeners"
 TERM="xterm-256color"
-TERM_PROGRAM="vscode"
-TERM_PROGRAM_VERSION="1.64.2"
+TERMINAL_EMULATOR="JetBrains-JediTerm"
+TERM_SESSION_ID="b0a1c3d0-6088-4ad8-802c-5b5bdf6663a4"
 TMPDIR="/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/"
 USER="watanabeyouhei"
-VIRTUAL_ENV="/Users/watanabeyouhei/program/venv"
-VSCODE_GIT_ASKPASS_EXTRA_ARGS="--ms-enable-electron-run-as-node"
-VSCODE_GIT_ASKPASS_MAIN="/Applications/Visual
-VSCODE_GIT_ASKPASS_NODE="/Applications/Visual
-VSCODE_GIT_IPC_HANDLE="/var/folders/3t/6x4prgm97zq19v_5xz_4_t0c0000gn/T/vscode-git-1569016b1a.sock"
 XPC_FLAGS="0x0"
 XPC_SERVICE_NAME="0"
 _OK
 _OK2="VAR"
-__CFBundleIdentifier="com.microsoft.VSCode"
+__CFBundleIdentifier="com.jetbrains.CLion"
 __CF_USER_TEXT_ENCODING="0x1F5:0x1:0xE"
 # minishell: stderr
 minishell: export: `1': not a valid identifier
@@ -2015,9 +1949,9 @@ exit
 -------------------------
 diff :
 # minishell: stdout
-declare -x PATH="/Users/watanabeyouhei/program/venv/bin:/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/watanabeyouhei/.brew/bin"
+declare -x PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # bash: stdout
-declare -x PATH="/Users/watanabeyouhei/program/venv/bin:/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/watanabeyouhei/.brew/bin"
+declare -x PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # minishell: stderr
 exit
 # bash: stderr
