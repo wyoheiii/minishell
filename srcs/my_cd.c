@@ -80,9 +80,7 @@ int	my_cd(char **command, t_envlist **lst, t_god *god)
 	if (command != NULL && command[1] != NULL && command[1][0] == '~')
 		return (0);
 	path = get_cd_path(command[1], lst);
-	if (path == NULL && key_match_check("HOME", *lst))
-		return (cd_err(2, " "));
-	if (path == NULL && !key_match_check("HOME",*lst))
+	if (path == NULL)
 		return (cd_error(NULL));
 	cwd = getcwd(NULL, 0);
 	if ((ft_strncmp(path, ".", 2) == 0 || \
