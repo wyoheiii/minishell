@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:17:23 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/21 15:11:38 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/22 20:38:00 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int	print_export_env(t_envlist *lst)
 {
 	while (lst != NULL)
 	{
-        if(lst->key != NULL && lst->key[0] == '\0')
-        {
-            lst = lst->next;
-            continue ;
-        }
+		if (lst->key != NULL && lst->key[0] == '\0')
+		{
+			lst = lst->next;
+			continue ;
+		}
 		if (lst->key != NULL && lst->value == NULL)
 			printf("declare -x %s\n", lst->key);
 		else

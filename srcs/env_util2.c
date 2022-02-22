@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:16:25 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/12 19:28:55 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/22 20:47:12 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,18 @@ t_envlist	*env_new(char *envp)
 	new->value = env_get_value(envp);
 	new->next = NULL;
 	return (new);
+}
+
+bool	check_digit(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (!ft_isdigit(str[i]))
+			return (false);
+		i++;
+	}
+	return (true);
 }

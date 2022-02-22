@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:16:55 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/21 16:45:48 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/22 20:45:20 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ int	my_cd(char **command, t_envlist **lst, t_god *god)
 	else
 		new_path = create_path(path, god);
 	if (chdir(new_path) != 0)
-    {
-        if (!current_dir_check())
-            ret_err_period(path, god, lst, false);
-        else
-            cd_error(path);
-    }
+	{
+		if (!current_dir_check())
+			ret_err_period(path, god, lst, false);
+		else
+			cd_error(path);
+	}
 	else
 		set_new_pwd(god, new_path, lst, path);
 	cd_free(new_path, path);
