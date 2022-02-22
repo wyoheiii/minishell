@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_c.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tkaneshi <tkaneshi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:39:52 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/22 20:42:53 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/22 21:42:18 by tkaneshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,4 +161,5 @@ void		print_error(char *command, int ret);
 char		*check_current(char *command, char *path);
 void		lst_unset(char *arg, t_envlist **lst);
 bool		check_digit(char *str);
+bool		check_koron(char *path);
 #endif
