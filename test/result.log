@@ -386,14 +386,12 @@ cd: error retrieving current directory: getcwd: cannot access parent directories
 -------------------------
 diff :
 # minishell: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/test
+/Users/watanabeyouhei
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/test
+/Users/watanabeyouhei
 # minishell: stderr
-minishell: cd:  :No such file or directory
 exit
 # bash: stderr
-bash: line 1: cd:  : No such file or directory
 # minishell: exit status = 0
 # bash     : exit status = 0
 
@@ -1038,15 +1036,12 @@ exit
 
 
 -------------------------
-[KO ] case: env | grep -v -E '^_=' | sort\nexit
+[OK ] case: env | grep -v -E '^_=' | sort\nexit
 -------------------------
-diff :13c13
-< SHLVL=3
----
-> SHLVL=4
+diff :
 # minishell: stdout
 COMMAND_MODE=unix2003
-HOME= 
+HOME=/Users/watanabeyouhei
 HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
 HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
 LC_CTYPE=ja_JP.UTF-8
@@ -1070,7 +1065,7 @@ __CFBundleIdentifier=com.jetbrains.CLion
 __CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
 # bash: stdout
 COMMAND_MODE=unix2003
-HOME= 
+HOME=/Users/watanabeyouhei
 HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
 HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
 LC_CTYPE=ja_JP.UTF-8
@@ -1081,7 +1076,7 @@ PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbi
 PWD=/Users/watanabeyouhei/program/42tokyo/minishell/test
 SECURITYSESSIONID=186ab
 SHELL=/bin/zsh
-SHLVL=4
+SHLVL=3
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.i4wn8gFajb/Listeners
 TERM=xterm-256color
 TERMINAL_EMULATOR=JetBrains-JediTerm
@@ -1099,16 +1094,13 @@ exit
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: export A=hello\n env | grep -v -E '^_=' | sort\nexit
+[OK ] case: export A=hello\n env | grep -v -E '^_=' | sort\nexit
 -------------------------
-diff :14c14
-< SHLVL=3
----
-> SHLVL=4
+diff :
 # minishell: stdout
 A=hello
 COMMAND_MODE=unix2003
-HOME= 
+HOME=/Users/watanabeyouhei
 HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
 HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
 LC_CTYPE=ja_JP.UTF-8
@@ -1133,7 +1125,7 @@ __CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
 # bash: stdout
 A=hello
 COMMAND_MODE=unix2003
-HOME= 
+HOME=/Users/watanabeyouhei
 HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
 HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
 LC_CTYPE=ja_JP.UTF-8
@@ -1144,7 +1136,7 @@ PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbi
 PWD=/Users/watanabeyouhei/program/42tokyo/minishell/test
 SECURITYSESSIONID=186ab
 SHELL=/bin/zsh
-SHLVL=4
+SHLVL=3
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.i4wn8gFajb/Listeners
 TERM=xterm-256color
 TERMINAL_EMULATOR=JetBrains-JediTerm
@@ -1162,15 +1154,12 @@ exit
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: cd ../\n env | grep -v -E '^_=' | sort\nexit
+[OK ] case: cd ../\n env | grep -v -E '^_=' | sort\nexit
 -------------------------
-diff :14c14
-< SHLVL=3
----
-> SHLVL=4
+diff :
 # minishell: stdout
 COMMAND_MODE=unix2003
-HOME= 
+HOME=/Users/watanabeyouhei
 HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
 HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
 LC_CTYPE=ja_JP.UTF-8
@@ -1195,7 +1184,7 @@ __CFBundleIdentifier=com.jetbrains.CLion
 __CF_USER_TEXT_ENCODING=0x1F5:0x1:0xE
 # bash: stdout
 COMMAND_MODE=unix2003
-HOME= 
+HOME=/Users/watanabeyouhei
 HOMEBREW_CACHE=/tmp/watanabeyouhei/Homebrew/Caches
 HOMEBREW_TEMP=/tmp/watanabeyouhei/Homebrew/Temp
 LC_CTYPE=ja_JP.UTF-8
@@ -1207,7 +1196,7 @@ PATH=/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbi
 PWD=/Users/watanabeyouhei/program/42tokyo/minishell
 SECURITYSESSIONID=186ab
 SHELL=/bin/zsh
-SHLVL=4
+SHLVL=3
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.i4wn8gFajb/Listeners
 TERM=xterm-256color
 TERMINAL_EMULATOR=JetBrains-JediTerm
@@ -1777,15 +1766,12 @@ exit
 
 
 -------------------------
-[KO ] case: export | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
+[OK ] case: export | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
 -------------------------
-diff :14c14
-< SHLVL="3"
----
-> SHLVL="4"
+diff :
 # minishell: stdout
 COMMAND_MODE="unix2003"
-HOME="
+HOME="/Users/watanabeyouhei"
 HOMEBREW_CACHE="/tmp/watanabeyouhei/Homebrew/Caches"
 HOMEBREW_TEMP="/tmp/watanabeyouhei/Homebrew/Temp"
 LC_CTYPE="ja_JP.UTF-8"
@@ -1810,7 +1796,7 @@ __CFBundleIdentifier="com.jetbrains.CLion"
 __CF_USER_TEXT_ENCODING="0x1F5:0x1:0xE"
 # bash: stdout
 COMMAND_MODE="unix2003"
-HOME="
+HOME="/Users/watanabeyouhei"
 HOMEBREW_CACHE="/tmp/watanabeyouhei/Homebrew/Caches"
 HOMEBREW_TEMP="/tmp/watanabeyouhei/Homebrew/Temp"
 LC_CTYPE="ja_JP.UTF-8"
@@ -1822,7 +1808,7 @@ PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sb
 PWD="/Users/watanabeyouhei/program/42tokyo/minishell/test"
 SECURITYSESSIONID="186ab"
 SHELL="/bin/zsh"
-SHLVL="4"
+SHLVL="3"
 SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.i4wn8gFajb/Listeners"
 TERM="xterm-256color"
 TERMINAL_EMULATOR="JetBrains-JediTerm"
@@ -1840,15 +1826,12 @@ exit
 # bash     : exit status = 0
 
 -------------------------
-[KO ] case: export 1 _+ _OK _2? _OK2=VAR =NG OK3=\n export | grep -v -E '^declare -x _=' | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
+[OK ] case: export 1 _+ _OK _2? _OK2=VAR =NG OK3=\n export | grep -v -E '^declare -x _=' | grep -v -E '_=' | cut -d " " -f 3 | sort\nexit
 -------------------------
-diff :15c15
-< SHLVL="3"
----
-> SHLVL="4"
+diff :
 # minishell: stdout
 COMMAND_MODE="unix2003"
-HOME="
+HOME="/Users/watanabeyouhei"
 HOMEBREW_CACHE="/tmp/watanabeyouhei/Homebrew/Caches"
 HOMEBREW_TEMP="/tmp/watanabeyouhei/Homebrew/Temp"
 LC_CTYPE="ja_JP.UTF-8"
@@ -1876,7 +1859,7 @@ __CFBundleIdentifier="com.jetbrains.CLion"
 __CF_USER_TEXT_ENCODING="0x1F5:0x1:0xE"
 # bash: stdout
 COMMAND_MODE="unix2003"
-HOME="
+HOME="/Users/watanabeyouhei"
 HOMEBREW_CACHE="/tmp/watanabeyouhei/Homebrew/Caches"
 HOMEBREW_TEMP="/tmp/watanabeyouhei/Homebrew/Temp"
 LC_CTYPE="ja_JP.UTF-8"
@@ -1889,7 +1872,7 @@ PATH="/Users/watanabeyouhei/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sb
 PWD="/Users/watanabeyouhei/program/42tokyo/minishell/test"
 SECURITYSESSIONID="186ab"
 SHELL="/bin/zsh"
-SHLVL="4"
+SHLVL="3"
 SSH_AUTH_SOCK="/private/tmp/com.apple.launchd.i4wn8gFajb/Listeners"
 TERM="xterm-256color"
 TERMINAL_EMULATOR="JetBrains-JediTerm"
@@ -2787,22 +2770,23 @@ mkdir: dir: File exists
 # bash     : exit status = 0
 
 -------------------------
-[OK ] case: export PWD=\n export OLDPWD=\n cd\n pwd\n echo $PWD\n echo $OLDPWD\nexit
+[KO ] case: export PWD=\n export OLDPWD=\n cd\n pwd\n echo $PWD\n echo $OLDPWD\nexit
 -------------------------
-diff :
+diff :3c3
+< /Users/watanabeyouhei/program/42tokyo/minishell/test
+---
+> 
 # minishell: stdout
+/Users/watanabeyouhei
+/Users/watanabeyouhei
 /Users/watanabeyouhei/program/42tokyo/minishell/test
-
-
 # bash: stdout
-/Users/watanabeyouhei/program/42tokyo/minishell/test
-
+/Users/watanabeyouhei
+/Users/watanabeyouhei
 
 # minishell: stderr
-minishell: cd:  :No such file or directory
 exit
 # bash: stderr
-bash: line 3: cd:  : No such file or directory
 # minishell: exit status = 0
 # bash     : exit status = 0
 

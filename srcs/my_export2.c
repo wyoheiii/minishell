@@ -16,6 +16,11 @@ int	print_export_env(t_envlist *lst)
 {
 	while (lst != NULL)
 	{
+        if(lst->key != NULL && lst->key[0] == '\0')
+        {
+            lst = lst->next;
+            continue ;
+        }
 		if (lst->key != NULL && lst->value == NULL)
 			printf("declare -x %s\n", lst->key);
 		else
