@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_util2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tkaneshi <tkaneshi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 16:19:29 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/22 15:43:06 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/22 21:39:35 by tkaneshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,10 @@ char	*get_path(t_envlist *lst, char *command)
 		path = search_env_key_("PATH", lst);
 		if (path != NULL)
 		{
-			array_path = my_split(path, ':');
+			if (check_koron(path))
+				array_path = path_split(path, ':');
+			else
+				array_path = my_split(path, ':');
 			ret = check_access(array_path, command);
 			if (ret == NULL)
 				ret = check_current(command, path);
