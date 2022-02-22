@@ -84,8 +84,13 @@ int	my_cd(char **command, t_envlist **lst, t_god *god)
 		new_path = my_strdup(path);
 	else
 		new_path = create_path(path, god);
-	if (chdir(path) != 0)
-		cd_error(path);
+	if (chdir(new_path) != 0)
+    {
+        if (!current_dir_check())
+            ret_err_period(path, god, lst, false);
+        else
+            cd_error(path);
+    }
 	else
 		set_new_pwd(god, new_path, lst, path);
 	cd_free(new_path, path);
