@@ -34,6 +34,7 @@ void	env_pwd_set(t_envlist **envlst)
 		free(pwd);
 		new = env_new(char_new);
 		lstadd_back(envlst, new);
+        free(char_new);
 	}
 }
 
