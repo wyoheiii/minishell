@@ -15,7 +15,7 @@
 void	signal_ctrl_c(int sig)
 {
 	(void)sig;
-	ft_putchar_fd('\n', 1);
+	ft_putchar_fd('\n', 2);
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();

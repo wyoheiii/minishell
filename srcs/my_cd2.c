@@ -63,7 +63,6 @@ void	del_current(t_pwd **pwd, t_pwd **top, bool flag)
 {
 	t_pwd	*tmp;
 
-	tmp = *pwd;
 	if (*pwd == NULL)
 		return ;
 	tmp = *pwd;

@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 16:19:29 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/22 11:31:20 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/22 15:43:06 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ char	*get_path(t_envlist *lst, char *command)
 			ret = check_access(array_path, command);
 			if (ret == NULL)
 				ret = check_current(command, path);
-			//printf("ret  ; %s",ret);
 			return (ret);
 		}
 	}

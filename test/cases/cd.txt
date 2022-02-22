@@ -39,4 +39,10 @@ cd ///////\n pwd\n cd ///////bin\n pwd
 export HOME=//\n cd
 export HOME=//bin/..////////////bin/../\n cd
 export HOME=///\n cd
-
+mkdir -p a/b\n ln -s a c\n cd c\n pwd\n cd b\n pwd
+mkdir -p a/b\n ln -s a c\n cd c\n rm -rf ../../c\n pwd\n cd .\n pwd
+mkdir -p a/b\n ln -s a c\n cd c\n rm -rf ../../c\n pwd\n cd b\n pwd
+mkdir -p a/b\n ln -s a c\n cd c\n rm -rf ../../c\n pwd\n cd m\n pwd
+mkdir -p a/b\n ln -s a c\n cd c\n cd b\n pwd\n cd ../../a\n pwd
+mkdir -p a b\n ln -s a c\n cd c\n cd b\n pwd\n cd ../../a\n pwd
+mkdir -p a/b/c\n ln -s a li\n ln -s b a/link2\n cd li\n pwd\n cd b\n pwd\n cd ../link2\n pwd\n cd c\n pwd\n

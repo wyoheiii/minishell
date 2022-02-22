@@ -38,6 +38,7 @@
 # include <string.h>
 # include <stdbool.h>
 # include "expand_argv.h"
+# include <dirent.h>
 # define EXIT 1
 # define NO_SUCH 1
 # define NOT_DIR 2

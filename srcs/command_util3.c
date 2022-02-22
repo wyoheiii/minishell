@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 23:10:11 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/21 22:11:13 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/22 15:46:02 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	check_period(t_parsed *parsed)
 {
 	if (ft_strncmp(parsed->command[0], "..", 3) == 0 || \
-	ft_strncmp(parsed->command[0], ".", 2) == 0 ||
-    ft_strncmp(parsed->command[0], "\0", 1) == 0)
+	ft_strncmp(parsed->command[0], ".", 2) == 0 || \
+	ft_strncmp(parsed->command[0], "\0", 1) == 0)
 		cmd_not_fo(parsed->command[0]);
 }
 
