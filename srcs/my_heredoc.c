@@ -88,8 +88,8 @@ int	my_heredoc(t_redirect *redirect, t_envlist *lst)
 		heredoc_child(redirect->fd, redirect, lst);
 	else
 		ret = heredoc_waitpid(pid, &status, 0);
+    my_close(redirect->fd);
 	if (ret)
 		return (ret);
-    my_close(redirect->fd);
 	return (ret);
 }
