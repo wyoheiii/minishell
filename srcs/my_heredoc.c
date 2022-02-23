@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:17:29 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/23 20:05:01 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/23 22:29:13 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ void	heredoc_child(int fd, t_redirect *redirect, t_envlist *lst)
 {
 	char	*line;
 
-    printf("redirect adress ;%p\n",redirect);
-    printf("envlsit adress ;%p\n",lst);
 	while (1)
 	{
 		heredoc_sig();
@@ -58,7 +56,6 @@ void	heredoc_child(int fd, t_redirect *redirect, t_envlist *lst)
 		if (ft_strncmp(line, redirect->filename, \
 		ft_strlen(redirect->filename) + 1) == 0)
 			break ;
-        printf("line adress ;%p\n",line);
 		line_in_fd(fd, redirect, lst, line);
 	}
 	my_close(fd);
@@ -90,7 +87,7 @@ int	my_heredoc(t_redirect *redirect, t_envlist *lst)
 		heredoc_child(redirect->fd, redirect, lst);
 	else
 		ret = heredoc_waitpid(pid, &status, 0);
-    my_close(redirect->fd);
+	my_close(redirect->fd);
 	if (ret)
 		return (ret);
 	return (ret);
