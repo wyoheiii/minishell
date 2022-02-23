@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 23:28:00 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/23 20:22:38 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/23 20:57:39 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,14 @@ int	create_heredoc_file(int count, char **tmpfile)
 		}
 		fd = open(*tmpfile, O_WRONLY | O_EXCL | O_CREAT, 0666);
 		if (fd == -1)
-			ft_putendl_fd("open dekimasen", 2);
+			ft_putendl_fd("open err", 2);
 		break ;
 	}
 	if (*tmpfile && fd == -1)
+	{
 		free(*tmpfile);
+		*tmpfile = NULL;
+	}
 	return (fd);
 }
 
