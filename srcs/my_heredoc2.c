@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 23:28:00 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/23 20:09:42 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/23 20:22:38 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,17 @@ char	*new_file(int count)
 	return (ret);
 }
 
+bool	heredoc_count_check(int count, int *fd)
+{
+	if (count == INT_MAX)
+	{
+		ft_putendl_fd("too many file", 2);
+		*fd = -1;
+		return (true);
+	}
+	return (false);
+}
+
 int	create_heredoc_file(int count, char **tmpfile)
 {
 	struct stat	st;
@@ -35,12 +46,8 @@ int	create_heredoc_file(int count, char **tmpfile)
 
 	while (1)
 	{
-		if (count == INT_MAX)
-		{
-			ft_putendl_fd("too many file", 2);
-			fd = -1;
+		if (heredoc_count_check(count, &fd))
 			break ;
-		}
 		*tmpfile = new_file(count);
 		if (stat(*tmpfile, &st) == 0)
 		{
@@ -53,6 +60,8 @@ int	create_heredoc_file(int count, char **tmpfile)
 			ft_putendl_fd("open dekimasen", 2);
 		break ;
 	}
+	if (*tmpfile && fd == -1)
+		free(*tmpfile);
 	return (fd);
 }
 
