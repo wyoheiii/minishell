@@ -56,6 +56,7 @@ void	heredoc_child(int fd, t_redirect *redirect, t_envlist *lst)
 		if (ft_strncmp(line, redirect->filename, \
 		ft_strlen(redirect->filename) + 1) == 0)
 			break ;
+        printf("line adress ;%p\n",line);
 		line_in_fd(fd, redirect, lst, line);
 	}
 	close(fd);
