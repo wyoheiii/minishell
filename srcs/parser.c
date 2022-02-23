@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tkaneshi <tkaneshi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:42:15 by tkaneshi          #+#    #+#             */
-/*   Updated: 2022/02/14 18:27:33 by tkaneshi         ###   ########.fr       */
+/*   Updated: 2022/02/23 20:53:58 by tkaneshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	free_parsed(t_parsed **parsed)
 		{
 			redirect = (*parsed)->redirect->next;
 			free((*parsed)->redirect->filename);
+			free((*parsed)->redirect->tmpfile);
 			free((*parsed)->redirect);
 			(*parsed)->redirect = redirect;
 		}
