@@ -47,6 +47,8 @@ void	heredoc_child(int fd, t_redirect *redirect, t_envlist *lst)
 {
 	char	*line;
 
+    printf("redirect adress ;%p\n",redirect);
+    printf("envlsit adress ;%p\n",lst);
 	while (1)
 	{
 		heredoc_sig();
