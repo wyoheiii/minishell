@@ -59,7 +59,7 @@ void	heredoc_child(int fd, t_redirect *redirect, t_envlist *lst)
         printf("line adress ;%p\n",line);
 		line_in_fd(fd, redirect, lst, line);
 	}
-	close(fd);
+	my_close(fd);
 	free(line);
 	exit(0);
 }
@@ -90,5 +90,6 @@ int	my_heredoc(t_redirect *redirect, t_envlist *lst)
 		ret = heredoc_waitpid(pid, &status, 0);
 	if (ret)
 		return (ret);
+    my_close(redirect->fd);
 	return (ret);
 }
