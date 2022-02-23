@@ -119,5 +119,6 @@ char	*get_path(t_envlist *lst, char *command)
 			return (ret);
 		}
 	}
+	is_a_dir(command);
 	return (command);
 }

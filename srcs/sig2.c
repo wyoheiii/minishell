@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:17:54 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/14 23:29:27 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/23 20:05:50 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	sig_quit(int sig)
 	}
 	if (sig == SIGQUIT)
 	{
-		ft_putstr_fd("\n", 2);
 		ft_putstr_fd("Quit: 3\n", 2);
 		g_status = 131;
 	}

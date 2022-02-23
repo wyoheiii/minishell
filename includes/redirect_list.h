@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_list.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:46:56 by tkaneshi          #+#    #+#             */
-/*   Updated: 2022/02/14 16:46:56 by tkaneshi         ###   ########.fr       */
+/*   Updated: 2022/02/23 20:10:35 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 
 typedef struct s_redirect
 {
+	char				*tmpfile;
 	int					fd;
 	char				*filename;
 	int					state;

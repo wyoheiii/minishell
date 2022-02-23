@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkaneshi <tkaneshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:43:45 by tkaneshi          #+#    #+#             */
-/*   Updated: 2022/02/14 20:27:23 by tkaneshi         ###   ########.fr       */
+/*   Updated: 2022/02/23 20:10:17 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static t_redirect	*new_redirect(char	*filename, char *meta)
 		ft_putendl_fd("malloc failure", 2);
 		exit(EXIT_FAILURE);
 	}
+	redirect->tmpfile = NULL;
 	redirect->fd = -1;
 	redirect->filename = filename;
 	redirect->state = get_state(meta);

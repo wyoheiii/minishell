@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:17:29 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/14 23:33:12 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/23 20:05:01 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,10 @@ void	line_in_fd(int fd, t_redirect *redirect, t_envlist *lst, char *line)
 	}
 }
 
-void	heredoc_child(int pfd[2], t_redirect *redirect, t_envlist *lst)
+void	heredoc_child(int fd, t_redirect *redirect, t_envlist *lst)
 {
 	char	*line;
 
-	my_close(pfd[0]);
 	while (1)
 	{
 		heredoc_sig();
@@ -57,10 +56,10 @@ void	heredoc_child(int pfd[2], t_redirect *redirect, t_envlist *lst)
 		if (ft_strncmp(line, redirect->filename, \
 		ft_strlen(redirect->filename) + 1) == 0)
 			break ;
-		line_in_fd(pfd[1], redirect, lst, line);
+		line_in_fd(fd, redirect, lst, line);
 	}
+	close(fd);
 	free(line);
-	my_close(pfd[1]);
 	exit(0);
 }
 
@@ -79,24 +78,16 @@ int	heredoc_waitpid(pid_t pid, int *status, int option)
 int	my_heredoc(t_redirect *redirect, t_envlist *lst)
 {
 	pid_t	pid;
-	int		pfd[2];
 	int		status;
 	int		ret;
 
 	ret = 0;
-	my_pipe(pfd);
 	pid = my_fork();
 	if (pid == 0)
-		heredoc_child(pfd, redirect, lst);
+		heredoc_child(redirect->fd, redirect, lst);
 	else
 		ret = heredoc_waitpid(pid, &status, 0);
 	if (ret)
-	{
-		my_close(pfd[1]);
-		my_close(pfd[0]);
 		return (ret);
-	}
-	my_close(pfd[1]);
-	redirect->fd = pfd[0];
 	return (ret);
 }
