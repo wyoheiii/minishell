@@ -17,12 +17,12 @@ void	hedoc_fd(t_redirect *redirect)
 	{
 		redirect->fd = open(redirect->tmpfile, O_RDONLY);
 		my_dup2(redirect->fd, 0);
-		my_close(redirect->fd);
 	}
 	if (redirect->tmpfile)
 	{
 		unlink(redirect->tmpfile);
 		free(redirect->tmpfile);
 	}
+    my_close(redirect->fd);
 	redirect->fd = -1;
 }
