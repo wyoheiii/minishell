@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_redirect2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tkaneshi <tkaneshi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 23:45:23 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/23 22:28:56 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/24 22:04:35 by tkaneshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	hedoc_fd(t_redirect *redirect)
 	if (redirect->tmpfile)
 	{
 		unlink(redirect->tmpfile);
-		free(redirect->tmpfile);
 	}
 	redirect->fd = -1;
 }
