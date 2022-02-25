@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 23:13:12 by wyohei            #+#    #+#             */
-/*   Updated: 2022/02/14 23:34:41 by wyohei           ###   ########.fr       */
+/*   Updated: 2022/02/25 12:59:26 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ int	syntax_check(t_parsed *parsed)
 	i = 0;
 	while (parsed != NULL)
 	{
+		// if (parsed->command[0] == NULL && parsed->redirect == NULL \
+		// && i == 0 && parsed->state == PIPE)
 		if (parsed->command[0] == NULL && parsed->redirect == NULL \
-		&& i == 0 && parsed->state == PIPE)
+		 && parsed->state == PIPE)
 			return (print_syntax_err("|"));
 		else if ((parsed->next == NULL && parsed->state == PIPE))
 			return (print_syntax_err("|"));
